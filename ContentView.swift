@@ -28,10 +28,10 @@ enum MainTab: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .dashboard: return NSLocalizedString("dashboard", comment: "")
+        case .dashboard: return NSLocalizedString("dashboard_title", comment: "")
         case .subscriptions: return NSLocalizedString("subscriptions", comment: "")
         case .upcoming: return NSLocalizedString("upcoming_payments", comment: "")
-        case .settings: return NSLocalizedString("settings", comment: "")
+        case .settings: return NSLocalizedString("settings_title", comment: "")
         }
     }
     
@@ -143,7 +143,7 @@ struct ContentView: View {
     
     // MARK: - Main Tab View
     private var mainTabView: some View {
-        ZStack(alignment: .bottom) {
+        VStack(spacing: 0) {
             NavigationStack(path: $navigationPath) {
                 Group {
                     switch selectedTab {
@@ -177,10 +177,12 @@ struct ContentView: View {
                         .navigationBarHidden(true)
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             // Bottom Navigation Bar
             bottomNavBar
         }
+        .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
     }
     
     // MARK: - Main Destination

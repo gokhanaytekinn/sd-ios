@@ -60,9 +60,11 @@
 "upgrade" = "Yükselt";
 "search" = "Ara";
 "search_placeholder" = "Abonelik veya işlem ara";
+"search_subscriptions_placeholder" = "Abonelik ara";
 "recent_searches" = "SON ARAMALAR";
 "popular_subscriptions" = "Popüler Abonelikler";
 "results_found" = "SONUÇ BULUNDU (%d)";
+"results" = "SONUÇ";
 "subscriptions" = "Abonelikler";
 "transactions" = "İşlemler";
 "looking_for_else" = "Başka bir şey mi arıyorsun?";

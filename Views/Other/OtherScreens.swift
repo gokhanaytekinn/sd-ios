@@ -41,7 +41,7 @@ struct SearchScreen: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                TextField(NSLocalizedString("search_subscriptions_placeholder", comment: ""), text: $searchText)
+                TextField(NSLocalizedString("search_placeholder", comment: ""), text: $searchText)
                     .autocapitalization(.none)
                 
                 if !searchText.isEmpty {
@@ -75,13 +75,13 @@ struct SearchScreen: View {
                                 Image(systemName: "magnifyingglass")
                                     .font(.system(size: 40))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                Text(NSLocalizedString("no_results_found", comment: ""))
+                                Text(NSLocalizedString("no_results", comment: ""))
                                     .font(.system(size: 16))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
                             .frame(maxWidth: .infinity)
                         } else {
-                            Text("\(filteredSubscriptions.count) \(NSLocalizedString("results", comment: ""))")
+                            Text("\(filteredSubscriptions.count) \(NSLocalizedString("results_found", comment: ""))")
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -314,7 +314,7 @@ struct TransactionHistoryScreen: View {
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                 }
                 Spacer()
-                Text(NSLocalizedString("transaction_history_title", comment: ""))
+                Text(NSLocalizedString("transaction_history", comment: ""))
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
