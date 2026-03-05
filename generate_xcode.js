@@ -83,19 +83,35 @@ for (const filePath of allFiles) {
     const ext = path.extname(filePath);
     const fileName = path.basename(filePath);
 
-    if (ext === '.strings') {
-        const lang = path.basename(path.dirname(filePath)).replace('.lproj', '');
-        const fileRefId = genUUID();
-        // Set path to en.lproj/Localizable.strings (relative to VariantGroup's path)
-        const relPath = path.relative('Resources', filePath).replace(/\\/g, '/');
-        pbxFileReference += `\t\t${fileRefId} /* ${lang} */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ${lang}; path = ${relPath}; sourceTree = "<group>"; };\n`;
-        stringsFiles.push(fileRefId);
-        continue;
-    }
-
     const fileRefId = genUUID();
     const buildFileId = genUUID();
-    const groupId = createGroups(filePath);
+
+    // Special handling for strings to ensure they go into Resources group
+    let groupId;
+    if (ext === '.strings') {
+        const resourcesPath = 'Resources';
+        if (!groups[resourcesPath]) {
+            groups[resourcesPath] = {
+                id: genUUID(),
+                children: [],
+                name: 'Resources',
+                path: 'Resources'
+            };
+            groups['.'].children.push(groups[resourcesPath].id);
+        }
+        groupId = groups[resourcesPath].id;
+    } else {
+        groupId = createGroups(filePath);
+    }
+
+    if (ext === '.strings') {
+        const lang = path.basename(path.dirname(filePath)).replace('.lproj', '');
+        // Path should be relative to the group it's in (Resources)
+        const relPath = path.basename(path.dirname(filePath)) + '/' + fileName;
+        pbxFileReference += `\t\t${fileRefId} /* ${lang} */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ${lang}; path = ${relPath}; sourceTree = "<group>"; };\n`;
+        stringsFiles.push(fileRefId);
+        continue; // Don't add to groups folder directly, it's in the variant group
+    }
 
     groups[getGroupPath(filePath)].children.push(fileRefId);
 
@@ -114,9 +130,17 @@ if (stringsFiles.length > 0) {
     for (const ref of stringsFiles) {
         pbxVariantGroup += `\t\t\t\t${ref} /* ${ref} */,\n`;
     }
-    // Set path to Resources so it resolves Resources/en.lproj/Localizable.strings
-    pbxVariantGroup += `\t\t\t);\n\t\t\tname = Localizable.strings;\n\t\t\tpath = Resources;\n\t\t\tsourceTree = "<group>";\n\t\t};\n`;
-    groups['.'].children.push(localizableVariantId);
+    pbxVariantGroup += `\t\t\t);\n\t\t\tname = Localizable.strings;\n\t\t\tsourceTree = "<group>";\n\t\t};\n`;
+
+    // Add variant group to Resources group
+    const resourcesPath = 'Resources';
+    if (groups[resourcesPath]) {
+        groups[resourcesPath].children.push(localizableVariantId);
+    } else {
+        // Fallback to root if for some reason Resources group wasn't created
+        groups['.'].children.push(localizableVariantId);
+    }
+
     pbxBuildFile += `\t\t${buildFileId} /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ${localizableVariantId} /* Localizable.strings */; };\n`;
     pbxResourcesBuildPhase += `\t\t\t\t${buildFileId} /* Localizable.strings in Resources */,\n`;
 }
