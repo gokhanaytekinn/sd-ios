@@ -158,6 +158,14 @@ struct SubscriptionsListScreen: View {
         }
     }
     
+    private var emptyStateText: String {
+        switch selectedTab {
+        case 0: return NSLocalizedString("no_active_subscriptions", comment: "")
+        case 1: return NSLocalizedString("no_suspicious_subscriptions", comment: "")
+        default: return NSLocalizedString("no_cancelled_subscriptions", comment: "")
+        }
+    }
+    
     private var emptyState: some View {
         VStack(spacing: 12) {
             Spacer().frame(height: 40)
@@ -166,17 +174,7 @@ struct SubscriptionsListScreen: View {
                 .font(.system(size: 40))
                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
             
-            let text: String
-            switch selectedTab {
-            case 0:
-                text = NSLocalizedString("no_active_subscriptions", comment: "")
-            case 1:
-                text = NSLocalizedString("no_suspicious_subscriptions", comment: "")
-            default:
-                text = NSLocalizedString("no_cancelled_subscriptions", comment: "")
-            }
-            
-            Text(text)
+            Text(emptyStateText)
                 .font(.system(size: 16))
                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
         }
