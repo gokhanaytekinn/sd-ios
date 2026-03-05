@@ -344,3 +344,8 @@
 "feature_advanced_analytics_title" = "Erweiterte Analysen";
 "feature_advanced_analytics_free_desc" = "Grundlegende Berichte";
 "feature_advanced_analytics_premium_desc" = "Detaillierte Ausgabenberichte";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "1 Tag vor der Zahlung benachrichtigen";
+"add_subscription_btn" = "Abonnement hinzufügen";
+"done_btn" = "Fertig";

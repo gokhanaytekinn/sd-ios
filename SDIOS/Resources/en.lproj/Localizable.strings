@@ -362,3 +362,8 @@
 "subscription_price" = "Subscription Price";
 "renewal_cycle" = "Renewal Cycle";
 "turn_off" = "Turn Off Reminder";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Notify 1 day before payment";
+"add_subscription_btn" = "Add Subscription";
+"done_btn" = "Done";

@@ -346,3 +346,8 @@
 "subscription_price" = "Abonelik Ücreti";
 "renewal_cycle" = "Yenilenme Döngüsü";
 "turn_off" = "Hatırlatıcıyı Kapat";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Ödemeden 1 gün önce bildir";
+"add_subscription_btn" = "Abonelik Ekle";
+"done_btn" = "Tamam";

@@ -162,6 +162,25 @@ struct BrandIcons {
     }
 }
 
+struct ScaledPathShape: Shape {
+    let path: Path
+    let originalSize: CGSize
+
+    func path(in rect: CGRect) -> Path {
+        let scaleX = rect.width / max(originalSize.width, 1)
+        let scaleY = rect.height / max(originalSize.height, 1)
+        let scale = min(scaleX, scaleY)
+        
+        let offsetX = (rect.width - originalSize.width * scale) / 2
+        let offsetY = (rect.height - originalSize.height * scale) / 2
+        
+        var transform = CGAffineTransform(scaleX: scale, y: scale)
+        transform = transform.concatenating(CGAffineTransform(translationX: offsetX, y: offsetY))
+        
+        return path.applying(transform)
+    }
+}
+
 struct BrandIconView: View {
     let name: String
     let color: Color?
@@ -169,10 +188,16 @@ struct BrandIconView: View {
     var body: some View {
         let (path, viewport) = BrandIcons.path(for: name)
         
-        GeometryReader { geo in
-            path
+        if viewport.width > 0 && viewport.height > 0 {
+            ScaledPathShape(path: path, originalSize: viewport)
                 .fill(color ?? .primaryBlue)
-                .scaleEffect(x: geo.size.width / viewport.width, y: geo.size.height / viewport.height, anchor: .topLeading)
+                .aspectRatio(1, contentMode: .fit)
+        } else {
+            // Fallback for empty path
+            Image(systemName: "app.fill")
+                .resizable()
+                .scaledToFit()
+                .foregroundColor(color ?? .primaryBlue)
         }
     }
 }

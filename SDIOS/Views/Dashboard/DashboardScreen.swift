@@ -16,8 +16,14 @@ struct DashboardScreen: View {
             Color.appBackground(for: colorScheme).ignoresSafeArea()
             
             if viewModel.isLoading {
-                ProgressView()
-                    .tint(.primaryBlue)
+                VStack(spacing: 8) {
+                    Spacer().frame(height: 100)
+                    ForEach(0..<4, id: \.self) { _ in
+                        SkeletonCard()
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 24)
             } else {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
@@ -110,11 +116,6 @@ struct DashboardScreen: View {
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             Spacer()
-                            Button(action: onNavigateToSubscriptions) {
-                                Text("view_all".localized())
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.primaryBlue)
-                            }
                         }
                         .padding(.horizontal, 24)
                         

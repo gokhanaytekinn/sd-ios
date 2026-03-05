@@ -54,6 +54,7 @@ struct ContentView: View {
     @State private var navigationPath: [AppRoute] = []
     @State private var selectedTab: MainTab = .dashboard
     @State private var showAddSubscription = false
+    @State private var showFabMenu = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -144,44 +145,59 @@ struct ContentView: View {
     
     // MARK: - Main Tab View
     private var mainTabView: some View {
-        VStack(spacing: 0) {
-            NavigationStack(path: $navigationPath) {
-                Group {
-                    switch selectedTab {
-                    case .dashboard:
-                        DashboardScreen(
-                            onNavigateToSubscriptions: { selectedTab = .subscriptions },
-                            onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) },
-                            onNavigateToSearch: { navigationPath.append(.search) }
-                        )
-                    case .subscriptions:
-                        SubscriptionsListScreen(
-                            onNavigateToAddSubscription: { navigationPath.append(.addSubscription) },
-                            onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) }
-                        )
-                    case .upcoming:
-                        UpcomingSubscriptionsScreen(
-                            onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) }
-                        )
-                    case .settings:
-                        AppSettingsScreen(
-                            onNavigateToHelpCenter: { navigationPath.append(.helpCenter) },
-                            onNavigateToPrivacyPolicy: { navigationPath.append(.privacyPolicy) },
-                            onNavigateToPremium: { navigationPath.append(.premiumUpgrade) },
-                            onLogout: {}
-                        )
+        ZStack(alignment: .bottom) {
+            VStack(spacing: 0) {
+                NavigationStack(path: $navigationPath) {
+                    Group {
+                        switch selectedTab {
+                        case .dashboard:
+                            DashboardScreen(
+                                onNavigateToSubscriptions: { selectedTab = .subscriptions },
+                                onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) },
+                                onNavigateToSearch: { navigationPath.append(.search) }
+                            )
+                        case .subscriptions:
+                            SubscriptionsListScreen(
+                                onNavigateToAddSubscription: { navigationPath.append(.addSubscription) },
+                                onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) }
+                            )
+                        case .upcoming:
+                            UpcomingSubscriptionsScreen(
+                                onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) }
+                            )
+                        case .settings:
+                            AppSettingsScreen(
+                                onNavigateToHelpCenter: { navigationPath.append(.helpCenter) },
+                                onNavigateToPrivacyPolicy: { navigationPath.append(.privacyPolicy) },
+                                onNavigateToPremium: { navigationPath.append(.premiumUpgrade) },
+                                onLogout: {}
+                            )
+                        }
+                    }
+                    .navigationBarHidden(true)
+                    .navigationDestination(for: AppRoute.self) { route in
+                        mainDestination(route)
+                            .navigationBarHidden(true)
                     }
                 }
-                .navigationBarHidden(true)
-                .navigationDestination(for: AppRoute.self) { route in
-                    mainDestination(route)
-                        .navigationBarHidden(true)
-                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                // Bottom Navigation Bar
+                bottomNavBar
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            // Bottom Navigation Bar
-            bottomNavBar
+            // Expandable FAB Menu Overlay
+            if showFabMenu {
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            showFabMenu = false
+                        }
+                    }
+            }
+            
+            fabButton
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
@@ -242,8 +258,8 @@ struct ContentView: View {
         HStack(spacing: 0) {
             ForEach(MainTab.allCases, id: \.rawValue) { tab in
                 if tab == .upcoming {
-                    // FAB insert before upcoming
-                    fabButton
+                    // Placeholder space for the floating FAB
+                    Spacer().frame(width: 80)
                 }
                 
                 Button(action: {
@@ -276,22 +292,59 @@ struct ContentView: View {
     
     // MARK: - FAB
     private var fabButton: some View {
-        Button(action: {
-            navigationPath.append(.addSubscription)
-        }) {
-            ZStack {
-                Circle()
-                    .fill(Color.primaryBlue)
-                    .frame(width: 52, height: 52)
-                    .shadow(color: Color.primaryBlue.opacity(0.3), radius: 8, y: 4)
-                
-                Image(systemName: "plus")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.white)
+        VStack(spacing: 16) {
+            if showFabMenu {
+                // Add Manually Bubble
+                HStack {
+                    Text("add_manually".localized())
+                        .font(.system(size: 14, weight: .bold))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.appSurface(for: colorScheme))
+                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        .cornerRadius(20)
+                        .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                    
+                    Button(action: {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            showFabMenu = false
+                        }
+                        navigationPath.append(.addSubscription)
+                    }) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.appSurface(for: colorScheme))
+                                .frame(width: 48, height: 48)
+                                .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                            Image(systemName: "pencil")
+                                .font(.system(size: 20))
+                                .foregroundColor(.primaryBlue)
+                        }
+                    }
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+            
+            // Main FAB
+            Button(action: {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    showFabMenu.toggle()
+                }
+            }) {
+                ZStack {
+                    Circle()
+                        .fill(Color.primaryBlue)
+                        .frame(width: 56, height: 56)
+                        .shadow(color: Color.primaryBlue.opacity(0.3), radius: 8, y: 4)
+                    
+                    Image(systemName: "plus")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.white)
+                        .rotationEffect(.degrees(showFabMenu ? 45 : 0))
+                }
             }
         }
-        .offset(y: -20)
-        .frame(maxWidth: .infinity)
+        .padding(.bottom, 24)
     }
 }
 

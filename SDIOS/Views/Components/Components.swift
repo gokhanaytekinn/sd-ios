@@ -1,5 +1,67 @@
 import SwiftUI
 
+// MARK: - Skeleton Tools
+struct SkeletonModifier: ViewModifier {
+    @State private var isAnimating = false
+    
+    func body(content: Content) -> some View {
+        content
+            .opacity(isAnimating ? 0.3 : 0.7)
+            .animation(Animation.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isAnimating)
+            .onAppear {
+                isAnimating = true
+            }
+    }
+}
+
+extension View {
+    func skeleton() -> some View {
+        self.modifier(SkeletonModifier())
+    }
+}
+
+struct SkeletonCard: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        HStack {
+            Circle()
+                .fill(Color.gray.opacity(0.3))
+                .frame(width: 36, height: 36)
+            
+            VStack(alignment: .leading, spacing: 6) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.gray.opacity(0.3))
+                    .frame(width: 120, height: 16)
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.gray.opacity(0.3))
+                    .frame(width: 80, height: 12)
+            }
+            .padding(.leading, 8)
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 6) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.gray.opacity(0.3))
+                    .frame(width: 60, height: 16)
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.gray.opacity(0.3))
+                    .frame(width: 40, height: 12)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color.clear)
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+        )
+        .skeleton()
+    }
+}
+
 // MARK: - Subscription Card
 struct SubscriptionCard: View {
     let subscription: Subscription
@@ -64,7 +126,7 @@ struct SubscriptionCard: View {
             }
         }
         .buttonStyle(.plain)
-        .background(Color.appSurface(for: colorScheme))
+        .background(Color.clear)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)

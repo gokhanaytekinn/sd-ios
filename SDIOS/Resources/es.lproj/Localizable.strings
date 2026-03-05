@@ -349,3 +349,8 @@
 "subscription_price" = "Precio de la suscripción";
 "renewal_cycle" = "Ciclo de renovación";
 "turn_off" = "Desactiva el recordatorio";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Notificar 1 día antes del pago";
+"add_subscription_btn" = "Añadir Suscripción";
+"done_btn" = "Hecho";

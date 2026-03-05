@@ -16,8 +16,14 @@ struct SubscriptionsListScreen: View {
             Color.appBackground(for: colorScheme).ignoresSafeArea()
             
             if viewModel.isLoading {
-                ProgressView()
-                    .tint(.primaryBlue)
+                VStack(spacing: 8) {
+                    Spacer().frame(height: 100)
+                    ForEach(0..<6, id: \.self) { _ in
+                        SkeletonCard()
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 24)
             } else {
                 VStack(spacing: 0) {
                     // Header
@@ -101,7 +107,7 @@ struct SubscriptionsListScreen: View {
                     // Tabs
                     HStack(spacing: 0) {
                         tabButton("active".localized(), tag: 0)
-                        tabButton("suspicious".localized(), tag: 1)
+                        tabButton("pending_approval".localized(), tag: 1)
                         tabButton("cancelled".localized(), tag: 2)
                     }
                     .background(Color.appSurface(for: colorScheme))

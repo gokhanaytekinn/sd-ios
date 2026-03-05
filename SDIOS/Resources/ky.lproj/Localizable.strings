@@ -357,3 +357,8 @@
 "subscription_price" = "Жазылуу баасы";
 "renewal_cycle" = "Жаңыртуу цикли";
 "turn_off" = "Эскертүүнү өчүрүү";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Төлөмгө 1 күн калганда билдирүү";
+"add_subscription_btn" = "Жазылуу кошуу";
+"done_btn" = "Даяр";

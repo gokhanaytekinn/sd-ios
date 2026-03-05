@@ -347,3 +347,8 @@
 "subscription_price" = "Abunalyk Bahasy";
 "renewal_cycle" = "Täzeleniş Döwri";
 "turn_off" = "Ýatlatmany Öçür";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Tölegden 1 gün öň habar ber";
+"add_subscription_btn" = "Abunalyk Goş";
+"done_btn" = "Tamam";

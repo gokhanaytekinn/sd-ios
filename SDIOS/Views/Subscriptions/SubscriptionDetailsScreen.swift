@@ -27,9 +27,23 @@ struct SubscriptionDetailsScreen: View {
             .padding(16)
             
             if isLoading {
-                Spacer()
-                ProgressView().tint(.primaryBlue)
-                Spacer()
+                VStack(spacing: 24) {
+                    Circle().fill(Color.gray.opacity(0.3)).frame(width: 120, height: 120)
+                    RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 200, height: 32)
+                    RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 150, height: 40)
+                    
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color.gray.opacity(0.3))
+                        .frame(height: 120)
+                        
+                    HStack(spacing: 16) {
+                        RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.3)).frame(height: 80)
+                        RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.3)).frame(height: 80)
+                    }
+                    Spacer()
+                }
+                .padding(24)
+                .skeleton()
             } else if let sub = subscription {
                 ScrollView {
                     VStack(spacing: 24) {
@@ -63,10 +77,10 @@ struct SubscriptionDetailsScreen: View {
                             }
                         }
                         
-                        // Reminder Toggle Button
-                        Button(action: toggleReminder) {
+                        // Reminder Label
+                        if sub.reminderEnabled {
                             HStack(spacing: 8) {
-                                Image(systemName: sub.reminderEnabled ? "bell.fill" : "bell.slash.fill")
+                                Image(systemName: "bell.fill")
                                 Text("reminder".localized())
                             }
                             .font(.system(size: 14, weight: .bold))
@@ -146,24 +160,17 @@ struct SubscriptionDetailsScreen: View {
                         
                         // Actions Group
                         HStack(spacing: 12) {
-                            if sub.status != 3 { // Not cancelled
-                                actionButton(icon: sub.reminderEnabled ? "bell.slash" : "bell", 
-                                           title: sub.reminderEnabled ? "turn_off".localized() : "set_reminder".localized(), 
-                                           color: Color.appOnSurfaceVariant(for: colorScheme), 
-                                           action: toggleReminder)
-                            } else {
-                                actionButton(icon: "arrow.clockwise", 
-                                           title: "reactivate_subscription".localized(), 
-                                           color: .primaryBlue, 
-                                           action: reactivateSubscription)
-                            }
+                            actionButton(icon: sub.reminderEnabled ? "bell.slash" : "bell", 
+                                       title: sub.reminderEnabled ? "turn_off".localized() : "set_reminder".localized(), 
+                                       color: Color.appOnSurfaceVariant(for: colorScheme), 
+                                       action: toggleReminder)
                             
                             actionButton(icon: "pencil", title: "edit_plan".localized(), color: Color.appOnBackground(for: colorScheme)) {
                                 onEdit(sub)
                             }
                         }
                         
-                        // Cancel Button
+                        // Primary Action (Cancel or Reactivate)
                         if sub.status != 3 {
                             Button(action: { showCancelDialog = true }) {
                                 HStack {
@@ -175,6 +182,19 @@ struct SubscriptionDetailsScreen: View {
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 52)
                                 .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.errorColor.opacity(0.5), lineWidth: 1))
+                            }
+                        } else {
+                            Button(action: reactivateSubscription) {
+                                HStack(spacing: 8) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                    Text("reactivate_subscription".localized())
+                                }
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 52)
+                                .background(Color(hex: "4CAF50"))
+                                .cornerRadius(12)
                             }
                         }
                         

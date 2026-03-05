@@ -343,3 +343,8 @@
 "feature_advanced_analytics_title" = "Təkmil Analitika";
 "feature_advanced_analytics_free_desc" = "Əsas hesabatlar";
 "feature_advanced_analytics_premium_desc" = "Ətraflı xərc hesabatları";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Ödənişdən 1 gün əvvəl bildir";
+"add_subscription_btn" = "Abunəlik Əlavə et";
+"done_btn" = "Tamam";

@@ -348,3 +348,8 @@
 "subscription_price" = "Obuna narxi";
 "renewal_cycle" = "Yangilanish davri";
 "turn_off" = "Eslatmani oʻchirish";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Toʻlovdan 1 kun oldin xabar berish";
+"add_subscription_btn" = "Obuna qoʻshish";
+"done_btn" = "Tayyor";

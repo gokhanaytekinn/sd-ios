@@ -341,3 +341,8 @@
 "feature_advanced_analytics_title" = "Analyses avancées";
 "feature_advanced_analytics_free_desc" = "Rapports de base";
 "feature_advanced_analytics_premium_desc" = "Rapports de dépenses détaillés";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Notifier 1 jour avant le paiement";
+"add_subscription_btn" = "Ajouter un abonnement";
+"done_btn" = "Terminé";

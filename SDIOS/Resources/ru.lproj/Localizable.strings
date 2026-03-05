@@ -349,3 +349,8 @@
 "subscription_price" = "Стоимость подписки";
 "renewal_cycle" = "Цикл продления";
 "turn_off" = "Выключить напоминание";
+
+/* Phase 3 additions */
+"notify_1_day_before" = "Уведомить за 1 день до оплаты";
+"add_subscription_btn" = "Добавить подписку";
+"done_btn" = "Готово";
