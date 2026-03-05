@@ -1,7 +1,3 @@
-"participants" = "Ishtirokchilar";
-"remove_participant_title" = "Ishtirokchini o'chirish";
-"remove_participant_confirm" = "Ushbu obunadan %@ ishtirokchisini o'chirishni tasdiqlaysizmi?";
-"remove_participant_btn" = "O'chirish";
 "joint_users" = "Birgalikdagi foydalanuvchilar";
 "add_email_placeholder" = "Elektron pochta manzilini qo'shing";
 "remove" = "O'chirish";
@@ -15,8 +11,6 @@
 "show_password" = "Parolni koʻrsatish";
 "hide_password" = "Parolni yashirish";
 "unknown_error" = "Nomaʼlum xatolik";
-"scan" = "Skanerlash";
-"menu_scan" = "Skanerlash";
 "menu_add_manually" = "Qo‘lda qo‘shish";
 "onboarding_title_1" = "Obunalaringizni kuzatib boring";
 "onboarding_desc_1" = "Barcha obunalaringizni bir joyda koʻring va boshqaring. Hech qachon toʻlovni oʻtkazib yubormang.";
@@ -44,6 +38,8 @@
 "account" = "ACCOUNT";
 "application" = "ILOVA";
 "support" = "QOʻLLAB-QUVVATLASH";
+"account_settings" = "Hisob sozlamalari";
+"settings_title" = "Sozlamalar";
 "membership_type" = "Aʼzolik turi";
 "free_plan" = "Bepul reja";
 "notifications" = "Bildirishnomalar";
@@ -53,13 +49,15 @@
 "help_center" = "Yordam markazi";
 "privacy_policy" = "Maxfiylik siyosati";
 "logout" = "Chiqish";
-"version_info" = "Versiya %@ (Build %d)";
+"version_info" = "Versiya %1$@ (Build %2$d)";
+"version" = "Versiya %@";
 "upgrade_to_premium" = "Premiumga oʻting";
-"premium_desc" = "Barcha obunalaringizni avtomatik skanerlang va 30%% koʻproq tejang.";
+"premium_desc" = "Barcha obunalaringizni avtomatik skanerlang va 30% koʻproq tejang.";
 "upgrade" = "Yangilash";
 "search" = "Qidirish";
 "search_placeholder" = "Obunani yoki tranzaksiyani qidirish";
 "recent_searches" = "OXIRGI QIDIRISHLAR";
+"popular_subscriptions" = "Mashhur obunalar";
 "results_found" = "NATIJA TOPILDI (%d)";
 "subscriptions" = "Obunalar";
 "transactions" = "Tranzaksiyalar";
@@ -89,6 +87,7 @@
 "language_kazakh" = "Qozoqcha";
 "language_kyrgyz" = "Qirgʻizcha";
 "language_uzbek" = "Oʻzbekcha";
+"language_indonesian" = "Indonez tili";
 "select_language" = "Tilni tanlang";
 "select_currency" = "Valyutani tanlang";
 "close" = "Yopish";
@@ -98,9 +97,11 @@
 "password" = "Parol";
 "name" = "Ism";
 "full_name" = "Toʻliq ism";
+"name_placeholder" = "Ismingiz";
 "forgot_password" = "Parolni unutdingizmi?";
 "no_account" = "Hisobingiz yoʻqmi?";
 "have_account" = "Hisobingiz bormi?";
+"already_have_account" = "Hisobingiz bormi?";
 "sign_in" = "Kirish";
 "sign_up" = "Roʻyxatdan oʻtish";
 "create_account" = "Hisob ochish";
@@ -118,42 +119,13 @@
 "google_sign_in_failed" = "Google orqali kirish amalga oshmadi (%@)";
 "register_desc" = "Obunalaringizni boshqarishni va tejashni boshlang.";
 "full_name_placeholder" = "Misol uchun: Ali Valiov";
-"accept_terms_pre" = "";
 "and" = " va ";
 "accept_terms_post" = "ga roziman.";
 "already_have_account_prompt" = "Hisobingiz bormi? ";
 "terms_of_use_title" = "Foydalanish shartlari";
-"terms_of_use_content" = "1. Qabul qilish
-Sub Tracker ilovasidan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz.
-
-2. Xizmat doirasi
-Ilova obunalaringizni kuzatishga yordam beradigan vositadir. Moliyaviy maslahat bermaydi.
-
-3. Foydalanuvchi masʼuliyati
-Siz oʻz hisobingiz xavfsizligi va kiritilgan maʼlumotlar toʻgʻriligi uchun javobgarsiz.
-
-4. Oʻzgarishlar
-Biz istalgan vaqtda ilova imkoniyatlariga va ushbu shartlarga oʻzgartirish kiritish huquqini oʻzimizda qoldiramiz.
-
-5. Toʻxtatish
-Shartlar buzilsa, xizmatdan foydalanishingizni toʻxtatishimiz mumkin.";
+"terms_of_use_content" = "1. Qabul qilish\nSub Tracker ilovasidan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz.\n\n2. Xizmat doirasi\nIlova obunalaringizni kuzatishga yordam beradigan vositadir. Moliyaviy maslahat bermaydi.\n\n3. Foydalanuvchi masʼuliyati\nSiz oʻz hisobingiz xavfsizligi va kiritilgan maʼlumotlar toʻgʻriligi uchun javobgarsiz.\n\n4. Oʻzgarishlar\nBiz istalgan vaqtda ilova imkoniyatlariga va ushbu shartlarga oʻzgartirish kiritish huquqini oʻzimizda qoldiramiz.\n\n5. Toʻxtatish\nShartlar buzilsa, xizmatdan foydalanishingizni toʻxtatishimiz mumkin.";
 "understood" = "Tushundim";
-"privacy_dialog_content" = "Oxirgi yangilanish: 20-fevral, 2026-yil
-
-1. Kirish
-Biz sizning maʼlumotlaringiz maxfiyligiga jiddiy eʼtibor beramiz.
-
-2. Toʻplanadigan maʼlumotlar
-Obunalar maʼlumotlari, foydalanish tanlovlari va asosiy qurilma maʼlumotlari qayta ishlanadi.
-
-3. Maʼlumotlardan foydalanish
-Maʼlumotlaringiz faqat eslatmalar yuborish va ilova ishlashini yaxshilash uchun foydalaniladi.
-
-4. Maʼlumotlar xavfsizligi
-Maʼlumotlaringiz standart shifrlash usullari bilan himoyalangan.
-
-5. Aloqa
-Savollar boʻyicha: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Oxirgi yangilanish: 20-fevral, 2026-yil\n\n1. Kirish\nBiz sizning maʼlumotlaringiz maxfiyligiga jiddiy eʼtibor beramiz.\n\n2. Toʻplanadigan maʼlumotlar\nObunalar maʼlumotlari, foydalanish tanlovlari va asosiy qurilma maʼlumotlari qayta ishlanadi.\n\n3. Maʼlumotlardan foydalanish\nMaʼlumotlaringiz faqat eslatmalar yuborish va ilova ishlashini yaxshilash uchun foydalaniladi.\n\n4. Maʼlumotlar xavfsizligi\nMaʼlumotlaringiz standart shifrlash usullari bilan himoyalangan.\n\n5. Aloqa\nSavollar boʻyicha: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Parolni tiklash uchun roʻyxatdan oʻtgan emailingizni kiriting. Biz sizga tasdiqlash kodini yuboramiz.";
 "email_address_label" = "Email manzili";
 "send_code" = "Kod yuborish";
@@ -172,9 +144,6 @@ Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "passwords_match" = "Parollar mos keladi";
 "update_password" = "Parolni yangilash";
 "suspicious_payments" = "Tasdiqlash kutilmoqda";
-"delete_subscription_confirm_desc" = "Ushbu obunani va barcha tegishli maʼlumotlarni butunlay oʻchirib tashlamoqchimisiz? Ushbu amalni bekor qilib boʻlmaydi.";
-"delete_account_confirm_title" = "Hisobni oʻchirish";
-"delete_account_confirm_desc" = "Hisobingizni va barcha tegishli maʼlumotlarni butunlay oʻchirib tashlamoqchimisiz? Ushbu amalni bekor qilib boʻlmaydi.";
 "transactions_to_review" = "Koʻrib chiqiladigan tranzaksiyalar";
 "swipe_to_review" = "Bekor qilish uchun chapga, obuna sifatida tasdiqlash uchun oʻngga suring";
 "confirm" = "Tasdiqlash";
@@ -187,14 +156,22 @@ Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "no_active_subscriptions" = "Faol obunalar topilmadi";
 "no_suspicious_subscriptions" = "Shubhali obunalar topilmadi";
 "no_cancelled_subscriptions" = "Bekor qilingan obunalar topilmadi";
-"detected_count" = "Aniqlanganlar (%d)";
-"marked_count" = "Belgilanganlar (%d)";
 "add_subscription" = "Obuna qoʻshish";
 "service_name_placeholder" = "mis. Netflix";
 "subscription_details" = "Obuna tafsilotlari";
 "next_payment" = "Toʻlov boshlanish sanasi";
 "billing_cycle" = "Toʻlov davri";
 "category" = "Kategoriya";
+"start_date" = "Boshlanish sanasi";
+"cancel_subscription" = "Obunani bekor qilish";
+"delete_subscription" = "Obunani ochirish";
+"delete_subscription_confirm_desc" = "Ushbu obunani va barcha tegishli maʼlumotlarni butunlay oʻchirib tashlamoqchimisiz? Ushbu amalni bekor qilib boʻlmaydi.";
+"participants" = "Ishtirokchilar";
+"remove_participant_title" = "Ishtirokchini o'chirish";
+"remove_participant_confirm" = "Ushbu obunadan %@ ishtirokchisini o'chirishni tasdiqlaysizmi?";
+"remove_participant_btn" = "O'chirish";
+"delete_account_confirm_title" = "Hisobni oʻchirish";
+"delete_account_confirm_desc" = "Hisobingizni va barcha tegishli maʼlumotlarni butunlay oʻchirib tashlamoqchimisiz? Ushbu amalni bekor qilib boʻlmaydi.";
 "get_premium" = "Premium olish";
 "premium_features" = "Premium imkoniyatlari";
 "unlimited_subscriptions" = "Cheksiz obunalar";
@@ -204,13 +181,30 @@ Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "choose_plan" = "Rejangizni tanlang";
 "monthly_plan" = "Oylik reja";
 "yearly_plan" = "Yillik reja";
-"save_percent" = "%d%% tejash";
+"save_percent" = "%d% tejash";
 "per_month" = "/oy";
 "per_year" = "/yil";
 "billed_monthly" = "Har oy toʻlanadi";
 "billed_yearly" = "Har yil toʻlanadi";
 "start_trial" = "Bepul sinov muddatini boshlash";
 "restore_purchase" = "Sotib olinganlarni tiklash";
+"premium_hero_title" = "Premiumga o'ting";
+"premium_hero_subtitle" = "Obunalaringizni avtomatik boshqaring va tejang";
+"plan_free" = "Bepul";
+"plan_monthly_premium" = "Oylik Premium";
+"plan_yearly_premium" = "Yillik Premium";
+"most_popular" = "Eng mashhur";
+"secure_payment_footer" = "Xavfsiz tolov. Istalgan vaqtda bekor qiling.";
+"current_plan" = "Joriy reja";
+"upgrade_to_premium_btn" = "Premiumga o'ting";
+"plans_header" = "Rejangizni tanlang";
+"feature_auto_capture_title" = "Avtomatik aniqlash";
+"feature_auto_capture_free_desc" = "Cheklangan skanerlash";
+"feature_unlimited_tracking_title" = "Cheksiz kuzatuv";
+"feature_unlimited_tracking_free_desc" = "Maksimum 5 obuna";
+"feature_unlimited_tracking_premium_desc" = "Istalgancha qo'shing";
+"premium_plan" = "Premium reja";
+"feature_auto_capture_premium_desc" = "Yashirin to'lovlarni darhol topadi";
 "category_streaming" = "Kino, TV va Musiqa";
 "category_gaming" = "O'yinlar";
 "category_software" = "Dasturiy ta'minot";
@@ -220,11 +214,6 @@ Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "quick_date" = "Tezkor sana";
 "today_btn" = "Bugun";
 "tomorrow_btn" = "Ertaga";
-"analytics" = "Tahlil";
-"spending_overview" = "Xarajatlar sharhi";
-"monthly_trend" = "Oylik trend";
-"category_breakdown" = "Kategoriyalar boʻyicha taqsimot";
-"top_subscriptions" = "Eng katta xarajatlar";
 "transaction_history" = "Tranzaksiyalar tarixi";
 "all_transactions" = "Barcha tranzaksiyalar";
 "filter" = "Süzgüch";
@@ -236,6 +225,7 @@ Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "add" = "Qoʻshish";
 "edit" = "Oʻzgartirish";
 "delete" = "Oʻchirish";
+"save_changes" = "Ozgarishlarni saqlash";
 "done" = "Tayyor";
 "next" = "Keyingi";
 "previous" = "Oldingi";
@@ -245,6 +235,7 @@ Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "success" = "Muvaffaqiyatli";
 "try_again" = "Qaytadan urinib koʻring";
 "no_results" = "Natija topilmadi";
+"date_placeholder" = "kk/oo/yyyy";
 "error_name_required" = "Ism maydoni toʻldirilishi shart";
 "error_amount_required" = "Summa maydoni toʻldirilishi shart";
 "error_amount_invalid" = "Toʻgʻri summani kiriting";
@@ -280,30 +271,17 @@ Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "go_back" = "Orqaga qaytish";
 "subscription_id_not_found" = "Obuna ID-si topilmadi";
 "no_subscriptions_yet" = "Hozircha hech qanday obuna qoʻshilmagan";
-"sms_permission_rationale" = "Obunalarni avtomatik tarzda aniqlash uchun SMS ruxsati kerak.
-Shunda siz obunalarni qoʻlda kiritishingiz shart boʻlmaydi.";
-"storage_permission_rationale" = "Hujjatlarni skanerlash uchun xotiraga ruxsat kerak.
-Shunda PDF fayllardan obuna maʼlumotlari avtomatik olinishi mumkin.";
-"permission_denied_message" = "Ruxsatsiz qurilmani skanerlab boʻlmaydi.
-Xohlasangiz, obunalarni qoʻlda qoʻshishingiz mumkin.";
-"permission_permanently_denied_message" = "Ruxsat berilmadi. Sozlamalardan ruxsatlarni yoqing.";
-"scan_dialog_scanning" = "Qurilma taranmoqda...";
-"scan_dialog_completed" = "Tarash yakunlandi";
-"scan_dialog_sms_count" = "SMS: %d ta xabar tarandi";
-"scan_dialog_file_count" = "Fayl: %d ta fayl tarandi";
-"scan_dialog_detected_count" = "%d ta obuna aniqlandi";
-"scan_dialog_ok" = "OK";
-"detected_subs_title" = "Aniqlangan obunalar";
-"detected_subs_found" = "%d ta obuna topildi";
-"detected_subs_close" = "Yopish";
-"detected_sub_reject" = "Rad etish";
-"detected_sub_add" = "Qoʻshish";
 "billing_monthly_label" = "Oylik";
 "billing_yearly_label" = "Yillik";
 "billing_weekly_label" = "Haftalik";
 "help_center_title" = "Yordam markazi";
 "help_search_placeholder" = "Sizga qanday yordam bera olamiz?";
 "popular_questions" = "Mashhur savollar";
+"how_to_add" = "Obunani qanday qoshish mumkin?";
+"how_to_add_desc" = "Yangi xizmat qoshish uchun obunalar royxatidagi + tugmasini bosing.";
+"automatic_tracking_desc" = "Takroriy obunalarni avtomatik topish uchun tranzaksiyalaringizni xavfsiz skanerlayiz.";
+"cancel_anytime" = "Istalgan vaqtda bekor qiling";
+"cancel_anytime_desc" = "Obunalarni bevosita ilova orqali boshqarish mumkin.";
 "faq_q1" = "Obunani qanday bekor qilish mumkin?";
 "faq_a1" = "Obuna sahifasiga kirib, eng pastdagi 'Obunani bekor qilish' tugmasini bosing. Bu faqat ilovadagi kuzatishni toʻxtatadi, xizmat koʻrsatuvchi orqali ham bekor qilishni unutmang.";
 "faq_q2" = "Maʼlumotlarim xavfsizimi?";
@@ -330,49 +308,39 @@ Xohlasangiz, obunalarni qoʻlda qoʻshishingiz mumkin.";
 "privacy_content_5" = "Ilova eslatmalarni yuborish uchun bildirishnoma ruxsatini soʻrashi mumkin.";
 "privacy_title_6" = "6. Aloqa";
 "privacy_content_6" = "Savollar boʻyicha bizga yozishingiz mumkin: gokhanaytekinn@yandex.com";
-"cancel_anytime" = "Istalgan vaqtda bekor qiling";
-"widget_login_required" = "Kirish";
-"plan_monthly_premium" = "Oylik Premium";
-"premium_hero_subtitle" = "Obunalaringizni avtomatik boshqaring va tejang";
-"how_to_add_desc" = "Yangi xizmat qoshish uchun obunalar royxatidagi + tugmasini bosing.";
-"popular_subscriptions" = "Mashhur obunalar";
 "widget_upcoming_title" = "Keyingi tolov";
-"automatic_tracking_desc" = "Takroriy obunalarni avtomatik topish uchun tranzaksiyalaringizni xavfsiz skanerlayiz.";
-"delete_subscription" = "Obunani ochirish";
-"version" = "Versiya %@";
-"account_settings" = "Hisob sozlamalari";
-"cancel_anytime_desc" = "Obunalarni bevosita ilova orqali boshqarish mumkin.";
-"start_date" = "Boshlanish sanasi";
-"widget_upcoming_desc" = "%@ uchun %@";
-"premium_hero_title" = "Premiumga o'ting";
-"date_placeholder" = "kk/oo/yyyy";
-"already_have_account" = "Hisobingiz bormi?";
-"save_changes" = "Ozgarishlarni saqlash";
-"current_plan" = "Joriy reja";
-"settings_title" = "Sozlamalar";
-"language_indonesian" = "Indonez tili";
+"widget_upcoming_desc" = "%1$@ uchun %2$@";
 "widget_expensive_title" = "Eng qimmat obuna";
-"secure_payment_footer" = "Xavfsiz tolov. Istalgan vaqtda bekor qiling.";
-"automatic_tracking" = "Avtomatik kuzatuv";
-"how_to_add" = "Obunani qanday qoshish mumkin?";
-"widget_days_left" = "%d kun qoldi";
-"plan_free" = "Bepul";
-"name_placeholder" = "Ismingiz";
-"cancel_subscription" = "Obunani bekor qilish";
-"upgrade_to_premium_btn" = "Premiumga o'ting";
-"most_popular" = "Eng mashhur";
-"plans_header" = "Rejangizni tanlang";
-"widget_expensive_desc" = "%@ - %@/oy";
-"plan_yearly_premium" = "Yillik Premium";
+"widget_expensive_desc" = "%1$@ - %2$@/oy";
+"widget_login_required" = "Kirish";
 "widget_no_data" = "Obuna yoq";
+"widget_days_left" = "%d kun qoldi";
 "widget_today" = "Bugun";
-"feature_advanced_analytics_free_desc" = "Asosiy hisobotlar";
+"analytics" = "Tahlil";
+"spending_overview" = "Xarajatlar sharhi";
+"monthly_trend" = "Oylik trend";
+"category_breakdown" = "Kategoriyalar boʻyicha taqsimot";
+"top_subscriptions" = "Eng katta xarajatlar";
+"automatic_tracking" = "Avtomatik kuzatuv";
+"detected_subs_found" = "%d ta obuna topildi";
+"detected_subs_title" = "Aniqlangan obunalar";
+"detected_count" = "Aniqlanganlar (%d)";
+"detected_sub_add" = "Qoʻshish";
+"detected_sub_reject" = "Rad etish";
+"detected_subs_close" = "Yopish";
+"marked_count" = "Belgilanganlar (%d)";
+"menu_scan" = "Skanerlash";
+"scan" = "Skanerlash";
+"scan_dialog_completed" = "Tarash yakunlandi";
+"scan_dialog_detected_count" = "%d ta obuna aniqlandi";
+"scan_dialog_file_count" = "Fayl: %d ta fayl tarandi";
+"scan_dialog_ok" = "OK";
+"scan_dialog_scanning" = "Qurilma taranmoqda...";
+"scan_dialog_sms_count" = "SMS: %d ta xabar tarandi";
+"permission_denied_message" = "Ruxsatsiz qurilmani skanerlab boʻlmaydi.\nXohlasangiz, obunalarni qoʻlda qoʻshishingiz mumkin.";
+"permission_permanently_denied_message" = "Ruxsat berilmadi. Sozlamalardan ruxsatlarni yoqing.";
+"sms_permission_rationale" = "Obunalarni avtomatik tarzda aniqlash uchun SMS ruxsati kerak.\nShunda siz obunalarni qoʻlda kiritishingiz shart boʻlmaydi.";
+"storage_permission_rationale" = "Hujjatlarni skanerlash uchun xotiraga ruxsat kerak.\nShunda PDF fayllardan obuna maʼlumotlari avtomatik olinishi mumkin.";
 "feature_advanced_analytics_title" = "Kengaytirilgan tahlil";
-"feature_auto_capture_title" = "Avtomatik aniqlash";
-"feature_auto_capture_free_desc" = "Cheklangan skanerlash";
-"feature_unlimited_tracking_title" = "Cheksiz kuzatuv";
-"feature_unlimited_tracking_free_desc" = "Maksimum 5 obuna";
-"feature_unlimited_tracking_premium_desc" = "Istalgancha qo'shing";
-"premium_plan" = "Premium reja";
-"feature_auto_capture_premium_desc" = "Yashirin to'lovlarni darhol topadi";
+"feature_advanced_analytics_free_desc" = "Asosiy hisobotlar";
 "feature_advanced_analytics_premium_desc" = "Batafsil xarajatlar hisoboti";

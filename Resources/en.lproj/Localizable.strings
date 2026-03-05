@@ -49,7 +49,7 @@
 "help_center" = "Help Center";
 "privacy_policy" = "Privacy Policy";
 "logout" = "Logout";
-"version_info" = "Version %@ (Build %d)";
+"version_info" = "Version %1$@ (Build %2$d)";
 "version" = "Version %@";
 "upgrade_to_premium" = "Upgrade to Premium";
 "premium_desc" = "Use all advanced features and start saving more.";
@@ -59,7 +59,6 @@
 "recent_searches" = "RECENT SEARCHES";
 "popular_subscriptions" = "Popular Subscriptions";
 "results_found" = "RESULTS FOUND (%d)";
-"results" = "RESULTS";
 "subscriptions" = "Subscriptions";
 "transactions" = "Transactions";
 "looking_for_else" = "Looking for something else?";
@@ -125,37 +124,9 @@
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Already have an account? ";
 "terms_of_use_title" = "Terms of Use";
-"terms_of_use_content" = "1. Acceptance
-By using Sub Tracker, you agree to these terms.
-
-2. Service Scope
-The application is a tool to help you track your subscriptions. It is not financial advice.
-
-3. User Responsibility
-You are responsible for the security of your account information and the accuracy of the data you add.
-
-4. Changes
-We reserve the right to change app features and these terms at any time.
-
-5. Termination
-We may terminate your access to the service in case of violation of the terms.";
+"terms_of_use_content" = "1. Acceptance\nBy using Sub Tracker, you agree to these terms.\n\n2. Service Scope\nThe application is a tool to help you track your subscriptions. It is not financial advice.\n\n3. User Responsibility\nYou are responsible for the security of your account information and the accuracy of the data you add.\n\n4. Changes\nWe reserve the right to change app features and these terms at any time.\n\n5. Termination\nWe may terminate your access to the service in case of violation of the terms.";
 "understood" = "Understood";
-"privacy_dialog_content" = "Last Updated: February 20, 2026
-
-1. Introduction
-We value the privacy of your data.
-
-2. Collected Data
-Subscription information, usage preferences, and basic device information are processed.
-
-3. Data Use
-Your data is only used to send reminders and improve app performance.
-
-4. Data Security
-Your data is protected with industry-standard encryption methods.
-
-5. Contact
-For questions: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Last Updated: February 20, 2026\n\n1. Introduction\nWe value the privacy of your data.\n\n2. Collected Data\nSubscription information, usage preferences, and basic device information are processed.\n\n3. Data Use\nYour data is only used to send reminders and improve app performance.\n\n4. Data Security\nYour data is protected with industry-standard encryption methods.\n\n5. Contact\nFor questions: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Enter your registered email address to reset your password. We will send you a verification code.";
 "email_address_label" = "Email Address";
 "send_code" = "Send Code";
@@ -212,15 +183,14 @@ For questions: gokhanaytekinn@yandex.com";
 "choose_plan" = "Choose Your Plan";
 "monthly_plan" = "Monthly Plan";
 "yearly_plan" = "Yearly Plan";
-"save_percent" = "Save %d%%";
+"save_percent" = "Save %d%";
 "per_month" = "/month";
 "per_year" = "/year";
 "billed_monthly" = "Billed monthly";
 "billed_yearly" = "Billed yearly";
 "start_trial" = "Start Free Trial";
 "restore_purchase" = "Restore Purchase";
-"premium_hero_title" = "Manage Your Subscriptions
-Smartly";
+"premium_hero_title" = "Manage Your Subscriptions\nSmartly";
 "premium_hero_subtitle" = "Start immediately by choosing the plan that best suits you.";
 "plan_free" = "Free";
 "plan_monthly_premium" = "Monthly Premium";
@@ -237,18 +207,18 @@ Smartly";
 "feature_unlimited_tracking_premium_desc" = "Add as many as you want";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Payment reminders";
-"category_streaming" = "Movie & TV & Music";
+"category_streaming" = "Movie &amp; TV &amp; Music";
 "category_gaming" = "Gaming";
 "category_software" = "Software";
 "category_shopping" = "Shopping";
 "category_other" = "Other";
 "category_entertainment" = "Entertainment";
 "category_music" = "Music";
-"category_sports" = "Sports & Health";
+"category_sports" = "Sports &amp; Health";
 "category_education" = "Education";
-"category_cloud" = "Cloud & Productivity";
+"category_cloud" = "Cloud &amp; Productivity";
 "category_ecommerce" = "E-commerce";
-"category_news" = "News & Publishing";
+"category_news" = "News &amp; Publishing";
 "category_transport" = "Transport";
 "category_finance" = "Finance";
 "category_technology" = "Technology";
@@ -341,26 +311,17 @@ Smartly";
 "privacy_policy_title" = "Privacy Policy";
 "privacy_last_updated" = "Last Updated: February 20, 2026";
 "privacy_title_1" = "1. Introduction";
-"privacy_content_1" = "As Sub Tracker (\"the App\"), we value your privacy. This Privacy Policy explains how your data is collected, used, and protected while using our application.";
+"privacy_content_1" = "As Sub Tracker ("the App"), we value your privacy. This Privacy Policy explains how your data is collected, used, and protected while using our application.";
 "privacy_title_2" = "2. Collected Data";
-"privacy_content_2" = "Our application may collect or process the following data to provide you with better service:
-
-• Subscription Information: Name, price, and payment dates of the subscriptions you add.
-• Usage Data: In-app interactions and preferences.
-• Device Information: Basic device identifiers required for the application to function.";
+"privacy_content_2" = "Our application may collect or process the following data to provide you with better service:\n\n• Subscription Information: Name, price, and payment dates of the subscriptions you add.\n• Usage Data: In-app interactions and preferences.\n• Device Information: Basic device identifiers required for the application to function.";
 "privacy_title_3" = "3. Use of Data";
-"privacy_content_3" = "The collected data is only used for the following purposes:
-
-• To allow you to track your subscriptions.
-• To send reminder notifications for subscriptions with upcoming payment dates.
-• To improve app performance and fix bugs.";
+"privacy_content_3" = "The collected data is only used for the following purposes:\n\n• To allow you to track your subscriptions.\n• To send reminder notifications for subscriptions with upcoming payment dates.\n• To improve app performance and fix bugs.";
 "privacy_title_4" = "4. Data Security";
 "privacy_content_4" = "Your personal data is stored securely on your device. Data held on our servers (in case you create an account) is protected with industry-standard encryption methods. Your data is never sold or shared with third parties without your permission.";
 "privacy_title_5" = "5. Permissions";
 "privacy_content_5" = "The application may request notification permission to send you notifications. This permission is only used for subscription reminders.";
 "privacy_title_6" = "6. Contact";
-"privacy_content_6" = "For questions regarding our privacy policy, you can contact us at:
-gokhanaytekinn@yandex.com";
+"privacy_content_6" = "For questions regarding our privacy policy, you can contact us at:\ngokhanaytekinn@yandex.com";
 "widget_upcoming_title" = "Upcoming Subscriptions";
 "widget_upcoming_desc" = "Shows subscriptions due in next 7 days";
 "widget_expensive_title" = "Top Expensive";

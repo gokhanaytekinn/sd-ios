@@ -1,7 +1,3 @@
-"participants" = "Peserta";
-"remove_participant_title" = "Hapus Peserta";
-"remove_participant_confirm" = "Apakah Anda yakin ingin menghapus %@ dari langganan ini?";
-"remove_participant_btn" = "Hapus";
 "joint_users" = "Pengguna Bersama";
 "add_email_placeholder" = "Tambah alamat email";
 "remove" = "Hapus";
@@ -15,8 +11,6 @@
 "show_password" = "Tampilkan kata sandi";
 "hide_password" = "Sembunyikan kata sandi";
 "unknown_error" = "Kesalahan tidak dikenal";
-"scan" = "Pindai";
-"menu_scan" = "Pindai";
 "menu_add_manually" = "Tambah manual";
 "onboarding_title_1" = "Lacak Obongan Anda";
 "onboarding_desc_1" = "Lihat dan kelola semua langganan Anda di satu tempat. Jangan pernah lewatkan pembayaran.";
@@ -53,9 +47,9 @@
 "help_center" = "Pusat Bantuan";
 "privacy_policy" = "Kebijakan Privasi";
 "logout" = "Keluar";
-"version_info" = "Versi %@ (Build %d)";
+"version_info" = "Versi %1$@ (Build %2$d)";
 "upgrade_to_premium" = "Tingkatkan ke Premium";
-"premium_desc" = "Pindai semua langganan Anda secara otomatis ve hemat %%30 lebih banyak.";
+"premium_desc" = "Pindai semua langganan Anda secara otomatis ve hemat %30 lebih banyak.";
 "upgrade" = "Tingkatkan";
 "search" = "Cari";
 "search_placeholder" = "Cari langganan atau transaksi";
@@ -124,44 +118,16 @@
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Sudah punya akun? ";
 "terms_of_use_title" = "Syarat Penggunaan";
-"terms_of_use_content" = "1. Penerimaan
-By using Sub Tracker, you agree to these terms.
-
-2. Service Scope
-Aplikasi bu adalah alat untuk membantu Anda melacak langganan. Ini bukan saran finansial.
-
-3. User Responsibility
-Anda bertanggung jawab atas keamanan akun Anda ve keakuratan data yang dimasukkan.
-
-4. Changes
-Kami berhak untuk mengubah fitur aplikasi ve syarat-syarat ini kapan saja.
-
-5. Termination
-Kami dapat menghentikan akses Anda ke layanan jika syarat-syarat dilanggar.";
+"terms_of_use_content" = "1. Penerimaan\nBy using Sub Tracker, you agree to these terms.\n\n2. Service Scope\nAplikasi bu adalah alat untuk membantu Anda melacak langganan. Ini bukan saran finansial.\n\n3. User Responsibility\nAnda bertanggung jawab atas keamanan akun Anda ve keakuratan data yang dimasukkan.\n\n4. Changes\nKami berhak untuk mengubah fitur aplikasi ve syarat-syarat ini kapan saja.\n\n5. Termination\nKami dapat menghentikan akses Anda ke layanan jika syarat-syarat dilanggar.";
 "understood" = "Dimengerti";
-"privacy_dialog_content" = "Pembaruan Terakhir: 21 Februari 2026
-
-1. Pendahuluan
-Kami sangat memperhatikan privasi data Anda.
-
-2. Collected Data
-Informasi langganan, preferensi penggunaan, ve data dasar perangkat diproses.
-
-3. Data Use
-Data Anda hanya digunakan untuk mengirim pengingat ve meningkatkan performa aplikasi.
-
-4. Data Security
-Data Anda dilindungi dengan metode enkripsi standar.
-
-5. Contact
-Untuk pertanyaan: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Pembaruan Terakhir: 21 Februari 2026\n\n1. Pendahuluan\nKami sangat memperhatikan privasi data Anda.\n\n2. Collected Data\nInformasi langganan, preferensi penggunaan, ve data dasar perangkat diproses.\n\n3. Data Use\nData Anda hanya digunakan untuk mengirim pengingat ve meningkatkan performa aplikasi.\n\n4. Data Security\nData Anda dilindungi dengan metode enkripsi standar.\n\n5. Contact\nUntuk pertanyaan: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Masukkan email terdaftar Anda untuk mengatur ulang kata sandi. Kami akan mengirimkan kode verifikasi.";
 "email_address_label" = "Alamat Email";
 "send_code" = "Kirim Kode";
 "back_to_login" = "Kembali ke Masuk";
 "verify_code_title" = "Verifikasi Kode";
 "verify_code_desc" = "Masukkan kode verifikasi 6 digit yang dikirim ke %@.";
-"verify_and_continue" = "Verifikasi & Lanjutkan";
+"verify_and_continue" = "Verifikasi &amp; Lanjutkan";
 "wait_for_code" = "Tunggu kode baru dalam:";
 "code_not_received" = "Tidak menerima kode?";
 "resend_code" = "Kirim Ulang";
@@ -173,9 +139,6 @@ Untuk pertanyaan: gokhanaytekinn@yandex.com";
 "passwords_match" = "Kata sandi cocok";
 "update_password" = "Perbarui Kata Sandi";
 "suspicious_payments" = "Persetujuan Tertunda";
-"delete_subscription_confirm_desc" = "Apakah Anda yakin ingin menghapus langganan ini dan semua data terkait secara permanen? Tindakan ini tidak dapat dibatalkan.";
-"delete_account_confirm_title" = "Hapus Akun";
-"delete_account_confirm_desc" = "Apakah Anda yakin ingin menghapus akun Anda dan semua data terkait secara permanen? Tindakan ini tidak dapat dibatalkan.";
 "transactions_to_review" = "Transaksi untuk Diulas";
 "swipe_to_review" = "Geser ke kiri untuk menolak, ke kanan untuk mengonfirmasi sebagai langganan";
 "confirm" = "Konfirmasi";
@@ -188,14 +151,19 @@ Untuk pertanyaan: gokhanaytekinn@yandex.com";
 "no_active_subscriptions" = "Tidak ada langganan aktif ditemukan";
 "no_suspicious_subscriptions" = "Tidak ada langganan mencurigakan ditemukan";
 "no_cancelled_subscriptions" = "Tidak ada langganan yang dibatalkan ditemukan";
-"detected_count" = "Terdeteksi (%d)";
-"marked_count" = "Ditandai (%d)";
 "add_subscription" = "Tambah Langganan";
 "service_name_placeholder" = "mis. Netflix";
 "subscription_details" = "Detail Langganan";
 "next_payment" = "Tanggal mulai pembayaran";
 "billing_cycle" = "Siklus Penagihan";
 "category" = "Kategori";
+"delete_subscription_confirm_desc" = "Apakah Anda yakin ingin menghapus langganan ini dan semua data terkait secara permanen? Tindakan ini tidak dapat dibatalkan.";
+"participants" = "Peserta";
+"remove_participant_title" = "Hapus Peserta";
+"remove_participant_confirm" = "Apakah Anda yakin ingin menghapus %@ dari langganan ini?";
+"remove_participant_btn" = "Hapus";
+"delete_account_confirm_title" = "Hapus Akun";
+"delete_account_confirm_desc" = "Apakah Anda yakin ingin menghapus akun Anda dan semua data terkait secara permanen? Tindakan ini tidak dapat dibatalkan.";
 "get_premium" = "Dapatkan Premium";
 "premium_features" = "Fitur Premium";
 "unlimited_subscriptions" = "Langganan Tanpa Batas";
@@ -205,14 +173,14 @@ Untuk pertanyaan: gokhanaytekinn@yandex.com";
 "choose_plan" = "Pilih Paket";
 "monthly_plan" = "Paket Bulanan";
 "yearly_plan" = "Paket Tahunan";
-"save_percent" = "Hemat %%d";
+"save_percent" = "Hemat %d";
 "per_month" = "/bulan";
 "per_year" = "/tahun";
 "billed_monthly" = "Ditagih bulanan";
 "billed_yearly" = "Ditagih tahunan";
 "start_trial" = "Mulai Uji Coba Gratis";
 "restore_purchase" = "Pulihkan Pembelian";
-"category_streaming" = "Film & TV & Musik";
+"category_streaming" = "Film &amp; TV &amp; Musik";
 "category_gaming" = "Game";
 "category_software" = "Perangkat Lunak";
 "category_other" = "Lainnya";
@@ -220,11 +188,6 @@ Untuk pertanyaan: gokhanaytekinn@yandex.com";
 "quick_date" = "Tanggal Cepat";
 "today_btn" = "Hari Ini";
 "tomorrow_btn" = "Besok";
-"analytics" = "Analitik";
-"spending_overview" = "Tinjauan Pengeluaran";
-"monthly_trend" = "Tren Bulanan";
-"category_breakdown" = "Rincian Per Kategori";
-"top_subscriptions" = "Pengeluaran Teratas";
 "transaction_history" = "Riwayat Transaksi";
 "all_transactions" = "Semua Transaksi";
 "filter" = "Saring";
@@ -280,24 +243,6 @@ Untuk pertanyaan: gokhanaytekinn@yandex.com";
 "go_back" = "Kembali";
 "subscription_id_not_found" = "ID langganan tidak ditemukan";
 "no_subscriptions_yet" = "Belum ada langganan yang ditambahkan";
-"sms_permission_rationale" = "Izin SMS diperlukan untuk mendeteksi langganan secara otomatis.
-Dengan cara ini, Anda tidak perlu memasukkan langganan secara manual.";
-"storage_permission_rationale" = "Izin penyimpanan diperlukan untuk memindai dokumen.
-Dengan cara ini, informasi langganan dapat diambil secara otomatis dari file PDF.";
-"permission_denied_message" = "Tidak dapat memindai perangkat tanpa izin.
-Anda dapat menambahkan langganan secara manual jika diinginkan.";
-"permission_permanently_denied_message" = "Izin ditolak. Silakan aktifkan izin dari pengaturan.";
-"scan_dialog_scanning" = "Memindai Perangkat...";
-"scan_dialog_completed" = "Pemindaian Selesai";
-"scan_dialog_sms_count" = "SMS: %d pesan dipindai";
-"scan_dialog_file_count" = "Berkas: %d berkas dipindai";
-"scan_dialog_detected_count" = "%d langganan terdeteksi";
-"scan_dialog_ok" = "OK";
-"detected_subs_title" = "Langganan Terdeteksi";
-"detected_subs_found" = "%d langganan ditemukan";
-"detected_subs_close" = "Tutup";
-"detected_sub_reject" = "Tolak";
-"detected_sub_add" = "Tambah";
 "billing_monthly_label" = "Bulanan";
 "billing_yearly_label" = "Tahunan";
 "billing_weekly_label" = "Mingguan";
@@ -330,3 +275,27 @@ Anda dapat menambahkan langganan secara manual jika diinginkan.";
 "privacy_content_5" = "Aplikasi dapat meminta izin notifikasi untuk mengirimkan pengingat.";
 "privacy_title_6" = "6. Kontak";
 "privacy_content_6" = "Anda dapat menulis kepada kami untuk pertanyaan: gokhanaytekinn@yandex.com";
+"analytics" = "Analitik";
+"spending_overview" = "Tinjauan Pengeluaran";
+"monthly_trend" = "Tren Bulanan";
+"category_breakdown" = "Rincian Per Kategori";
+"top_subscriptions" = "Pengeluaran Teratas";
+"detected_subs_found" = "%d langganan ditemukan";
+"detected_subs_title" = "Langganan Terdeteksi";
+"detected_count" = "Terdeteksi (%d)";
+"detected_sub_add" = "Tambah";
+"detected_sub_reject" = "Tolak";
+"detected_subs_close" = "Tutup";
+"marked_count" = "Ditandai (%d)";
+"menu_scan" = "Pindai";
+"scan" = "Pindai";
+"scan_dialog_completed" = "Pemindaian Selesai";
+"scan_dialog_detected_count" = "%d langganan terdeteksi";
+"scan_dialog_file_count" = "Berkas: %d berkas dipindai";
+"scan_dialog_ok" = "OK";
+"scan_dialog_scanning" = "Memindai Perangkat...";
+"scan_dialog_sms_count" = "SMS: %d pesan dipindai";
+"permission_denied_message" = "Tidak dapat memindai perangkat tanpa izin.\nAnda dapat menambahkan langganan secara manual jika diinginkan.";
+"permission_permanently_denied_message" = "Izin ditolak. Silakan aktifkan izin dari pengaturan.";
+"sms_permission_rationale" = "Izin SMS diperlukan untuk mendeteksi langganan secara otomatis.\nDengan cara ini, Anda tidak perlu memasukkan langganan secara manual.";
+"storage_permission_rationale" = "Izin penyimpanan diperlukan untuk memindai dokumen.\nDengan cara ini, informasi langganan dapat diambil secara otomatis dari file PDF.";

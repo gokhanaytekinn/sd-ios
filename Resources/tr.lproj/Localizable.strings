@@ -1,7 +1,3 @@
-"participants" = "Katılımcılar";
-"remove_participant_title" = "Katılımcıyı Kaldır";
-"remove_participant_confirm" = "%@ kullanıcısını bu abonelikten kaldırmak istediğinize emin misiniz?";
-"remove_participant_btn" = "Kaldır";
 "joint_users" = "Ortak Kullanıcılar";
 "add_email_placeholder" = "E-posta adresi ekleyin";
 "remove" = "Kaldır";
@@ -53,18 +49,16 @@
 "help_center" = "Yardım Merkezi";
 "privacy_policy" = "Gizlilik Politikası";
 "logout" = "Çıkış Yap";
-"version_info" = "Versiyon %@ (Build %d)";
+"version_info" = "Versiyon %1$@ (Build %2$d)";
 "version" = "Versiyon %@";
 "upgrade_to_premium" = "Premium'a Yükselt";
 "premium_desc" = "Tüm gelişmiş özellikleri kullanın ve daha fazla tasarruf etmeye başlayın.";
 "upgrade" = "Yükselt";
 "search" = "Ara";
 "search_placeholder" = "Abonelik veya işlem ara";
-"search_subscriptions_placeholder" = "Abonelik ara";
 "recent_searches" = "SON ARAMALAR";
 "popular_subscriptions" = "Popüler Abonelikler";
 "results_found" = "SONUÇ BULUNDU (%d)";
-"results" = "SONUÇ";
 "subscriptions" = "Abonelikler";
 "transactions" = "İşlemler";
 "looking_for_else" = "Başka bir şey mi arıyorsun?";
@@ -125,42 +119,13 @@
 "google_sign_in_failed" = "Google ile giriş başarısız (%@)";
 "register_desc" = "Aboneliklerini yönetmeye ve tasarruf etmeye başla.";
 "full_name_placeholder" = "Örn: Ahmet Yılmaz";
-"accept_terms_pre" = "";
 "and" = " ve ";
 "accept_terms_post" = "'nı kabul ediyorum.";
 "already_have_account_prompt" = "Zaten bir hesabın var mı? ";
 "terms_of_use_title" = "Kullanım Koşulları";
-"terms_of_use_content" = "1. Kabul
-Sub Tracker'ı kullanarak bu koşulları kabul etmiş sayılırsınız.
-
-2. Hizmet Kapsamı
-Uygulama, aboneliklerinizi takip etmenize yardımcı olan bir araçtır. Finansal tavsiye niteliği taşımaz.
-
-3. Kullanıcı Sorumluluğu
-Hesap bilgilerinizin güvenliğinden ve eklediğiniz verilerin doğruluğundan siz sorumlusunuz.
-
-4. Değişiklikler
-Uygulama özelliklerinde ve bu koşullarda dilediğimiz zaman değişiklik yapma hakkımız saklıdır.
-
-5. Sonlandırma
-Koşulların ihlali durumunda hizmete erişiminizi sonlandırabiliriz.";
+"terms_of_use_content" = "1. Kabul\nSub Tracker'ı kullanarak bu koşulları kabul etmiş sayılırsınız.\n\n2. Hizmet Kapsamı\nUygulama, aboneliklerinizi takip etmenize yardımcı olan bir araçtır. Finansal tavsiye niteliği taşımaz.\n\n3. Kullanıcı Sorumluluğu\nHesap bilgilerinizin güvenliğinden ve eklediğiniz verilerin doğruluğundan siz sorumlusunuz.\n\n4. Değişiklikler\nUygulama özelliklerinde ve bu koşullarda dilediğimiz zaman değişiklik yapma hakkımız saklıdır.\n\n5. Sonlandırma\nKoşulların ihlali durumunda hizmete erişiminizi sonlandırabiliriz.";
 "understood" = "Anladım";
-"privacy_dialog_content" = "Son Güncelleme: 20 Şubat 2026
-
-1. Giriş
-Verilerinizin gizliliğine önem veriyoruz.
-
-2. Toplanan Veriler
-Abonelik bilgileri, kullanım tercihleri ve temel cihaz bilgileri işlenmektedir.
-
-3. Veri Kullanımı
-Verileriniz yalnızca hatırlatıcılar göndermek ve uygulama performansını artırmak için kullanılır.
-
-4. Veri Güvenliği
-Verileriniz endüstri standardı şifreleme yöntemleri ile korunmaktadır.
-
-5. İletişim
-Sorularınız için: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Son Güncelleme: 20 Şubat 2026\n\n1. Giriş\nVerilerinizin gizliliğine önem veriyoruz.\n\n2. Toplanan Veriler\nAbonelik bilgileri, kullanım tercihleri ve temel cihaz bilgileri işlenmektedir.\n\n3. Veri Kullanımı\nVerileriniz yalnızca hatırlatıcılar göndermek ve uygulama performansını artırmak için kullanılır.\n\n4. Veri Güvenliği\nVerileriniz endüstri standardı şifreleme yöntemleri ile korunmaktadır.\n\n5. İletişim\nSorularınız için: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Şifrenizi sıfırlamak için kayıtlı e-posta adresinizi girin. Size bir doğrulama kodu göndereceğiz.";
 "email_address_label" = "E-posta Adresi";
 "send_code" = "Kod Gönder";
@@ -201,6 +166,10 @@ Sorularınız için: gokhanaytekinn@yandex.com";
 "cancel_subscription" = "Aboneliği İptal Et";
 "delete_subscription" = "Aboneliği Sil";
 "delete_subscription_confirm_desc" = "Bu aboneliği ve tüm ilişkili verilerini tamamen silmek istediğinize emin misiniz? Bu işlem geri alınamaz.";
+"participants" = "Katılımcılar";
+"remove_participant_title" = "Katılımcıyı Kaldır";
+"remove_participant_confirm" = "%@ kullanıcısını bu abonelikten kaldırmak istediğinize emin misiniz?";
+"remove_participant_btn" = "Kaldır";
 "delete_account" = "Hesabı Sil";
 "delete_account_confirm_title" = "Hesabı Sil";
 "delete_account_confirm_desc" = "Hesabınızı ve tüm ilişkili verilerinizi tamamen silmek istediğinize emin misiniz? Bu işlem geri alınamaz.";
@@ -213,15 +182,14 @@ Sorularınız için: gokhanaytekinn@yandex.com";
 "choose_plan" = "Planını Seç";
 "monthly_plan" = "Aylık Plan";
 "yearly_plan" = "Yıllık Plan";
-"save_percent" = "%d%% Tasarruf";
+"save_percent" = "%d% Tasarruf";
 "per_month" = "/ay";
 "per_year" = "/yıl";
 "billed_monthly" = "Aylık faturalandırılır";
 "billed_yearly" = "Yıllık faturalandırılır";
 "start_trial" = "Ücretsiz Denemeyi Başlat";
 "restore_purchase" = "Satın Almayı Geri Yükle";
-"premium_hero_title" = "Aboneliklerini
-Akıllıca Yönet";
+"premium_hero_title" = "Aboneliklerini\nAkıllıca Yönet";
 "premium_hero_subtitle" = "Size en uygun planı seçerek hemen başlayın.";
 "plan_free" = "Ücretsiz";
 "plan_monthly_premium" = "Aylık Premium";
@@ -231,7 +199,14 @@ Akıllıca Yönet";
 "current_plan" = "Mevcut Planınız";
 "upgrade_to_premium_btn" = "Premium'a Geç";
 "plans_header" = "PLANLAR";
-"category_streaming" = "Dizi & Film & Müzik";
+"feature_auto_capture_title" = "Kolay Yonetim";
+"feature_auto_capture_free_desc" = "Basit arayuz";
+"feature_unlimited_tracking_title" = "Sinirsiz Takip";
+"feature_unlimited_tracking_free_desc" = "Maksimum 5 abonelik";
+"feature_unlimited_tracking_premium_desc" = "Istedigin kadar abonelik ekle";
+"premium_plan" = "Premium Plan";
+"feature_auto_capture_premium_desc" = "Odeme hatırlatıcıları";
+"category_streaming" = "Dizi &amp; Film &amp; Müzik";
 "category_gaming" = "Oyun";
 "category_software" = "Yazılım";
 "category_shopping" = "Alışveriş";
@@ -261,6 +236,7 @@ Akıllıca Yönet";
 "success" = "Başarılı";
 "try_again" = "Tekrar Dene";
 "no_results" = "Sonuç bulunamadı";
+"date_placeholder" = "gg/aa/yyyy";
 "error_name_required" = "İsim alanı zorunludur";
 "error_amount_required" = "Tutar alanı zorunludur";
 "error_amount_invalid" = "Lütfen geçerli bir tutar girin";
@@ -296,6 +272,9 @@ Akıllıca Yönet";
 "go_back" = "Geri Dön";
 "subscription_id_not_found" = "Abonelik ID bulunamadı";
 "no_subscriptions_yet" = "Henüz abonelik eklenmemiş";
+"billing_monthly_label" = "Aylık";
+"billing_yearly_label" = "Yıllık";
+"billing_weekly_label" = "Haftalık";
 "help_center_title" = "Yardım Merkezi";
 "help_search_placeholder" = "Nasıl yardımcı olabiliriz?";
 "popular_questions" = "Popüler Sorular";
@@ -316,26 +295,17 @@ Akıllıca Yönet";
 "privacy_policy_title" = "Gizlilik Politikası";
 "privacy_last_updated" = "Son Güncelleme: 20 Şubat 2026";
 "privacy_title_1" = "1. Giriş";
-"privacy_content_1" = "Sub Tracker (\"Uygulama\") olarak gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, uygulamamızı kullanırken verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.";
+"privacy_content_1" = "Sub Tracker ("Uygulama") olarak gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, uygulamamızı kullanırken verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.";
 "privacy_title_2" = "2. Toplanan Veriler";
-"privacy_content_2" = "Uygulamamız, size daha iyi hizmet verebilmek için aşağıdaki verileri toplayabilir veya işleyebilir:
-
-• Abonelik Bilgileri: Eklediğiniz aboneliklerin adı, fiyatı, ödeme tarihleri.
-• Kullanım Verileri: Uygulama içi etkileşimler ve tercihler.
-• Cihaz Bilgileri: Uygulamanın çalışması için gerekli temel cihaz tanımlayıcıları.";
+"privacy_content_2" = "Uygulamamız, size daha iyi hizmet verebilmek için aşağıdaki verileri toplayabilir veya işleyebilir:\n\n• Abonelik Bilgileri: Eklediğiniz aboneliklerin adı, fiyatı, ödeme tarihleri.\n• Kullanım Verileri: Uygulama içi etkileşimler ve tercihler.\n• Cihaz Bilgileri: Uygulamanın çalışması için gerekli temel cihaz tanımlayıcıları.";
 "privacy_title_3" = "3. Verilerin Kullanımı";
-"privacy_content_3" = "Toplanan veriler yalnızca aşağıdaki amaçlarla kullanılır:
-
-• Aboneliklerinizi takip etmenizi sağlamak.
-• Ödeme günü yaklaşan abonelikler için hatırlatıcı bildirimleri göndermek.
-• Uygulama performansını iyileştirmek ve hataları gidermek.";
+"privacy_content_3" = "Toplanan veriler yalnızca aşağıdaki amaçlarla kullanılır:\n\n• Aboneliklerinizi takip etmenizi sağlamak.\n• Ödeme günü yaklaşan abonelikler için hatırlatıcı bildirimleri göndermek.\n• Uygulama performansını iyileştirmek ve hataları gidermek.";
 "privacy_title_4" = "4. Veri Güvenliği";
 "privacy_content_4" = "Kişisel verileriniz cihazınızda güvenli bir şekilde saklanır. Sunucularımızda tutulan veriler (hesap oluşturmanız durumunda) endüstri standardı şifreleme yöntemleri ile korunur. Verileriniz asla izniniz olmaksızın üçüncü taraflara satılmaz veya paylaşılmaz.";
 "privacy_title_5" = "5. İzinler";
 "privacy_content_5" = "Uygulama, size bildirim gönderebilmek için bildirim izni talep edebilir. Bu izin, yalnızca abonelik hatırlatıcıları için kullanılır.";
 "privacy_title_6" = "6. İletişim";
-"privacy_content_6" = "Gizlilik politikamızla ilgili sorularınız için bizimle iletişime geçebilirsiniz:
-gokhanaytekinn@yandex.com";
+"privacy_content_6" = "Gizlilik politikamızla ilgili sorularınız için bizimle iletişime geçebilirsiniz:\ngokhanaytekinn@yandex.com";
 "widget_upcoming_title" = "Yaklaşan Ödemeler";
 "widget_upcoming_desc" = "Önümüzdeki 7 gün içindeki ödemeleri gösterir";
 "widget_expensive_title" = "En Pahalı Abonelikler";
@@ -344,17 +314,6 @@ gokhanaytekinn@yandex.com";
 "widget_no_data" = "Veri bulunamadı";
 "widget_days_left" = "%d gün kaldı";
 "widget_today" = "Bugün Ödenecek";
-"feature_auto_capture_title" = "Kolay Yonetim";
-"feature_auto_capture_free_desc" = "Basit arayuz";
-"feature_unlimited_tracking_title" = "Sinirsiz Takip";
-"feature_unlimited_tracking_free_desc" = "Maksimum 5 abonelik";
-"feature_unlimited_tracking_premium_desc" = "Istedigin kadar abonelik ekle";
-"premium_plan" = "Premium Plan";
-"feature_auto_capture_premium_desc" = "Odeme hatırlatıcıları";
-"date_placeholder" = "gg/aa/yyyy";
-"billing_monthly_label" = "Aylık";
-"billing_yearly_label" = "Yıllık";
-"billing_weekly_label" = "Haftalık";
 "analytics" = "Analizler";
 "spending_overview" = "Harcama Özeti";
 "monthly_trend" = "Aylık Trend";
