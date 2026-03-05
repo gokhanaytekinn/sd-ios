@@ -1,4 +1,4 @@
-"joint_users" = "Биргелешкен колдонуучулар";
+﻿"joint_users" = "Биргелешкен колдонуучулар";
 "add_email_placeholder" = "Электрондук почта дарегин кошуңуз";
 "remove" = "Өчүрүү";
 "app_name" = "Sub Tracker";
@@ -52,7 +52,7 @@
 "version_info" = "Версиясы %1$@ (Build %2$d)";
 "version" = "Versiya %@";
 "upgrade_to_premium" = "Premium-га өтүңүз";
-"premium_desc" = "Бардык жазылууларыңызды автоматтык түрдө сканерлеңиз жана %30 көбүрөөк үнөмдөңүз.";
+"premium_desc" = "Бардык жазылууларыңызды автоматтык түрдө сканерлеңиз жана %%30 көбүрөөк үнөмдөңүз.";
 "upgrade" = "Жаңыртуу";
 "search" = "Издөө";
 "search_placeholder" = "Жазылууну же транзакцияны издөө";
@@ -119,6 +119,7 @@
 "google_sign_in_failed" = "Google аркылуу кирүү ишке ашкан жок (%@)";
 "register_desc" = "Жазылууларыңызды башкарууну жана үнөмдөөнү баштаңыз.";
 "full_name_placeholder" = "Мисалы: Азамат Темирбеков";
+"accept_terms_pre" = "";
 "and" = " жана ";
 "accept_terms_post" = " келишем.";
 "already_have_account_prompt" = "Аккаунтуңуз барбы? ";
@@ -181,7 +182,7 @@
 "choose_plan" = "План тандаңыз";
 "monthly_plan" = "Айлык план";
 "yearly_plan" = "Жылдык план";
-"save_percent" = "%d% үнөмдөө";
+"save_percent" = "%d%% үнөмдөө";
 "per_month" = "/ай";
 "per_year" = "/жыл";
 "billed_monthly" = "Айына эсептелет";

@@ -1,4 +1,4 @@
-"joint_users" = "共同用户";
+﻿"joint_users" = "共同用户";
 "add_email_placeholder" = "添加电子邮件地址";
 "remove" = "移除";
 "app_name" = "订阅追踪器";
@@ -52,7 +52,7 @@
 "version_info" = "版本 %1$@ (Build %2$d)";
 "version" = "版本 %@";
 "upgrade_to_premium" = "升级到高级版";
-"premium_desc" = "自动扫描您的所有订阅，多节省 30%。";
+"premium_desc" = "自动扫描您的所有订阅，多节省 30%%。";
 "upgrade" = "升级";
 "search" = "搜索";
 "search_placeholder" = "搜索订阅或交易";
@@ -182,7 +182,7 @@
 "choose_plan" = "选择您的计划";
 "monthly_plan" = "月度计划";
 "yearly_plan" = "年度计划";
-"save_percent" = "节省 %d%";
+"save_percent" = "节省 %d%%";
 "per_month" = "/月";
 "per_year" = "/年";
 "billed_monthly" = "按月计费";

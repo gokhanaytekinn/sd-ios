@@ -1,4 +1,4 @@
-"joint_users" = "Bilelikdäki ulanyjylar";
+﻿"joint_users" = "Bilelikdäki ulanyjylar";
 "add_email_placeholder" = "E-poçta salgysyny goşuň";
 "remove" = "Aýyr";
 "app_name" = "Sub Tracker";
@@ -52,7 +52,7 @@
 "version_info" = "Wersiýa %1$@ (Build %2$d)";
 "version" = "Wersiya %@";
 "upgrade_to_premium" = "Premium-a Geçiriň";
-"premium_desc" = "Ähli abunalyklaryňyzy awtomatik skanirläň we %30 has köp tygşytlaň.";
+"premium_desc" = "Ähli abunalyklaryňyzy awtomatik skanirläň we %%30 has köp tygşytlaň.";
 "upgrade" = "Täzele";
 "search" = "Gözle";
 "search_placeholder" = "Abunalyk ýa-da amal gözle";
@@ -119,6 +119,7 @@
 "google_sign_in_failed" = "Google bilen giriş şowsuz boldy (%@)";
 "register_desc" = "Abunalyklaryňyzy dolandyrmaga we tygşytlamaga başlaň.";
 "full_name_placeholder" = "Mysal üçin: Aman Amanow";
+"accept_terms_pre" = "";
 "and" = " we ";
 "accept_terms_post" = "-ny kabul edýärin.";
 "already_have_account_prompt" = "Eýýäm hasabyňyz barmy? ";
@@ -181,7 +182,7 @@
 "choose_plan" = "Planyňyzy Saýlaň";
 "monthly_plan" = "Aýlyk Plan";
 "yearly_plan" = "Ýyllyk Plan";
-"save_percent" = "%d% Tygşytlylyk";
+"save_percent" = "%d%% Tygşytlylyk";
 "per_month" = "/aý";
 "per_year" = "/ýyl";
 "billed_monthly" = "Her aý hasaplanýar";
@@ -205,7 +206,7 @@
 "feature_unlimited_tracking_premium_desc" = "Isledigiňizçe goşuň";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Gizlin tölegleri bada-bat tapýar";
-"category_streaming" = "Kinolar &amp; TV &amp; Saz";
+"category_streaming" = "Kinolar & TV & Saz";
 "category_gaming" = "Oýunlar";
 "category_software" = "Programma üpjünçiligi";
 "category_other" = "Başga";
@@ -296,7 +297,7 @@
 "privacy_policy_title" = "Gizlinlik Syýasaty";
 "privacy_last_updated" = "Soňky Täzelenme: 20 Fewral 2026";
 "privacy_title_1" = "1. Giriş";
-"privacy_content_1" = "Sub Tracker ("Programma") hökmünde gizlinligiňize uly ähmiýet berýäris. Bu Gizlinlik Syýasaty programmamyzy ulananyňyzda maglumatlaryňyzyň nadip toplanýandygyny, ulanylýandygyny we goralýandygyny düşündirýär.";
+"privacy_content_1" = "Sub Tracker (\"Programma\") hökmünde gizlinligiňize uly ähmiýet berýäris. Bu Gizlinlik Syýasaty programmamyzy ulananyňyzda maglumatlaryňyzyň nadip toplanýandygyny, ulanylýandygyny we goralýandygyny düşündirýär.";
 "privacy_title_2" = "2. Toplanýan Maglumatlar";
 "privacy_content_2" = "Programma size has gowy hyzmat berip bilmek üçin aşakdaky maglumatlary toplap ýa-da işläp biler:\n\n• Abunalyk Maglumatlary: Goşan abunalyklaryňyzyň ady, bahasy, töleg seneleri.\n• Ulanyş Maglumatlary: Programma içindäki täsirler we saýlawlar.\n• Enjam Maglumatlary: Programmanyň işlemegi üçin zerur bolan esasy enjam identifikatorlary.";
 "privacy_title_3" = "3. Maglumatlaryň Ulanylýyşy";

@@ -1,4 +1,4 @@
-"joint_users" = "Birgə İstifadəçilər";
+﻿"joint_users" = "Birgə İstifadəçilər";
 "add_email_placeholder" = "E-poçt ünvanı əlavə edin";
 "remove" = "Sil";
 "app_name" = "Sub Tracker";
@@ -52,7 +52,7 @@
 "version_info" = "Versiya %1$@ (Build %2$d)";
 "version" = "Versiya %@";
 "upgrade_to_premium" = "Premium-a Keçin";
-"premium_desc" = "Bütün abunəliklərinizi avtomatik skan edin və %30 daha çox qənaət edin.";
+"premium_desc" = "Bütün abunəliklərinizi avtomatik skan edin və %%30 daha çox qənaət edin.";
 "upgrade" = "Yenilə";
 "search" = "Axtar";
 "search_placeholder" = "Abunəlik və ya əməliyyat axtar";
@@ -119,6 +119,7 @@
 "google_sign_in_failed" = "Google ilə giriş uğursuz oldu (%@)";
 "register_desc" = "Abunəliklərinizi idarə etməyə və qənaət etməyə başlayın.";
 "full_name_placeholder" = "Məs: Əli Məmmədov";
+"accept_terms_pre" = "";
 "and" = " və ";
 "accept_terms_post" = "-nı qəbul edirəm.";
 "already_have_account_prompt" = "Artıq hesabınız var? ";
@@ -181,7 +182,7 @@
 "choose_plan" = "Planınızı Seçin";
 "monthly_plan" = "Aylıq Plan";
 "yearly_plan" = "İllik Plan";
-"save_percent" = "%d% Qənaət";
+"save_percent" = "%d%% Qənaət";
 "per_month" = "/ay";
 "per_year" = "/il";
 "billed_monthly" = "Aylıq hesablanır";
@@ -296,7 +297,7 @@
 "privacy_policy_title" = "Məxfilik Siyasəti";
 "privacy_last_updated" = "Son Yenilənmə: 20 Fevral 2026";
 "privacy_title_1" = "1. Giriş";
-"privacy_content_1" = "Sub Tracker ("Proqram") olaraq məxfiliyinizə önəm veririk. Bu Məxfilik Siyasəti, proqramımızdan istifadə edərkən məlumatlarınızın necə toplandığını, istifadə edildiyini və qorunduğunu izah edir.";
+"privacy_content_1" = "Sub Tracker (\"Proqram\") olaraq məxfiliyinizə önəm veririk. Bu Məxfilik Siyasəti, proqramımızdan istifadə edərkən məlumatlarınızın necə toplandığını, istifadə edildiyini və qorunduğunu izah edir.";
 "privacy_title_2" = "2. Toplanan Məlumatlar";
 "privacy_content_2" = "Proqramımız sizə daha yaxşı xidmət göstərmək üçün aşağıdakı məlumatları toplaya və ya emal edə bilər:\n\n• Abunəlik Məlumatları: Əlavə etdiyiniz abunəliklərin adı, qiyməti, ödəniş tarixləri.\n• İstifadə Məlumatları: Proqram daxili qarşılıqlı əlaqələr və seçimlər.\n• Cihaz Məlumatları: Proqramın işləməsi üçün lazım olan əsas cihaz identifikatorları.";
 "privacy_title_3" = "3. Məlumatlardan İstifadə";
