@@ -47,7 +47,7 @@ function migrateStrings() {
                 .replace(/\\'/g, "'")
                 .replace(/\\"/g, '"')
                 .replace(/\\n/g, '\n')
-                .replace(/&amp;/g, '&')
+                .replace(//g, '&')
                 .replace(/&lt;/g, '<')
                 .replace(/&gt;/g, '>')
                 .replace(/%([0-9]+\$)?s/g, '%@') // Convert string placeholders

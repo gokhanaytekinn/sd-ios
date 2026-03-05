@@ -127,7 +127,7 @@
 "back_to_login" = "Kembali ke Masuk";
 "verify_code_title" = "Verifikasi Kode";
 "verify_code_desc" = "Masukkan kode verifikasi 6 digit yang dikirim ke %@.";
-"verify_and_continue" = "Verifikasi &amp; Lanjutkan";
+"verify_and_continue" = "Verifikasi  Lanjutkan";
 "wait_for_code" = "Tunggu kode baru dalam:";
 "code_not_received" = "Tidak menerima kode?";
 "resend_code" = "Kirim Ulang";
@@ -180,7 +180,7 @@
 "billed_yearly" = "Ditagih tahunan";
 "start_trial" = "Mulai Uji Coba Gratis";
 "restore_purchase" = "Pulihkan Pembelian";
-"category_streaming" = "Film &amp; TV &amp; Musik";
+"category_streaming" = "Film  TV  Musik";
 "category_gaming" = "Game";
 "category_software" = "Perangkat Lunak";
 "category_other" = "Lainnya";
