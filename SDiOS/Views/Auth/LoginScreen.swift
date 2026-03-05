@@ -75,40 +75,6 @@ struct LoginScreen: View {
                     }
                     
                     Spacer().frame(height: 24)
-                    
-                    // Divider
-                    HStack {
-                        Rectangle().fill(Color.appOnBackground(for: colorScheme).opacity(0.1))
-                            .frame(height: 1)
-                        Text(NSLocalizedString("or", comment: ""))
-                            .font(.system(size: 14))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                            .padding(.horizontal, 16)
-                        Rectangle().fill(Color.appOnBackground(for: colorScheme).opacity(0.1))
-                            .frame(height: 1)
-                    }
-                    
-                    Spacer().frame(height: 24)
-                    
-                    // Google Sign-In Button
-                    Button(action: {
-                        // Google Sign-In will be triggered here
-                        // Uses Google Sign-In SDK for iOS
-                    }) {
-                        HStack(spacing: 12) {
-                            Image(systemName: "g.circle.fill")
-                                .font(.system(size: 20))
-                            Text("Google")
-                                .font(.system(size: 16, weight: .medium))
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 56)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.appOnBackground(for: colorScheme).opacity(0.2), lineWidth: 1)
-                        )
-                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                    }
                 }
                 .padding(.horizontal, 24)
             }

@@ -38,20 +38,7 @@ class AuthRepository {
         }
     }
     
-    func loginWithGoogle(idToken: String) async -> Result<ApiAuthResponse, Error> {
-        do {
-            let response = try await api.loginWithGoogle(GoogleAuthRequest(idToken: idToken))
-            if let token = response.token {
-                tokenManager.saveToken(token)
-            }
-            if let email = response.user?.email {
-                tokenManager.saveUserEmail(email)
-            }
-            return .success(response)
-        } catch {
-            return .failure(error)
-        }
-    }
+
     
     func getCurrentUser() async -> Result<UserResponse, Error> {
         do {

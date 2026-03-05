@@ -99,30 +99,7 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
-    
-    func signInWithGoogle(idToken: String, onSuccess: @escaping () -> Void) {
-        Task {
-            isLoading = true
-            error = nil
-            let result = await repository.loginWithGoogle(idToken: idToken)
-            switch result {
-            case .success(let response):
-                isLoading = false
-                isAuthenticated = true
-                userName = response.user?.name
-                userEmail = response.user?.email
-                notificationsEnabled = response.user?.notificationsEnabled ?? true
-                language = response.user?.language ?? "tr"
-                tier = response.user?.tier ?? 1
-                premiumPreferences.isPremium = response.user?.tier == 2
-                syncLanguageIfNeeded()
-                onSuccess()
-            case .failure(let err):
-                isLoading = false
-                error = err.localizedDescription
-            }
-        }
-    }
+
     
     func forgotPassword(email: String, onSuccess: @escaping () -> Void) {
         guard !email.isEmpty else {
