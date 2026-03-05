@@ -18,25 +18,11 @@ struct SubscriptionDetailsScreen: View {
             // Top Bar
             HStack {
                 Button(action: onBack) {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: "arrow.left")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                 }
                 Spacer()
-                Text(NSLocalizedString("subscription_details", comment: ""))
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(Color.appOnBackground(for: colorScheme))
-                Spacer()
-                
-                if let sub = subscription {
-                    Button(action: { onEdit(sub) }) {
-                        Image(systemName: "pencil")
-                            .font(.system(size: 18))
-                            .foregroundColor(.primaryBlue)
-                    }
-                } else {
-                    Color.clear.frame(width: 24, height: 24)
-                }
             }
             .padding(16)
             
@@ -46,169 +32,155 @@ struct SubscriptionDetailsScreen: View {
                 Spacer()
             } else if let sub = subscription {
                 ScrollView {
-                    VStack(spacing: 16) {
-                        // Main Card
-                        VStack(spacing: 16) {
-                            // Icon & Name
-                            ZStack {
-                                Circle()
-                                    .fill(Color.primaryBlue.opacity(0.1))
-                                    .frame(width: 64, height: 64)
-                                
-                                Text(sub.name.prefix(1).uppercased())
-                                    .font(.system(size: 28, weight: .bold))
-                                    .foregroundColor(.primaryBlue)
-                            }
+                    VStack(spacing: 24) {
+                        // Icon
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color.appSurface(for: colorScheme))
+                                .frame(width: 120, height: 120)
+                                .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
                             
+                            Text(sub.name.prefix(1).uppercased())
+                                .font(.system(size: 60, weight: .bold))
+                                .foregroundColor(.primaryBlue)
+                        }
+                        .padding(.top, 20)
+                        
+                        // Name & Price
+                        VStack(spacing: 8) {
                             Text(sub.name)
-                                .font(.system(size: 22, weight: .bold))
+                                .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             
-                            Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
-                                .font(.system(size: 32, weight: .black))
-                                .foregroundColor(.primaryBlue)
-                            
-                            // Billing Info
-                            HStack(spacing: 24) {
-                                infoBlock(
-                                    title: NSLocalizedString("billing_cycle", comment: ""),
-                                    value: billingCycleText(sub.billingCycle)
-                                )
+                            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                                Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
+                                    .font(.system(size: 32, weight: .black))
+                                    .foregroundColor(.primaryBlue)
                                 
-                                infoBlock(
-                                    title: NSLocalizedString("category", comment: ""),
-                                    value: NSLocalizedString(sub.category ?? "category_other", comment: "")
-                                )
+                                Text("/ \(billingCycleText(sub.billingCycle))")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            }
+                        }
+                        
+                        // Reminder Toggle Button
+                        Button(action: { 
+                            // Toggle logic (simplified)
+                        }) {
+                            HStack(spacing: 8) {
+                                Image(systemName: sub.reminderEnabled ? "bell.fill" : "bell.slash.fill")
+                                Text(NSLocalizedString("reminder", comment: ""))
+                            }
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(Color(hex: "5B37B7"))
+                            .cornerRadius(20)
+                        }
+                        
+                        // Summary Card
+                        VStack(alignment: .leading, spacing: 16) {
+                            HStack(spacing: 12) {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.orange.opacity(0.2))
+                                        .frame(width: 40, height: 40)
+                                    Image(systemName: "sun.max.fill") // Placeholder for category icon
+                                        .foregroundColor(.orange)
+                                }
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(sub.name)
+                                        .font(.system(size: 16, weight: .bold))
+                                    Text("\(NSLocalizedString(sub.category ?? "category_other", comment: "")) • \(billingCycleText(sub.billingCycle))")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                }
+                                
+                                Spacer()
+                                
+                                VStack(alignment: .trailing, spacing: 2) {
+                                    Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
+                                        .font(.system(size: 16, weight: .bold))
+                                    if let nextDate = sub.getNextRenewalDate() {
+                                        Text(nextDate, format: .dateTime.day().month().year())
+                                            .font(.system(size: 12))
+                                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                    }
+                                }
                             }
                             
                             if let nextDate = sub.getNextRenewalDate() {
                                 let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? 0
+                                let totalDays = sub.billingCycle == .monthly ? 30.0 : 365.0
+                                let progress = max(0.0, min(1.0, 1.0 - (Double(days) / totalDays)))
                                 
-                                HStack(spacing: 8) {
-                                    Image(systemName: "clock.fill")
-                                        .font(.system(size: 14))
-                                        .foregroundColor(.primaryBlue)
-                                    
+                                VStack(alignment: .leading, spacing: 8) {
                                     Text(String(format: NSLocalizedString("days_left_for_renewal", comment: ""), days))
-                                        .font(.system(size: 14))
-                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                        .font(.system(size: 14, weight: .medium))
+                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                    
+                                    GeometryReader { geo in
+                                        ZStack(alignment: .leading) {
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(Color.appOutline(for: colorScheme).opacity(0.2))
+                                            
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(Color.primaryBlue)
+                                                .frame(width: geo.size.width * progress)
+                                        }
+                                    }
+                                    .frame(height: 6)
                                 }
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 16)
-                                .background(Color.primaryBlue.opacity(0.05))
-                                .cornerRadius(8)
                             }
-                        }
-                        .padding(24)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.appSurface(for: colorScheme))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
-                        )
-                        .cornerRadius(16)
-                        
-                        // Reminder
-                        HStack(spacing: 12) {
-                            Image(systemName: sub.reminderEnabled ? "bell.fill" : "bell.slash.fill")
-                                .foregroundColor(sub.reminderEnabled ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
-                            
-                            Text(sub.reminderEnabled ?
-                                 NSLocalizedString("set_reminder", comment: "") :
-                                 NSLocalizedString("turn_off_reminder", comment: ""))
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(Color.appOnBackground(for: colorScheme))
-                            
-                            Spacer()
                         }
                         .padding(16)
-                        .background(Color.appSurface(for: colorScheme))
-                        .cornerRadius(12)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.5))
+                        .cornerRadius(16)
+                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
                         
-                        // Participants
-                        if let participants = sub.participants, !participants.isEmpty {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(NSLocalizedString("participants", comment: ""))
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
-                                
-                                ForEach(participants) { p in
-                                    HStack {
-                                        Image(systemName: "person.circle.fill")
-                                            .foregroundColor(.primaryBlue)
-                                        
-                                        VStack(alignment: .leading) {
-                                            Text(p.name ?? p.email)
-                                                .font(.system(size: 14, weight: .medium))
-                                                .foregroundColor(Color.appOnBackground(for: colorScheme))
-                                            Text(p.status)
-                                                .font(.system(size: 12))
-                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                        }
-                                        
-                                        Spacer()
-                                    }
-                                    .padding(12)
-                                    .background(Color.appSurface(for: colorScheme))
-                                    .cornerRadius(8)
-                                }
+                        // Info Grid
+                        HStack(spacing: 16) {
+                            gridBlock(title: NSLocalizedString("subscription_price", comment: ""), value: CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
+                            gridBlock(title: NSLocalizedString("renewal_cycle", comment: ""), value: nextRenewalDayMonth(sub))
+                        }
+                        
+                        // Actions Group
+                        HStack(spacing: 12) {
+                            actionButton(icon: "bell.slash", title: NSLocalizedString("turn_off", comment: ""), color: Color.appOnSurfaceVariant(for: colorScheme)) {
+                                // Action
+                            }
+                            actionButton(icon: "pencil", title: NSLocalizedString("edit_plan", comment: ""), color: Color.appOnBackground(for: colorScheme)) {
+                                onEdit(sub)
                             }
                         }
                         
-                        // Actions
-                        VStack(spacing: 8) {
-                            if sub.status == 3 {
-                                Button(action: {
-                                    viewModel.reactivateSubscription(id: sub.id)
-                                    onBack()
-                                }) {
-                                    HStack {
-                                        Image(systemName: "arrow.clockwise")
-                                        Text(NSLocalizedString("reactivate_subscription", comment: ""))
-                                    }
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundColor(.successColor)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 50)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(Color.successColor, lineWidth: 1.5)
-                                    )
-                                }
-                            } else {
-                                Button(action: { showCancelDialog = true }) {
-                                    HStack {
-                                        Image(systemName: "xmark.circle")
-                                        Text(NSLocalizedString("cancel_subscription_btn", comment: ""))
-                                    }
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundColor(.warningColor)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 50)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(Color.warningColor, lineWidth: 1.5)
-                                    )
-                                }
+                        // Cancel Button
+                        Button(action: { showCancelDialog = true }) {
+                            HStack {
+                                Image(systemName: "xmark.circle")
+                                Text(NSLocalizedString("cancel_subscription_btn", comment: ""))
                             }
-                            
-                            Button(action: { showDeleteDialog = true }) {
-                                HStack {
-                                    Image(systemName: "trash")
-                                    Text(NSLocalizedString("delete_subscription", comment: ""))
-                                }
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.errorColor)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 50)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.errorColor, lineWidth: 1.5)
-                                )
-                            }
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.errorColor)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 52)
+                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.errorColor.opacity(0.5), lineWidth: 1))
                         }
                         
-                        Spacer().frame(height: 100)
+                        // Delete Button
+                        Button(action: { showDeleteDialog = true }) {
+                            HStack(spacing: 8) {
+                                Image(systemName: "trash")
+                                Text(NSLocalizedString("delete_subscription", comment: ""))
+                            }
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.errorColor)
+                        }
+                        .padding(.top, 8)
+                        
+                        Spacer().frame(height: 40)
                     }
                     .padding(.horizontal, 24)
                 }
@@ -250,15 +222,43 @@ struct SubscriptionDetailsScreen: View {
         }
     }
     
-    private func infoBlock(title: String, value: String) -> some View {
-        VStack(spacing: 4) {
+    private func gridBlock(title: String, value: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.system(size: 12))
                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
             Text(value)
-                .font(.system(size: 14, weight: .bold))
+                .font(.system(size: 18, weight: .bold))
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
         }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.appSurface(for: colorScheme).opacity(0.5))
+        .cornerRadius(12)
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
+    }
+    
+    private func actionButton(icon: String, title: String, color: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Image(systemName: icon)
+                Text(title)
+            }
+            .font(.system(size: 14, weight: .bold))
+            .foregroundColor(color)
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .background(Color.appSurface(for: colorScheme))
+            .cornerRadius(12)
+            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
+        }
+    }
+    
+    private func nextRenewalDayMonth(_ sub: Subscription) -> String {
+        guard let nextDate = sub.getNextRenewalDate() else { return "-" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMMM"
+        return formatter.string(from: nextDate)
     }
     
     private func billingCycleText(_ cycle: BillingCycle) -> String {

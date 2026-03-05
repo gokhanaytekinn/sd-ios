@@ -81,9 +81,15 @@ struct AddSubscriptionScreen: View {
                                                     .frame(width: 56, height: 56)
                                                     .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
                                                 
-                                                Text(shortcut.name.prefix(1).uppercased())
-                                                    .font(.system(size: 24, weight: .bold))
-                                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                                if let iconName = shortcut.icon, let sfSymbol = sfSymbol(for: iconName) {
+                                                    Image(systemName: sfSymbol)
+                                                        .font(.system(size: 24))
+                                                        .foregroundColor(.primaryBlue)
+                                                } else {
+                                                    Text(shortcut.name.prefix(1).uppercased())
+                                                        .font(.system(size: 24, weight: .bold))
+                                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                                }
                                             }
                                             
                                             Text(shortcut.name)
@@ -272,6 +278,20 @@ struct AddSubscriptionScreen: View {
         }
         .buttonStyle(.plain)
     }
+    
+    private func sfSymbol(for iconName: String) -> String? {
+        let mapping: [String: String] = [
+            "netflix": "play.square.fill",
+            "spotify": "music.note.list",
+            "youtube": "play.rectangle.fill",
+            "amazon": "cart.fill",
+            "google": "g.circle.fill",
+            "hbomax": "h.circle.fill",
+            "cursor": "cursorarrow.rays",
+            "claude": "c.circle.fill"
+        ]
+        return mapping[iconName]
+    }
 }
 
 // MARK: - Flow Layout for Categories
@@ -311,4 +331,5 @@ struct FlowLayout: Layout {
         
         return (positions, CGSize(width: maxWidth, height: y + rowHeight))
     }
+    
 }

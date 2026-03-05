@@ -49,6 +49,7 @@ enum MainTab: Int, CaseIterable {
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var themeManager: ThemeManager
+    @ObservedObject var languagePref = LanguagePreferences.shared
     
     @State private var navigationPath: [AppRoute] = []
     @State private var selectedTab: MainTab = .dashboard
@@ -182,7 +183,10 @@ struct ContentView: View {
             // Bottom Navigation Bar
             bottomNavBar
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
+        .environment(\.locale, .init(identifier: languagePref.selectedLanguage))
+        .id(languagePref.selectedLanguage) // Force view refresh on language change
     }
     
     // MARK: - Main Destination
