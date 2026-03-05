@@ -136,7 +136,7 @@ struct VerificationCodeScreen: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(Color.appOnBackground(for: colorScheme).opacity(0.2), lineWidth: 1)
                             )
-                            .onChange(of: code) { _, newValue in
+                            .onChange(of: code) { newValue in
                                 if newValue.count > 6 {
                                     code = String(newValue.prefix(6))
                                 }

@@ -48,7 +48,7 @@ struct LoginScreen: View {
                         error: authViewModel.emailError,
                         keyboardType: .emailAddress
                     )
-                    .onChange(of: email) { _, _ in authViewModel.clearError() }
+                    .onChange(of: email) { _ in authViewModel.clearError() }
                     
                     Spacer().frame(height: 16)
                     
@@ -60,7 +60,7 @@ struct LoginScreen: View {
                         error: authViewModel.passwordError,
                         isSecure: true
                     )
-                    .onChange(of: password) { _, _ in authViewModel.clearError() }
+                    .onChange(of: password) { _ in authViewModel.clearError() }
                     
                     Spacer().frame(height: 12)
                     
