@@ -5,6 +5,7 @@
 "joint_users" = "共同用户";
 "add_email_placeholder" = "添加电子邮件地址";
 "remove" = "移除";
+"app_name" = "订阅追踪器";
 "back" = "返回";
 "save" = "保存";
 "cancel" = "取消";
@@ -52,7 +53,7 @@
 "help_center" = "帮助中心";
 "privacy_policy" = "隐私政策";
 "logout" = "退出登录";
-"version_info" = "版本 %@ (Build %2$d)";
+"version_info" = "版本 %@ (Build %d)";
 "upgrade_to_premium" = "升级到高级版";
 "premium_desc" = "自动扫描您的所有订阅，多节省 30%%。";
 "upgrade" = "升级";
@@ -122,9 +123,37 @@
 "accept_terms_post" = "。";
 "already_have_account_prompt" = "已有账号？ ";
 "terms_of_use_title" = "使用条款";
-"terms_of_use_content" = "1. 接受\n通过使用订阅追踪器，您同意这些条款。\n\n2. 服务范围\n该应用程序是帮助您追踪订阅的工具。它不是财务建议。\n\n3. 用户责任\n您对账户信息的安全性以及您添加的数据的准确性负责。\n\n4. 更改\n我们保留随时更改应用功能和这些条款的权利。\n\n5. 终止\n如果违反条款，我们可能会终止您对服务的访问。";
+"terms_of_use_content" = "1. 接受
+通过使用订阅追踪器，您同意这些条款。
+
+2. 服务范围
+该应用程序是帮助您追踪订阅的工具。它不是财务建议。
+
+3. 用户责任
+您对账户信息的安全性以及您添加的数据的准确性负责。
+
+4. 更改
+我们保留随时更改应用功能和这些条款的权利。
+
+5. 终止
+如果违反条款，我们可能会终止您对服务的访问。";
 "understood" = "明白";
-"privacy_dialog_content" = "最后更新日期：2026年2月20日\n\n1. 简介\n我们重视您的数据隐私。\n\n2. 收集的数据\n处理订阅信息、使用偏好和基本设备信息。\n\n3. 数据使用\n您的数据仅用于发送提醒并改进应用性能。\n\n4. 数据安全\n您的数据受行业标准加密方法的保护。\n\n5. 联系方式\n如有疑问：gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "最后更新日期：2026年2月20日
+
+1. 简介
+我们重视您的数据隐私。
+
+2. 收集的数据
+处理订阅信息、使用偏好和基本设备信息。
+
+3. 数据使用
+您的数据仅用于发送提醒并改进应用性能。
+
+4. 数据安全
+您的数据受行业标准加密方法的保护。
+
+5. 联系方式
+如有疑问：gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "输入您的注册电子邮件地址以重置密码。我们将向您发送一个验证码。";
 "email_address_label" = "电子邮件地址";
 "send_code" = "发送代码";
@@ -247,9 +276,12 @@
 "go_back" = "返回";
 "subscription_id_not_found" = "未找到订阅 ID";
 "no_subscriptions_yet" = "尚未添加订阅";
-"sms_permission_rationale" = "需要 SMS 权限才能自动检测设备上的订阅通知。\n这样，您就不必手动输入订阅内容。";
-"storage_permission_rationale" = "需要存储权限才能扫描设备上的发票和订阅文件。\n这样，可以从 PDF 和其他文件中自动检测订阅信息。";
-"permission_denied_message" = "没有权限无法进行设备扫描。\n如果需要，您可以手动添加订阅。";
+"sms_permission_rationale" = "需要 SMS 权限才能自动检测设备上的订阅通知。
+这样，您就不必手动输入订阅内容。";
+"storage_permission_rationale" = "需要存储权限才能扫描设备上的发票和订阅文件。
+这样，可以从 PDF 和其他文件中自动检测订阅信息。";
+"permission_denied_message" = "没有权限无法进行设备扫描。
+如果需要，您可以手动添加订阅。";
 "permission_permanently_denied_message" = "权限被拒绝。请在应用设置中启用权限。";
 "scan_dialog_scanning" = "正在扫描设备...";
 "scan_dialog_completed" = "扫描完成";
@@ -290,15 +322,24 @@
 "privacy_title_1" = "1. 简介";
 "privacy_content_1" = "作为订阅追踪器（“本应用”），我们重视您的隐私。本隐私政策解释了在使用我们的应用程序时如何收集、使用和保护您的数据。";
 "privacy_title_2" = "2. 收集的数据";
-"privacy_content_2" = "我们的应用程序可能会收集或处理以下数据，以便为您提供更好的服务：\n\n• 订阅信息：您添加的订阅的名称、价格和扣费日期。\n• 使用数据：应用内交互和偏好。\n• 设备信息：应用程序运行所需的基本设备标识符。";
+"privacy_content_2" = "我们的应用程序可能会收集或处理以下数据，以便为您提供更好的服务：
+
+• 订阅信息：您添加的订阅的名称、价格和扣费日期。
+• 使用数据：应用内交互和偏好。
+• 设备信息：应用程序运行所需的基本设备标识符。";
 "privacy_title_3" = "3. 数据使用";
-"privacy_content_3" = "收集的数据仅用于以下目的：\n\n• 让您能够追踪您的订阅。\n• 为接下来的扣费日期发送提醒通知。\n• 改进应用性能并修复错误。";
+"privacy_content_3" = "收集的数据仅用于以下目的：
+
+• 让您能够追踪您的订阅。
+• 为接下来的扣费日期发送提醒通知。
+• 改进应用性能并修复错误。";
 "privacy_title_4" = "4. 数据安全";
 "privacy_content_4" = "您的个人数据安全地存储在您的设备上。存储在我们服务器上的数据（如果您创建了账户）受行业标准加密方法的保护。未经您的许可，您的数据绝不会被出售或与第三方分享。";
 "privacy_title_5" = "5. 权限";
 "privacy_content_5" = "应用程序可能会请求通知权限以向您发送通知。此权限仅用于订阅提醒。";
 "privacy_title_6" = "6. 联系方式";
-"privacy_content_6" = "有关我们隐私政策的问题，您可以通过以下方式联系我们：\ngokhanaytekinn@yandex.com";
+"privacy_content_6" = "有关我们隐私政策的问题，您可以通过以下方式联系我们：
+gokhanaytekinn@yandex.com";
 "cancel_anytime" = "随时取消";
 "widget_login_required" = "请登录";
 "plan_monthly_premium" = "每月高级版";
@@ -313,7 +354,7 @@
 "popular_subscriptions" = "热门订阅";
 "cancel_anytime_desc" = "您可以直接从应用的详细信息中管理订阅。";
 "start_date" = "开始日期";
-"widget_upcoming_desc" = "%@ 的 %2$s";
+"widget_upcoming_desc" = "%@ 的 %@";
 "premium_hero_title" = "升级到高级版";
 "already_have_account" = "已有账户？";
 "save_changes" = "保存更改";
@@ -330,7 +371,7 @@
 "plans_header" = "选择您的计划";
 "upgrade_to_premium_btn" = "升级到高级版";
 "most_popular" = "最受欢迎";
-"widget_expensive_desc" = "%@ - %2$s/月";
+"widget_expensive_desc" = "%@ - %@/月";
 "plan_yearly_premium" = "每年高级版";
 "widget_no_data" = "无订阅";
 "widget_today" = "今天";

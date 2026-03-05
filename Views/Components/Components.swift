@@ -64,12 +64,14 @@ struct SubscriptionCard: View {
             }
         }
         .buttonStyle(.plain)
-        .background(Color.clear)
+        }
+        .buttonStyle(.plain)
+        .background(Color.appSurface(for: colorScheme))
+        .cornerRadius(12)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     
     private var brandIcon: some View {

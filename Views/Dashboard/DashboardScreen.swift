@@ -51,35 +51,23 @@ struct DashboardScreen: View {
                         Spacer().frame(height: 20)
                         
                         // Hero Card - Total Monthly
-                        VStack(spacing: 8) {
+                        VStack(alignment: .leading, spacing: 12) {
                             Text(NSLocalizedString("total_monthly", comment: ""))
                                 .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.white.opacity(0.8))
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             
                             Text(CurrencyFormatter.formatAmount(viewModel.stats.totalMonthlyCost, currencyCode: currency))
-                                .font(.system(size: 36, weight: .black))
-                                .foregroundColor(.white)
-                            
-                            HStack(spacing: 4) {
-                                Image(systemName: "arrow.up.right")
-                                    .font(.system(size: 12, weight: .bold))
-                                    .foregroundColor(.white.opacity(0.7))
-                                
-                                Text(NSLocalizedString("vs_last_month", comment: ""))
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.white.opacity(0.7))
-                            }
+                                .font(.system(size: 36, weight: .bold))
+                                .foregroundColor(.primaryBlue)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 28)
-                        .background(
-                            LinearGradient(
-                                colors: [Color.primaryBlue, Color.primaryBlue.opacity(0.8)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(24)
+                        .background(Color.appSurface(for: colorScheme))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
                         )
-                        .cornerRadius(20)
                         .padding(.horizontal, 24)
                         
                         Spacer().frame(height: 24)
@@ -101,20 +89,17 @@ struct DashboardScreen: View {
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .padding(.horizontal, 24)
                         } else {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 12) {
-                                    ForEach(viewModel.upcomingSubscriptions) { sub in
-                                        SubscriptionCard(
-                                            subscription: sub,
-                                            currency: currency,
-                                            showCountdown: true,
-                                            onTap: { onNavigateToSubscriptionDetail(sub.id) }
-                                        )
-                                        .frame(width: 300)
-                                    }
+                            VStack(spacing: 8) {
+                                ForEach(viewModel.upcomingSubscriptions) { sub in
+                                    SubscriptionCard(
+                                        subscription: sub,
+                                        currency: currency,
+                                        showCountdown: true,
+                                        onTap: { onNavigateToSubscriptionDetail(sub.id) }
+                                    )
                                 }
-                                .padding(.horizontal, 24)
                             }
+                            .padding(.horizontal, 24)
                         }
                         
                         Spacer().frame(height: 24)
@@ -151,15 +136,17 @@ struct DashboardScreen: View {
                         
                         // View All Subscriptions Button
                         Button(action: onNavigateToSubscriptions) {
-                            Text(NSLocalizedString("view_all_subscriptions", comment: ""))
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.primaryBlue)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 50)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.primaryBlue, lineWidth: 1.5)
-                                )
+                            HStack {
+                                Text(NSLocalizedString("view_all_subscriptions", comment: ""))
+                                    .font(.system(size: 16, weight: .bold))
+                                Image(systemName: "arrow.right")
+                                    .font(.system(size: 16, weight: .bold))
+                            }
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 52)
+                            .background(Color.primaryBlue)
+                            .cornerRadius(12)
                         }
                         .padding(.horizontal, 24)
                         

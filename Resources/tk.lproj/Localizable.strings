@@ -5,6 +5,7 @@
 "joint_users" = "Bilelikdäki ulanyjylar";
 "add_email_placeholder" = "E-poçta salgysyny goşuň";
 "remove" = "Aýyr";
+"app_name" = "Sub Tracker";
 "back" = "Yza";
 "save" = "Yatda sakla";
 "cancel" = "Yatyrmak";
@@ -52,7 +53,7 @@
 "help_center" = "Kömek Merkezi";
 "privacy_policy" = "Gizlinlik Syýasaty";
 "logout" = "Hasapdan çyk";
-"version_info" = "Wersiýa %@ (Build %2$d)";
+"version_info" = "Wersiýa %@ (Build %d)";
 "upgrade_to_premium" = "Premium-a Geçiriň";
 "premium_desc" = "Ähli abunalyklaryňyzy awtomatik skanirläň we %%30 has köp tygşytlaň.";
 "upgrade" = "Täzele";
@@ -122,9 +123,37 @@
 "accept_terms_post" = "-ny kabul edýärin.";
 "already_have_account_prompt" = "Eýýäm hasabyňyz barmy? ";
 "terms_of_use_title" = "Ulanyş Şertleri";
-"terms_of_use_content" = "1. Kabul etmek\nSub Tracker-y ulanmak bilen bu şertleri kabul edýärsiňiz.\n\n2. Hyzmat Görnüşi\nProgramma abunalyklaryňyzy yzarlamaga kömek edýän guraldyr. Maliýe maslahaty däldir.\n\n3. Ulanyjy Jogapkärçiligi\nHasap maglumatlaryňyzyň ygtybarlylygy we goşan maglumatlaryňyzyň dogrulygy üçin siz jogapkärdiris.\n\n4. Üýtgeşmeler\nProgramma aýratynlyklarynda we bu şertlerde islendik wagt üýtgeşme girizmek hukugymyz bardyr.\n\n5. Bes Etmek\nŞertler bozulsa, hyzmaty ulanmagyňyzy bes edip bileris.";
+"terms_of_use_content" = "1. Kabul etmek
+Sub Tracker-y ulanmak bilen bu şertleri kabul edýärsiňiz.
+
+2. Hyzmat Görnüşi
+Programma abunalyklaryňyzy yzarlamaga kömek edýän guraldyr. Maliýe maslahaty däldir.
+
+3. Ulanyjy Jogapkärçiligi
+Hasap maglumatlaryňyzyň ygtybarlylygy we goşan maglumatlaryňyzyň dogrulygy üçin siz jogapkärdiris.
+
+4. Üýtgeşmeler
+Programma aýratynlyklarynda we bu şertlerde islendik wagt üýtgeşme girizmek hukugymyz bardyr.
+
+5. Bes Etmek
+Şertler bozulsa, hyzmaty ulanmagyňyzy bes edip bileris.";
 "understood" = "Düşündim";
-"privacy_dialog_content" = "Soňky Täzelenme: 20 Fewral 2026\n\n1. Giriş\nMaglumatlaryňyzyň gizlinligine uly ähmiýet berýäris.\n\n2. Toplanýan Maglumatlar\nAbunalyk maglumatlary, ulanyş saýlawlary we esasy enjam maglumatlary işlenilýär.\n\n3. Maglumatlaryň Ulanylyşy\nMaglumatlaryňyz diňe ýatlatmalar ibermek we programmanyň işleýşini gowulandyrmak üçin ulanylýar.\n\n4. Maglumat Ygtybarlylygy\nMaglumatlaryňyz pudaklaýyn standartly şifreleme usullary bilen goralýar.\n\n5. Aragatnaşyk\nSoraglaryňyz üçin: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Soňky Täzelenme: 20 Fewral 2026
+
+1. Giriş
+Maglumatlaryňyzyň gizlinligine uly ähmiýet berýäris.
+
+2. Toplanýan Maglumatlar
+Abunalyk maglumatlary, ulanyş saýlawlary we esasy enjam maglumatlary işlenilýär.
+
+3. Maglumatlaryň Ulanylyşy
+Maglumatlaryňyz diňe ýatlatmalar ibermek we programmanyň işleýşini gowulandyrmak üçin ulanylýar.
+
+4. Maglumat Ygtybarlylygy
+Maglumatlaryňyz pudaklaýyn standartly şifreleme usullary bilen goralýar.
+
+5. Aragatnaşyk
+Soraglaryňyz üçin: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Parolyňyzy täzelemek üçin hasap açan e-poçta salgyňyzy giriziň. Size tassyklama koduny ibereris.";
 "email_address_label" = "E-poçta Salgysy";
 "send_code" = "Kody iber";
@@ -182,7 +211,7 @@
 "billed_yearly" = "Her ýyl hasaplanýar";
 "start_trial" = "Mugt Synagy Başlat";
 "restore_purchase" = "Satyn alnanlary Dikelt";
-"category_streaming" = "Kinolar &amp; TV &amp; Saz";
+"category_streaming" = "Kinolar & TV & Saz";
 "category_gaming" = "Oýunlar";
 "category_software" = "Programma üpjünçiligi";
 "category_other" = "Başga";
@@ -250,9 +279,12 @@
 "go_back" = "Yza Gaýt";
 "subscription_id_not_found" = "Abunalyk ID-si tapylmady";
 "no_subscriptions_yet" = "Heniz abunalyk goşulmady";
-"sms_permission_rationale" = "SMS rugsady enjamyňyzdaky abunalyk bildirişlerini awtomatik anyklamak üçin zerurdyr.\nŞunuň bilen abunalyklaryňyz el bilen girizmek kynçylygyndan dynarsyňyz.";
-"storage_permission_rationale" = "Saklaýyş rugsady enjamyňyzdaky petekleri we abunalyk resminamalaryny skanirlemek üçin zerurdyr.\nŞunuň bilen PDF we başga faýllardan abunalyk maglumatlary awtomatik anyklanyp bilner.";
-"permission_denied_message" = "Rugsat berilmän enjam skanirlenip bilinmez.\nIsleseňiz abunalyklaryňyz el bilen goşup bilersiňiz.";
+"sms_permission_rationale" = "SMS rugsady enjamyňyzdaky abunalyk bildirişlerini awtomatik anyklamak üçin zerurdyr.
+Şunuň bilen abunalyklaryňyz el bilen girizmek kynçylygyndan dynarsyňyz.";
+"storage_permission_rationale" = "Saklaýyş rugsady enjamyňyzdaky petekleri we abunalyk resminamalaryny skanirlemek üçin zerurdyr.
+Şunuň bilen PDF we başga faýllardan abunalyk maglumatlary awtomatik anyklanyp bilner.";
+"permission_denied_message" = "Rugsat berilmän enjam skanirlenip bilinmez.
+Isleseňiz abunalyklaryňyz el bilen goşup bilersiňiz.";
 "permission_permanently_denied_message" = "Rugsat berilmedi. Programma sazlamalaryndan rugsatlary işlediň.";
 "help_center_title" = "Kömek Merkezi";
 "help_search_placeholder" = "Size nadip kömek edip bileris?";
@@ -272,17 +304,26 @@
 "privacy_policy_title" = "Gizlinlik Syýasaty";
 "privacy_last_updated" = "Soňky Täzelenme: 20 Fewral 2026";
 "privacy_title_1" = "1. Giriş";
-"privacy_content_1" = "Sub Tracker (\\"Programma\\") hökmünde gizlinligiňize uly ähmiýet berýäris. Bu Gizlinlik Syýasaty programmamyzy ulananyňyzda maglumatlaryňyzyň nadip toplanýandygyny, ulanylýandygyny we goralýandygyny düşündirýär.";
+"privacy_content_1" = "Sub Tracker (\"Programma\") hökmünde gizlinligiňize uly ähmiýet berýäris. Bu Gizlinlik Syýasaty programmamyzy ulananyňyzda maglumatlaryňyzyň nadip toplanýandygyny, ulanylýandygyny we goralýandygyny düşündirýär.";
 "privacy_title_2" = "2. Toplanýan Maglumatlar";
-"privacy_content_2" = "Programma size has gowy hyzmat berip bilmek üçin aşakdaky maglumatlary toplap ýa-da işläp biler:\n\n• Abunalyk Maglumatlary: Goşan abunalyklaryňyzyň ady, bahasy, töleg seneleri.\n• Ulanyş Maglumatlary: Programma içindäki täsirler we saýlawlar.\n• Enjam Maglumatlary: Programmanyň işlemegi üçin zerur bolan esasy enjam identifikatorlary.";
+"privacy_content_2" = "Programma size has gowy hyzmat berip bilmek üçin aşakdaky maglumatlary toplap ýa-da işläp biler:
+
+• Abunalyk Maglumatlary: Goşan abunalyklaryňyzyň ady, bahasy, töleg seneleri.
+• Ulanyş Maglumatlary: Programma içindäki täsirler we saýlawlar.
+• Enjam Maglumatlary: Programmanyň işlemegi üçin zerur bolan esasy enjam identifikatorlary.";
 "privacy_title_3" = "3. Maglumatlaryň Ulanylýyşy";
-"privacy_content_3" = "Toplanýan maglumatlar diňe aşakdaky maksatlar bilen ulanylýar:\n\n• Abunalyklaryňyzy yzarlamaga kömek etmek.\n• Töleg güni golaýlaşýan abunalyklar üçin ýatlatma bildirişlerini ibermek.\n• Programma işleýşini gowulandyrmak we säwlikleri düzetmek.";
+"privacy_content_3" = "Toplanýan maglumatlar diňe aşakdaky maksatlar bilen ulanylýar:
+
+• Abunalyklaryňyzy yzarlamaga kömek etmek.
+• Töleg güni golaýlaşýan abunalyklar üçin ýatlatma bildirişlerini ibermek.
+• Programma işleýşini gowulandyrmak we säwlikleri düzetmek.";
 "privacy_title_4" = "4. Maglumat Ygtybarlylygy";
 "privacy_content_4" = "Şahsy maglumatlaryňyz enjamyňyzda ygtybarly saklanýar. Serwerlerimizde saklanan maglumatlar (hasap açsaňyz) pudaklaýyn standartly şifreleme usullary bilen goralýar. Maglumatlaryňyz hiç haçan rugsadyňyz bolmazdan üçünji taraplara satylmaz ýa-da paýlaşylmaz.";
 "privacy_title_5" = "5. Rugsatlar";
 "privacy_content_5" = "Programma size bildiriş iberip bilmek üçin bildiriş rugsady talap edip biler. Bu rugsat diňe abunalyk ýatlatmalary üçin ulanylýar.";
 "privacy_title_6" = "6. Aragatnaşyk";
-"privacy_content_6" = "Gizlinlik syýasatymyz barada soraglaryňyz bolsa, biz bilen habarlaşyp bilersiňiz:\ngokhanaytekinn@yandex.com";
+"privacy_content_6" = "Gizlinlik syýasatymyz barada soraglaryňyz bolsa, biz bilen habarlaşyp bilersiňiz:
+gokhanaytekinn@yandex.com";
 "scan_dialog_scanning" = "Enjam skanirlenýär...";
 "scan_dialog_completed" = "Skanirlemek tamamlandy";
 "scan_dialog_sms_count" = "SMS: %d hat skanirlendi";
@@ -310,7 +351,7 @@
 "account_settings" = "Hasap sazlamalary";
 "cancel_anytime_desc" = "Yazylmalary goni programma jikme-jikliklerinden yzarlap dolandyryp bilersiniz.";
 "start_date" = "Baslangyc senesi";
-"widget_upcoming_desc" = "%@ üçin %2$s";
+"widget_upcoming_desc" = "%@ üçin %@";
 "premium_hero_title" = "Premiuma gec";
 "date_placeholder" = "gg/aa/yyyy";
 "already_have_account" = "Hasabiniz barmy?";
@@ -329,7 +370,7 @@
 "upgrade_to_premium_btn" = "Premiuma gec";
 "most_popular" = "In meshur";
 "plans_header" = "Plany sayla";
-"widget_expensive_desc" = "%@ - %2$s/aý";
+"widget_expensive_desc" = "%@ - %@/aý";
 "plan_yearly_premium" = "Yyllik Premium";
 "widget_no_data" = "Yazylma yok";
 "widget_today" = "Bu gun";

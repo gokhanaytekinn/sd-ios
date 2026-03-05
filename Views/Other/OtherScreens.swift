@@ -111,87 +111,188 @@ struct PremiumUpgradeScreen: View {
     let onBack: () -> Void
     
     @Environment(\.colorScheme) var colorScheme
+    @State private var selectedPlan = 2 // 0: Free, 1: Monthly, 2: Yearly (Popular)
     
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Button(action: onBack) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                }
-                Spacer()
-                Text(NSLocalizedString("upgrade_to_premium", comment: ""))
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(Color.appOnBackground(for: colorScheme))
-                Spacer()
-                Color.clear.frame(width: 24, height: 24)
-            }
-            .padding(16)
+        ZStack {
+            Color.appBackground(for: colorScheme).ignoresSafeArea()
             
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Premium header
-                    VStack(spacing: 12) {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 48))
-                            .foregroundColor(.warningColor)
+            VStack(spacing: 0) {
+                // Header
+                headerView
+                
+                ScrollView {
+                    VStack(spacing: 24) {
+                        // Title
+                        VStack(spacing: 12) {
+                            Text(NSLocalizedString("plans_header", comment: "").uppercased())
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.primaryBlue)
+                            
+                            Text(NSLocalizedString("premium_hero_title", comment: ""))
+                                .font(.system(size: 32, weight: .bold))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            Text(NSLocalizedString("premium_hero_subtitle", comment: ""))
+                                .font(.system(size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                .padding(.horizontal, 20)
+                        }
+                        .padding(.top, 20)
                         
-                        Text(NSLocalizedString("go_premium", comment: ""))
-                            .font(.system(size: 28, weight: .black))
-                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        // Features
+                        VStack(spacing: 16) {
+                            premiumFeature(
+                                icon: "power",
+                                title: NSLocalizedString("feature_auto_capture_title", comment: ""),
+                                desc: NSLocalizedString("feature_auto_capture_premium_desc", comment: "")
+                            )
+                            
+                            premiumFeature(
+                                icon: "infinity",
+                                title: NSLocalizedString("feature_unlimited_tracking_title", comment: ""),
+                                desc: NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
+                            )
+                        }
                         
-                        Text(NSLocalizedString("premium_desc", comment: ""))
-                            .font(.system(size: 16))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                            .multilineTextAlignment(.center)
+                        // Plans
+                        VStack(spacing: 12) {
+                            planCard(
+                                id: 0,
+                                title: NSLocalizedString("plan_free", comment: ""),
+                                price: "₺0",
+                                period: ""
+                            )
+                            
+                            planCard(
+                                id: 1,
+                                title: NSLocalizedString("plan_monthly_premium", comment: ""),
+                                price: "₺99.99",
+                                period: NSLocalizedString("per_month", comment: "")
+                            )
+                            
+                            planCard(
+                                id: 2,
+                                title: NSLocalizedString("plan_yearly_premium", comment: ""),
+                                price: "₺799.99",
+                                period: NSLocalizedString("per_year", comment: ""),
+                                isPopular: true
+                            )
+                        }
                     }
-                    .padding(.top, 24)
-                    
-                    // Features
-                    VStack(spacing: 12) {
-                        premiumFeature(icon: "infinity", title: NSLocalizedString("premium_feature_1", comment: ""), desc: NSLocalizedString("premium_feature_1_desc", comment: ""))
-                        premiumFeature(icon: "chart.bar.fill", title: NSLocalizedString("premium_feature_2", comment: ""), desc: NSLocalizedString("premium_feature_2_desc", comment: ""))
-                        premiumFeature(icon: "bell.badge.fill", title: NSLocalizedString("premium_feature_3", comment: ""), desc: NSLocalizedString("premium_feature_3_desc", comment: ""))
-                        premiumFeature(icon: "person.2.fill", title: NSLocalizedString("premium_feature_4", comment: ""), desc: NSLocalizedString("premium_feature_4_desc", comment: ""))
-                    }
-                    
-                    Spacer().frame(height: 100)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 20)
                 }
-                .padding(.horizontal, 24)
+                
+                // Bottom Button and Footer
+                VStack(spacing: 16) {
+                    Button(action: { /* Upgrade action */ }) {
+                        Text(NSLocalizedString("upgrade_to_premium_btn", comment: ""))
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 56)
+                            .background(Color.primaryBlue)
+                            .cornerRadius(12)
+                    }
+                    
+                    HStack(spacing: 20) {
+                        Button(NSLocalizedString("restore_purchase", comment: "")) {}
+                        Button(NSLocalizedString("terms_of_use", comment: "")) {}
+                        Button(NSLocalizedString("privacy_policy", comment: "")) {}
+                    }
+                    .font(.system(size: 12))
+                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                }
+                .padding(24)
+                .background(Color.appBackground(for: colorScheme))
             }
         }
-        .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
+    }
+    
+    private var headerView: some View {
+        HStack {
+            Button(action: onBack) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                    .frame(width: 44, height: 44)
+                    .background(Color.appSurface(for: colorScheme))
+                    .clipShape(Circle())
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 24)
+        .padding(.top, 10)
     }
     
     private func premiumFeature(icon: String, title: String, desc: String) -> some View {
         HStack(spacing: 16) {
-            Image(systemName: icon)
-                .font(.system(size: 22))
-                .foregroundColor(.primaryBlue)
-                .frame(width: 36, height: 36)
-                .background(Color.primaryBlue.opacity(0.1))
-                .clipShape(Circle())
+            ZStack {
+                Circle()
+                    .fill(Color.appSurface(for: colorScheme))
+                    .frame(width: 40, height: 40)
+                    .overlay(Circle().stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
+                
+                Image(systemName: icon)
+                    .font(.system(size: 18))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+            }
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
-                    .font(.system(size: 15, weight: .bold))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 
                 Text(desc)
-                    .font(.system(size: 13))
+                    .font(.system(size: 14))
                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
             }
             
             Spacer()
+            
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundColor(.primaryBlue)
         }
-        .padding(16)
-        .background(Color.appSurface(for: colorScheme))
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
-        )
-        .cornerRadius(12)
+    }
+    
+    private func planCard(id: Int, title: String, price: String, period: String, isPopular: Bool = false) -> some View {
+        Button(action: { selectedPlan = id }) {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text(title)
+                        .font(.system(size: 16, weight: .bold))
+                    Spacer()
+                    if isPopular {
+                        Text(NSLocalizedString("most_popular", comment: ""))
+                            .font(.system(size: 10, weight: .bold))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.primaryBlue)
+                            .foregroundColor(.white)
+                            .cornerRadius(6)
+                    }
+                }
+                
+                HStack(alignment: .bottom, spacing: 4) {
+                    Text(price)
+                        .font(.system(size: 32, weight: .bold))
+                    Text(period)
+                        .font(.system(size: 16))
+                        .padding(.bottom, 4)
+                }
+            }
+            .padding(20)
+            .background(Color.appSurface(for: colorScheme))
+            .cornerRadius(16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(selectedPlan == id ? Color.primaryBlue : Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 2)
+            )
+        }
+        .buttonStyle(.plain)
     }
 }
 

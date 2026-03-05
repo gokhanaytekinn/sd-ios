@@ -5,6 +5,7 @@
 "joint_users" = "Birgə İstifadəçilər";
 "add_email_placeholder" = "E-poçt ünvanı əlavə edin";
 "remove" = "Sil";
+"app_name" = "Sub Tracker";
 "back" = "Geri";
 "save" = "Yadda saxla";
 "cancel" = "Ləğv et";
@@ -52,7 +53,7 @@
 "help_center" = "Yardım Mərkəzi";
 "privacy_policy" = "Məxfilik Siyasəti";
 "logout" = "Çıxış et";
-"version_info" = "Versiya %@ (Build %2$d)";
+"version_info" = "Versiya %@ (Build %d)";
 "upgrade_to_premium" = "Premium-a Keçin";
 "premium_desc" = "Bütün abunəliklərinizi avtomatik skan edin və %%30 daha çox qənaət edin.";
 "upgrade" = "Yenilə";
@@ -122,9 +123,37 @@
 "accept_terms_post" = "-nı qəbul edirəm.";
 "already_have_account_prompt" = "Artıq hesabınız var? ";
 "terms_of_use_title" = "İstifadə Şərtləri";
-"terms_of_use_content" = "1. Qəbul\nSub Tracker-dan istifadə edərək bu şərtləri qəbul etmiş sayılırsınız.\n\n2. Xidmət Əhatəsi\nProqram, abunəliklərinizi izləməyə kömək edən bir vasitədir. Maliyyə məsləhəti xarakteri daşımır.\n\n3. İstifadəçi Məsuliyyəti\nHesab məlumatlarınızın təhlükəsizliyindən və əlavə etdiyiniz məlumatların düzgünlüyündən siz məsuliyyət daşıyırsınız.\n\n4. Dəyişikliklər\nProqram xüsusiyyətlərində və bu şərtlərdə istədiyimiz vaxt dəyişiklik etmək hüququmuz saxlanılır.\n\n5. Xitam\nŞərtlərin pozulması halında xidmətə girişinizi dayandıra bilərik.";
+"terms_of_use_content" = "1. Qəbul
+Sub Tracker-dan istifadə edərək bu şərtləri qəbul etmiş sayılırsınız.
+
+2. Xidmət Əhatəsi
+Proqram, abunəliklərinizi izləməyə kömək edən bir vasitədir. Maliyyə məsləhəti xarakteri daşımır.
+
+3. İstifadəçi Məsuliyyəti
+Hesab məlumatlarınızın təhlükəsizliyindən və əlavə etdiyiniz məlumatların düzgünlüyündən siz məsuliyyət daşıyırsınız.
+
+4. Dəyişikliklər
+Proqram xüsusiyyətlərində və bu şərtlərdə istədiyimiz vaxt dəyişiklik etmək hüququmuz saxlanılır.
+
+5. Xitam
+Şərtlərin pozulması halında xidmətə girişinizi dayandıra bilərik.";
 "understood" = "Anladım";
-"privacy_dialog_content" = "Son Yenilənmə: 20 Fevral 2026\n\n1. Giriş\nMəlumatlarınızın məxfiliyinə önəm veririk.\n\n2. Toplanan Məlumatlar\nAbunəlik məlumatları, istifadə seçimləri və əsas cihaz məlumatları emal olunur.\n\n3. Məlumatdan İstifadə\nMəlumatlarınız yalnız xatırlatmalar göndərmək və proqramın performansını artırmaq üçün istifadə olunur.\n\n4. Məlumat Təhlükəsizliyi\nMəlumatlarınız sənaye standartı şifrləmə üsulları ilə qorunur.\n\n5. Əlaqə\nSuallarınız üçün: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Son Yenilənmə: 20 Fevral 2026
+
+1. Giriş
+Məlumatlarınızın məxfiliyinə önəm veririk.
+
+2. Toplanan Məlumatlar
+Abunəlik məlumatları, istifadə seçimləri və əsas cihaz məlumatları emal olunur.
+
+3. Məlumatdan İstifadə
+Məlumatlarınız yalnız xatırlatmalar göndərmək və proqramın performansını artırmaq üçün istifadə olunur.
+
+4. Məlumat Təhlükəsizliyi
+Məlumatlarınız sənaye standartı şifrləmə üsulları ilə qorunur.
+
+5. Əlaqə
+Suallarınız üçün: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Şifrənizi sıfırlamaq üçün qeydiyyatdan keçdiyiniz e-poçt ünvanınızı daxil edin. Sizə təsdiq kodu göndərəcəyik.";
 "email_address_label" = "E-poçt Ünvanı";
 "send_code" = "Kodu göndər";
@@ -249,9 +278,12 @@
 "go_back" = "Geri Qayıt";
 "subscription_id_not_found" = "Abunəlik ID tapılmadı";
 "no_subscriptions_yet" = "Hələ ki abunəlik əlavə olunmayıb";
-"sms_permission_rationale" = "SMS icazəsi, cihazınızdakı abunəlik bildirişlərini avtomatik aşkar etmək üçün lazımdır.\nBu sayədə abunəliklərinizi əllə daxil etmək məcburiyyətində qalmazsınız.";
-"storage_permission_rationale" = "Yaddaş icazəsi, cihazınızdakı faktura və abunəlik sənədlərini skan etmək üçün lazımdır.\nBu sayədə PDF və digər fayllardan abunəlik məlumatı avtomatik aşkar edilə bilər.";
-"permission_denied_message" = "İcazə verilmədən cihaz skanı edilə bilməz.\nİstəsəniz abunəliklərinizi əllə əlavə edə bilərsiniz.";
+"sms_permission_rationale" = "SMS icazəsi, cihazınızdakı abunəlik bildirişlərini avtomatik aşkar etmək üçün lazımdır.
+Bu sayədə abunəliklərinizi əllə daxil etmək məcburiyyətində qalmazsınız.";
+"storage_permission_rationale" = "Yaddaş icazəsi, cihazınızdakı faktura və abunəlik sənədlərini skan etmək üçün lazımdır.
+Bu sayədə PDF və digər fayllardan abunəlik məlumatı avtomatik aşkar edilə bilər.";
+"permission_denied_message" = "İcazə verilmədən cihaz skanı edilə bilməz.
+İstəsəniz abunəliklərinizi əllə əlavə edə bilərsiniz.";
 "permission_permanently_denied_message" = "İcazə verilmədi. Zəhmət olmasa proqram ayarlarından icazələri aktivləşdirin.";
 "help_center_title" = "Yardım Mərkəzi";
 "help_search_placeholder" = "Sizə necə kömək edə bilərik?";
@@ -271,17 +303,26 @@
 "privacy_policy_title" = "Məxfilik Siyasəti";
 "privacy_last_updated" = "Son Yenilənmə: 20 Fevral 2026";
 "privacy_title_1" = "1. Giriş";
-"privacy_content_1" = "Sub Tracker (\\"Proqram\\") olaraq məxfiliyinizə önəm veririk. Bu Məxfilik Siyasəti, proqramımızdan istifadə edərkən məlumatlarınızın necə toplandığını, istifadə edildiyini və qorunduğunu izah edir.";
+"privacy_content_1" = "Sub Tracker (\"Proqram\") olaraq məxfiliyinizə önəm veririk. Bu Məxfilik Siyasəti, proqramımızdan istifadə edərkən məlumatlarınızın necə toplandığını, istifadə edildiyini və qorunduğunu izah edir.";
 "privacy_title_2" = "2. Toplanan Məlumatlar";
-"privacy_content_2" = "Proqramımız sizə daha yaxşı xidmət göstərmək üçün aşağıdakı məlumatları toplaya və ya emal edə bilər:\n\n• Abunəlik Məlumatları: Əlavə etdiyiniz abunəliklərin adı, qiyməti, ödəniş tarixləri.\n• İstifadə Məlumatları: Proqram daxili qarşılıqlı əlaqələr və seçimlər.\n• Cihaz Məlumatları: Proqramın işləməsi üçün lazım olan əsas cihaz identifikatorları.";
+"privacy_content_2" = "Proqramımız sizə daha yaxşı xidmət göstərmək üçün aşağıdakı məlumatları toplaya və ya emal edə bilər:
+
+• Abunəlik Məlumatları: Əlavə etdiyiniz abunəliklərin adı, qiyməti, ödəniş tarixləri.
+• İstifadə Məlumatları: Proqram daxili qarşılıqlı əlaqələr və seçimlər.
+• Cihaz Məlumatları: Proqramın işləməsi üçün lazım olan əsas cihaz identifikatorları.";
 "privacy_title_3" = "3. Məlumatlardan İstifadə";
-"privacy_content_3" = "Toplanan məlumatlar yalnız aşağıdakı məqsədlərlə istifadə olunur:\n\n• Abunəliklərinizi izləməyinizi təmin etmək.\n• Ödəniş günü yaxınlaşan abunəliklər üçün xatırlatıcı bildirişləri göndərmək.\n• Proqram performansını yaxşılaşdırmaq və xətaları aradan qaldırmaq.";
+"privacy_content_3" = "Toplanan məlumatlar yalnız aşağıdakı məqsədlərlə istifadə olunur:
+
+• Abunəliklərinizi izləməyinizi təmin etmək.
+• Ödəniş günü yaxınlaşan abunəliklər üçün xatırlatıcı bildirişləri göndərmək.
+• Proqram performansını yaxşılaşdırmaq və xətaları aradan qaldırmaq.";
 "privacy_title_4" = "4. Məlumat Təhlükəsizliyi";
 "privacy_content_4" = "Şəxsi məlumatlarınız cihazınızda təhlükəsiz şəkildə saxlanılır. Serverlərimizdə saxlanılan məlumatlar (hesab yaratdığınız halda) sənaye standartı şifrləmə üsulları ilə qorunur. Məlumatlarınız heç vaxt icazəniz olmadan üçüncü tərəflərə satılmır və ya paylaşılmır.";
 "privacy_title_5" = "5. İcazələr";
 "privacy_content_5" = "Proqram, sizə bildiriş göndərə bilmək üçün bildiriş icazəsi tələb edə bilər. Bu icazə yalnız abunəlik xatırlatmaları üçün istifadə olunur.";
 "privacy_title_6" = "6. Əlaqə";
-"privacy_content_6" = "Məxfilik siyasətimizlə bağlı suallarınız üçün bizimlə əlaqə saxlaya bilərsiniz:\ngokhanaytekinn@yandex.com";
+"privacy_content_6" = "Məxfilik siyasətimizlə bağlı suallarınız üçün bizimlə əlaqə saxlaya bilərsiniz:
+gokhanaytekinn@yandex.com";
 "scan_dialog_scanning" = "Cihaz taranır...";
 "scan_dialog_completed" = "Tarama tamamlandı";
 "scan_dialog_sms_count" = "SMS: %d mesaj tarandı";
@@ -310,7 +351,7 @@
 "account_settings" = "Hesab Ayarlari";
 "cancel_anytime_desc" = "Abonelikleri birbase tedbiq detaylarindan idare ede bilersiniz.";
 "start_date" = "Baslanqic tarixi";
-"widget_upcoming_desc" = "%@ üçün %2$s";
+"widget_upcoming_desc" = "%@ üçün %@";
 "premium_hero_title" = "Premiuma kecin";
 "date_placeholder" = "gg/aa/iiii";
 "already_have_account" = "Artiq hesabiniz var?";
@@ -329,7 +370,7 @@
 "upgrade_to_premium_btn" = "Premiuma kecin";
 "most_popular" = "En Populyar";
 "plans_header" = "Planinizi Secin";
-"widget_expensive_desc" = "%@ - %2$s/ay";
+"widget_expensive_desc" = "%@ - %@/ay";
 "plan_yearly_premium" = "Illik Premium";
 "widget_no_data" = "Abonelik yoxdur";
 "widget_today" = "Bu gun";

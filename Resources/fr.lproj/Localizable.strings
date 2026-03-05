@@ -5,6 +5,7 @@
 "joint_users" = "Utilisateurs conjoints";
 "add_email_placeholder" = "Ajouter une adresse e-mail";
 "remove" = "Supprimer";
+"app_name" = "Suivi d'Abonnement";
 "back" = "Retour";
 "save" = "Enregistrer";
 "cancel" = "Annuler";
@@ -52,7 +53,7 @@
 "help_center" = "Centre d'aide";
 "privacy_policy" = "Politique de confidentialité";
 "logout" = "Déconnexion";
-"version_info" = "Version %@ (Build %2$d)";
+"version_info" = "Version %@ (Build %d)";
 "upgrade_to_premium" = "Passer au Premium";
 "premium_desc" = "Scannez automatiquement tous vos abonnements et économisez 30%% de plus.";
 "upgrade" = "Mettre à niveau";
@@ -121,9 +122,37 @@
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Vous avez déjà un compte ? ";
 "terms_of_use_title" = "Conditions d'utilisation";
-"terms_of_use_content" = "1. Acceptation\nEn utilisant Suivi d'Abonnement, vous acceptez ces conditions.\n\n2. Portée du service\nL'application est un outil pour vous aider à suivre vos abonnements. Ce n'est pas un conseil financier.\n\n3. Responsabilité de l'utilisateur\nVous êtes responsable de la sécurité des informations de votre compte et de l'exactitude des données que vous ajoutez.\n\n4. Changements\nNous nous réservons le droit de modifier les fonctionnalités de l'application et ces conditions à tout moment.\n\n5. Résiliation\nNous pouvons mettre fin à votre accès au service en cas de violation des conditions.";
+"terms_of_use_content" = "1. Acceptation
+En utilisant Suivi d'Abonnement, vous acceptez ces conditions.
+
+2. Portée du service
+L'application est un outil pour vous aider à suivre vos abonnements. Ce n'est pas un conseil financier.
+
+3. Responsabilité de l'utilisateur
+Vous êtes responsable de la sécurité des informations de votre compte et de l'exactitude des données que vous ajoutez.
+
+4. Changements
+Nous nous réservons le droit de modifier les fonctionnalités de l'application et ces conditions à tout moment.
+
+5. Résiliation
+Nous pouvons mettre fin à votre accès au service en cas de violation des conditions.";
 "understood" = "Compris";
-"privacy_dialog_content" = "Dernière mise à jour : 20 février 2026\n\n1. Introduction\nNous accordons de l'importance à la confidentialité de vos données.\n\n2. Données collectées\nLes informations d'abonnement, les préférences d'utilisation et les informations de base sur l'appareil sont traitées.\n\n3. Utilisation des données\nVos données sont uniquement utilisées pour envoyer des rappels et améliorer les performances de l'application.\n\n4. Sécurité des données\nVos données sont protégées par des méthodes de chiffrement standard de l'industrie.\n\n5. Contact\nPour des questions : gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Dernière mise à jour : 20 février 2026
+
+1. Introduction
+Nous accordons de l'importance à la confidentialité de vos données.
+
+2. Données collectées
+Les informations d'abonnement, les préférences d'utilisation et les informations de base sur l'appareil sont traitées.
+
+3. Utilisation des données
+Vos données sont uniquement utilisées pour envoyer des rappels et améliorer les performances de l'application.
+
+4. Sécurité des données
+Vos données sont protégées par des méthodes de chiffrement standard de l'industrie.
+
+5. Contact
+Pour des questions : gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Entrez votre adresse email enregistrée pour réinitialiser votre mot de passe. Nous vous enverrons un code de vérification.";
 "email_address_label" = "Adresse email";
 "send_code" = "Envoyer le code";
@@ -156,9 +185,12 @@
 "no_subscriptions" = "Pas encore d'abonnements";
 "add_subscription" = "Ajouter un abonnement";
 "service_name_placeholder" = "ex. Netflix";
-"sms_permission_rationale" = "L'autorisation SMS est requise pour détecter automatiquement les notifications d'abonnement sur votre appareil.\nDe cette façon, vous n'avez pas à saisir vos abonnements manuellement.";
-"storage_permission_rationale" = "L'autorisation de stockage est requise pour scanner les factures et les documents d'abonnement sur votre appareil.\nDe cette façon, les informations d'abonnement peuvent être automatiquement détectées à partir de fichiers PDF et autres.";
-"permission_denied_message" = "Le balayage de l'appareil ne peut pas être effectué sans autorisation.\nVous pouvez ajouter vos abonnements manuellement si vous le souhaitez.";
+"sms_permission_rationale" = "L'autorisation SMS est requise pour détecter automatiquement les notifications d'abonnement sur votre appareil.
+De cette façon, vous n'avez pas à saisir vos abonnements manuellement.";
+"storage_permission_rationale" = "L'autorisation de stockage est requise pour scanner les factures et les documents d'abonnement sur votre appareil.
+De cette façon, les informations d'abonnement peuvent être automatiquement détectées à partir de fichiers PDF et autres.";
+"permission_denied_message" = "Le balayage de l'appareil ne peut pas être effectué sans autorisation.
+Vous pouvez ajouter vos abonnements manuellement si vous le souhaitez.";
 "permission_permanently_denied_message" = "Autorisation refusée. Veuillez activer les autorisations dans les paramètres de l'application.";
 "no_active_subscriptions" = "Aucun abonnement actif trouvé";
 "no_suspicious_subscriptions" = "Aucun abonnement suspect trouvé";
@@ -271,17 +303,26 @@
 "billing_yearly_label" = "Annuel";
 "billing_weekly_label" = "Hebdomadaire";
 "privacy_title_1" = "1. Introduction";
-"privacy_content_1" = "En tant que Suivi d'Abonnement (\\"l'App\\"), nous accordons de l'importance à votre vie privée. Cette politique de confidentialité explique comment vos données sont collectées, utilisées et protégées lors de l'utilisation de notre application.";
+"privacy_content_1" = "En tant que Suivi d'Abonnement (\"l'App\"), nous accordons de l'importance à votre vie privée. Cette politique de confidentialité explique comment vos données sont collectées, utilisées et protégées lors de l'utilisation de notre application.";
 "privacy_title_2" = "2. Données collectées";
-"privacy_content_2" = "Notre application peut collecter ou traiter les données suivantes pour vous offrir un meilleur service :\n\n• Informations d'abonnement : Nom, prix et dates de paiement des abonnements que vous ajoutez.\n• Données d'utilisation : Interactions intégrées et préférences.\n• Informations sur l'appareil : Identifiants de base de l'appareil requis pour le fonctionnement de l'application.";
+"privacy_content_2" = "Notre application peut collecter ou traiter les données suivantes pour vous offrir un meilleur service :
+
+• Informations d'abonnement : Nom, prix et dates de paiement des abonnements que vous ajoutez.
+• Données d'utilisation : Interactions intégrées et préférences.
+• Informations sur l'appareil : Identifiants de base de l'appareil requis pour le fonctionnement de l'application.";
 "privacy_title_3" = "3. Utilisation des données";
-"privacy_content_3" = "Les données collectées sont uniquement utilisées aux fins suivantes :\n\n• Pour vous permettre de suivre vos abonnements.\n• Pour envoyer des notifications de rappel pour les abonnements avec des dates de paiement à venir.\n• Pour améliorer les performances de l'application et corriger les bugs.";
+"privacy_content_3" = "Les données collectées sont uniquement utilisées aux fins suivantes :
+
+• Pour vous permettre de suivre vos abonnements.
+• Pour envoyer des notifications de rappel pour les abonnements avec des dates de paiement à venir.
+• Pour améliorer les performances de l'application et corriger les bugs.";
 "privacy_title_4" = "4. Sécurité des données";
 "privacy_content_4" = "Vos données personnelles sont stockées en toute sécurité sur votre appareil. Les données détenues sur nos serveurs (au cas où vous créeriez un compte) sont protégées par des méthodes de chiffrement standard de l'industrie. Vos données ne sont jamais vendues ou partagées avec des tiers sans votre permission.";
 "privacy_title_5" = "5. Permissions";
 "privacy_content_5" = "L'application peut demander la permission de notification pour vous envoyer des notifications. Cette permission est uniquement utilisée pour les rappels d'abonnement.";
 "privacy_title_6" = "6. Contact";
-"privacy_content_6" = "Pour des questions concernant notre politique de confidentialité, vous pouvez nous contacter à :\ngokhanaytekinn@yandex.com";
+"privacy_content_6" = "Pour des questions concernant notre politique de confidentialité, vous pouvez nous contacter à :
+gokhanaytekinn@yandex.com";
 "current_plan" = "Plan actuel";
 "widget_no_data" = "Aucun abonnement";
 "an_error_occurred" = "Une erreur est survenue";
@@ -292,7 +333,7 @@
 "plan_yearly_premium" = "Premium Annuel";
 "secure_payment_footer" = "Paiement securise. Annulez quand vous voulez.";
 "widget_days_left" = "%d jours restants";
-"widget_upcoming_desc" = "%@ pour %2$s";
+"widget_upcoming_desc" = "%@ pour %@";
 "delete_subscription" = "Supprimer l'abonnement";
 "already_have_account" = "Vous avez deja un compte ?";
 "widget_expensive_title" = "Abonnement le plus cher";
@@ -306,7 +347,7 @@
 "name_placeholder" = "Votre nom";
 "days_remaining" = "%d jours restants";
 "turn_off_reminder" = "Desactiver le rappel";
-"widget_expensive_desc" = "%@ - %2$s/mois";
+"widget_expensive_desc" = "%@ - %@/mois";
 "plan_monthly_premium" = "Premium Mensuel";
 "widget_login_required" = "Connectez-vous";
 "premium_hero_subtitle" = "Gerez automatiquement vos abonnements et economisez plus";

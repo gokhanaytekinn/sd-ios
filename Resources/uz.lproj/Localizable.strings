@@ -5,6 +5,7 @@
 "joint_users" = "Birgalikdagi foydalanuvchilar";
 "add_email_placeholder" = "Elektron pochta manzilini qo'shing";
 "remove" = "O'chirish";
+"app_name" = "Sub Tracker";
 "back" = "Orqaga";
 "save" = "Saqlash";
 "cancel" = "Bekor qilish";
@@ -52,7 +53,7 @@
 "help_center" = "Yordam markazi";
 "privacy_policy" = "Maxfiylik siyosati";
 "logout" = "Chiqish";
-"version_info" = "Versiya %@ (Build %2$d)";
+"version_info" = "Versiya %@ (Build %d)";
 "upgrade_to_premium" = "Premiumga oʻting";
 "premium_desc" = "Barcha obunalaringizni avtomatik skanerlang va 30%% koʻproq tejang.";
 "upgrade" = "Yangilash";
@@ -122,9 +123,37 @@
 "accept_terms_post" = "ga roziman.";
 "already_have_account_prompt" = "Hisobingiz bormi? ";
 "terms_of_use_title" = "Foydalanish shartlari";
-"terms_of_use_content" = "1. Qabul qilish\nSub Tracker ilovasidan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz.\n\n2. Xizmat doirasi\nIlova obunalaringizni kuzatishga yordam beradigan vositadir. Moliyaviy maslahat bermaydi.\n\n3. Foydalanuvchi masʼuliyati\nSiz oʻz hisobingiz xavfsizligi va kiritilgan maʼlumotlar toʻgʻriligi uchun javobgarsiz.\n\n4. Oʻzgarishlar\nBiz istalgan vaqtda ilova imkoniyatlariga va ushbu shartlarga oʻzgartirish kiritish huquqini oʻzimizda qoldiramiz.\n\n5. Toʻxtatish\nShartlar buzilsa, xizmatdan foydalanishingizni toʻxtatishimiz mumkin.";
+"terms_of_use_content" = "1. Qabul qilish
+Sub Tracker ilovasidan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz.
+
+2. Xizmat doirasi
+Ilova obunalaringizni kuzatishga yordam beradigan vositadir. Moliyaviy maslahat bermaydi.
+
+3. Foydalanuvchi masʼuliyati
+Siz oʻz hisobingiz xavfsizligi va kiritilgan maʼlumotlar toʻgʻriligi uchun javobgarsiz.
+
+4. Oʻzgarishlar
+Biz istalgan vaqtda ilova imkoniyatlariga va ushbu shartlarga oʻzgartirish kiritish huquqini oʻzimizda qoldiramiz.
+
+5. Toʻxtatish
+Shartlar buzilsa, xizmatdan foydalanishingizni toʻxtatishimiz mumkin.";
 "understood" = "Tushundim";
-"privacy_dialog_content" = "Oxirgi yangilanish: 20-fevral, 2026-yil\n\n1. Kirish\nBiz sizning maʼlumotlaringiz maxfiyligiga jiddiy eʼtibor beramiz.\n\n2. Toʻplanadigan maʼlumotlar\nObunalar maʼlumotlari, foydalanish tanlovlari va asosiy qurilma maʼlumotlari qayta ishlanadi.\n\n3. Maʼlumotlardan foydalanish\nMaʼlumotlaringiz faqat eslatmalar yuborish va ilova ishlashini yaxshilash uchun foydalaniladi.\n\n4. Maʼlumotlar xavfsizligi\nMaʼlumotlaringiz standart shifrlash usullari bilan himoyalangan.\n\n5. Aloqa\nSavollar boʻyicha: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Oxirgi yangilanish: 20-fevral, 2026-yil
+
+1. Kirish
+Biz sizning maʼlumotlaringiz maxfiyligiga jiddiy eʼtibor beramiz.
+
+2. Toʻplanadigan maʼlumotlar
+Obunalar maʼlumotlari, foydalanish tanlovlari va asosiy qurilma maʼlumotlari qayta ishlanadi.
+
+3. Maʼlumotlardan foydalanish
+Maʼlumotlaringiz faqat eslatmalar yuborish va ilova ishlashini yaxshilash uchun foydalaniladi.
+
+4. Maʼlumotlar xavfsizligi
+Maʼlumotlaringiz standart shifrlash usullari bilan himoyalangan.
+
+5. Aloqa
+Savollar boʻyicha: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Parolni tiklash uchun roʻyxatdan oʻtgan emailingizni kiriting. Biz sizga tasdiqlash kodini yuboramiz.";
 "email_address_label" = "Email manzili";
 "send_code" = "Kod yuborish";
@@ -251,9 +280,12 @@
 "go_back" = "Orqaga qaytish";
 "subscription_id_not_found" = "Obuna ID-si topilmadi";
 "no_subscriptions_yet" = "Hozircha hech qanday obuna qoʻshilmagan";
-"sms_permission_rationale" = "Obunalarni avtomatik tarzda aniqlash uchun SMS ruxsati kerak.\nShunda siz obunalarni qoʻlda kiritishingiz shart boʻlmaydi.";
-"storage_permission_rationale" = "Hujjatlarni skanerlash uchun xotiraga ruxsat kerak.\nShunda PDF fayllardan obuna maʼlumotlari avtomatik olinishi mumkin.";
-"permission_denied_message" = "Ruxsatsiz qurilmani skanerlab boʻlmaydi.\nXohlasangiz, obunalarni qoʻlda qoʻshishingiz mumkin.";
+"sms_permission_rationale" = "Obunalarni avtomatik tarzda aniqlash uchun SMS ruxsati kerak.
+Shunda siz obunalarni qoʻlda kiritishingiz shart boʻlmaydi.";
+"storage_permission_rationale" = "Hujjatlarni skanerlash uchun xotiraga ruxsat kerak.
+Shunda PDF fayllardan obuna maʼlumotlari avtomatik olinishi mumkin.";
+"permission_denied_message" = "Ruxsatsiz qurilmani skanerlab boʻlmaydi.
+Xohlasangiz, obunalarni qoʻlda qoʻshishingiz mumkin.";
 "permission_permanently_denied_message" = "Ruxsat berilmadi. Sozlamalardan ruxsatlarni yoqing.";
 "scan_dialog_scanning" = "Qurilma taranmoqda...";
 "scan_dialog_completed" = "Tarash yakunlandi";
@@ -311,7 +343,7 @@
 "account_settings" = "Hisob sozlamalari";
 "cancel_anytime_desc" = "Obunalarni bevosita ilova orqali boshqarish mumkin.";
 "start_date" = "Boshlanish sanasi";
-"widget_upcoming_desc" = "%@ uchun %2$s";
+"widget_upcoming_desc" = "%@ uchun %@";
 "premium_hero_title" = "Premiumga o'ting";
 "date_placeholder" = "kk/oo/yyyy";
 "already_have_account" = "Hisobingiz bormi?";
@@ -330,7 +362,7 @@
 "upgrade_to_premium_btn" = "Premiumga o'ting";
 "most_popular" = "Eng mashhur";
 "plans_header" = "Rejangizni tanlang";
-"widget_expensive_desc" = "%@ - %2$s/oy";
+"widget_expensive_desc" = "%@ - %@/oy";
 "plan_yearly_premium" = "Yillik Premium";
 "widget_no_data" = "Obuna yoq";
 "widget_today" = "Bugun";

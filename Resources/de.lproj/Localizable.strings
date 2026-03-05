@@ -5,6 +5,7 @@
 "joint_users" = "Gemeinsame Nutzer";
 "add_email_placeholder" = "E-Mail-Adresse hinzufügen";
 "remove" = "Entfernen";
+"app_name" = "Abonnement-Tracker";
 "onboarding_title_1" = "Verwalten Sie Ihre Abonnements";
 "onboarding_desc_1" = "Verfolgen Sie alle Ihre monatlichen und jährlichen Abonnements an einem Ort.";
 "onboarding_title_2" = "Sparen Sie Geld";
@@ -48,7 +49,7 @@
 "retry" = "Wiederholen";
 "hello_user" = "Hallo %@";
 "guest_user" = "Gast";
-"category_streaming" = "Filme &amp; TV &amp; Musik";
+"category_streaming" = "Filme & TV & Musik";
 "category_gaming" = "Gaming";
 "category_software" = "Software";
 "category_other" = "Andere";
@@ -119,9 +120,12 @@
 "no_active_subscriptions" = "Keine aktiven Abonnements gefunden";
 "no_suspicious_subscriptions" = "Keine verdächtigen Abonnements gefunden";
 "no_cancelled_subscriptions" = "Keine gekündigten Abonnements gefunden";
-"sms_permission_rationale" = "Die SMS-Berechtigung ist erforderlich, um Abonnementbenachrichtigungen auf Ihrem Gerät automatisch zu erkennen.\nAuf diese Weise müssen Sie Ihre Abonnements nicht manuell eingeben.";
-"storage_permission_rationale" = "Die Speicherberechtigung ist erforderlich, um Rechnungs- und Abonnementdokumente auf Ihrem Gerät zu scannen.\nAuf diese Weise können Abonnementinformationen automatisch aus PDF- und anderen Dateien erkannt werden.";
-"permission_denied_message" = "Das Scannen des Geräts kann ohne Berechtigung nicht durchgeführt werden.\nSie können Ihre Abonnements bei Bedarf manuell hinzufügen.";
+"sms_permission_rationale" = "Die SMS-Berechtigung ist erforderlich, um Abonnementbenachrichtigungen auf Ihrem Gerät automatisch zu erkennen.
+Auf diese Weise müssen Sie Ihre Abonnements nicht manuell eingeben.";
+"storage_permission_rationale" = "Die Speicherberechtigung ist erforderlich, um Rechnungs- und Abonnementdokumente auf Ihrem Gerät zu scannen.
+Auf diese Weise können Abonnementinformationen automatisch aus PDF- und anderen Dateien erkannt werden.";
+"permission_denied_message" = "Das Scannen des Geräts kann ohne Berechtigung nicht durchgeführt werden.
+Sie können Ihre Abonnements bei Bedarf manuell hinzufügen.";
 "permission_permanently_denied_message" = "Berechtigung verweigert. Bitte aktivieren Sie die Berechtigungen in den Anwendungseinstellungen.";
 "scan_dialog_scanning" = "Gerät wird gescannt...";
 "scan_dialog_completed" = "Scan abgeschlossen";
@@ -184,7 +188,22 @@
 "privacy_content_4" = "Ihre Daten sind sicher und werden nie ohne Erlaubnis geteilt.";
 "update_password" = "Passwort aktualisieren";
 "faq_a6" = "Die App warnt Sie, wenn Zahlungen ausserhalb Ihrer normalen Ausgaben erkannt werden.";
-"privacy_dialog_content" = "Letzte Aktualisierung: 20 Februar 2026\n\n1. Einfuhrung\nWir schatzen Ihre Datenprivatsphare.\n\n2. Erhobene Daten\nAbonnementinformationen, Nutzungspraferenzen werden verarbeitet.\n\n3. Datennutzung\nIhre Daten werden nur fur Erinnerungen und zur Verbesserung der App verwendet.\n\n4. Datensicherheit\nIhre Daten sind durch Industriestandard-Verschlusselung geschutzt.\n\n5. Kontakt\nFur Fragen: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Letzte Aktualisierung: 20 Februar 2026
+
+1. Einfuhrung
+Wir schatzen Ihre Datenprivatsphare.
+
+2. Erhobene Daten
+Abonnementinformationen, Nutzungspraferenzen werden verarbeitet.
+
+3. Datennutzung
+Ihre Daten werden nur fur Erinnerungen und zur Verbesserung der App verwendet.
+
+4. Datensicherheit
+Ihre Daten sind durch Industriestandard-Verschlusselung geschutzt.
+
+5. Kontakt
+Fur Fragen: gokhanaytekinn@yandex.com";
 "add" = "Hinzufugen";
 "sort_by" = "Sortieren nach";
 "cancelled" = "Gekundigt";
@@ -240,14 +259,27 @@
 "help_search_placeholder" = "Wie konnen wir helfen?";
 "name" = "Name";
 "filter" = "Filtern";
-"terms_of_use_content" = "1. Annahme\nDurch die Nutzung von Sub Tracker erkennen Sie diese Bedingungen an.\n\n2. Dienstleistungsumfang\nDie App ist ein Werkzeug zur Verfolgung Ihrer Abonnements.\n\n3. Nutzerverantwortung\nSie sind fur die Sicherheit Ihrer Kontodaten verantwortlich.\n\n4. Anderungen\nWir behalten uns das Recht vor, die App-Funktionen und diese Bedingungen zu andern.\n\n5. Kundigung\nWir konnen Ihren Zugriff bei Verletzung der Bedingungen beenden.";
+"terms_of_use_content" = "1. Annahme
+Durch die Nutzung von Sub Tracker erkennen Sie diese Bedingungen an.
+
+2. Dienstleistungsumfang
+Die App ist ein Werkzeug zur Verfolgung Ihrer Abonnements.
+
+3. Nutzerverantwortung
+Sie sind fur die Sicherheit Ihrer Kontodaten verantwortlich.
+
+4. Anderungen
+Wir behalten uns das Recht vor, die App-Funktionen und diese Bedingungen zu andern.
+
+5. Kundigung
+Wir konnen Ihren Zugriff bei Verletzung der Bedingungen beenden.";
 "new_password_label" = "Neues Passwort";
 "feature_unlimited_tracking_premium_desc" = "Fugen Sie beliebig viele Abonnements hinzu";
 "done" = "Fertig";
 "save" = "Speichern";
 "manage_subscriptions" = "Verwalten Sie Ihre Abonnements einfach";
 "save_percent" = "\"%d%% Ersparnis\"";
-"widget_expensive_desc" = "\"%@ - %2$s/Monat\"";
+"widget_expensive_desc" = "\"%@ - %@/Monat\"";
 "email_address_label" = "E-Mail-Adresse";
 "create_account" = "Konto erstellen";
 "min_6_chars" = "Mindestens 6 Zeichen";
@@ -291,7 +323,7 @@
 "premium_plan" = "Premium Plan";
 "faq_a5" = "Stellen Sie sicher, dass die Benachrichtigungsberechtigungen der App aktiviert sind.";
 "error_amount_invalid" = "Bitte geben Sie einen gultigen Betrag ein";
-"version_info" = "Version %@ (Build %2$d)";
+"version_info" = "Version %@ (Build %d)";
 "privacy_title_4" = "4. Datensicherheit";
 "skip" = "Uberspringen";
 "faq_q4" = "Kann ich eine Ruckerstattung erhalten?";
@@ -309,7 +341,7 @@
 "widget_no_data" = "Keine Abonnements";
 "plan_monthly_premium" = "Monatlich Premium";
 "widget_upcoming_title" = "Nachste Zahlung";
-"widget_upcoming_desc" = "\"%@ fur %2$s\"";
+"widget_upcoming_desc" = "\"%@ fur %@\"";
 "faq_q1" = "Wie kundige ich ein Abonnement?";
 "start_tracking" = "Starten Sie das Tracking Ihrer Abonnements";
 "onboarding_security" = "Ende-zu-Ende-verschlusselt und sicher";

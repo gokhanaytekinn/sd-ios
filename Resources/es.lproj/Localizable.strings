@@ -5,6 +5,7 @@
 "joint_users" = "Usuarios Conjuntos";
 "add_email_placeholder" = "Añadir dirección de correo";
 "remove" = "Eliminar";
+"app_name" = "Detector de Suscripciones";
 "back" = "Atrás";
 "save" = "Guardar";
 "cancel" = "Cancelar";
@@ -52,7 +53,7 @@
 "help_center" = "Centro de Ayuda";
 "privacy_policy" = "Política de Privacidad";
 "logout" = "Cerrar Sesión";
-"version_info" = "Versión %@ (Build %2$d)";
+"version_info" = "Versión %@ (Build %d)";
 "upgrade_to_premium" = "Actualizar a Premium";
 "premium_desc" = "Escanea automáticamente todas tus suscripciones y ahorra un 30%% más.";
 "upgrade" = "Actualizar";
@@ -126,9 +127,12 @@
 "no_subscriptions_yet" = "Aún no se han añadido suscripciones";
 "add_subscription" = "Añadir Suscripción";
 "service_name_placeholder" = "ej. Netflix";
-"sms_permission_rationale" = "Se requiere permiso de SMS para detectar automáticamente las notificaciones de suscripción en tu dispositivo.\nDe esta manera, no tienes que ingresar tus suscripciones manualmente.";
-"storage_permission_rationale" = "Se requiere permiso de almacenamiento para escanear facturas y documentos de suscripción en tu dispositivo.\nDe esta manera, la información de la suscripción se puede detectar automáticamente desde PDF y otros archivos.";
-"permission_denied_message" = "El escaneo del dispositivo no se puede realizar sin permiso.\nPuedes añadir tus suscripciones manualmente si lo deseas.";
+"sms_permission_rationale" = "Se requiere permiso de SMS para detectar automáticamente las notificaciones de suscripción en tu dispositivo.
+De esta manera, no tienes que ingresar tus suscripciones manualmente.";
+"storage_permission_rationale" = "Se requiere permiso de almacenamiento para escanear facturas y documentos de suscripción en tu dispositivo.
+De esta manera, la información de la suscripción se puede detectar automáticamente desde PDF y otros archivos.";
+"permission_denied_message" = "El escaneo del dispositivo no se puede realizar sin permiso.
+Puedes añadir tus suscripciones manualmente si lo deseas.";
 "permission_permanently_denied_message" = "Permiso denegado. Por favor, habilita los permisos desde los ajustes de la aplicación.";
 "no_active_subscriptions" = "No se encontraron suscripciones activas";
 "no_suspicious_subscriptions" = "No se encontraron suscripciones sospechosas";
@@ -193,9 +197,37 @@
 "passwords_match" = "Las contraseñas coinciden";
 "update_password" = "Actualizar Contraseña";
 "terms_of_use_title" = "Términos de Uso";
-"terms_of_use_content" = "1. Aceptación\nAl usar Sub Tracker, aceptas estos términos.\n\n2. Alcance del Servicio\nLa aplicación es una herramienta para ayudarte a rastrear tus suscripciones. No es un consejo financiero.\n\n3. Responsabilidad del Usuario\nEres responsable de la seguridad de la información de tu cuenta y de la exactitud de los datos que agregas.\n\n4. Cambios\nNos reservamos el derecho de cambiar las características de la aplicación y estos términos en cualquier momento.\n\n5. Terminación\nPodemos terminar tu acceso al servicio en caso de violación de los términos.";
+"terms_of_use_content" = "1. Aceptación
+Al usar Sub Tracker, aceptas estos términos.
+
+2. Alcance del Servicio
+La aplicación es una herramienta para ayudarte a rastrear tus suscripciones. No es un consejo financiero.
+
+3. Responsabilidad del Usuario
+Eres responsable de la seguridad de la información de tu cuenta y de la exactitud de los datos que agregas.
+
+4. Cambios
+Nos reservamos el derecho de cambiar las características de la aplicación y estos términos en cualquier momento.
+
+5. Terminación
+Podemos terminar tu acceso al servicio en caso de violación de los términos.";
 "understood" = "Entendido";
-"privacy_dialog_content" = "Última actualización: 20 de febrero de 2026\n\n1. Introducción\nValoramos la privacidad de tus datos.\n\n2. Datos Recopilados\nSe procesan la información de suscripción, las preferencias de uso y la información básica del dispositivo.\n\n3. Uso de Datos\nTus datos solo se usan para enviar recordatorios y mejorar el rendimiento de la aplicación.\n\n4. Seguridad de Datos\nTus datos están protegidos con métodos de cifrado estándar de la industria.\n\n5. Contacto\nPara preguntas: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Última actualización: 20 de febrero de 2026
+
+1. Introducción
+Valoramos la privacidad de tus datos.
+
+2. Datos Recopilados
+Se procesan la información de suscripción, las preferencias de uso y la información básica del dispositivo.
+
+3. Uso de Datos
+Tus datos solo se usan para enviar recordatorios y mejorar el rendimiento de la aplicación.
+
+4. Seguridad de Datos
+Tus datos están protegidos con métodos de cifrado estándar de la industria.
+
+5. Contacto
+Para preguntas: gokhanaytekinn@yandex.com";
 "help_center_title" = "Centro de Ayuda";
 "help_search_placeholder" = "¿Cómo podemos ayudarte?";
 "popular_questions" = "Preguntas Populares";
@@ -214,17 +246,26 @@
 "privacy_policy_title" = "Política de Privacidad";
 "privacy_last_updated" = "Última actualización: 20 de febrero de 2026";
 "privacy_title_1" = "1. Introducción";
-"privacy_content_1" = "Como Sub Tracker (\\"la Aplicación\\"), valoramos su privacidad. Esta Política de Privacidad explica cómo se recopilan, utilizan y protegen sus datos al utilizar nuestra aplicación.";
+"privacy_content_1" = "Como Sub Tracker (\"la Aplicación\"), valoramos su privacidad. Esta Política de Privacidad explica cómo se recopilan, utilizan y protegen sus datos al utilizar nuestra aplicación.";
 "privacy_title_2" = "2. Datos Recopilados";
-"privacy_content_2" = "Nuestra aplicación puede recopilar o procesar los siguientes datos para brindarle un mejor servicio:\n\n• Información de Suscripción: Nombre, precio y fechas de pago de las suscripciones que agregue.\n• Datos de Uso: Interacciones y preferencias dentro de la aplicación.\n• Información del Dispositivo: Identificadores básicos del dispositivo requeridos para que la aplicación funcione.";
+"privacy_content_2" = "Nuestra aplicación puede recopilar o procesar los siguientes datos para brindarle un mejor servicio:
+
+• Información de Suscripción: Nombre, precio y fechas de pago de las suscripciones que agregue.
+• Datos de Uso: Interacciones y preferencias dentro de la aplicación.
+• Información del Dispositivo: Identificadores básicos del dispositivo requeridos para que la aplicación funcione.";
 "privacy_title_3" = "3. Uso de Datos";
-"privacy_content_3" = "Los datos recopilados solo se utilizan para los siguientes fines:\n\n• Para permitirle rastrear sus suscripciones.\n• Para enviar notificaciones de recordatorio para suscripciones con próximas fechas de pago.\n• Para mejorar el rendimiento de la aplicación y corregir errores.";
+"privacy_content_3" = "Los datos recopilados solo se utilizan para los siguientes fines:
+
+• Para permitirle rastrear sus suscripciones.
+• Para enviar notificaciones de recordatorio para suscripciones con próximas fechas de pago.
+• Para mejorar el rendimiento de la aplicación y corregir errores.";
 "privacy_title_4" = "4. Seguridad de Datos";
 "privacy_content_4" = "Sus datos personales se almacenan de forma segura en su dispositivo. Los datos almacenados en nuestros servidores (en caso de que cree una cuenta) están protegidos con métodos de cifrado estándar de la industria. Sus datos nunca se venden ni se comparten con terceros sin su permiso.";
 "privacy_title_5" = "5. Permisos";
 "privacy_content_5" = "La aplicación puede solicitar permiso de notificación para enviarle notificaciones. Este permiso solo se utiliza para recordatorios de suscripción.";
 "privacy_title_6" = "6. Contacto";
-"privacy_content_6" = "Para preguntas sobre nuestra política de privacidad, puede contactarnos en:\ngokhanaytekinn@yandex.com";
+"privacy_content_6" = "Para preguntas sobre nuestra política de privacidad, puede contactarnos en:
+gokhanaytekinn@yandex.com";
 "scan_dialog_scanning" = "Escaneando dispositivo...";
 "scan_dialog_completed" = "Escaneo completado";
 "scan_dialog_sms_count" = "SMS: %d mensajes escaneados";
@@ -253,7 +294,7 @@
 "popular_subscriptions" = "Suscripciones populares";
 "cancel_anytime_desc" = "Puedes realizar un seguimiento y gestionar las suscripciones directamente desde los detalles de la aplicacion.";
 "start_date" = "Fecha de inicio";
-"widget_upcoming_desc" = "%@ por %2$s";
+"widget_upcoming_desc" = "%@ por %@";
 "premium_hero_title" = "Actualizar a Premium";
 "date_placeholder" = "dd/mm/aaaa";
 "already_have_account" = "Ya tienes una cuenta?";
@@ -271,7 +312,7 @@
 "plans_header" = "Elige tu Plan";
 "upgrade_to_premium_btn" = "Actualizar a Premium";
 "most_popular" = "Mas Popular";
-"widget_expensive_desc" = "%@ - %2$s/mes";
+"widget_expensive_desc" = "%@ - %@/mes";
 "plan_yearly_premium" = "Premium Anual";
 "widget_no_data" = "Sin suscripciones";
 "widget_today" = "Hoy";

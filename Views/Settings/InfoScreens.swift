@@ -27,28 +27,33 @@ struct HelpCenterScreen: View {
             // Top Bar
             HStack {
                 Button(action: onBack) {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: "arrow.left")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        .frame(width: 44, height: 44)
+                        .background(Color.appSurface(for: colorScheme))
+                        .clipShape(Circle())
                 }
                 Spacer()
                 Text(NSLocalizedString("help_center_title", comment: ""))
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 20, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
-                Color.clear.frame(width: 24, height: 24)
+                Color.clear.frame(width: 44, height: 44)
             }
-            .padding(16)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
             
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 24) {
                     // Search
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                         TextField(NSLocalizedString("help_search_placeholder", comment: ""), text: $searchText)
+                            .font(.system(size: 16))
                     }
-                    .padding(12)
+                    .padding(16)
                     .background(Color.appSurface(for: colorScheme))
                     .cornerRadius(12)
                     .overlay(
@@ -56,40 +61,37 @@ struct HelpCenterScreen: View {
                             .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
                     )
                     
-                    // Popular Questions
+                    // Popular Questions Label
                     Text(NSLocalizedString("popular_questions", comment: ""))
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                     
-                    // Quick info cards
-                    HStack(spacing: 12) {
-                        infoCard(
-                            icon: "plus.circle.fill",
-                            title: NSLocalizedString("how_to_add", comment: ""),
-                            desc: NSLocalizedString("how_to_add_desc", comment: "")
-                        )
-                        infoCard(
-                            icon: "xmark.circle.fill",
-                            title: NSLocalizedString("cancel_anytime", comment: ""),
-                            desc: NSLocalizedString("cancel_anytime_desc", comment: "")
-                        )
-                    }
-                    
                     // FAQ List
-                    ForEach(faqs) { faq in
-                        DisclosureGroup {
-                            Text(NSLocalizedString(faq.answerKey, comment: ""))
-                                .font(.system(size: 14))
-                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                .padding(.top, 8)
-                        } label: {
-                            Text(NSLocalizedString(faq.questionKey, comment: ""))
-                                .font(.system(size: 15, weight: .medium))
-                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                    VStack(spacing: 12) {
+                        ForEach(faqs) { faq in
+                            DisclosureGroup {
+                                Text(NSLocalizedString(faq.answerKey, comment: ""))
+                                    .font(.system(size: 15))
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                    .lineSpacing(4)
+                                    .padding(.vertical, 12)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            } label: {
+                                Text(NSLocalizedString(faq.questionKey, comment: ""))
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.vertical, 4)
+                            }
+                            .accentColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .padding(20)
+                            .background(Color.appSurface(for: colorScheme))
+                            .cornerRadius(16)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1)
+                            )
                         }
-                        .padding(16)
-                        .background(Color.appSurface(for: colorScheme))
-                        .cornerRadius(12)
                     }
                     
                     Spacer().frame(height: 100)
@@ -98,32 +100,6 @@ struct HelpCenterScreen: View {
             }
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-    }
-    
-    private func infoCard(icon: String, title: String, desc: String) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Image(systemName: icon)
-                .font(.system(size: 24))
-                .foregroundColor(.primaryBlue)
-            
-            Text(title)
-                .font(.system(size: 13, weight: .bold))
-                .foregroundColor(Color.appOnBackground(for: colorScheme))
-                .lineLimit(2)
-            
-            Text(desc)
-                .font(.system(size: 11))
-                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                .lineLimit(3)
-        }
-        .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.appSurface(for: colorScheme))
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
-        )
-        .cornerRadius(12)
     }
 }
 
@@ -135,62 +111,67 @@ struct PrivacyPolicyScreen: View {
     
     struct PolicySection: Identifiable {
         let id = UUID()
+        let order: Int
         let titleKey: String
         let contentKey: String
     }
     
     let sections: [PolicySection] = [
-        PolicySection(titleKey: "privacy_title_1", contentKey: "privacy_content_1"),
-        PolicySection(titleKey: "privacy_title_2", contentKey: "privacy_content_2"),
-        PolicySection(titleKey: "privacy_title_3", contentKey: "privacy_content_3"),
-        PolicySection(titleKey: "privacy_title_4", contentKey: "privacy_content_4"),
-        PolicySection(titleKey: "privacy_title_5", contentKey: "privacy_content_5"),
-        PolicySection(titleKey: "privacy_title_6", contentKey: "privacy_content_6"),
+        PolicySection(order: 1, titleKey: "privacy_title_1", contentKey: "privacy_content_1"),
+        PolicySection(order: 2, titleKey: "privacy_title_2", contentKey: "privacy_content_2"),
+        PolicySection(order: 3, titleKey: "privacy_title_3", contentKey: "privacy_content_3"),
+        PolicySection(order: 4, titleKey: "privacy_title_4", contentKey: "privacy_content_4"),
+        PolicySection(order: 5, titleKey: "privacy_title_5", contentKey: "privacy_content_5"),
+        PolicySection(order: 6, titleKey: "privacy_title_6", contentKey: "privacy_content_6"),
     ]
     
     var body: some View {
         VStack(spacing: 0) {
+            // Header
             HStack {
                 Button(action: onBack) {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: "arrow.left")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        .frame(width: 44, height: 44)
+                        .background(Color.appSurface(for: colorScheme))
+                        .clipShape(Circle())
                 }
                 Spacer()
                 Text(NSLocalizedString("privacy_policy_title", comment: ""))
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 20, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
-                Color.clear.frame(width: 24, height: 24)
+                Color.clear.frame(width: 44, height: 44)
             }
-            .padding(16)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
             
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 24) {
                     Text(NSLocalizedString("privacy_last_updated", comment: ""))
-                        .font(.system(size: 12))
+                        .font(.system(size: 14))
                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                     
                     ForEach(sections) { section in
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(NSLocalizedString(section.titleKey, comment: ""))
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("\(section.order). \(NSLocalizedString(section.titleKey, comment: ""))")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.primaryBlue)
                             
                             Text(NSLocalizedString(section.contentKey, comment: ""))
-                                .font(.system(size: 14))
+                                .font(.system(size: 16))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                .lineSpacing(4)
+                                .lineSpacing(6)
                         }
-                        .padding(16)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.appSurface(for: colorScheme))
-                        .cornerRadius(12)
+                        .padding(.bottom, 8)
                     }
                     
                     Spacer().frame(height: 100)
                 }
                 .padding(.horizontal, 24)
+                .padding(.top, 16)
             }
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())

@@ -100,10 +100,16 @@ struct SubscriptionsListScreen: View {
                     
                     // Tabs
                     HStack(spacing: 0) {
-                        tabButton(NSLocalizedString("active", comment: ""), tag: 0, count: viewModel.activeSubscriptions.count)
-                        tabButton(NSLocalizedString("suspicious", comment: ""), tag: 1, count: viewModel.suspiciousSubscriptions.count)
-                        tabButton(NSLocalizedString("cancelled", comment: ""), tag: 2, count: viewModel.cancelledSubscriptions.count)
+                        tabButton(NSLocalizedString("active", comment: ""), tag: 0)
+                        tabButton(NSLocalizedString("suspicious", comment: ""), tag: 1)
+                        tabButton(NSLocalizedString("cancelled", comment: ""), tag: 2)
                     }
+                    .background(Color.appSurface(for: colorScheme))
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                    )
                     .padding(.horizontal, 24)
                     
                     Spacer().frame(height: 12)
@@ -181,30 +187,16 @@ struct SubscriptionsListScreen: View {
         .frame(maxWidth: .infinity)
     }
     
-    private func tabButton(_ title: String, tag: Int, count: Int) -> some View {
+    private func tabButton(_ title: String, tag: Int) -> some View {
         Button(action: { selectedTab = tag }) {
-            VStack(spacing: 8) {
-                HStack(spacing: 4) {
-                    Text(title)
-                        .font(.system(size: 14, weight: selectedTab == tag ? .bold : .medium))
-                    
-                    if count > 0 {
-                        Text("\(count)")
-                            .font(.system(size: 10, weight: .bold))
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(selectedTab == tag ? Color.primaryBlue.opacity(0.2) : Color.appSurfaceVariant(for: colorScheme))
-                            .cornerRadius(8)
-                    }
-                }
-                .foregroundColor(selectedTab == tag ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
-                
-                Rectangle()
-                    .fill(selectedTab == tag ? Color.primaryBlue : Color.clear)
-                    .frame(height: 2)
-            }
+            Text(title)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(selectedTab == tag ? .black : Color.appOnSurfaceVariant(for: colorScheme))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(selectedTab == tag ? Color.successColor : Color.clear)
+                .cornerRadius(8)
         }
-        .frame(maxWidth: .infinity)
         .buttonStyle(.plain)
     }
     

@@ -5,6 +5,7 @@
 "joint_users" = "Pengguna Bersama";
 "add_email_placeholder" = "Tambah alamat email";
 "remove" = "Hapus";
+"app_name" = "Sub Tracker";
 "back" = "Kembali";
 "save" = "Simpan";
 "cancel" = "Batal";
@@ -52,7 +53,7 @@
 "help_center" = "Pusat Bantuan";
 "privacy_policy" = "Kebijakan Privasi";
 "logout" = "Keluar";
-"version_info" = "Versi %@ (Build %2$d)";
+"version_info" = "Versi %@ (Build %d)";
 "upgrade_to_premium" = "Tingkatkan ke Premium";
 "premium_desc" = "Pindai semua langganan Anda secara otomatis ve hemat %%30 lebih banyak.";
 "upgrade" = "Tingkatkan";
@@ -123,16 +124,44 @@
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Sudah punya akun? ";
 "terms_of_use_title" = "Syarat Penggunaan";
-"terms_of_use_content" = "1. Penerimaan\nBy using Sub Tracker, you agree to these terms.\n\n2. Service Scope\nAplikasi bu adalah alat untuk membantu Anda melacak langganan. Ini bukan saran finansial.\n\n3. User Responsibility\nAnda bertanggung jawab atas keamanan akun Anda ve keakuratan data yang dimasukkan.\n\n4. Changes\nKami berhak untuk mengubah fitur aplikasi ve syarat-syarat ini kapan saja.\n\n5. Termination\nKami dapat menghentikan akses Anda ke layanan jika syarat-syarat dilanggar.";
+"terms_of_use_content" = "1. Penerimaan
+By using Sub Tracker, you agree to these terms.
+
+2. Service Scope
+Aplikasi bu adalah alat untuk membantu Anda melacak langganan. Ini bukan saran finansial.
+
+3. User Responsibility
+Anda bertanggung jawab atas keamanan akun Anda ve keakuratan data yang dimasukkan.
+
+4. Changes
+Kami berhak untuk mengubah fitur aplikasi ve syarat-syarat ini kapan saja.
+
+5. Termination
+Kami dapat menghentikan akses Anda ke layanan jika syarat-syarat dilanggar.";
 "understood" = "Dimengerti";
-"privacy_dialog_content" = "Pembaruan Terakhir: 21 Februari 2026\n\n1. Pendahuluan\nKami sangat memperhatikan privasi data Anda.\n\n2. Collected Data\nInformasi langganan, preferensi penggunaan, ve data dasar perangkat diproses.\n\n3. Data Use\nData Anda hanya digunakan untuk mengirim pengingat ve meningkatkan performa aplikasi.\n\n4. Data Security\nData Anda dilindungi dengan metode enkripsi standar.\n\n5. Contact\nUntuk pertanyaan: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Pembaruan Terakhir: 21 Februari 2026
+
+1. Pendahuluan
+Kami sangat memperhatikan privasi data Anda.
+
+2. Collected Data
+Informasi langganan, preferensi penggunaan, ve data dasar perangkat diproses.
+
+3. Data Use
+Data Anda hanya digunakan untuk mengirim pengingat ve meningkatkan performa aplikasi.
+
+4. Data Security
+Data Anda dilindungi dengan metode enkripsi standar.
+
+5. Contact
+Untuk pertanyaan: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Masukkan email terdaftar Anda untuk mengatur ulang kata sandi. Kami akan mengirimkan kode verifikasi.";
 "email_address_label" = "Alamat Email";
 "send_code" = "Kirim Kode";
 "back_to_login" = "Kembali ke Masuk";
 "verify_code_title" = "Verifikasi Kode";
 "verify_code_desc" = "Masukkan kode verifikasi 6 digit yang dikirim ke %@.";
-"verify_and_continue" = "Verifikasi &amp; Lanjutkan";
+"verify_and_continue" = "Verifikasi & Lanjutkan";
 "wait_for_code" = "Tunggu kode baru dalam:";
 "code_not_received" = "Tidak menerima kode?";
 "resend_code" = "Kirim Ulang";
@@ -183,7 +212,7 @@
 "billed_yearly" = "Ditagih tahunan";
 "start_trial" = "Mulai Uji Coba Gratis";
 "restore_purchase" = "Pulihkan Pembelian";
-"category_streaming" = "Film &amp; TV &amp; Musik";
+"category_streaming" = "Film & TV & Musik";
 "category_gaming" = "Game";
 "category_software" = "Perangkat Lunak";
 "category_other" = "Lainnya";
@@ -251,9 +280,12 @@
 "go_back" = "Kembali";
 "subscription_id_not_found" = "ID langganan tidak ditemukan";
 "no_subscriptions_yet" = "Belum ada langganan yang ditambahkan";
-"sms_permission_rationale" = "Izin SMS diperlukan untuk mendeteksi langganan secara otomatis.\nDengan cara ini, Anda tidak perlu memasukkan langganan secara manual.";
-"storage_permission_rationale" = "Izin penyimpanan diperlukan untuk memindai dokumen.\nDengan cara ini, informasi langganan dapat diambil secara otomatis dari file PDF.";
-"permission_denied_message" = "Tidak dapat memindai perangkat tanpa izin.\nAnda dapat menambahkan langganan secara manual jika diinginkan.";
+"sms_permission_rationale" = "Izin SMS diperlukan untuk mendeteksi langganan secara otomatis.
+Dengan cara ini, Anda tidak perlu memasukkan langganan secara manual.";
+"storage_permission_rationale" = "Izin penyimpanan diperlukan untuk memindai dokumen.
+Dengan cara ini, informasi langganan dapat diambil secara otomatis dari file PDF.";
+"permission_denied_message" = "Tidak dapat memindai perangkat tanpa izin.
+Anda dapat menambahkan langganan secara manual jika diinginkan.";
 "permission_permanently_denied_message" = "Izin ditolak. Silakan aktifkan izin dari pengaturan.";
 "scan_dialog_scanning" = "Memindai Perangkat...";
 "scan_dialog_completed" = "Pemindaian Selesai";

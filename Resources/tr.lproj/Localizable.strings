@@ -53,7 +53,7 @@
 "help_center" = "Yardım Merkezi";
 "privacy_policy" = "Gizlilik Politikası";
 "logout" = "Çıkış Yap";
-"version_info" = "Versiyon %@ (Build %2$d)";
+"version_info" = "Versiyon %@ (Build %d)";
 "version" = "Versiyon %@";
 "upgrade_to_premium" = "Premium'a Yükselt";
 "premium_desc" = "Tüm gelişmiş özellikleri kullanın ve daha fazla tasarruf etmeye başlayın.";
@@ -128,9 +128,37 @@
 "accept_terms_post" = "'nı kabul ediyorum.";
 "already_have_account_prompt" = "Zaten bir hesabın var mı? ";
 "terms_of_use_title" = "Kullanım Koşulları";
-"terms_of_use_content" = "1. Kabul\nSub Tracker'ı kullanarak bu koşulları kabul etmiş sayılırsınız.\n\n2. Hizmet Kapsamı\nUygulama, aboneliklerinizi takip etmenize yardımcı olan bir araçtır. Finansal tavsiye niteliği taşımaz.\n\n3. Kullanıcı Sorumluluğu\nHesap bilgilerinizin güvenliğinden ve eklediğiniz verilerin doğruluğundan siz sorumlusunuz.\n\n4. Değişiklikler\nUygulama özelliklerinde ve bu koşullarda dilediğimiz zaman değişiklik yapma hakkımız saklıdır.\n\n5. Sonlandırma\nKoşulların ihlali durumunda hizmete erişiminizi sonlandırabiliriz.";
+"terms_of_use_content" = "1. Kabul
+Sub Tracker'ı kullanarak bu koşulları kabul etmiş sayılırsınız.
+
+2. Hizmet Kapsamı
+Uygulama, aboneliklerinizi takip etmenize yardımcı olan bir araçtır. Finansal tavsiye niteliği taşımaz.
+
+3. Kullanıcı Sorumluluğu
+Hesap bilgilerinizin güvenliğinden ve eklediğiniz verilerin doğruluğundan siz sorumlusunuz.
+
+4. Değişiklikler
+Uygulama özelliklerinde ve bu koşullarda dilediğimiz zaman değişiklik yapma hakkımız saklıdır.
+
+5. Sonlandırma
+Koşulların ihlali durumunda hizmete erişiminizi sonlandırabiliriz.";
 "understood" = "Anladım";
-"privacy_dialog_content" = "Son Güncelleme: 20 Şubat 2026\n\n1. Giriş\nVerilerinizin gizliliğine önem veriyoruz.\n\n2. Toplanan Veriler\nAbonelik bilgileri, kullanım tercihleri ve temel cihaz bilgileri işlenmektedir.\n\n3. Veri Kullanımı\nVerileriniz yalnızca hatırlatıcılar göndermek ve uygulama performansını artırmak için kullanılır.\n\n4. Veri Güvenliği\nVerileriniz endüstri standardı şifreleme yöntemleri ile korunmaktadır.\n\n5. İletişim\nSorularınız için: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "Son Güncelleme: 20 Şubat 2026
+
+1. Giriş
+Verilerinizin gizliliğine önem veriyoruz.
+
+2. Toplanan Veriler
+Abonelik bilgileri, kullanım tercihleri ve temel cihaz bilgileri işlenmektedir.
+
+3. Veri Kullanımı
+Verileriniz yalnızca hatırlatıcılar göndermek ve uygulama performansını artırmak için kullanılır.
+
+4. Veri Güvenliği
+Verileriniz endüstri standardı şifreleme yöntemleri ile korunmaktadır.
+
+5. İletişim
+Sorularınız için: gokhanaytekinn@yandex.com";
 "forgot_password_desc" = "Şifrenizi sıfırlamak için kayıtlı e-posta adresinizi girin. Size bir doğrulama kodu göndereceğiz.";
 "email_address_label" = "E-posta Adresi";
 "send_code" = "Kod Gönder";
@@ -190,7 +218,8 @@
 "billed_yearly" = "Yıllık faturalandırılır";
 "start_trial" = "Ücretsiz Denemeyi Başlat";
 "restore_purchase" = "Satın Almayı Geri Yükle";
-"premium_hero_title" = "Aboneliklerini\nAkıllıca Yönet";
+"premium_hero_title" = "Aboneliklerini
+Akıllıca Yönet";
 "premium_hero_subtitle" = "Size en uygun planı seçerek hemen başlayın.";
 "plan_free" = "Ücretsiz";
 "plan_monthly_premium" = "Aylık Premium";
@@ -200,7 +229,7 @@
 "current_plan" = "Mevcut Planınız";
 "upgrade_to_premium_btn" = "Premium'a Geç";
 "plans_header" = "PLANLAR";
-"category_streaming" = "Dizi &amp; Film &amp; Müzik";
+"category_streaming" = "Dizi & Film & Müzik";
 "category_gaming" = "Oyun";
 "category_software" = "Yazılım";
 "category_shopping" = "Alışveriş";
@@ -285,17 +314,26 @@
 "privacy_policy_title" = "Gizlilik Politikası";
 "privacy_last_updated" = "Son Güncelleme: 20 Şubat 2026";
 "privacy_title_1" = "1. Giriş";
-"privacy_content_1" = "Sub Tracker (\\"Uygulama\\") olarak gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, uygulamamızı kullanırken verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.";
+"privacy_content_1" = "Sub Tracker (\"Uygulama\") olarak gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, uygulamamızı kullanırken verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.";
 "privacy_title_2" = "2. Toplanan Veriler";
-"privacy_content_2" = "Uygulamamız, size daha iyi hizmet verebilmek için aşağıdaki verileri toplayabilir veya işleyebilir:\n\n• Abonelik Bilgileri: Eklediğiniz aboneliklerin adı, fiyatı, ödeme tarihleri.\n• Kullanım Verileri: Uygulama içi etkileşimler ve tercihler.\n• Cihaz Bilgileri: Uygulamanın çalışması için gerekli temel cihaz tanımlayıcıları.";
+"privacy_content_2" = "Uygulamamız, size daha iyi hizmet verebilmek için aşağıdaki verileri toplayabilir veya işleyebilir:
+
+• Abonelik Bilgileri: Eklediğiniz aboneliklerin adı, fiyatı, ödeme tarihleri.
+• Kullanım Verileri: Uygulama içi etkileşimler ve tercihler.
+• Cihaz Bilgileri: Uygulamanın çalışması için gerekli temel cihaz tanımlayıcıları.";
 "privacy_title_3" = "3. Verilerin Kullanımı";
-"privacy_content_3" = "Toplanan veriler yalnızca aşağıdaki amaçlarla kullanılır:\n\n• Aboneliklerinizi takip etmenizi sağlamak.\n• Ödeme günü yaklaşan abonelikler için hatırlatıcı bildirimleri göndermek.\n• Uygulama performansını iyileştirmek ve hataları gidermek.";
+"privacy_content_3" = "Toplanan veriler yalnızca aşağıdaki amaçlarla kullanılır:
+
+• Aboneliklerinizi takip etmenizi sağlamak.
+• Ödeme günü yaklaşan abonelikler için hatırlatıcı bildirimleri göndermek.
+• Uygulama performansını iyileştirmek ve hataları gidermek.";
 "privacy_title_4" = "4. Veri Güvenliği";
 "privacy_content_4" = "Kişisel verileriniz cihazınızda güvenli bir şekilde saklanır. Sunucularımızda tutulan veriler (hesap oluşturmanız durumunda) endüstri standardı şifreleme yöntemleri ile korunur. Verileriniz asla izniniz olmaksızın üçüncü taraflara satılmaz veya paylaşılmaz.";
 "privacy_title_5" = "5. İzinler";
 "privacy_content_5" = "Uygulama, size bildirim gönderebilmek için bildirim izni talep edebilir. Bu izin, yalnızca abonelik hatırlatıcıları için kullanılır.";
 "privacy_title_6" = "6. İletişim";
-"privacy_content_6" = "Gizlilik politikamızla ilgili sorularınız için bizimle iletişime geçebilirsiniz:\ngokhanaytekinn@yandex.com";
+"privacy_content_6" = "Gizlilik politikamızla ilgili sorularınız için bizimle iletişime geçebilirsiniz:
+gokhanaytekinn@yandex.com";
 "widget_upcoming_title" = "Yaklaşan Ödemeler";
 "widget_upcoming_desc" = "Önümüzdeki 7 gün içindeki ödemeleri gösterir";
 "widget_expensive_title" = "En Pahalı Abonelikler";
