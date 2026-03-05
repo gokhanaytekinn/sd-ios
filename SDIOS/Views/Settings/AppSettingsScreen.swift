@@ -85,7 +85,8 @@ struct AppSettingsScreen: View {
                             icon: "bell.fill",
                             title: "notifications".localized(),
                             isOn: $notificationsEnabled,
-                            iconColor: .primaryBlue
+                            iconColor: .primaryBlue,
+                            isTransparent: true
                         )
                         .onChange(of: notificationsEnabled) { newValue in
                             authViewModel.updateNotificationSettings(enabled: newValue)
@@ -96,6 +97,7 @@ struct AppSettingsScreen: View {
                             title: "currency".localized(),
                             subtitle: CurrencyPreferences.currencies.first(where: { $0.id == selectedCurrency })?.name,
                             iconColor: .successColor,
+                            isTransparent: true,
                             onTap: { showCurrencyDialog = true }
                         )
                         
@@ -126,6 +128,7 @@ struct AppSettingsScreen: View {
                             icon: "questionmark.circle.fill",
                             title: "help_center".localized(),
                             iconColor: .primaryBlue,
+                            isTransparent: true,
                             onTap: onNavigateToHelpCenter
                         )
                         
@@ -147,6 +150,7 @@ struct AppSettingsScreen: View {
                             title: "logout".localized(),
                             iconColor: .warningColor,
                             textColor: .warningColor,
+                            isTransparent: true,
                             onTap: {
                                 authViewModel.logout()
                                 onLogout()

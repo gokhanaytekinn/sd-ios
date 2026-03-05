@@ -93,10 +93,8 @@ class SubscriptionsViewModel: ObservableObject {
     func reactivateSubscription(id: String) {
         Task {
             let result = await repository.reactivateSubscription(id: id)
-            if case .success(let sub) = result {
-                if let index = allSubscriptions.firstIndex(where: { $0.id == id }) {
-                    allSubscriptions[index] = sub
-                }
+            if case .success = result {
+                loadSubscriptions() // Reload to get updated state
             }
         }
     }

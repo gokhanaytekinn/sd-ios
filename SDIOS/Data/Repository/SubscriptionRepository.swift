@@ -88,10 +88,10 @@ class SubscriptionRepository {
         }
     }
     
-    func reactivateSubscription(id: String) async -> Result<Subscription, Error> {
+    func reactivateSubscription(id: String) async -> Result<Void, Error> {
         do {
-            let response = try await api.reactivateSubscription(id: id)
-            return .success(response.toSubscription())
+            try await api.reactivateSubscription(id: id)
+            return .success(())
         } catch {
             return .failure(error)
         }

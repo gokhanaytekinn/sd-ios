@@ -176,7 +176,7 @@ class ApiService {
     }
     
     func updateNotificationSettings(_ request: NotificationSettingsRequest) async throws {
-        try await requestVoid(endpoint: "/api/auth/notifications", method: "PUT", body: request)
+        try await requestVoid(endpoint: "/api/users/notifications", method: "PATCH", body: request)
     }
     
     // MARK: - Subscription Endpoints
@@ -209,19 +209,19 @@ class ApiService {
     }
     
     func approveSubscription(id: String) async throws -> SubscriptionResponse {
-        return try await request(endpoint: "/api/subscriptions/\(id)/approve", method: "POST")
+        return try await request(endpoint: "/api/subscriptions/\(id)/approve", method: "PATCH")
     }
     
     func flagSuspicious(id: String, _ request: FlagSuspiciousRequest) async throws -> SubscriptionResponse {
-        return try await self.request(endpoint: "/api/subscriptions/\(id)/flag", method: "POST", body: request)
+        return try await self.request(endpoint: "/api/subscriptions/\(id)/flag", method: "PATCH", body: request)
     }
     
     func cancelSubscription(id: String) async throws {
         try await requestVoid(endpoint: "/api/subscriptions/\(id)/cancel", method: "PATCH")
     }
     
-    func reactivateSubscription(id: String) async throws -> SubscriptionResponse {
-        return try await request(endpoint: "/api/subscriptions/\(id)/reactivate", method: "POST")
+    func reactivateSubscription(id: String) async throws {
+        try await requestVoid(endpoint: "/api/subscriptions/\(id)/reactivate", method: "PATCH")
     }
     
     func getUpcomingSubscriptions() async throws -> [SubscriptionResponse] {

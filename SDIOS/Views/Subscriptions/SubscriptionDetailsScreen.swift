@@ -305,13 +305,13 @@ struct SubscriptionDetailsScreen: View {
     private func reactivateSubscription() {
         Task {
             isLoading = true
-            let result = await SubscriptionRepository.shared.approveSubscription(id: subscriptionId)
-            isLoading = false
-            switch result {
-            case .success(let newSub):
-                self.subscription = newSub
-            case .failure(let err):
+            let result = await SubscriptionRepository.shared.reactivateSubscription(id: subscriptionId)
+            if case .success = result {
+                // Success: Reload the subscription to get updated status and cleared end date
+                loadSubscription()
+            } else if case .failure(let err) = result {
                 self.errorMessage = err.localizedDescription
+                isLoading = false
             }
         }
     }
