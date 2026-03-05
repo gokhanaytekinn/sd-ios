@@ -353,3 +353,7 @@
 "feature_advanced_analytics_title" = "Өркүндөтүлгөн аналитика";
 "feature_advanced_analytics_free_desc" = "Негизги отчеттор";
 "feature_advanced_analytics_premium_desc" = "Толық чыгымдар отчету";
+
+"subscription_price" = "Жазылуу баасы";
+"renewal_cycle" = "Жаңыртуу цикли";
+"turn_off" = "Эскертүүнү өчүрүү";

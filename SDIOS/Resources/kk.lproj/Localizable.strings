@@ -343,3 +343,7 @@
 "feature_advanced_analytics_title" = "Кеңейтілген талдау";
 "feature_advanced_analytics_free_desc" = "Негізгі есептер";
 "feature_advanced_analytics_premium_desc" = "Толық шығындар есебі";
+
+"subscription_price" = "Жазылым бағасы";
+"renewal_cycle" = "Жаңарту циклі";
+"turn_off" = "Ескертуді өшіру";

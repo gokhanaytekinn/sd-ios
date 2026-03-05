@@ -345,3 +345,7 @@
 "feature_advanced_analytics_title" = "Расширенная аналитика";
 "feature_advanced_analytics_free_desc" = "Базовые отчеты";
 "feature_advanced_analytics_premium_desc" = "Подробные отчеты о расходах";
+
+"subscription_price" = "Стоимость подписки";
+"renewal_cycle" = "Цикл продления";
+"turn_off" = "Выключить напоминание";

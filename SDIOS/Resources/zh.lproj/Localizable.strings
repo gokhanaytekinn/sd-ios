@@ -345,3 +345,7 @@
 "feature_advanced_analytics_title" = "高级分析";
 "feature_advanced_analytics_free_desc" = "基础报告";
 "feature_advanced_analytics_premium_desc" = "详尽支出报告";
+
+"subscription_price" = "订阅价格";
+"renewal_cycle" = "续订周期";
+"turn_off" = "关闭提醒";

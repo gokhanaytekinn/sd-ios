@@ -342,3 +342,7 @@
 "feature_advanced_analytics_title" = "Gelişmiş Analitik";
 "feature_advanced_analytics_free_desc" = "Temel Analizler";
 "feature_advanced_analytics_premium_desc" = "Tam İçgörüler";
+
+"subscription_price" = "Abonelik Ücreti";
+"renewal_cycle" = "Yenilenme Döngüsü";
+"turn_off" = "Hatırlatıcıyı Kapat";

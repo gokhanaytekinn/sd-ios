@@ -344,3 +344,7 @@
 "feature_advanced_analytics_title" = "Kengaytirilgan tahlil";
 "feature_advanced_analytics_free_desc" = "Asosiy hisobotlar";
 "feature_advanced_analytics_premium_desc" = "Batafsil xarajatlar hisoboti";
+
+"subscription_price" = "Obuna narxi";
+"renewal_cycle" = "Yangilanish davri";
+"turn_off" = "Eslatmani oʻchirish";

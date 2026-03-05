@@ -345,3 +345,7 @@
 "feature_advanced_analytics_title" = "Analítica avanzada";
 "feature_advanced_analytics_free_desc" = "Informes básicos";
 "feature_advanced_analytics_premium_desc" = "Informes de gastos detallados";
+
+"subscription_price" = "Precio de la suscripción";
+"renewal_cycle" = "Ciclo de renovación";
+"turn_off" = "Desactiva el recordatorio";

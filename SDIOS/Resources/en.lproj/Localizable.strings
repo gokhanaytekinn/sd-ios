@@ -358,3 +358,7 @@
 "feature_advanced_analytics_title" = "Advanced Analytics";
 "feature_advanced_analytics_free_desc" = "Basic Analysis";
 "feature_advanced_analytics_premium_desc" = "Full Insights";
+
+"subscription_price" = "Subscription Price";
+"renewal_cycle" = "Renewal Cycle";
+"turn_off" = "Turn Off Reminder";
