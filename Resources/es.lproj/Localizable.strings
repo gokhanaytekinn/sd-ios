@@ -1,4 +1,4 @@
-"joint_users" = "Usuarios Conjuntos";
+﻿"joint_users" = "Usuarios Conjuntos";
 "add_email_placeholder" = "Añadir dirección de correo";
 "remove" = "Eliminar";
 "app_name" = "Detector de Suscripciones";
@@ -52,7 +52,7 @@
 "version_info" = "Versión %1$@ (Build %2$d)";
 "version" = "Version %@";
 "upgrade_to_premium" = "Actualizar a Premium";
-"premium_desc" = "Escanea automáticamente todas tus suscripciones y ahorra un 30% más.";
+"premium_desc" = "Escanea automáticamente todas tus suscripciones y ahorra un 30%% más.";
 "upgrade" = "Actualizar";
 "search" = "Buscar";
 "search_placeholder" = "Buscar suscripciones o transacciones";
@@ -182,7 +182,7 @@
 "choose_plan" = "Elige tu plan";
 "monthly_plan" = "Plan mensual";
 "yearly_plan" = "Plan anual";
-"save_percent" = "Ahorra %d%";
+"save_percent" = "Ahorra %d%%";
 "per_month" = "/mes";
 "per_year" = "/año";
 "billed_monthly" = "Facturado mensualmente";
@@ -298,7 +298,7 @@
 "privacy_policy_title" = "Política de Privacidad";
 "privacy_last_updated" = "Última actualización: 20 de febrero de 2026";
 "privacy_title_1" = "1. Introducción";
-"privacy_content_1" = "Como Sub Tracker ("la Aplicación"), valoramos su privacidad. Esta Política de Privacidad explica cómo se recopilan, utilizan y protegen sus datos al utilizar nuestra aplicación.";
+"privacy_content_1" = "Como Sub Tracker (\"la Aplicación\"), valoramos su privacidad. Esta Política de Privacidad explica cómo se recopilan, utilizan y protegen sus datos al utilizar nuestra aplicación.";
 "privacy_title_2" = "2. Datos Recopilados";
 "privacy_content_2" = "Nuestra aplicación puede recopilar o procesar los siguientes datos para brindarle un mejor servicio:\n\n• Información de Suscripción: Nombre, precio y fechas de pago de las suscripciones que agregue.\n• Datos de Uso: Interacciones y preferencias dentro de la aplicación.\n• Información del Dispositivo: Identificadores básicos del dispositivo requeridos para que la aplicación funcione.";
 "privacy_title_3" = "3. Uso de Datos";

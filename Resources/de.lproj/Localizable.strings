@@ -1,4 +1,4 @@
-"joint_users" = "Gemeinsame Nutzer";
+﻿"joint_users" = "Gemeinsame Nutzer";
 "add_email_placeholder" = "E-Mail-Adresse hinzufügen";
 "remove" = "Entfernen";
 "app_name" = "Abonnement-Tracker";
@@ -52,13 +52,13 @@
 "version_info" = "Version %1$@ (Build %2$d)";
 "version" = "Version %@";
 "upgrade_to_premium" = "Zu Premium wechseln";
-"premium_desc" = ""Scannen Sie alle Abonnements automatisch und sparen Sie 30% mehr."";
+"premium_desc" = "\"Scannen Sie alle Abonnements automatisch und sparen Sie 30%% mehr.\"";
 "upgrade" = "Upgraden";
 "search" = "Suchen";
 "search_placeholder" = "Abonnements suchen...";
 "recent_searches" = "LETZTE SUCHEN";
 "popular_subscriptions" = "Beliebte Abonnements";
-"results_found" = ""ERGEBNISSE GEFUNDEN (%d)"";
+"results_found" = "\"ERGEBNISSE GEFUNDEN (%d)\"";
 "subscriptions" = "Abonnements";
 "transactions" = "Transaktionen";
 "looking_for_else" = "Suchen Sie etwas anderes?";
@@ -182,7 +182,7 @@
 "choose_plan" = "Plan wahlen";
 "monthly_plan" = "Monatlicher Plan";
 "yearly_plan" = "Jahresplan";
-"save_percent" = ""%d% Ersparnis"";
+"save_percent" = "\"%d%% Ersparnis\"";
 "per_month" = "/Monat";
 "per_year" = "/Jahr";
 "billed_monthly" = "Monatlich abgerechnet";
@@ -206,7 +206,7 @@
 "feature_unlimited_tracking_premium_desc" = "Fugen Sie beliebig viele Abonnements hinzu";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Findet versteckte Zahlungen sofort";
-"category_streaming" = "Filme &amp; TV &amp; Musik";
+"category_streaming" = "Filme & TV & Musik";
 "category_gaming" = "Gaming";
 "category_software" = "Software";
 "category_other" = "Andere";
@@ -283,7 +283,7 @@
 "cancel_anytime" = "Jederzeit kündigen";
 "cancel_anytime_desc" = "Sie können Abonnements direkt über die App-Details verfolgen und verwalten.";
 "faq_q1" = "Wie kundige ich ein Abonnement?";
-"faq_a1" = ""Gehen Sie zur Detailseite und klicken Sie auf 'Abonnement kundigen'."";
+"faq_a1" = "\"Gehen Sie zur Detailseite und klicken Sie auf 'Abonnement kundigen'.\"";
 "faq_q2" = "Sind meine Daten sicher?";
 "faq_a2" = "Ja, alle Daten werden verschlusselt gespeichert. Sub Tracker teilt keine Daten mit Dritten.";
 "faq_q3" = "Wie verbinde ich mein Bankkonto?";
@@ -309,9 +309,9 @@
 "privacy_title_6" = "6. Kontakt";
 "privacy_content_6" = "Fur Datenschutzfragen: gokhanaytekinn@yandex.com";
 "widget_upcoming_title" = "Nachste Zahlung";
-"widget_upcoming_desc" = ""%1$@ fur %2$@"";
+"widget_upcoming_desc" = "\"%1$@ fur %2$@\"";
 "widget_expensive_title" = "Teuerstes Abonnement";
-"widget_expensive_desc" = ""%1$@ - %2$@/Monat"";
+"widget_expensive_desc" = "\"%1$@ - %2$@/Monat\"";
 "widget_login_required" = "Anmelden";
 "widget_no_data" = "Keine Abonnements";
 "widget_days_left" = "%d Tage verbleibend";

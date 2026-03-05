@@ -1,4 +1,4 @@
-"joint_users" = "Pengguna Bersama";
+﻿"joint_users" = "Pengguna Bersama";
 "add_email_placeholder" = "Tambah alamat email";
 "remove" = "Hapus";
 "app_name" = "Sub Tracker";
@@ -49,7 +49,7 @@
 "logout" = "Keluar";
 "version_info" = "Versi %1$@ (Build %2$d)";
 "upgrade_to_premium" = "Tingkatkan ke Premium";
-"premium_desc" = "Pindai semua langganan Anda secara otomatis ve hemat %30 lebih banyak.";
+"premium_desc" = "Pindai semua langganan Anda secara otomatis ve hemat %%30 lebih banyak.";
 "upgrade" = "Tingkatkan";
 "search" = "Cari";
 "search_placeholder" = "Cari langganan atau transaksi";
@@ -127,7 +127,7 @@
 "back_to_login" = "Kembali ke Masuk";
 "verify_code_title" = "Verifikasi Kode";
 "verify_code_desc" = "Masukkan kode verifikasi 6 digit yang dikirim ke %@.";
-"verify_and_continue" = "Verifikasi &amp; Lanjutkan";
+"verify_and_continue" = "Verifikasi & Lanjutkan";
 "wait_for_code" = "Tunggu kode baru dalam:";
 "code_not_received" = "Tidak menerima kode?";
 "resend_code" = "Kirim Ulang";
@@ -173,14 +173,14 @@
 "choose_plan" = "Pilih Paket";
 "monthly_plan" = "Paket Bulanan";
 "yearly_plan" = "Paket Tahunan";
-"save_percent" = "Hemat %d";
+"save_percent" = "Hemat %%d";
 "per_month" = "/bulan";
 "per_year" = "/tahun";
 "billed_monthly" = "Ditagih bulanan";
 "billed_yearly" = "Ditagih tahunan";
 "start_trial" = "Mulai Uji Coba Gratis";
 "restore_purchase" = "Pulihkan Pembelian";
-"category_streaming" = "Film &amp; TV &amp; Musik";
+"category_streaming" = "Film & TV & Musik";
 "category_gaming" = "Game";
 "category_software" = "Perangkat Lunak";
 "category_other" = "Lainnya";

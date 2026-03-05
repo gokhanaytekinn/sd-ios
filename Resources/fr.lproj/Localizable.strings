@@ -1,4 +1,4 @@
-"joint_users" = "Utilisateurs conjoints";
+﻿"joint_users" = "Utilisateurs conjoints";
 "add_email_placeholder" = "Ajouter une adresse e-mail";
 "remove" = "Supprimer";
 "app_name" = "Suivi d'Abonnement";
@@ -51,7 +51,7 @@
 "logout" = "Déconnexion";
 "version_info" = "Version %1$@ (Build %2$d)";
 "upgrade_to_premium" = "Passer au Premium";
-"premium_desc" = "Scannez automatiquement tous vos abonnements et économisez 30% de plus.";
+"premium_desc" = "Scannez automatiquement tous vos abonnements et économisez 30%% de plus.";
 "upgrade" = "Mettre à niveau";
 "search" = "Rechercher";
 "search_placeholder" = "Rechercher des abonnements ou transactions";
@@ -181,7 +181,7 @@
 "choose_plan" = "Choisissez votre plan";
 "monthly_plan" = "Plan mensuel";
 "yearly_plan" = "Plan annuel";
-"save_percent" = "Économisez %d%";
+"save_percent" = "Économisez %d%%";
 "per_month" = "/mois";
 "per_year" = "/an";
 "billed_monthly" = "Facturé mensuellement";
@@ -294,7 +294,7 @@
 "privacy_policy_title" = "Politique de confidentialité";
 "privacy_last_updated" = "Dernière mise à jour : 20 février 2026";
 "privacy_title_1" = "1. Introduction";
-"privacy_content_1" = "En tant que Suivi d'Abonnement ("l'App"), nous accordons de l'importance à votre vie privée. Cette politique de confidentialité explique comment vos données sont collectées, utilisées et protégées lors de l'utilisation de notre application.";
+"privacy_content_1" = "En tant que Suivi d'Abonnement (\"l'App\"), nous accordons de l'importance à votre vie privée. Cette politique de confidentialité explique comment vos données sont collectées, utilisées et protégées lors de l'utilisation de notre application.";
 "privacy_title_2" = "2. Données collectées";
 "privacy_content_2" = "Notre application peut collecter ou traiter les données suivantes pour vous offrir un meilleur service :\n\n• Informations d'abonnement : Nom, prix et dates de paiement des abonnements que vous ajoutez.\n• Données d'utilisation : Interactions intégrées et préférences.\n• Informations sur l'appareil : Identifiants de base de l'appareil requis pour le fonctionnement de l'application.";
 "privacy_title_3" = "3. Utilisation des données";

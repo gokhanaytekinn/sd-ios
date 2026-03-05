@@ -1,4 +1,4 @@
-"joint_users" = "Birgalikdagi foydalanuvchilar";
+﻿"joint_users" = "Birgalikdagi foydalanuvchilar";
 "add_email_placeholder" = "Elektron pochta manzilini qo'shing";
 "remove" = "O'chirish";
 "app_name" = "Sub Tracker";
@@ -52,7 +52,7 @@
 "version_info" = "Versiya %1$@ (Build %2$d)";
 "version" = "Versiya %@";
 "upgrade_to_premium" = "Premiumga oʻting";
-"premium_desc" = "Barcha obunalaringizni avtomatik skanerlang va 30% koʻproq tejang.";
+"premium_desc" = "Barcha obunalaringizni avtomatik skanerlang va 30%% koʻproq tejang.";
 "upgrade" = "Yangilash";
 "search" = "Qidirish";
 "search_placeholder" = "Obunani yoki tranzaksiyani qidirish";
@@ -119,6 +119,7 @@
 "google_sign_in_failed" = "Google orqali kirish amalga oshmadi (%@)";
 "register_desc" = "Obunalaringizni boshqarishni va tejashni boshlang.";
 "full_name_placeholder" = "Misol uchun: Ali Valiov";
+"accept_terms_pre" = "";
 "and" = " va ";
 "accept_terms_post" = "ga roziman.";
 "already_have_account_prompt" = "Hisobingiz bormi? ";
@@ -181,7 +182,7 @@
 "choose_plan" = "Rejangizni tanlang";
 "monthly_plan" = "Oylik reja";
 "yearly_plan" = "Yillik reja";
-"save_percent" = "%d% tejash";
+"save_percent" = "%d%% tejash";
 "per_month" = "/oy";
 "per_year" = "/yil";
 "billed_monthly" = "Har oy toʻlanadi";
