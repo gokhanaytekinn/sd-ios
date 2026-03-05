@@ -56,24 +56,33 @@ struct DashboardScreen: View {
                         
                         Spacer().frame(height: 20)
                         
-                        // Hero Card - Total Monthly
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("total_monthly".localized())
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        // Summary Card (replacing Hero Card)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("total_monthly".localized())
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                
+                                Text(CurrencyFormatter.formatAmount(viewModel.stats.totalMonthlyCost, currencyCode: currency))
+                                    .font(.system(size: 22, weight: .bold))
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            }
                             
-                            Text(CurrencyFormatter.formatAmount(viewModel.stats.totalMonthlyCost, currencyCode: currency))
-                                .font(.system(size: 36, weight: .bold))
-                                .foregroundColor(.primaryBlue)
+                            Spacer()
+                            
+                            VStack(alignment: .trailing, spacing: 4) {
+                                Text("\(viewModel.subscriptions.count) \("active".localized().lowercased())")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundColor(.primaryBlue)
+                            }
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(24)
-                        .background(Color.appSurface(for: colorScheme))
-                        .cornerRadius(12)
+                        .padding(16)
+                        .background(Color.clear)
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
                         )
+                        .cornerRadius(12)
                         .padding(.horizontal, 24)
                         
                         Spacer().frame(height: 24)

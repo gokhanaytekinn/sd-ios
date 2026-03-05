@@ -12,6 +12,7 @@ struct SubscriptionDetailsScreen: View {
     @State private var showDeleteDialog = false
     @State private var showCancelDialog = false
     @State private var isLoading = true
+    @State private var errorMessage: String?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -303,9 +304,14 @@ struct SubscriptionDetailsScreen: View {
     
     private func reactivateSubscription() {
         Task {
-            let result = await SubscriptionRepository.shared.reactivateSubscription(id: subscriptionId)
-            if case .success(let newSub) = result {
+            isLoading = true
+            let result = await SubscriptionRepository.shared.approveSubscription(id: subscriptionId)
+            isLoading = false
+            switch result {
+            case .success(let newSub):
                 self.subscription = newSub
+            case .failure(let err):
+                self.errorMessage = err.localizedDescription
             }
         }
     }
