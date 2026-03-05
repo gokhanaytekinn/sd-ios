@@ -353,3 +353,6 @@
 "notify_1_day_before" = "Toʻlovdan 1 kun oldin xabar berish";
 "add_subscription_btn" = "Obuna qoʻshish";
 "done_btn" = "Tayyor";
+
+"pending_approve" = "Tasdiqlash kutilmoqda";
+"add_mannually" = "Qo‘lda qo‘shish";

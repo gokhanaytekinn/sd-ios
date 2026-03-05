@@ -367,3 +367,6 @@
 "notify_1_day_before" = "Notify 1 day before payment";
 "add_subscription_btn" = "Add Subscription";
 "done_btn" = "Done";
+
+"pending_approve" = "Pending Approval";
+"add_mannually" = "Add Manually";

@@ -352,3 +352,6 @@
 "notify_1_day_before" = "Tölegden 1 gün öň habar ber";
 "add_subscription_btn" = "Abunalyk Goş";
 "done_btn" = "Tamam";
+
+"pending_approve" = "Tassyklama garaşylýanlar";
+"add_mannually" = "Elde goşmak";

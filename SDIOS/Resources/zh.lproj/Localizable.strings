@@ -354,3 +354,6 @@
 "notify_1_day_before" = "在扣费前 1 天通知";
 "add_subscription_btn" = "添加订阅";
 "done_btn" = "完成";
+
+"pending_approve" = "待核准";
+"add_mannually" = "手动添加";

@@ -107,7 +107,7 @@ struct SubscriptionsListScreen: View {
                     // Tabs
                     HStack(spacing: 0) {
                         tabButton("active".localized(), tag: 0)
-                        tabButton("pending_approval".localized(), tag: 1)
+                        tabButton("pending_approve".localized(), tag: 1)
                         tabButton("cancelled".localized(), tag: 2)
                     }
                     .background(Color.appSurface(for: colorScheme))

@@ -299,3 +299,8 @@
 "permission_permanently_denied_message" = "Izin ditolak. Silakan aktifkan izin dari pengaturan.";
 "sms_permission_rationale" = "Izin SMS diperlukan untuk mendeteksi langganan secara otomatis.\nDengan cara ini, Anda tidak perlu memasukkan langganan secara manual.";
 "storage_permission_rationale" = "Izin penyimpanan diperlukan untuk memindai dokumen.\nDengan cara ini, informasi langganan dapat diambil secara otomatis dari file PDF.";
+"notify_1_day_before" = "Notifikasi 1 hari sebelum pembayaran";
+"add_subscription_btn" = "Tambah Langganan";
+"done_btn" = "Selesai";
+"pending_approve" = "Persetujuan Tertunda";
+"add_mannually" = "Tambah manual";

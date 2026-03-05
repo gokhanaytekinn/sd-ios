@@ -349,3 +349,6 @@
 "notify_1_day_before" = "1 Tag vor der Zahlung benachrichtigen";
 "add_subscription_btn" = "Abonnement hinzufügen";
 "done_btn" = "Fertig";
+
+"pending_approve" = "Ausstehende Genehmigung";
+"add_mannually" = "Manuell hinzufügen";

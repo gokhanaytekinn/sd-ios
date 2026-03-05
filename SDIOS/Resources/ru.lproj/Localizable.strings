@@ -354,3 +354,6 @@
 "notify_1_day_before" = "Уведомить за 1 день до оплаты";
 "add_subscription_btn" = "Добавить подписку";
 "done_btn" = "Готово";
+
+"pending_approve" = "Ожидают подтверждения";
+"add_mannually" = "Добавить вручную";

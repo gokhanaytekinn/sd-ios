@@ -351,3 +351,6 @@
 "notify_1_day_before" = "Ödemeden 1 gün önce bildir";
 "add_subscription_btn" = "Abonelik Ekle";
 "done_btn" = "Tamam";
+
+"pending_approve" = "Onay Bekleyenler";
+"add_mannually" = "Manuel Ekle";

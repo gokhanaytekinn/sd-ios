@@ -352,3 +352,6 @@
 "notify_1_day_before" = "Төлемге 1 күн қалғанда ескерту";
 "add_subscription_btn" = "Жазылымды қосу";
 "done_btn" = "Дайын";
+
+"pending_approve" = "Растауды күтуде";
+"add_mannually" = "Қолмен қосу";

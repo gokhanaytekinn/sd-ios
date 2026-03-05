@@ -296,7 +296,7 @@ struct ContentView: View {
             if showFabMenu {
                 // Add Manually Bubble
                 HStack {
-                    Text("add_manually".localized())
+                    Text("add_mannually".localized())
                         .font(.system(size: 14, weight: .bold))
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)

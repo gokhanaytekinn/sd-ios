@@ -362,3 +362,6 @@
 "notify_1_day_before" = "Төлөмгө 1 күн калганда билдирүү";
 "add_subscription_btn" = "Жазылуу кошуу";
 "done_btn" = "Даяр";
+
+"pending_approve" = "Ырастоону күтүүдө";
+"add_mannually" = "Кол менен кошуу";

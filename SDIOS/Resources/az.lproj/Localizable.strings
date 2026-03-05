@@ -348,3 +348,6 @@
 "notify_1_day_before" = "Ödənişdən 1 gün əvvəl bildir";
 "add_subscription_btn" = "Abunəlik Əlavə et";
 "done_btn" = "Tamam";
+
+"pending_approve" = "Təsdiq Gözləyənlər";
+"add_mannually" = "Əllə əlavə et";
