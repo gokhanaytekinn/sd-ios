@@ -1,0 +1,245 @@
+/* App Name */
+"app_name" = "Sub Tracker";
+
+/* Common */
+"back" = "Back";
+"save" = "Save";
+"cancel" = "Cancel";
+"skip" = "Skip";
+"continue_btn" = "Continue";
+"get_started" = "Get Started";
+"show_password" = "Show password";
+"hide_password" = "Hide password";
+"unknown_error" = "Unknown error";
+"menu_add_manually" = "Add Manually";
+"close" = "Close";
+"error" = "Error";
+"success" = "Success";
+"loading" = "Loading…";
+"try_again" = "Try Again";
+"no_results" = "No results found";
+"no_results_found" = "No results found";
+"results" = "results";
+"or" = "or";
+"and" = " and ";
+"confirm" = "Confirm";
+"reject" = "Reject";
+"delete" = "Delete";
+"remove" = "Remove";
+"add" = "Add";
+"edit" = "Edit";
+"save_changes" = "Save Changes";
+"done" = "Done";
+"next" = "Next";
+"previous" = "Previous";
+"finish" = "Finish";
+"retry" = "Retry";
+"transaction" = "Transaction";
+"today" = "Today";
+"tomorrow" = "Tomorrow";
+"days_left" = "days left";
+
+/* Onboarding */
+"onboarding_title_1" = "Track Your";
+"onboarding_title_2" = "Subscriptions";
+"onboarding_desc_1" = "View and control all your subscriptions in one place. Never miss a payment again.";
+"onboarding_title_3" = "End Unnecessary Expenses";
+"onboarding_desc_3" = "Cancel forgotten subscriptions, get notified before payment dates.";
+"onboarding_security" = "End-to-end encrypted and secure";
+
+/* Dashboard */
+"dashboard" = "Dashboard";
+"dashboard_title" = "Dashboard";
+"hello_user" = "Hello, %@";
+"total_monthly" = "Total This Month";
+"vs_last_month" = "vs last month";
+"most_expensive" = "Most Expensive Subscriptions";
+"view_all" = "View All";
+"view_all_subscriptions" = "View All Subscriptions";
+"upcoming_payments" = "Upcoming Payments";
+"no_upcoming_payments" = "No upcoming payments for the next 10 days";
+"guest_user" = "Guest User";
+"not_logged_in" = "Not logged in";
+
+/* Auth */
+"login" = "Login";
+"register" = "Register";
+"email" = "Email";
+"password" = "Password";
+"name" = "Name";
+"full_name" = "Full Name";
+"full_name_placeholder" = "e.g. John Doe";
+"forgot_password" = "Forgot Password?";
+"no_account_prompt" = "Don't have an account? ";
+"already_have_account_prompt" = "Already have an account? ";
+"welcome_back" = "Welcome Back";
+"login_desc" = "Start tracking your subscriptions and saving money now.";
+"email_placeholder" = "email@example.com";
+"password_placeholder" = "••••••••";
+"register_desc" = "Start managing your subscriptions and saving.";
+"google_sign_in_failed" = "Google sign in failed (%@)";
+
+/* Terms & Privacy Dialogs */
+"accept_terms_pre" = "I accept the ";
+"accept_terms_post" = ".";
+"terms_of_use_title" = "Terms of Use";
+"terms_of_use_content" = "1. Acceptance\nBy using Sub Tracker, you agree to these terms.\n\n2. Service Scope\nThe application is a tool to help you track your subscriptions. It is not financial advice.\n\n3. User Responsibility\nYou are responsible for the security of your account information and the accuracy of the data you add.\n\n4. Changes\nWe reserve the right to change app features and these terms at any time.\n\n5. Termination\nWe may terminate your access to the service in case of violation of the terms.";
+"understood" = "Understood";
+"privacy_dialog_content" = "Last Updated: February 20, 2026\n\n1. Introduction\nWe value the privacy of your data.\n\n2. Collected Data\nSubscription information, usage preferences, and basic device information are processed.\n\n3. Data Use\nYour data is only used to send reminders and improve app performance.\n\n4. Data Security\nYour data is protected with industry-standard encryption methods.\n\n5. Contact\nFor questions: gokhanaytekinn@yandex.com";
+"privacy_policy_title" = "Privacy Policy";
+
+/* Forgot Password Screens */
+"forgot_password_desc" = "Enter your registered email address to reset your password. We will send you a verification code.";
+"email_address_label" = "Email Address";
+"send_code" = "Send Code";
+"back_to_login" = "Back to login";
+"verify_code_title" = "Verify Code";
+"verify_code_desc" = "Enter the 6-digit verification code we sent to %@.";
+"verify_and_continue" = "Verify and Continue";
+"reset_password_title" = "Create New Password";
+"reset_password_desc" = "Please set a strong new password for your account.";
+"new_password_label" = "New Password";
+"confirm_password_label" = "Confirm Password";
+"min_6_chars" = "At least 6 characters";
+"passwords_match" = "Passwords match";
+"update_password" = "Update Password";
+
+/* Settings */
+"settings" = "Settings";
+"account" = "ACCOUNT";
+"application" = "APPLICATION";
+"support" = "SUPPORT";
+"membership_type" = "Membership Type";
+"free_plan" = "Free Plan";
+"premium_plan" = "Premium Plan";
+"notifications" = "Notifications";
+"currency" = "Currency";
+"dark_mode" = "Dark Mode";
+"language" = "Language";
+"help_center" = "Help Center";
+"logout" = "Logout";
+"version" = "Version %@";
+"select_language" = "Select Language";
+"select_currency" = "Select Currency";
+"delete_account" = "Delete Account";
+"delete_account_confirm_title" = "Delete Account";
+"delete_account_confirm_desc" = "Are you sure you want to completely delete your account and all associated data? This action cannot be undone.";
+
+/* Subscriptions */
+"subscriptions" = "Subscriptions";
+"active" = "Active";
+"suspicious" = "Suspicious";
+"cancelled" = "Cancelled";
+"add_subscription" = "Add Subscription";
+"edit_subscription" = "Edit Subscription";
+"subscription_details" = "Subscription Details";
+"service_name" = "Service Name";
+"service_name_placeholder" = "e.g. Netflix";
+"amount" = "Amount";
+"billing_cycle" = "Billing Cycle";
+"category" = "Category";
+"reminder" = "Reminder";
+"reminder_desc" = "Notify 1 day before payment";
+"set_reminder" = "Reminder On";
+"turn_off_reminder" = "Reminder Off";
+"billing_monthly_label" = "Monthly";
+"billing_yearly_label" = "Yearly";
+"billing_weekly_label" = "Weekly";
+"payment_recurrence_day" = "Payment Recurrence Day";
+"payment_recurrence_day_month" = "Payment Recurrence Day and Month";
+"cancel_subscription" = "Cancel Subscription";
+"cancel_subscription_btn" = "Cancel Subscription";
+"delete_subscription" = "Delete Subscription";
+"delete_subscription_confirm_desc" = "Are you sure you want to completely delete this subscription and all associated data? This action cannot be undone.";
+"reactivate_subscription" = "Reactivate Subscription";
+"no_active_subscriptions" = "No active subscriptions found";
+"no_suspicious_subscriptions" = "No suspicious subscriptions found";
+"no_cancelled_subscriptions" = "No cancelled subscriptions found";
+"days_left_for_renewal" = "%d days left until next renewal";
+"subscription_id_not_found" = "Subscription ID not found";
+"participants" = "Participants";
+"joint_users" = "Joint Users";
+"add_email_placeholder" = "Add email address";
+"period_monthly" = "month";
+"no_transactions" = "No transactions yet";
+"transaction_history_title" = "Transaction History";
+
+/* Categories */
+"category_streaming" = "Movie & TV & Music";
+"category_gaming" = "Gaming";
+"category_software" = "Software";
+"category_shopping" = "Shopping";
+"category_other" = "Other";
+"category_entertainment" = "Entertainment";
+"category_music" = "Music";
+"category_sports" = "Sports & Health";
+"category_education" = "Education";
+"category_cloud" = "Cloud & Productivity";
+"category_ecommerce" = "E-commerce";
+"category_news" = "News & Publishing";
+"category_transport" = "Transport";
+"category_finance" = "Finance";
+"category_technology" = "Technology";
+
+/* Search */
+"search" = "Search";
+"search_subscriptions_placeholder" = "Search subscriptions...";
+
+/* Premium */
+"upgrade_to_premium" = "Upgrade to Premium";
+"go_premium" = "Go Premium";
+"premium_desc" = "Use all advanced features and start saving more.";
+"premium_feature_1" = "Unlimited Subscriptions";
+"premium_feature_1_desc" = "Add as many subscriptions as you want";
+"premium_feature_2" = "Advanced Analytics";
+"premium_feature_2_desc" = "Full insights into your spending";
+"premium_feature_3" = "Smart Reminders";
+"premium_feature_3_desc" = "Never miss a payment date";
+"premium_feature_4" = "Joint Tracking";
+"premium_feature_4_desc" = "Share and track subscriptions with others";
+
+/* Help Center */
+"help_center_title" = "Help Center";
+"help_search_placeholder" = "How can we help you?";
+"popular_questions" = "Popular Questions";
+"how_to_add" = "How to add?";
+"how_to_add_desc" = "Click the plus icon to add a new service.";
+"cancel_anytime" = "Cancel Anytime";
+"cancel_anytime_desc" = "Manage subscriptions through the app details.";
+"faq_q1" = "How to cancel a subscription?";
+"faq_a1" = "Go to the subscription details page and click 'Cancel Subscription' at the bottom. This action only ends the tracking within the app.";
+"faq_q2" = "Is my data secure?";
+"faq_a2" = "Yes, all your data is stored encrypted. Sub Tracker does not share your personal data with third parties.";
+"faq_q3" = "How do I connect my bank account?";
+"faq_a3" = "Our application currently supports manual entries. Bank scanning features have been removed for security reasons.";
+"faq_q4" = "Can I get a refund?";
+"faq_a4" = "App Store policies apply to in-app purchases. You can make your refund requests through the App Store.";
+"faq_q5" = "Reminders are not working, what should I do?";
+"faq_a5" = "Make sure the app's notification permissions are enabled in Settings. Also, check that battery saver mode is not blocking notifications.";
+"faq_q6" = "What is a suspicious transaction notification?";
+"faq_a6" = "The app warns you when it detects payments outside your normal spending patterns. You can review these on the 'Suspicious Transactions' screen.";
+
+/* Privacy Policy */
+"privacy_last_updated" = "Last Updated: February 20, 2026";
+"privacy_title_1" = "1. Introduction";
+"privacy_content_1" = "As Sub Tracker, we value your privacy. This Privacy Policy explains how your data is collected, used, and protected.";
+"privacy_title_2" = "2. Collected Data";
+"privacy_content_2" = "Our application may collect the following data:\n\n• Subscription Information: Name, price, and payment dates.\n• Usage Data: In-app interactions and preferences.\n• Device Information: Basic device identifiers.";
+"privacy_title_3" = "3. Use of Data";
+"privacy_content_3" = "The collected data is used for:\n\n• Tracking your subscriptions.\n• Sending reminder notifications.\n• Improving app performance.";
+"privacy_title_4" = "4. Data Security";
+"privacy_content_4" = "Your personal data is stored securely. Data on our servers is protected with industry-standard encryption. Your data is never sold or shared without permission.";
+"privacy_title_5" = "5. Permissions";
+"privacy_content_5" = "The application may request notification permission for subscription reminders.";
+"privacy_title_6" = "6. Contact";
+"privacy_content_6" = "For questions: gokhanaytekinn@yandex.com";
+
+/* Validation Errors */
+"error_name_required" = "Name is required";
+"error_amount_required" = "Amount is required";
+"error_amount_invalid" = "Please enter a valid amount";
+"error_email_required" = "Email is required";
+"error_email_invalid" = "Please enter a valid email";
+"error_password_required" = "Password is required";
+"error_password_short" = "Password must be at least 6 characters";
+"error_passwords_do_not_match" = "Passwords do not match";

@@ -1,0 +1,245 @@
+/* Uygulama Adı */
+"app_name" = "Sub Tracker";
+
+/* Genel */
+"back" = "Geri";
+"save" = "Kaydet";
+"cancel" = "İptal";
+"skip" = "Atla";
+"continue_btn" = "Devam Et";
+"get_started" = "Başla";
+"show_password" = "Şifreyi göster";
+"hide_password" = "Şifreyi gizle";
+"unknown_error" = "Bilinmeyen hata";
+"menu_add_manually" = "Manuel Ekle";
+"close" = "Kapat";
+"error" = "Hata";
+"success" = "Başarılı";
+"loading" = "Yükleniyor…";
+"try_again" = "Tekrar Dene";
+"no_results" = "Sonuç bulunamadı";
+"no_results_found" = "Sonuç bulunamadı";
+"results" = "sonuç";
+"or" = "veya";
+"and" = " ve ";
+"confirm" = "Onayla";
+"reject" = "Reddet";
+"delete" = "Sil";
+"remove" = "Kaldır";
+"add" = "Ekle";
+"edit" = "Düzenle";
+"save_changes" = "Değişiklikleri Kaydet";
+"done" = "Tamam";
+"next" = "İleri";
+"previous" = "Geri";
+"finish" = "Bitir";
+"retry" = "Tekrar Dene";
+"transaction" = "İşlem";
+"today" = "Bugün";
+"tomorrow" = "Yarın";
+"days_left" = "gün kaldı";
+
+/* Onboarding */
+"onboarding_title_1" = "Aboneliklerini";
+"onboarding_title_2" = "Takip Et";
+"onboarding_desc_1" = "Tüm aboneliklerini tek bir yerden görüntüle ve kontrol et. Bir daha ödemeyi asla kaçırma.";
+"onboarding_title_3" = "Gereksiz Harcamalara Son Ver";
+"onboarding_desc_3" = "Unutulan abonelikleri iptal et, ödeme tarihlerinden önce bildirim al.";
+"onboarding_security" = "Uçtan uca şifreli ve güvenli";
+
+/* Dashboard */
+"dashboard" = "Özet";
+"dashboard_title" = "Gösterge Paneli";
+"hello_user" = "Merhaba, %@";
+"total_monthly" = "Bu Ayki Toplam";
+"vs_last_month" = "geçen aya göre";
+"most_expensive" = "En Pahalı Abonelikler";
+"view_all" = "Tümünü Gör";
+"view_all_subscriptions" = "Tüm Abonelikleri Gör";
+"upcoming_payments" = "Yaklaşan Ödemeler";
+"no_upcoming_payments" = "Önümüzdeki 10 gün için yaklaşan ödeme yok";
+"guest_user" = "Misafir Kullanıcı";
+"not_logged_in" = "Giriş yapılmadı";
+
+/* Auth */
+"login" = "Giriş Yap";
+"register" = "Kayıt Ol";
+"email" = "E-posta";
+"password" = "Şifre";
+"name" = "İsim";
+"full_name" = "Ad Soyad";
+"full_name_placeholder" = "örn. Ahmet Yılmaz";
+"forgot_password" = "Şifremi Unuttum?";
+"no_account_prompt" = "Hesabın yok mu? ";
+"already_have_account_prompt" = "Zaten hesabın var mı? ";
+"welcome_back" = "Tekrar Hoş Geldin";
+"login_desc" = "Aboneliklerini takip etmeye ve tasarruf etmeye hemen başla.";
+"email_placeholder" = "email@example.com";
+"password_placeholder" = "••••••••";
+"register_desc" = "Aboneliklerini yönetmeye ve tasarruf etmeye başla.";
+"google_sign_in_failed" = "Google girişi başarısız (%@)";
+
+/* Şartlar & Gizlilik */
+"accept_terms_pre" = "";
+"accept_terms_post" = "'nı kabul ediyorum.";
+"terms_of_use_title" = "Kullanım Koşulları";
+"terms_of_use_content" = "1. Kabul\nSub Tracker'ı kullanarak bu koşulları kabul etmiş olursunuz.\n\n2. Hizmet Kapsamı\nUygulama, aboneliklerinizi takip etmenize yardımcı olan bir araçtır. Mali tavsiye niteliğinde değildir.\n\n3. Kullanıcı Sorumluluğu\nHesap bilgilerinizin güvenliği ve eklediğiniz verilerin doğruluğu sizin sorumluluğunuzdadır.\n\n4. Değişiklikler\nUygulama özelliklerini ve bu koşulları istediğimiz zaman değiştirme hakkını saklı tutarız.\n\n5. Sonlandırma\nKoşulların ihlali durumunda hizmete erişiminizi sonlandırabiliriz.";
+"understood" = "Anladım";
+"privacy_dialog_content" = "Son Güncelleme: 20 Şubat 2026\n\n1. Giriş\nVerilerinizin gizliliğine önem veriyoruz.\n\n2. Toplanan Veriler\nAbonelik bilgileri, kullanım tercihleri ve temel cihaz bilgileri işlenmektedir.\n\n3. Veri Kullanımı\nVerileriniz yalnızca hatırlatma göndermek ve uygulama performansını artırmak için kullanılır.\n\n4. Veri Güvenliği\nVerileriniz endüstri standardı şifreleme yöntemleri ile korunmaktadır.\n\n5. İletişim\nSorularınız için: gokhanaytekinn@yandex.com";
+"privacy_policy_title" = "Gizlilik Politikası";
+
+/* Şifre Sıfırlama */
+"forgot_password_desc" = "Şifrenizi sıfırlamak için kayıtlı e-posta adresinizi girin. Size bir doğrulama kodu göndereceğiz.";
+"email_address_label" = "E-posta Adresi";
+"send_code" = "Kod Gönder";
+"back_to_login" = "Girişe dön";
+"verify_code_title" = "Kodu Doğrula";
+"verify_code_desc" = "%@ adresine gönderdiğimiz 6 haneli doğrulama kodunu girin.";
+"verify_and_continue" = "Doğrula ve Devam Et";
+"reset_password_title" = "Yeni Şifre Oluştur";
+"reset_password_desc" = "Hesabınız için güçlü bir yeni şifre belirleyin.";
+"new_password_label" = "Yeni Şifre";
+"confirm_password_label" = "Şifreyi Onayla";
+"min_6_chars" = "En az 6 karakter";
+"passwords_match" = "Şifreler eşleşiyor";
+"update_password" = "Şifreyi Güncelle";
+
+/* Ayarlar */
+"settings" = "Ayarlar";
+"account" = "HESAP";
+"application" = "UYGULAMA";
+"support" = "DESTEK";
+"membership_type" = "Üyelik Türü";
+"free_plan" = "Ücretsiz Plan";
+"premium_plan" = "Premium Plan";
+"notifications" = "Bildirimler";
+"currency" = "Para Birimi";
+"dark_mode" = "Karanlık Mod";
+"language" = "Dil";
+"help_center" = "Yardım Merkezi";
+"logout" = "Çıkış Yap";
+"version" = "Sürüm %@";
+"select_language" = "Dil Seçin";
+"select_currency" = "Para Birimi Seçin";
+"delete_account" = "Hesabı Sil";
+"delete_account_confirm_title" = "Hesabı Sil";
+"delete_account_confirm_desc" = "Hesabınızı ve tüm ilişkili verileri tamamen silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+
+/* Abonelikler */
+"subscriptions" = "Abonelikler";
+"active" = "Aktif";
+"suspicious" = "Şüpheli";
+"cancelled" = "İptal Edildi";
+"add_subscription" = "Abonelik Ekle";
+"edit_subscription" = "Abonelik Düzenle";
+"subscription_details" = "Abonelik Detayları";
+"service_name" = "Hizmet Adı";
+"service_name_placeholder" = "örn. Netflix";
+"amount" = "Tutar";
+"billing_cycle" = "Fatura Döngüsü";
+"category" = "Kategori";
+"reminder" = "Hatırlatıcı";
+"reminder_desc" = "Ödemeden 1 gün önce bildir";
+"set_reminder" = "Hatırlatıcı Açık";
+"turn_off_reminder" = "Hatırlatıcı Kapalı";
+"billing_monthly_label" = "Aylık";
+"billing_yearly_label" = "Yıllık";
+"billing_weekly_label" = "Haftalık";
+"payment_recurrence_day" = "Ödeme Tekrar Günü";
+"payment_recurrence_day_month" = "Ödeme Tekrar Günü ve Ayı";
+"cancel_subscription" = "Aboneliği İptal Et";
+"cancel_subscription_btn" = "Aboneliği İptal Et";
+"delete_subscription" = "Aboneliği Sil";
+"delete_subscription_confirm_desc" = "Bu aboneliği ve tüm ilişkili verileri tamamen silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.";
+"reactivate_subscription" = "Aboneliği Yeniden Etkinleştir";
+"no_active_subscriptions" = "Aktif abonelik bulunamadı";
+"no_suspicious_subscriptions" = "Şüpheli abonelik bulunamadı";
+"no_cancelled_subscriptions" = "İptal edilmiş abonelik bulunamadı";
+"days_left_for_renewal" = "Yenilemeye %d gün kaldı";
+"subscription_id_not_found" = "Abonelik bulunamadı";
+"participants" = "Katılımcılar";
+"joint_users" = "Ortak Kullanıcılar";
+"add_email_placeholder" = "E-posta adresi ekle";
+"period_monthly" = "ay";
+"no_transactions" = "Henüz işlem yok";
+"transaction_history_title" = "İşlem Geçmişi";
+
+/* Kategoriler */
+"category_streaming" = "Film & Dizi & Müzik";
+"category_gaming" = "Oyun";
+"category_software" = "Yazılım";
+"category_shopping" = "Alışveriş";
+"category_other" = "Diğer";
+"category_entertainment" = "Eğlence";
+"category_music" = "Müzik";
+"category_sports" = "Spor & Sağlık";
+"category_education" = "Eğitim";
+"category_cloud" = "Bulut & Verimlilik";
+"category_ecommerce" = "E-ticaret";
+"category_news" = "Haber & Yayıncılık";
+"category_transport" = "Ulaşım";
+"category_finance" = "Finans";
+"category_technology" = "Teknoloji";
+
+/* Arama */
+"search" = "Ara";
+"search_subscriptions_placeholder" = "Abonelik ara...";
+
+/* Premium */
+"upgrade_to_premium" = "Premium'a Yükselt";
+"go_premium" = "Premium'a Geç";
+"premium_desc" = "Tüm gelişmiş özellikleri kullanın ve daha fazla tasarruf edin.";
+"premium_feature_1" = "Sınırsız Abonelik";
+"premium_feature_1_desc" = "İstediğiniz kadar abonelik ekleyin";
+"premium_feature_2" = "Gelişmiş Analitik";
+"premium_feature_2_desc" = "Harcamalarınız hakkında tam bilgi";
+"premium_feature_3" = "Akıllı Hatırlatıcılar";
+"premium_feature_3_desc" = "Bir ödeme tarihini asla kaçırmayın";
+"premium_feature_4" = "Ortak Takip";
+"premium_feature_4_desc" = "Abonelikleri başkalarıyla paylaşın ve takip edin";
+
+/* Yardım Merkezi */
+"help_center_title" = "Yardım Merkezi";
+"help_search_placeholder" = "Size nasıl yardımcı olabiliriz?";
+"popular_questions" = "Popüler Sorular";
+"how_to_add" = "Nasıl eklerim?";
+"how_to_add_desc" = "Yeni bir hizmet eklemek için artı simgesine tıklayın.";
+"cancel_anytime" = "İstediğiniz Zaman İptal Edin";
+"cancel_anytime_desc" = "Abonelikleri uygulama detayları üzerinden yönetin.";
+"faq_q1" = "Abonelik nasıl iptal edilir?";
+"faq_a1" = "Abonelik detay sayfasına gidin ve alttaki 'Aboneliği İptal Et' düğmesine tıklayın. Bu işlem yalnızca uygulama içindeki takibi sonlandırır.";
+"faq_q2" = "Verilerim güvende mi?";
+"faq_a2" = "Evet, tüm verileriniz şifreli olarak saklanır. Sub Tracker kişisel verilerinizi üçüncü taraflarla paylaşmaz.";
+"faq_q3" = "Banka hesabımı nasıl bağlarım?";
+"faq_a3" = "Uygulamamız şu anda manuel girişleri desteklemektedir. Banka tarama özellikleri güvenlik nedeniyle kaldırılmıştır.";
+"faq_q4" = "İade alabilir miyim?";
+"faq_a4" = "Uygulama içi satın almalar için App Store politikaları geçerlidir. İade taleplerinizi App Store üzerinden yapabilirsiniz.";
+"faq_q5" = "Hatırlatıcılar çalışmıyor, ne yapmalıyım?";
+"faq_a5" = "Ayarlar'da uygulamanın bildirim izinlerinin etkin olduğundan emin olun. Ayrıca pil tasarrufu modunun bildirimleri engellemediğini kontrol edin.";
+"faq_q6" = "Şüpheli işlem bildirimi nedir?";
+"faq_a6" = "Uygulama, normal harcama kalıplarınızın dışında ödemeler tespit ettiğinde sizi uyarır. Bunları 'Şüpheli İşlemler' ekranında inceleyebilirsiniz.";
+
+/* Gizlilik Politikası */
+"privacy_last_updated" = "Son Güncelleme: 20 Şubat 2026";
+"privacy_title_1" = "1. Giriş";
+"privacy_content_1" = "Sub Tracker olarak gizliliğinize önem veriyoruz. Bu Gizlilik Politikası, verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.";
+"privacy_title_2" = "2. Toplanan Veriler";
+"privacy_content_2" = "Uygulamamız aşağıdaki verileri toplayabilir:\n\n• Abonelik Bilgileri: Ad, fiyat ve ödeme tarihleri.\n• Kullanım Verileri: Uygulama içi etkileşimler ve tercihler.\n• Cihaz Bilgileri: Temel cihaz tanımlayıcıları.";
+"privacy_title_3" = "3. Veri Kullanımı";
+"privacy_content_3" = "Toplanan veriler şu amaçlarla kullanılır:\n\n• Aboneliklerinizi takip etmek.\n• Hatırlatma bildirimleri göndermek.\n• Uygulama performansını artırmak.";
+"privacy_title_4" = "4. Veri Güvenliği";
+"privacy_content_4" = "Kişisel verileriniz güvenli bir şekilde saklanır. Sunucularımızdaki veriler endüstri standardı şifreleme ile korunur. Verileriniz asla izinsiz satılmaz veya paylaşılmaz.";
+"privacy_title_5" = "5. İzinler";
+"privacy_content_5" = "Uygulama, abonelik hatırlatıcıları için bildirim izni isteyebilir.";
+"privacy_title_6" = "6. İletişim";
+"privacy_content_6" = "Sorularınız için: gokhanaytekinn@yandex.com";
+
+/* Doğrulama Hataları */
+"error_name_required" = "İsim zorunludur";
+"error_amount_required" = "Tutar zorunludur";
+"error_amount_invalid" = "Lütfen geçerli bir tutar girin";
+"error_email_required" = "E-posta zorunludur";
+"error_email_invalid" = "Lütfen geçerli bir e-posta girin";
+"error_password_required" = "Şifre zorunludur";
+"error_password_short" = "Şifre en az 6 karakter olmalıdır";
+"error_passwords_do_not_match" = "Şifreler eşleşmiyor";
