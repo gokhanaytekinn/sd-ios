@@ -86,13 +86,13 @@ struct SubscriptionCard: View {
     }
     
     private var categoryText: String {
-        let localizedCategory = NSLocalizedString(subscription.category ?? "category_other", comment: "")
+        let localizedCategory = (subscription.category ?? "category_other").localized()
         let cycleText: String
         switch subscription.billingCycle {
-        case .monthly: cycleText = NSLocalizedString("billing_monthly_label", comment: "")
-        case .yearly: cycleText = NSLocalizedString("billing_yearly_label", comment: "")
-        case .weekly: cycleText = NSLocalizedString("billing_weekly_label", comment: "")
-        case .quarterly: cycleText = NSLocalizedString("period_monthly", comment: "")
+        case .monthly: cycleText = "billing_monthly_label".localized()
+        case .yearly: cycleText = "billing_yearly_label".localized()
+        case .weekly: cycleText = "billing_weekly_label".localized()
+        case .quarterly: cycleText = "period_monthly".localized()
         }
         
         let category = subscription.category ?? "category_other"
@@ -104,9 +104,9 @@ struct SubscriptionCard: View {
     
     private func daysText(_ days: Int) -> String {
         switch days {
-        case 0: return NSLocalizedString("today", comment: "")
-        case 1: return NSLocalizedString("tomorrow", comment: "")
-        default: return "\(days) \(NSLocalizedString("days_left", comment: ""))"
+        case 0: return "today".localized()
+        case 1: return "tomorrow".localized()
+        default: return "\(days) \("days_left".localized())"
         }
     }
     
@@ -130,7 +130,7 @@ struct ErrorDialog: View {
                 .font(.system(size: 40))
                 .foregroundColor(.errorColor)
             
-            Text(NSLocalizedString("error", comment: ""))
+            Text("error".localized())
                 .font(.system(size: 18, weight: .bold))
             
             Text(message)
@@ -139,7 +139,7 @@ struct ErrorDialog: View {
                 .foregroundColor(.secondary)
             
             Button(action: onDismiss) {
-                Text(NSLocalizedString("close", comment: ""))
+                Text("close".localized())
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.primaryBlue)
             }

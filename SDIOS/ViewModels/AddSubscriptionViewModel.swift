@@ -29,17 +29,18 @@ class AddSubscriptionViewModel: ObservableObject {
         let icon: String?
         let category: String
         let defaultCost: Double?
+        let color: Color
     }
     
     static let shortcuts: [QuickShortcut] = [
-        QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil),
-        QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil),
-        QuickShortcut(name: "YouTube", icon: "youtube", category: "category_streaming", defaultCost: nil),
-        QuickShortcut(name: "Amazon", icon: "amazon", category: "category_shopping", defaultCost: nil),
-        QuickShortcut(name: "Google", icon: "google", category: "category_software", defaultCost: nil),
-        QuickShortcut(name: "HBO Max", icon: "hbomax", category: "category_streaming", defaultCost: nil),
-        QuickShortcut(name: "Cursor", icon: "cursor", category: "category_software", defaultCost: nil),
-        QuickShortcut(name: "Claude", icon: "claude", category: "category_software", defaultCost: nil),
+        QuickShortcut(name: "Google", icon: "google", category: "category_software", defaultCost: nil, color: Color(hex: "4285F4")),
+        QuickShortcut(name: "Cursor", icon: "cursor", category: "category_software", defaultCost: nil, color: Color(hex: "1A1A1A")),
+        QuickShortcut(name: "Claude", icon: "claude", category: "category_software", defaultCost: nil, color: Color(hex: "D97757")),
+        QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
+        QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
+        QuickShortcut(name: "YouTube", icon: "youtube", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF0000")),
+        QuickShortcut(name: "Amazon", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "00A8E1")),
+        QuickShortcut(name: "HBO Max", icon: "hbomax", category: "category_streaming", defaultCost: nil, color: Color(hex: "5A2E81")),
     ]
     
     static let categories: [(key: String, label: String)] = [
@@ -154,20 +155,20 @@ class AddSubscriptionViewModel: ObservableObject {
         var isValid = true
         
         if name.trimmingCharacters(in: .whitespaces).isEmpty {
-            nameError = NSLocalizedString("error_name_required", comment: "")
+            nameError = "error_name_required".localized()
             isValid = false
         }
         
         if amount.trimmingCharacters(in: .whitespaces).isEmpty {
-            amountError = NSLocalizedString("error_amount_required", comment: "")
+            amountError = "error_amount_required".localized()
             isValid = false
         } else if Double(amount.replacingOccurrences(of: ",", with: ".")) == nil {
-            amountError = NSLocalizedString("error_amount_invalid", comment: "")
+            amountError = "error_amount_invalid".localized()
             isValid = false
         }
         
         if selectedCategory.isEmpty {
-            categoryError = NSLocalizedString("category", comment: "")
+            categoryError = "category".localized()
             isValid = false
         }
         

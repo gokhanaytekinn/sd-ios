@@ -15,7 +15,7 @@ struct LoginScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             // Top Bar
-            Text(NSLocalizedString("app_name", comment: ""))
+            Text("app_name".localized())
                 .font(.system(size: 18, weight: .bold))
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                 .frame(maxWidth: .infinity)
@@ -27,13 +27,13 @@ struct LoginScreen: View {
                     Spacer().frame(height: 24)
                     
                     // Headline
-                    Text(NSLocalizedString("welcome_back", comment: ""))
+                    Text("welcome_back".localized())
                         .font(.system(size: 32, weight: .bold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                     
                     Spacer().frame(height: 8)
                     
-                    Text(NSLocalizedString("login_desc", comment: ""))
+                    Text("login_desc".localized())
                         .font(.system(size: 16))
                         .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                         .lineSpacing(4)
@@ -42,8 +42,8 @@ struct LoginScreen: View {
                     
                     // Email Field
                     SDOutlinedTextField(
-                        title: NSLocalizedString("email", comment: ""),
-                        placeholder: NSLocalizedString("email_placeholder", comment: ""),
+                        title: "email".localized(),
+                        placeholder: "email_placeholder".localized(),
                         text: $email,
                         error: authViewModel.emailError,
                         keyboardType: .emailAddress
@@ -54,8 +54,8 @@ struct LoginScreen: View {
                     
                     // Password Field
                     SDOutlinedTextField(
-                        title: NSLocalizedString("password", comment: ""),
-                        placeholder: NSLocalizedString("password_placeholder", comment: ""),
+                        title: "password".localized(),
+                        placeholder: "password_placeholder".localized(),
                         text: $password,
                         error: authViewModel.passwordError,
                         isSecure: true
@@ -68,7 +68,7 @@ struct LoginScreen: View {
                     HStack {
                         Spacer()
                         Button(action: onNavigateToForgotPassword) {
-                            Text(NSLocalizedString("forgot_password", comment: ""))
+                            Text("forgot_password".localized())
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.primaryBlue)
                         }
@@ -86,7 +86,7 @@ struct LoginScreen: View {
                 VStack(spacing: 16) {
                     // Login Button
                     SDButton(
-                        title: NSLocalizedString("login", comment: ""),
+                        title: "login".localized(),
                         isLoading: authViewModel.isLoading,
                         isEnabled: !email.isEmpty && !password.isEmpty
                     ) {
@@ -95,12 +95,12 @@ struct LoginScreen: View {
                     
                     // Register Link
                     HStack(spacing: 0) {
-                        Text(NSLocalizedString("no_account_prompt", comment: ""))
+                        Text("no_account_prompt".localized())
                             .font(.system(size: 14))
                             .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                         
                         Button(action: onNavigateToRegister) {
-                            Text(NSLocalizedString("register", comment: ""))
+                            Text("register".localized())
                                 .font(.system(size: 14, weight: .bold))
                                 .foregroundColor(.primaryBlue)
                         }
@@ -114,11 +114,11 @@ struct LoginScreen: View {
             .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-        .alert(NSLocalizedString("error", comment: ""), isPresented: Binding(
+        .alert("error".localized(), isPresented: Binding(
             get: { authViewModel.error != nil },
             set: { if !$0 { authViewModel.clearGeneralError() } }
         )) {
-            Button(NSLocalizedString("close", comment: ""), role: .cancel) {
+            Button("close".localized(), role: .cancel) {
                 authViewModel.clearGeneralError()
             }
         } message: {

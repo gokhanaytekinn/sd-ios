@@ -64,12 +64,10 @@ struct SubscriptionDetailsScreen: View {
                         }
                         
                         // Reminder Toggle Button
-                        Button(action: { 
-                            // Toggle logic (simplified)
-                        }) {
+                        Button(action: toggleReminder) {
                             HStack(spacing: 8) {
                                 Image(systemName: sub.reminderEnabled ? "bell.fill" : "bell.slash.fill")
-                                Text(NSLocalizedString("reminder", comment: ""))
+                                Text("reminder".localized())
                             }
                             .font(.system(size: 14, weight: .bold))
                             .foregroundColor(.white)
@@ -93,7 +91,7 @@ struct SubscriptionDetailsScreen: View {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(sub.name)
                                         .font(.system(size: 16, weight: .bold))
-                                    Text("\(NSLocalizedString(sub.category ?? "category_other", comment: "")) • \(billingCycleText(sub.billingCycle))")
+                                    Text("\((sub.category ?? "category_other").localized()) • \(billingCycleText(sub.billingCycle))")
                                         .font(.system(size: 12))
                                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 }
@@ -117,7 +115,7 @@ struct SubscriptionDetailsScreen: View {
                                 let progress = max(0.0, min(1.0, 1.0 - (Double(days) / totalDays)))
                                 
                                 VStack(alignment: .leading, spacing: 8) {
-                                    Text(String(format: NSLocalizedString("days_left_for_renewal", comment: ""), days))
+                                    Text(String(format: "days_left_for_renewal".localized(), days))
                                         .font(.system(size: 14, weight: .medium))
                                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                                     
@@ -142,38 +140,49 @@ struct SubscriptionDetailsScreen: View {
                         
                         // Info Grid
                         HStack(spacing: 16) {
-                            gridBlock(title: NSLocalizedString("subscription_price", comment: ""), value: CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
-                            gridBlock(title: NSLocalizedString("renewal_cycle", comment: ""), value: nextRenewalDayMonth(sub))
+                            gridBlock(title: "subscription_price".localized(), value: CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
+                            gridBlock(title: "renewal_cycle".localized(), value: nextRenewalDayMonth(sub))
                         }
                         
                         // Actions Group
                         HStack(spacing: 12) {
-                            actionButton(icon: "bell.slash", title: NSLocalizedString("turn_off", comment: ""), color: Color.appOnSurfaceVariant(for: colorScheme)) {
-                                // Action
+                            if sub.status != 3 { // Not cancelled
+                                actionButton(icon: sub.reminderEnabled ? "bell.slash" : "bell", 
+                                           title: sub.reminderEnabled ? "turn_off".localized() : "set_reminder".localized(), 
+                                           color: Color.appOnSurfaceVariant(for: colorScheme), 
+                                           action: toggleReminder)
+                            } else {
+                                actionButton(icon: "arrow.clockwise", 
+                                           title: "reactivate_subscription".localized(), 
+                                           color: .primaryBlue, 
+                                           action: reactivateSubscription)
                             }
-                            actionButton(icon: "pencil", title: NSLocalizedString("edit_plan", comment: ""), color: Color.appOnBackground(for: colorScheme)) {
+                            
+                            actionButton(icon: "pencil", title: "edit_plan".localized(), color: Color.appOnBackground(for: colorScheme)) {
                                 onEdit(sub)
                             }
                         }
                         
                         // Cancel Button
-                        Button(action: { showCancelDialog = true }) {
-                            HStack {
-                                Image(systemName: "xmark.circle")
-                                Text(NSLocalizedString("cancel_subscription_btn", comment: ""))
+                        if sub.status != 3 {
+                            Button(action: { showCancelDialog = true }) {
+                                HStack {
+                                    Image(systemName: "xmark.circle")
+                                    Text("cancel_subscription_btn".localized())
+                                }
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.errorColor)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 52)
+                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.errorColor.opacity(0.5), lineWidth: 1))
                             }
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.errorColor)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 52)
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.errorColor.opacity(0.5), lineWidth: 1))
                         }
                         
                         // Delete Button
                         Button(action: { showDeleteDialog = true }) {
                             HStack(spacing: 8) {
                                 Image(systemName: "trash")
-                                Text(NSLocalizedString("delete_subscription", comment: ""))
+                                Text("delete_subscription".localized())
                             }
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.errorColor)
@@ -186,28 +195,26 @@ struct SubscriptionDetailsScreen: View {
                 }
             } else {
                 Spacer()
-                Text(NSLocalizedString("subscription_id_not_found", comment: ""))
+                Text("subscription_id_not_found".localized())
                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                 Spacer()
             }
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .onAppear { loadSubscription() }
-        .alert(NSLocalizedString("cancel_subscription", comment: ""), isPresented: $showCancelDialog) {
-            Button(NSLocalizedString("cancel", comment: ""), role: .cancel) {}
-            Button(NSLocalizedString("confirm", comment: ""), role: .destructive) {
-                viewModel.cancelSubscription(id: subscriptionId)
-                onBack()
+        .alert("cancel_subscription".localized(), isPresented: $showCancelDialog) {
+            Button("cancel".localized(), role: .cancel) {}
+            Button("confirm".localized(), role: .destructive) {
+                cancelSubscription()
             }
         }
-        .alert(NSLocalizedString("delete_subscription", comment: ""), isPresented: $showDeleteDialog) {
-            Button(NSLocalizedString("cancel", comment: ""), role: .cancel) {}
-            Button(NSLocalizedString("delete", comment: ""), role: .destructive) {
-                viewModel.deleteSubscription(id: subscriptionId)
-                onBack()
+        .alert("delete_subscription".localized(), isPresented: $showDeleteDialog) {
+            Button("cancel".localized(), role: .cancel) {}
+            Button("delete".localized(), role: .destructive) {
+                deleteSubscription()
             }
         } message: {
-            Text(NSLocalizedString("delete_subscription_confirm_desc", comment: ""))
+            Text("delete_subscription_confirm_desc".localized())
         }
     }
     
@@ -219,6 +226,76 @@ struct SubscriptionDetailsScreen: View {
                 subscription = sub
             }
             isLoading = false
+        }
+    }
+    
+    private func toggleReminder() {
+        guard let sub = subscription else { return }
+        Task {
+            let updatedSub = Subscription(
+                id: sub.id,
+                name: sub.name,
+                cost: sub.cost,
+                currency: sub.currency,
+                billingCycle: sub.billingCycle,
+                billingDay: sub.billingDay,
+                billingMonth: sub.billingMonth,
+                category: sub.category,
+                icon: sub.icon,
+                status: sub.status,
+                isSuspicious: sub.isSuspicious,
+                tier: sub.tier,
+                reminderEnabled: !sub.reminderEnabled,
+                jointEmails: sub.jointEmails,
+                isOwner: sub.isOwner,
+                participants: sub.participants
+            )
+            
+            let request = SubscriptionUpdateRequest(
+                name: updatedSub.name,
+                icon: updatedSub.icon,
+                category: updatedSub.category,
+                tier: updatedSub.tier,
+                amount: updatedSub.cost,
+                currency: updatedSub.currency,
+                billingCycle: updatedSub.billingCycle.rawValue,
+                billingDay: updatedSub.billingDay,
+                billingMonth: updatedSub.billingMonth,
+                reminderEnabled: updatedSub.reminderEnabled,
+                jointEmails: updatedSub.jointEmails
+            )
+            
+            let result = await SubscriptionRepository.shared.updateSubscription(id: sub.id, request)
+            if case .success(let newSub) = result {
+                self.subscription = newSub
+            }
+        }
+    }
+    
+    private func cancelSubscription() {
+        Task {
+            let result = await SubscriptionRepository.shared.cancelSubscription(id: subscriptionId)
+            if case .success = result {
+                onBack()
+            }
+        }
+    }
+    
+    private func reactivateSubscription() {
+        Task {
+            let result = await SubscriptionRepository.shared.reactivateSubscription(id: subscriptionId)
+            if case .success(let newSub) = result {
+                self.subscription = newSub
+            }
+        }
+    }
+    
+    private func deleteSubscription() {
+        Task {
+            let result = await SubscriptionRepository.shared.deleteSubscription(id: subscriptionId)
+            if case .success = result {
+                onBack()
+            }
         }
     }
     
@@ -263,10 +340,10 @@ struct SubscriptionDetailsScreen: View {
     
     private func billingCycleText(_ cycle: BillingCycle) -> String {
         switch cycle {
-        case .monthly: return NSLocalizedString("billing_monthly_label", comment: "")
-        case .yearly: return NSLocalizedString("billing_yearly_label", comment: "")
-        case .weekly: return NSLocalizedString("billing_weekly_label", comment: "")
-        case .quarterly: return NSLocalizedString("period_monthly", comment: "")
+        case .monthly: return "billing_monthly_label".localized()
+        case .yearly: return "billing_yearly_label".localized()
+        case .weekly: return "billing_weekly_label".localized()
+        case .quarterly: return "period_monthly".localized()
         }
     }
 }

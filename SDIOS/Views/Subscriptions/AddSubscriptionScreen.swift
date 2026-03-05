@@ -22,8 +22,8 @@ struct AddSubscriptionScreen: View {
                 Spacer()
                 
                 Text(viewModel.isEditing ?
-                     NSLocalizedString("edit_subscription", comment: "") :
-                     NSLocalizedString("add_subscription", comment: ""))
+                     "edit_subscription".localized() :
+                     "add_subscription".localized())
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 
@@ -38,11 +38,11 @@ struct AddSubscriptionScreen: View {
                 VStack(alignment: .leading, spacing: 24) {
                     // Service Name
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("service_name", comment: ""))
+                    Text("service_name".localized())
                             .font(.system(size: 14, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
-                        TextField(NSLocalizedString("service_name_placeholder", comment: ""), text: $viewModel.name)
+                        TextField("service_name_placeholder".localized(), text: $viewModel.name)
                             .padding()
                             .background(Color.appSurface(for: colorScheme))
                             .cornerRadius(12)
@@ -55,14 +55,14 @@ struct AddSubscriptionScreen: View {
                     
                     // Category
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("category", comment: ""))
+                        Text("category".localized())
                             .font(.system(size: 14, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 8) {
                                 ForEach(AddSubscriptionViewModel.categories, id: \.key) { category in
-                                    categoryChip(NSLocalizedString(category.key, comment: ""), key: category.key)
+                                    categoryChip(category.key.localized(), key: category.key)
                                 }
                             }
                         }
@@ -77,18 +77,17 @@ struct AddSubscriptionScreen: View {
                                         VStack(spacing: 8) {
                                             ZStack {
                                                 RoundedRectangle(cornerRadius: 12)
-                                                    .fill(Color.appSurface(for: colorScheme))
+                                                    .fill(shortcut.color.opacity(0.1))
                                                     .frame(width: 56, height: 56)
-                                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
+                                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(shortcut.color.opacity(0.3), lineWidth: 1))
                                                 
-                                                if let iconName = shortcut.icon, let sfSymbol = sfSymbol(for: iconName) {
-                                                    Image(systemName: sfSymbol)
-                                                        .font(.system(size: 24))
-                                                        .foregroundColor(.primaryBlue)
+                                                if let iconName = shortcut.icon {
+                                                    BrandIconView(name: iconName, color: shortcut.color)
+                                                        .frame(width: 24, height: 24)
                                                 } else {
                                                     Text(shortcut.name.prefix(1).uppercased())
                                                         .font(.system(size: 24, weight: .bold))
-                                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                                        .foregroundColor(shortcut.color)
                                                 }
                                             }
                                             
@@ -106,7 +105,7 @@ struct AddSubscriptionScreen: View {
                     // Amount and Currency
                     HStack(alignment: .top, spacing: 12) {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(NSLocalizedString("amount", comment: ""))
+                            Text("amount".localized())
                                 .font(.system(size: 14, weight: .bold))
                             
                             TextField("0,00", text: $viewModel.amount)
@@ -115,11 +114,19 @@ struct AddSubscriptionScreen: View {
                                 .cornerRadius(12)
                                 .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
                                 .keyboardType(.decimalPad)
+                                .toolbar {
+                                    ToolbarItemGroup(placement: .keyboard) {
+                                        Spacer()
+                                        Button("done_btn".localized()) {
+                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                        }
+                                    }
+                                }
                         }
                         .frame(maxWidth: .infinity)
                         
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(NSLocalizedString("currency", comment: ""))
+                            Text("currency".localized())
                                 .font(.system(size: 14, weight: .bold))
                             
                             HStack {
@@ -137,12 +144,12 @@ struct AddSubscriptionScreen: View {
                     
                     // Period (MONTHLY / YEARLY)
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("period", comment: ""))
+                        Text("period".localized())
                             .font(.system(size: 14, weight: .bold))
                         
                         HStack(spacing: 0) {
-                            periodButton(title: NSLocalizedString("billing_monthly_label", comment: "").uppercased(), cycle: .monthly)
-                            periodButton(title: NSLocalizedString("billing_yearly_label", comment: "").uppercased(), cycle: .yearly)
+                            periodButton(title: "billing_monthly_label".localized().uppercased(), cycle: .monthly)
+                            periodButton(title: "billing_yearly_label".localized().uppercased(), cycle: .yearly)
                         }
                         .background(Color.appSurface(for: colorScheme))
                         .cornerRadius(12)
@@ -151,7 +158,7 @@ struct AddSubscriptionScreen: View {
                     
                     // Payment Recurrence Day
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("payment_recurrence_day", comment: ""))
+                        Text("payment_recurrence_day".localized())
                             .font(.system(size: 14, weight: .bold))
                         
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -175,14 +182,14 @@ struct AddSubscriptionScreen: View {
                     
                     // Reminder
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("reminder", comment: ""))
+                        Text("reminder".localized())
                             .font(.system(size: 14, weight: .bold))
                         
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(NSLocalizedString("reminder", comment: ""))
+                                Text("reminder".localized())
                                     .font(.system(size: 16, weight: .medium))
-                                Text(NSLocalizedString("notify_1_day_before", comment: ""))
+                                Text("notify_1_day_before".localized())
                                     .font(.system(size: 12))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
@@ -195,7 +202,7 @@ struct AddSubscriptionScreen: View {
                     
                     // Joint Users
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(NSLocalizedString("joint_users", comment: ""))
+                        Text("joint_users".localized())
                             .font(.system(size: 14, weight: .bold))
                         
                         // Joint users list and add field implemented here...
@@ -212,8 +219,8 @@ struct AddSubscriptionScreen: View {
                         ProgressView().tint(.white)
                     } else {
                         Text(viewModel.isEditing ?
-                            NSLocalizedString("update", comment: "") :
-                            NSLocalizedString("add_subscription", comment: ""))
+                            "update".localized() :
+                            "add_subscription_btn".localized())
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.white)
                     }
@@ -228,17 +235,18 @@ struct AddSubscriptionScreen: View {
             .padding(.vertical, 12)
             .background(Color.appBackground(for: colorScheme))
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .onAppear {
             if let sub = editSubscription {
                 viewModel.setupForEdit(subscription: sub)
             }
         }
-        .alert(NSLocalizedString("error", comment: ""), isPresented: Binding(
+        .alert("error".localized(), isPresented: Binding(
             get: { viewModel.error != nil },
             set: { if !$0 { viewModel.error = nil } }
         )) {
-            Button(NSLocalizedString("close", comment: ""), role: .cancel) { viewModel.error = nil }
+            Button("close".localized(), role: .cancel) { viewModel.error = nil }
         } message: {
             Text(viewModel.error ?? "")
         }
@@ -277,20 +285,6 @@ struct AddSubscriptionScreen: View {
             )
         }
         .buttonStyle(.plain)
-    }
-    
-    private func sfSymbol(for iconName: String) -> String? {
-        let mapping: [String: String] = [
-            "netflix": "play.square.fill",
-            "spotify": "music.note.list",
-            "youtube": "play.rectangle.fill",
-            "amazon": "cart.fill",
-            "google": "g.circle.fill",
-            "hbomax": "h.circle.fill",
-            "cursor": "cursorarrow.rays",
-            "claude": "c.circle.fill"
-        ]
-        return mapping[iconName]
     }
 }
 

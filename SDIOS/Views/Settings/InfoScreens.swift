@@ -35,7 +35,7 @@ struct HelpCenterScreen: View {
                         .clipShape(Circle())
                 }
                 Spacer()
-                Text(NSLocalizedString("help_center_title", comment: ""))
+                Text("help_center_title".localized())
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
@@ -50,7 +50,7 @@ struct HelpCenterScreen: View {
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                        TextField(NSLocalizedString("help_search_placeholder", comment: ""), text: $searchText)
+                        TextField("help_search_placeholder".localized(), text: $searchText)
                             .font(.system(size: 16))
                     }
                     .padding(16)
@@ -62,7 +62,7 @@ struct HelpCenterScreen: View {
                     )
                     
                     // Popular Questions Label
-                    Text(NSLocalizedString("popular_questions", comment: ""))
+                    Text("popular_questions".localized())
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                     
@@ -70,14 +70,14 @@ struct HelpCenterScreen: View {
                     VStack(spacing: 12) {
                         ForEach(faqs) { faq in
                             DisclosureGroup {
-                                Text(NSLocalizedString(faq.answerKey, comment: ""))
+                                Text(faq.answerKey.localized())
                                     .font(.system(size: 15))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                     .lineSpacing(4)
                                     .padding(.vertical, 12)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             } label: {
-                                Text(NSLocalizedString(faq.questionKey, comment: ""))
+                                Text(faq.questionKey.localized())
                                     .font(.system(size: 16, weight: .semibold))
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                                     .multilineTextAlignment(.leading)
@@ -138,7 +138,7 @@ struct PrivacyPolicyScreen: View {
                         .clipShape(Circle())
                 }
                 Spacer()
-                Text(NSLocalizedString("privacy_policy_title", comment: ""))
+                Text("privacy_policy_title".localized())
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
@@ -149,17 +149,17 @@ struct PrivacyPolicyScreen: View {
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    Text(NSLocalizedString("privacy_last_updated", comment: ""))
+                    Text("privacy_last_updated".localized())
                         .font(.system(size: 14))
                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                     
                     ForEach(sections) { section in
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("\(section.order). \(NSLocalizedString(section.titleKey, comment: ""))")
+                            Text("\(section.order). \(section.titleKey.localized())")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.primaryBlue)
                             
-                            Text(NSLocalizedString(section.contentKey, comment: ""))
+                            Text(section.contentKey.localized())
                                 .font(.system(size: 16))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .lineSpacing(6)
@@ -192,7 +192,7 @@ struct UpcomingSubscriptionsScreen: View {
             Color.appBackground(for: colorScheme).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                Text(NSLocalizedString("upcoming_payments", comment: ""))
+                Text("upcoming_payments".localized())
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -221,7 +221,7 @@ struct UpcomingSubscriptionsScreen: View {
                                     Image(systemName: "bell.slash")
                                         .font(.system(size: 40))
                                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                    Text(NSLocalizedString("no_upcoming_payments", comment: ""))
+                                    Text("no_upcoming_payments".localized())
                                         .font(.system(size: 16))
                                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 }

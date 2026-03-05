@@ -20,7 +20,7 @@ struct RegisterScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             // Top Bar
-            Text(NSLocalizedString("app_name", comment: ""))
+            Text("app_name".localized())
                 .font(.system(size: 18, weight: .bold))
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                 .frame(maxWidth: .infinity)
@@ -31,13 +31,13 @@ struct RegisterScreen: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Spacer().frame(height: 24)
                     
-                    Text(NSLocalizedString("register", comment: ""))
+                    Text("register".localized())
                         .font(.system(size: 32, weight: .bold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                     
                     Spacer().frame(height: 8)
                     
-                    Text(NSLocalizedString("register_desc", comment: ""))
+                    Text("register_desc".localized())
                         .font(.system(size: 16))
                         .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                         .lineSpacing(4)
@@ -46,8 +46,8 @@ struct RegisterScreen: View {
                     
                     // Full Name
                     SDOutlinedTextField(
-                        title: NSLocalizedString("full_name", comment: ""),
-                        placeholder: NSLocalizedString("full_name_placeholder", comment: ""),
+                        title: "full_name".localized(),
+                        placeholder: "full_name_placeholder".localized(),
                         text: $fullName,
                         error: authViewModel.nameError
                     )
@@ -57,8 +57,8 @@ struct RegisterScreen: View {
                     
                     // Email
                     SDOutlinedTextField(
-                        title: NSLocalizedString("email", comment: ""),
-                        placeholder: NSLocalizedString("email_placeholder", comment: ""),
+                        title: "email".localized(),
+                        placeholder: "email_placeholder".localized(),
                         text: $email,
                         error: authViewModel.emailError,
                         keyboardType: .emailAddress
@@ -69,8 +69,8 @@ struct RegisterScreen: View {
                     
                     // Password
                     SDOutlinedTextField(
-                        title: NSLocalizedString("password", comment: ""),
-                        placeholder: NSLocalizedString("password_placeholder", comment: ""),
+                        title: "password".localized(),
+                        placeholder: "password_placeholder".localized(),
                         text: $password,
                         error: authViewModel.passwordError,
                         isSecure: true
@@ -81,8 +81,8 @@ struct RegisterScreen: View {
                     
                     // Confirm Password
                     SDOutlinedTextField(
-                        title: NSLocalizedString("confirm_password_label", comment: ""),
-                        placeholder: NSLocalizedString("password_placeholder", comment: ""),
+                        title: "confirm_password_label".localized(),
+                        placeholder: "password_placeholder".localized(),
                         text: $confirmPassword,
                         error: authViewModel.confirmPasswordError,
                         isSecure: true
@@ -100,17 +100,17 @@ struct RegisterScreen: View {
                         }
                         
                         VStack(alignment: .leading) {
-                            (Text(NSLocalizedString("accept_terms_pre", comment: ""))
+                            (Text("accept_terms_pre".localized())
                                 .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                             + Text(NSLocalizedString("terms_of_use_title", comment: ""))
+                             + Text("terms_of_use_title".localized())
                                 .foregroundColor(.primaryBlue)
                                 .fontWeight(.medium)
-                             + Text(NSLocalizedString("and", comment: ""))
+                             + Text("and".localized())
                                 .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                             + Text(NSLocalizedString("privacy_policy_title", comment: ""))
+                             + Text("privacy_policy_title".localized())
                                 .foregroundColor(.primaryBlue)
                                 .fontWeight(.medium)
-                             + Text(NSLocalizedString("accept_terms_post", comment: ""))
+                             + Text("accept_terms_post".localized())
                                 .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                             )
                             .font(.system(size: 14))
@@ -127,7 +127,7 @@ struct RegisterScreen: View {
             // Sticky Footer
             VStack(spacing: 16) {
                 SDButton(
-                    title: NSLocalizedString("register", comment: ""),
+                    title: "register".localized(),
                     isLoading: authViewModel.isLoading,
                     isEnabled: termsAccepted && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && !fullName.isEmpty
                 ) {
@@ -135,12 +135,12 @@ struct RegisterScreen: View {
                 }
                 
                 HStack(spacing: 0) {
-                    Text(NSLocalizedString("already_have_account_prompt", comment: ""))
+                    Text("already_have_account_prompt".localized())
                         .font(.system(size: 14))
                         .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                     
                     Button(action: onNavigateToLogin) {
-                        Text(NSLocalizedString("login", comment: ""))
+                        Text("login".localized())
                             .font(.system(size: 14, weight: .bold))
                             .foregroundColor(.primaryBlue)
                     }
@@ -152,11 +152,11 @@ struct RegisterScreen: View {
             .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-        .alert(NSLocalizedString("error", comment: ""), isPresented: Binding(
+        .alert("error".localized(), isPresented: Binding(
             get: { authViewModel.error != nil },
             set: { if !$0 { authViewModel.clearGeneralError() } }
         )) {
-            Button(NSLocalizedString("close", comment: ""), role: .cancel) {
+            Button("close".localized(), role: .cancel) {
                 authViewModel.clearGeneralError()
             }
         } message: {
@@ -173,14 +173,14 @@ struct RegisterScreen: View {
     private var termsSheet: some View {
         NavigationStack {
             ScrollView {
-                Text(NSLocalizedString("terms_of_use_content", comment: ""))
+                Text("terms_of_use_content".localized())
                     .padding()
             }
-            .navigationTitle(NSLocalizedString("terms_of_use_title", comment: ""))
+            .navigationTitle("terms_of_use_title".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("understood", comment: "")) {
+                    Button("understood".localized()) {
                         showTermsDialog = false
                     }
                     .foregroundColor(.primaryBlue)
@@ -193,14 +193,14 @@ struct RegisterScreen: View {
     private var privacySheet: some View {
         NavigationStack {
             ScrollView {
-                Text(NSLocalizedString("privacy_dialog_content", comment: ""))
+                Text("privacy_dialog_content".localized())
                     .padding()
             }
-            .navigationTitle(NSLocalizedString("privacy_policy_title", comment: ""))
+            .navigationTitle("privacy_policy_title".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("close", comment: "")) {
+                    Button("close".localized()) {
                         showPrivacyDialog = false
                     }
                     .foregroundColor(.primaryBlue)

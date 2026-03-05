@@ -79,10 +79,10 @@ class SubscriptionRepository {
         }
     }
     
-    func cancelSubscription(id: String) async -> Result<Subscription, Error> {
+    func cancelSubscription(id: String) async -> Result<Void, Error> {
         do {
-            let response = try await api.cancelSubscription(id: id)
-            return .success(response.toSubscription())
+            try await api.cancelSubscription(id: id)
+            return .success(())
         } catch {
             return .failure(error)
         }

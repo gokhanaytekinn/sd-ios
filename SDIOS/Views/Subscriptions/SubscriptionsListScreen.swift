@@ -22,7 +22,7 @@ struct SubscriptionsListScreen: View {
                 VStack(spacing: 0) {
                     // Header
                     HStack {
-                        Text(NSLocalizedString("subscriptions", comment: ""))
+                        Text("subscriptions".localized())
                             .font(.system(size: 24, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         Spacer()
@@ -35,7 +35,7 @@ struct SubscriptionsListScreen: View {
                     // Summary Card
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(NSLocalizedString("total_monthly", comment: ""))
+                            Text("total_monthly".localized())
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             
@@ -47,7 +47,7 @@ struct SubscriptionsListScreen: View {
                         Spacer()
                         
                         VStack(alignment: .trailing, spacing: 4) {
-                            Text("\(viewModel.activeSubscriptions.count) \(NSLocalizedString("active", comment: "").lowercased())")
+                            Text("\(viewModel.activeSubscriptions.count) \("active".localized().lowercased())")
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(.primaryBlue)
                         }
@@ -67,11 +67,11 @@ struct SubscriptionsListScreen: View {
                         
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
-                                Text("\(viewModel.activeSubscriptions.count)/5 \(NSLocalizedString("subscriptions", comment: ""))")
+                                Text("\(viewModel.activeSubscriptions.count)/5 \("subscriptions".localized())")
                                     .font(.system(size: 12, weight: .medium))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 Spacer()
-                                Text(NSLocalizedString("free_plan", comment: ""))
+                                Text("free_plan".localized())
                                     .font(.system(size: 10, weight: .bold))
                                     .foregroundColor(.primaryBlue)
                                     .padding(.horizontal, 8)
@@ -100,9 +100,9 @@ struct SubscriptionsListScreen: View {
                     
                     // Tabs
                     HStack(spacing: 0) {
-                        tabButton(NSLocalizedString("active", comment: ""), tag: 0)
-                        tabButton(NSLocalizedString("suspicious", comment: ""), tag: 1)
-                        tabButton(NSLocalizedString("cancelled", comment: ""), tag: 2)
+                        tabButton("active".localized(), tag: 0)
+                        tabButton("suspicious".localized(), tag: 1)
+                        tabButton("cancelled".localized(), tag: 2)
                     }
                     .background(Color.appSurface(for: colorScheme))
                     .cornerRadius(8)
@@ -166,9 +166,9 @@ struct SubscriptionsListScreen: View {
     
     private var emptyStateText: String {
         switch selectedTab {
-        case 0: return NSLocalizedString("no_active_subscriptions", comment: "")
-        case 1: return NSLocalizedString("no_suspicious_subscriptions", comment: "")
-        default: return NSLocalizedString("no_cancelled_subscriptions", comment: "")
+        case 0: return "no_active_subscriptions".localized()
+        case 1: return "no_suspicious_subscriptions".localized()
+        default: return "no_cancelled_subscriptions".localized()
         }
     }
     

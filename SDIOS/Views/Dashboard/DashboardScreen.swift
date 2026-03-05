@@ -24,11 +24,11 @@ struct DashboardScreen: View {
                         // Header
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(String(format: NSLocalizedString("hello_user", comment: ""), authViewModel.userName ?? NSLocalizedString("guest_user", comment: "")))
+                                Text(String(format: "hello_user".localized(), authViewModel.userName ?? "guest_user".localized()))
                                     .font(.system(size: 14))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 
-                                Text(NSLocalizedString("dashboard_title", comment: ""))
+                                Text("dashboard_title".localized())
                                     .font(.system(size: 24, weight: .bold))
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                             }
@@ -52,7 +52,7 @@ struct DashboardScreen: View {
                         
                         // Hero Card - Total Monthly
                         VStack(alignment: .leading, spacing: 12) {
-                            Text(NSLocalizedString("total_monthly", comment: ""))
+                            Text("total_monthly".localized())
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             
@@ -74,7 +74,7 @@ struct DashboardScreen: View {
                         
                         // Upcoming Payments
                         HStack {
-                            Text(NSLocalizedString("upcoming_payments", comment: ""))
+                            Text("upcoming_payments".localized())
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             Spacer()
@@ -84,7 +84,7 @@ struct DashboardScreen: View {
                         Spacer().frame(height: 12)
                         
                         if viewModel.upcomingSubscriptions.isEmpty {
-                            Text(NSLocalizedString("no_upcoming_payments", comment: ""))
+                            Text("no_upcoming_payments".localized())
                                 .font(.system(size: 14))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .padding(.horizontal, 24)
@@ -106,12 +106,12 @@ struct DashboardScreen: View {
                         
                         // Most Expensive
                         HStack {
-                            Text(NSLocalizedString("most_expensive", comment: ""))
+                            Text("most_expensive".localized())
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             Spacer()
                             Button(action: onNavigateToSubscriptions) {
-                                Text(NSLocalizedString("view_all", comment: ""))
+                                Text("view_all".localized())
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.primaryBlue)
                             }
@@ -137,7 +137,7 @@ struct DashboardScreen: View {
                         // View All Subscriptions Button
                         Button(action: onNavigateToSubscriptions) {
                             HStack {
-                                Text(NSLocalizedString("view_all_subscriptions", comment: ""))
+                                Text("view_all_subscriptions".localized())
                                     .font(.system(size: 16, weight: .bold))
                                 Image(systemName: "arrow.right")
                                     .font(.system(size: 16, weight: .bold))

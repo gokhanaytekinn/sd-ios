@@ -216,8 +216,8 @@ class ApiService {
         return try await self.request(endpoint: "/api/subscriptions/\(id)/flag", method: "POST", body: request)
     }
     
-    func cancelSubscription(id: String) async throws -> SubscriptionResponse {
-        return try await request(endpoint: "/api/subscriptions/\(id)/cancel", method: "POST")
+    func cancelSubscription(id: String) async throws {
+        try await requestVoid(endpoint: "/api/subscriptions/\(id)/cancel", method: "PATCH")
     }
     
     func reactivateSubscription(id: String) async throws -> SubscriptionResponse {

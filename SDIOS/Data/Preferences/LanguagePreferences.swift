@@ -25,6 +25,7 @@ class LanguagePreferences: ObservableObject {
         Language(id: "zh", code: "zh", name: "简体中文", flag: "🇨🇳"),
         Language(id: "fr", code: "fr", name: "Français", flag: "🇫🇷"),
         Language(id: "de", code: "de", name: "Deutsch", flag: "🇩🇪"),
+        Language(id: "id", code: "id", name: "Bahasa Indonesia", flag: "🇮🇩"),
         Language(id: "az", code: "az", name: "Azərbaycanca", flag: "🇦🇿"),
         Language(id: "tk", code: "tk", name: "Türkmençe", flag: "🇹🇲"),
         Language(id: "kk", code: "kk", name: "Қазақша", flag: "🇰🇿"),

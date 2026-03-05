@@ -16,7 +16,7 @@ struct OnboardingScreen: View {
                 HStack(spacing: 4) {
                     Text("🔍")
                         .font(.system(size: 12))
-                    Text(NSLocalizedString("app_name", comment: "").uppercased())
+                    Text("app_name".localized().uppercased())
                         .font(.system(size: 10, weight: .semibold))
                         .foregroundColor(Color(hex: "9db99d"))
                         .tracking(1.5)
@@ -47,10 +47,10 @@ struct OnboardingScreen: View {
                 Spacer().frame(height: 24)
                 
                 // Title
-                (Text(NSLocalizedString("onboarding_title_1", comment: ""))
+                (Text("onboarding_title_1".localized())
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                  + Text(" ")
-                 + Text(NSLocalizedString("onboarding_title_2", comment: ""))
+                 + Text("onboarding_title_2".localized())
                     .foregroundColor(.primaryBlue)
                 )
                 .font(.system(size: 32, weight: .heavy))
@@ -60,7 +60,7 @@ struct OnboardingScreen: View {
                 Spacer().frame(height: 16)
                 
                 // Description
-                Text(NSLocalizedString("onboarding_desc_1", comment: ""))
+                Text("onboarding_desc_1".localized())
                     .font(.system(size: 16))
                     .foregroundColor(Color(hex: "9CA3AF"))
                     .multilineTextAlignment(.center)
@@ -72,7 +72,7 @@ struct OnboardingScreen: View {
                 // Get Started Button
                 Button(action: onGetStartedClick) {
                     HStack {
-                        Text(NSLocalizedString("get_started", comment: ""))
+                        Text("get_started".localized())
                             .font(.system(size: 18, weight: .bold))
                             .tracking(0.15)
                         

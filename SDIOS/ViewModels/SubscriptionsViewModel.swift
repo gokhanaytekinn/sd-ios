@@ -84,10 +84,8 @@ class SubscriptionsViewModel: ObservableObject {
     func cancelSubscription(id: String) {
         Task {
             let result = await repository.cancelSubscription(id: id)
-            if case .success(let sub) = result {
-                if let index = allSubscriptions.firstIndex(where: { $0.id == id }) {
-                    allSubscriptions[index] = sub
-                }
+            if case .success = result {
+                loadSubscriptions() // Reload to get updated state
             }
         }
     }

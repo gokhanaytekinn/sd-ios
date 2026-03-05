@@ -24,7 +24,7 @@ struct AppSettingsScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     // Header
-                    Text(NSLocalizedString("settings", comment: ""))
+                    Text("settings".localized())
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                         .padding(.horizontal, 24)
@@ -33,7 +33,7 @@ struct AppSettingsScreen: View {
                     Spacer().frame(height: 24)
                     
                     // Account Section
-                    sectionHeader(NSLocalizedString("account", comment: ""))
+                    sectionHeader("account".localized())
                     
                     VStack(spacing: 8) {
                         // Profile Card
@@ -49,11 +49,11 @@ struct AppSettingsScreen: View {
                             }
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(authViewModel.userName ?? NSLocalizedString("guest_user", comment: ""))
+                                Text(authViewModel.userName ?? "guest_user".localized())
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                                 
-                                Text(authViewModel.userEmail ?? NSLocalizedString("not_logged_in", comment: ""))
+                                Text(authViewModel.userEmail ?? "not_logged_in".localized())
                                     .font(.system(size: 12))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
@@ -67,8 +67,8 @@ struct AppSettingsScreen: View {
                         // Membership
                         SettingsNavigationItem(
                             icon: "star.fill",
-                            title: NSLocalizedString("membership_type", comment: ""),
-                            subtitle: authViewModel.tier == 2 ? NSLocalizedString("premium_plan", comment: "") : NSLocalizedString("free_plan", comment: ""),
+                            title: "membership_type".localized(),
+                            subtitle: authViewModel.tier == 2 ? "premium_plan".localized() : "free_plan".localized(),
                             iconColor: .warningColor,
                             onTap: onNavigateToPremium
                         )
@@ -78,12 +78,12 @@ struct AppSettingsScreen: View {
                     Spacer().frame(height: 24)
                     
                     // Application Section
-                    sectionHeader(NSLocalizedString("application", comment: ""))
+                    sectionHeader("application".localized())
                     
                     VStack(spacing: 8) {
                         SettingsToggleItem(
                             icon: "bell.fill",
-                            title: NSLocalizedString("notifications", comment: ""),
+                            title: "notifications".localized(),
                             isOn: $notificationsEnabled,
                             iconColor: .primaryBlue
                         )
@@ -93,7 +93,7 @@ struct AppSettingsScreen: View {
                         
                         SettingsNavigationItem(
                             icon: "dollarsign.circle.fill",
-                            title: NSLocalizedString("currency", comment: ""),
+                            title: "currency".localized(),
                             subtitle: CurrencyPreferences.currencies.first(where: { $0.id == selectedCurrency })?.name,
                             iconColor: .successColor,
                             onTap: { showCurrencyDialog = true }
@@ -101,14 +101,14 @@ struct AppSettingsScreen: View {
                         
                         SettingsToggleItem(
                             icon: "moon.fill",
-                            title: NSLocalizedString("dark_mode", comment: ""),
+                            title: "dark_mode".localized(),
                             isOn: $themeManager.isDarkMode,
                             iconColor: Color(hex: "6366F1")
                         )
                         
                         SettingsNavigationItem(
                             icon: "globe",
-                            title: NSLocalizedString("language", comment: ""),
+                            title: "language".localized(),
                             subtitle: LanguagePreferences.supportedLanguages.first(where: { $0.code == LanguagePreferences.shared.selectedLanguage })?.name,
                             iconColor: .primaryBlue,
                             onTap: { showLanguageDialog = true }
@@ -119,19 +119,19 @@ struct AppSettingsScreen: View {
                     Spacer().frame(height: 24)
                     
                     // Support Section
-                    sectionHeader(NSLocalizedString("support", comment: ""))
+                    sectionHeader("support".localized())
                     
                     VStack(spacing: 8) {
                         SettingsNavigationItem(
                             icon: "questionmark.circle.fill",
-                            title: NSLocalizedString("help_center", comment: ""),
+                            title: "help_center".localized(),
                             iconColor: .primaryBlue,
                             onTap: onNavigateToHelpCenter
                         )
                         
                         SettingsNavigationItem(
                             icon: "shield.fill",
-                            title: NSLocalizedString("privacy_policy", comment: ""),
+                            title: "privacy_policy".localized(),
                             iconColor: .successColor,
                             onTap: onNavigateToPrivacyPolicy
                         )
@@ -144,7 +144,7 @@ struct AppSettingsScreen: View {
                     VStack(spacing: 8) {
                         SettingsNavigationItem(
                             icon: "rectangle.portrait.and.arrow.right",
-                            title: NSLocalizedString("logout", comment: ""),
+                            title: "logout".localized(),
                             iconColor: .warningColor,
                             textColor: .warningColor,
                             onTap: {
@@ -155,7 +155,7 @@ struct AppSettingsScreen: View {
                         
                         SettingsNavigationItem(
                             icon: "trash.fill",
-                            title: NSLocalizedString("delete_account", comment: ""),
+                            title: "delete_account".localized(),
                             iconColor: .errorColor,
                             textColor: .errorColor,
                             onTap: { showDeleteAccountDialog = true }
@@ -166,7 +166,7 @@ struct AppSettingsScreen: View {
                     Spacer().frame(height: 24)
                     
                     // Version
-                    Text(String(format: NSLocalizedString("version", comment: ""), "1.0.0"))
+                    Text(String(format: "version".localized(), "1.0.0"))
                         .font(.system(size: 12))
                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -184,14 +184,14 @@ struct AppSettingsScreen: View {
         .sheet(isPresented: $showCurrencyDialog) {
             currencySheet
         }
-        .alert(NSLocalizedString("delete_account_confirm_title", comment: ""), isPresented: $showDeleteAccountDialog) {
-            Button(NSLocalizedString("cancel", comment: ""), role: .cancel) {}
-            Button(NSLocalizedString("delete", comment: ""), role: .destructive) {
+        .alert("delete_account_confirm_title".localized(), isPresented: $showDeleteAccountDialog) {
+            Button("cancel".localized(), role: .cancel) {}
+            Button("delete".localized(), role: .destructive) {
                 authViewModel.deleteAccount()
                 onLogout()
             }
         } message: {
-            Text(NSLocalizedString("delete_account_confirm_desc", comment: ""))
+            Text("delete_account_confirm_desc".localized())
         }
     }
     
@@ -224,11 +224,11 @@ struct AppSettingsScreen: View {
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("select_language", comment: ""))
+            .navigationTitle("select_language".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("close", comment: "")) {
+                    Button("close".localized()) {
                         showLanguageDialog = false
                     }
                     .foregroundColor(.primaryBlue)
@@ -260,11 +260,11 @@ struct AppSettingsScreen: View {
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("select_currency", comment: ""))
+            .navigationTitle("select_currency".localized())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(NSLocalizedString("close", comment: "")) {
+                    Button("close".localized()) {
                         showCurrencyDialog = false
                     }
                     .foregroundColor(.primaryBlue)

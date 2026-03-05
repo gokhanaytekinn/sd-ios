@@ -28,10 +28,10 @@ enum MainTab: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .dashboard: return NSLocalizedString("dashboard_title", comment: "")
-        case .subscriptions: return NSLocalizedString("subscriptions", comment: "")
-        case .upcoming: return NSLocalizedString("upcoming_payments", comment: "")
-        case .settings: return NSLocalizedString("settings_title", comment: "")
+        case .dashboard: return "dashboard_title".localized()
+        case .subscriptions: return "subscriptions".localized()
+        case .upcoming: return "upcoming_payments".localized()
+        case .settings: return "settings_title".localized()
         }
     }
     
