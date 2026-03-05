@@ -73,7 +73,7 @@ struct SubscriptionsListScreen: View {
                         
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
-                                Text("\(viewModel.activeSubscriptions.count)/5 \("subscriptions".localized())")
+                                Text("\(viewModel.allSubscriptions.count)/5 \("subscriptions".localized())")
                                     .font(.system(size: 12, weight: .medium))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 Spacer()
@@ -94,7 +94,7 @@ struct SubscriptionsListScreen: View {
                                     
                                     RoundedRectangle(cornerRadius: 4)
                                         .fill(Color.primaryBlue)
-                                        .frame(width: geo.size.width * min(CGFloat(viewModel.activeSubscriptions.count) / 5.0, 1.0), height: 6)
+                                        .frame(width: geo.size.width * min(CGFloat(viewModel.allSubscriptions.count) / 5.0, 1.0), height: 6)
                                 }
                             }
                             .frame(height: 6)
@@ -157,6 +157,9 @@ struct SubscriptionsListScreen: View {
             }
         }
         .onAppear {
+            viewModel.loadSubscriptions()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RefreshData"))) { _ in
             viewModel.loadSubscriptions()
         }
     }

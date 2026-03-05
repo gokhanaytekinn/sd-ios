@@ -203,6 +203,11 @@ struct ContentView: View {
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .environment(\.locale, .init(identifier: languagePref.selectedLanguage))
         .id(languagePref.selectedLanguage) // Force view refresh on language change
+        .onChange(of: navigationPath) { newValue in
+            if newValue.isEmpty {
+                NotificationCenter.default.post(name: NSNotification.Name("RefreshData"), object: nil)
+            }
+        }
     }
     
     // MARK: - Main Destination
@@ -359,8 +364,30 @@ struct EditSubscriptionWrapper: View {
     
     var body: some View {
         if isLoading {
-            ProgressView().tint(.primaryBlue)
-                .onAppear { loadSubscription() }
+            VStack(spacing: 0) {
+                // Mocking Top Bar
+                HStack {
+                    Circle().fill(Color.gray.opacity(0.1)).frame(width: 24, height: 24)
+                    Spacer()
+                    Rectangle().fill(Color.gray.opacity(0.1)).frame(width: 150, height: 20)
+                    Spacer()
+                    Circle().fill(Color.clear).frame(width: 24, height: 24)
+                }
+                .padding(16)
+                
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 24) {
+                        ForEach(0..<6, id: \.self) { _ in
+                            VStack(alignment: .leading, spacing: 8) {
+                                RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.1)).frame(width: 100, height: 16)
+                                RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.1)).frame(height: 56)
+                            }
+                        }
+                    }
+                    .padding(24)
+                }
+            }
+            .onAppear { loadSubscription() }
         } else if let sub = subscription {
             AddSubscriptionScreen(
                 editSubscription: sub,

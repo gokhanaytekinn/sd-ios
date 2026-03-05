@@ -202,9 +202,14 @@ struct UpcomingSubscriptionsScreen: View {
                 Spacer().frame(height: 16)
                 
                 if viewModel.isLoading {
-                    Spacer()
-                    ProgressView().tint(.primaryBlue)
-                    Spacer()
+                    ScrollView {
+                        VStack(spacing: 8) {
+                            ForEach(0..<6, id: \.self) { _ in
+                                SkeletonCard()
+                            }
+                        }
+                        .padding(.horizontal, 24)
+                    }
                 } else {
                     ScrollView {
                         VStack(spacing: 8) {

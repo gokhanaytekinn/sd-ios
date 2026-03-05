@@ -129,15 +129,23 @@ struct AddSubscriptionScreen: View {
                             Text("currency".localized())
                                 .font(.system(size: 14, weight: .bold))
                             
-                            HStack {
-                                Text(CurrencyPreferences.currencies.first(where: { $0.id == currency })?.symbol ?? "")
-                                Image(systemName: "chevron.down").font(.system(size: 12))
+                            Menu {
+                                ForEach(CurrencyPreferences.currencies, id: \.id) { cur in
+                                    Button(action: { currency = cur.id }) {
+                                        Text("\(cur.symbol) \(cur.code)")
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Text(CurrencyPreferences.currencies.first(where: { $0.id == currency })?.symbol ?? "")
+                                    Image(systemName: "chevron.down").font(.system(size: 12))
+                                }
+                                .padding()
+                                .frame(maxWidth: .infinity, minHeight: 56)
+                                .background(Color.appSurface(for: colorScheme))
+                                .cornerRadius(12)
+                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
                             }
-                            .padding()
-                            .frame(maxWidth: .infinity, minHeight: 56)
-                            .background(Color.appSurface(for: colorScheme))
-                            .cornerRadius(12)
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
                         }
                         .frame(width: 120)
                     }

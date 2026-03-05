@@ -168,5 +168,8 @@ struct DashboardScreen: View {
         .onAppear {
             viewModel.loadDashboard()
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RefreshData"))) { _ in
+            viewModel.loadDashboard()
+        }
     }
 }
