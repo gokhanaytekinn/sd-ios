@@ -64,8 +64,6 @@ struct SubscriptionCard: View {
             }
         }
         .buttonStyle(.plain)
-        }
-        .buttonStyle(.plain)
         .background(Color.appSurface(for: colorScheme))
         .cornerRadius(12)
         .overlay(

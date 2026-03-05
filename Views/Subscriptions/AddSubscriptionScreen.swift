@@ -195,11 +195,7 @@ struct AddSubscriptionScreen: View {
                         // Joint users list and add field implemented here...
                         // (simplified for parity with screenshot)
                     }
-                    
-                    Spacer().frame(height: 100)
                 }
-                .padding(.horizontal, 24)
-            }
                 .padding(.horizontal, 24)
             }
             
