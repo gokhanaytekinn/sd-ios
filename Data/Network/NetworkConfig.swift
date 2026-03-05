@@ -1,6 +1,5 @@
 import Foundation
 
 struct NetworkConfig {
-    // Change this to your backend URL
-    static let baseURL = "https://api.example.com"
+    static let baseURL = "http://187.124.16.135"
 }
