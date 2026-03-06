@@ -209,6 +209,7 @@
 "try_again" = "Coba lagi";
 "no_results" = "Hasil tidak ditemukan";
 "error_name_required" = "Nama wajib diisi";
+"error_category_required" = "Kategori wajib diisi";
 "error_amount_required" = "Jumlah wajib diisi";
 "error_amount_invalid" = "Masukkan jumlah yang valid";
 "error_currency_required" = "Mata uang wajib dipilih";

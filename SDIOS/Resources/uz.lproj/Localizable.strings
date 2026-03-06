@@ -237,6 +237,7 @@
 "no_results" = "Natija topilmadi";
 "date_placeholder" = "kk/oo/yyyy";
 "error_name_required" = "Ism maydoni toʻldirilishi shart";
+"error_category_required" = "Kategoriya maydoni toʻldirilishi shart";
 "error_amount_required" = "Summa maydoni toʻldirilishi shart";
 "error_amount_invalid" = "Toʻgʻri summani kiriting";
 "error_currency_required" = "Valyutani tanlash shart";

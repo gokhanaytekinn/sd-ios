@@ -238,6 +238,7 @@
 "no_results" = "Ничего не найдено";
 "date_placeholder" = "ГГГГ-ММ-ДД";
 "error_name_required" = "Название обязательно";
+"error_category_required" = "Категория обязательна";
 "error_amount_required" = "Сумма обязательна";
 "error_amount_invalid" = "Введите корректную сумму";
 "error_currency_required" = "Валюта обязательна";

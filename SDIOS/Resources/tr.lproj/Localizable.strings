@@ -238,6 +238,7 @@
 "no_results" = "Sonuç bulunamadı";
 "date_placeholder" = "gg/aa/yyyy";
 "error_name_required" = "İsim alanı zorunludur";
+"error_category_required" = "Kategori alanı zorunludur";
 "error_amount_required" = "Tutar alanı zorunludur";
 "error_amount_invalid" = "Lütfen geçerli bir tutar girin";
 "error_currency_required" = "Para birimi seçimi zorunludur";

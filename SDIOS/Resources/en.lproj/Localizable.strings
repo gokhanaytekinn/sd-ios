@@ -251,6 +251,7 @@
 "no_results" = "No results found";
 "date_placeholder" = "YYYY-MM-DD";
 "error_name_required" = "Name is required";
+"error_category_required" = "Category is required";
 "error_amount_required" = "Amount is required";
 "error_amount_invalid" = "Please enter a valid amount";
 "error_currency_required" = "Currency is required";

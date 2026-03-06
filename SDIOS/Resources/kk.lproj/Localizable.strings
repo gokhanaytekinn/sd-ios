@@ -236,6 +236,7 @@
 "no_results" = "Нәтижелер табылмады";
 "date_placeholder" = "kk/aa/zhzhzhzh";
 "error_name_required" = "Аты-жөнін толтыру қажет";
+"error_category_required" = "Санатты толтыру қажет";
 "error_amount_required" = "Соманы көрсету қажет";
 "error_amount_invalid" = "Дұрыс соманы енгізіңіз";
 "error_currency_required" = "Валютаны таңдау қажет";

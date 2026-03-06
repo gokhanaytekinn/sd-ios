@@ -236,6 +236,7 @@
 "no_results" = "Netije tapylmady";
 "date_placeholder" = "gg/aa/yyyy";
 "error_name_required" = "At meýdançasy zerur";
+"error_category_required" = "Kategoriýa meýdançasy zerur";
 "error_amount_required" = "Mukdar meýdançasy zerur";
 "error_amount_invalid" = "Dogry mukdar giriziň";
 "error_currency_required" = "Walýuta saýlamak zerur";

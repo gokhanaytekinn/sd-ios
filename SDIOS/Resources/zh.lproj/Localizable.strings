@@ -238,6 +238,7 @@
 "no_results" = "未找到结果";
 "date_placeholder" = "YYYY-MM-DD";
 "error_name_required" = "姓名是必填项";
+"error_category_required" = "类别是必填项";
 "error_amount_required" = "金额是必填项";
 "error_amount_invalid" = "请输入有效的金额";
 "error_currency_required" = "货币是必填项";

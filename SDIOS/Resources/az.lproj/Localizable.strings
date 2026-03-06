@@ -236,6 +236,7 @@
 "no_results" = "Nəticə tapılmadı";
 "date_placeholder" = "gg/aa/iiii";
 "error_name_required" = "Ad hissəsi mütləqdir";
+"error_category_required" = "Kateqoriya hissəsi mütləqdir";
 "error_amount_required" = "Məbləğ hissəsi mütləqdir";
 "error_amount_invalid" = "Zəhmət olmasa düzgün məbləğ daxil edin";
 "error_currency_required" = "Valyuta seçimi mütləqdir";

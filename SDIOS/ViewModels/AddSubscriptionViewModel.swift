@@ -175,9 +175,8 @@ class AddSubscriptionViewModel: ObservableObject {
             isValid = false
         }
         
-        // Category Validation (@NotBlank)
         if selectedCategory.isEmpty {
-            categoryError = "category".localized()
+            categoryError = "error_category_required".localized()
             isValid = false
         }
         

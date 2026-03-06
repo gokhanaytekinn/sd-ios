@@ -246,6 +246,7 @@
 "no_results" = "Жыйынтык табылган жок";
 "date_placeholder" = "kk/aa/zhzhzhzh";
 "error_name_required" = "Аты-жөнүн толтуруу зарыл";
+"error_category_required" = "Категорияны толтуруу зарыл";
 "error_amount_required" = "Сумманы көрсөтүү зарыл";
 "error_amount_invalid" = "Туура сумманы киргизиңиз";
 "error_currency_required" = "Валютаны тандоо зарыл";

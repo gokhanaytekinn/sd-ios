@@ -237,6 +237,7 @@
 "no_results" = "Keine Ergebnisse";
 "date_placeholder" = "tt/mm/jjjj";
 "error_name_required" = "Name ist erforderlich";
+"error_category_required" = "Kategorie ist erforderlich";
 "error_amount_required" = "Betrag ist erforderlich";
 "error_amount_invalid" = "Bitte geben Sie einen gultigen Betrag ein";
 "error_currency_required" = "Wahrung ist erforderlich";

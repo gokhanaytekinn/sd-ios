@@ -238,6 +238,7 @@
 "no_results" = "No se encontraron resultados";
 "date_placeholder" = "dd/mm/aaaa";
 "error_name_required" = "El nombre es obligatorio";
+"error_category_required" = "La categoría es obligatoria";
 "error_amount_required" = "El importe es obligatorio";
 "error_amount_invalid" = "Por favor introduce un importe válido";
 "error_currency_required" = "La moneda es obligatoria";

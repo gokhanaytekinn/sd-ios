@@ -236,6 +236,7 @@
 "no_results" = "Aucun résultat trouvé";
 "date_placeholder" = "AAAA-MM-JJ";
 "error_name_required" = "Le nom est requis";
+"error_category_required" = "La catégorie est requise";
 "error_amount_required" = "Le montant est requis";
 "error_amount_invalid" = "Veuillez entrer un montant valide";
 "error_currency_required" = "La devise est requise";
