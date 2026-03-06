@@ -190,9 +190,6 @@ struct AddSubscriptionScreen: View {
                     
                     // Reminder
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("reminder".localized())
-                            .font(.system(size: 14, weight: .bold))
-                        
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("reminder".localized())
