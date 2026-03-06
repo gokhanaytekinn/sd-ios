@@ -281,11 +281,9 @@ struct SDOutlinedTextField: View {
                 } else if let icon = trailingIcon {
                     Button(action: { onTrailingIconTap?() }) {
                         Image(systemName: icon)
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.white)
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.primaryBlue)
                             .frame(width: 40, height: 40)
-                            .background(Color.primaryBlue)
-                            .cornerRadius(8)
                     }
                 }
             }
