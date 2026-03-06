@@ -34,7 +34,8 @@ struct AddSubscriptionScreen: View {
             }
             .padding(16)
             
-            ScrollView {
+            GeometryReader { geometry in
+                ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     // Service Name
                     SDOutlinedTextField(
@@ -240,47 +241,43 @@ struct AddSubscriptionScreen: View {
                         // Joint users list and add field implemented here...
                         // (simplified for parity with screenshot)
                     }
+                    
+                    Spacer(minLength: 32)
+                    
+                    // Save Button
+                    VStack {
+                        Button(action: { viewModel.save(currency: currency, onSuccess: onSaved) }) {
+                            if viewModel.isLoading {
+                                ProgressView().tint(.white)
+                            } else {
+                                Text(viewModel.isEditing ?
+                                    "update".localized() :
+                                    "add_subscription_btn".localized())
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 56)
+                        .background(Color.primaryBlue)
+                        .cornerRadius(12)
+                        .disabled(viewModel.isLoading)
+                    }
+                    .padding(.bottom, geometry.safeAreaInsets.bottom + 16)
                 }
                 .padding(.horizontal, 24)
+                .frame(minHeight: geometry.size.height)
             }
-            
-            // Save Button
-            VStack {
-                Button(action: { viewModel.save(currency: currency, onSuccess: onSaved) }) {
-                    if viewModel.isLoading {
-                        ProgressView().tint(.white)
-                    } else {
-                        Text(viewModel.isEditing ?
-                            "update".localized() :
-                            "add_subscription_btn".localized())
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 56)
-                .background(Color.primaryBlue)
-                .cornerRadius(12)
-                .disabled(viewModel.isLoading)
-            }
-            .padding(.horizontal, 24)
-            .padding(.vertical, 12)
-            .background(Color.appBackground(for: colorScheme))
         }
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+        }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .onAppear {
             if let sub = editSubscription {
                 viewModel.setupForEdit(subscription: sub)
             }
         }
-        .alert("error".localized(), isPresented: Binding(
-            get: { viewModel.error != nil },
-            set: { if !$0 { viewModel.error = nil } }
-        )) {
-            Button("close".localized(), role: .cancel) { viewModel.error = nil }
-        } message: {
-            Text(viewModel.error ?? "")
+        .withErrorDialog(errorMessage: $viewModel.error) {
+            viewModel.clearGeneralError()
         }
     }
     

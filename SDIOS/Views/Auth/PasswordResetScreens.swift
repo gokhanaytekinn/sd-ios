@@ -72,13 +72,8 @@ struct ForgotPasswordScreen: View {
             .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-        .alert(NSLocalizedString("error", comment: ""), isPresented: Binding(
-            get: { authViewModel.error != nil },
-            set: { if !$0 { authViewModel.clearGeneralError() } }
-        )) {
-            Button(NSLocalizedString("close", comment: ""), role: .cancel) { authViewModel.clearGeneralError() }
-        } message: {
-            Text(authViewModel.error ?? "")
+        .withErrorDialog(errorMessage: $authViewModel.error) {
+            authViewModel.clearGeneralError()
         }
     }
 }
@@ -162,13 +157,8 @@ struct VerificationCodeScreen: View {
             .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-        .alert(NSLocalizedString("error", comment: ""), isPresented: Binding(
-            get: { authViewModel.error != nil },
-            set: { if !$0 { authViewModel.clearGeneralError() } }
-        )) {
-            Button(NSLocalizedString("close", comment: ""), role: .cancel) { authViewModel.clearGeneralError() }
-        } message: {
-            Text(authViewModel.error ?? "")
+        .withErrorDialog(errorMessage: $authViewModel.error) {
+            authViewModel.clearGeneralError()
         }
     }
 }
@@ -268,13 +258,8 @@ struct ResetPasswordScreen: View {
             .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-        .alert(NSLocalizedString("error", comment: ""), isPresented: Binding(
-            get: { authViewModel.error != nil },
-            set: { if !$0 { authViewModel.clearGeneralError() } }
-        )) {
-            Button(NSLocalizedString("close", comment: ""), role: .cancel) { authViewModel.clearGeneralError() }
-        } message: {
-            Text(authViewModel.error ?? "")
+        .withErrorDialog(errorMessage: $authViewModel.error) {
+            authViewModel.clearGeneralError()
         }
     }
 }

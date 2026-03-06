@@ -208,5 +208,8 @@ struct RegisterScreen: View {
                 }
             }
         }
+        .withErrorDialog(errorMessage: $authViewModel.error) {
+            authViewModel.clearGeneralError()
+        }
     }
 }

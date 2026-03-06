@@ -114,15 +114,8 @@ struct LoginScreen: View {
             .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-        .alert("error".localized(), isPresented: Binding(
-            get: { authViewModel.error != nil },
-            set: { if !$0 { authViewModel.clearGeneralError() } }
-        )) {
-            Button("close".localized(), role: .cancel) {
-                authViewModel.clearGeneralError()
-            }
-        } message: {
-            Text(authViewModel.error ?? "")
+        .withErrorDialog(errorMessage: $authViewModel.error) {
+            authViewModel.clearGeneralError()
         }
     }
 }

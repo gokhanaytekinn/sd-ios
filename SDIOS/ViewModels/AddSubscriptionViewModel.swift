@@ -35,8 +35,8 @@ class AddSubscriptionViewModel: ObservableObject {
     
     static let shortcuts: [QuickShortcut] = [
         QuickShortcut(name: "Google", icon: "google", category: "category_software", defaultCost: nil, color: Color(hex: "4285F4")),
-        QuickShortcut(name: "Cursor", icon: "cursor", category: "category_software", defaultCost: nil, color: Color(hex: "1A1A1A")),
-        QuickShortcut(name: "Claude", icon: "claude", category: "category_software", defaultCost: nil, color: Color(hex: "D97757")),
+        QuickShortcut(name: "Cursor", icon: "cursor", category: "category_software", defaultCost: nil, color: Color.primary),
+        QuickShortcut(name: "Claude", icon: "claude", category: "category_software", defaultCost: nil, color: Color(hex: "E56038")),
         QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
         QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
         QuickShortcut(name: "YouTube", icon: "youtube", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF0000")),
@@ -113,9 +113,8 @@ class AddSubscriptionViewModel: ObservableObject {
                 )
                 let result = await repository.updateSubscription(id: editId, request)
                 switch result {
-                case .success(let sub):
+                case .success(_):
                     isLoading = false
-                    responseMessage = sub.responseMessage
                     onSuccess()
                 case .failure(let err):
                     isLoading = false
@@ -137,9 +136,8 @@ class AddSubscriptionViewModel: ObservableObject {
                 )
                 let result = await repository.createSubscription(request)
                 switch result {
-                case .success(let sub):
+                case .success(_):
                     isLoading = false
-                    responseMessage = sub.responseMessage
                     onSuccess()
                 case .failure(let err):
                     isLoading = false
@@ -194,6 +192,10 @@ class AddSubscriptionViewModel: ObservableObject {
     
     private func clearDateError() {
         dateError = nil
+    }
+    
+    func clearGeneralError() {
+        error = nil
     }
     
     func reset() {

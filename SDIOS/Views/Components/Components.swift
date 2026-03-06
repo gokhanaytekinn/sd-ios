@@ -385,3 +385,30 @@ struct SettingsNavigationItem: View {
         .buttonStyle(.plain)
     }
 }
+
+// MARK: - SDErrorDialog
+struct SDErrorDialog: ViewModifier {
+    @Binding var errorMessage: String?
+    let onDismiss: () -> Void
+    
+    func body(content: Content) -> some View {
+        content
+            .alert(isPresented: Binding<Bool>(
+                get: { errorMessage != nil },
+                set: { if !$0 { onDismiss() } }
+            )) {
+                Alert(
+                    title: Text(NSLocalizedString("error", comment: "")),
+                    message: Text(errorMessage ?? ""),
+                    dismissButton: .default(Text(NSLocalizedString("ok", comment: ""))) {
+                        onDismiss()
+                    }
+                )
+            }
+    }
+}
+extension View {
+    func withErrorDialog(errorMessage: Binding<String?>, onDismiss: @escaping () -> Void) -> some View {
+        self.modifier(SDErrorDialog(errorMessage: errorMessage, onDismiss: onDismiss))
+    }
+}
