@@ -12,6 +12,8 @@ class AddSubscriptionViewModel: ObservableObject {
     @Published var billingMonth: Int? = nil { didSet { clearDateError() } }
     @Published var reminderEnabled = true { didSet { clearDateError() } }
     @Published var jointEmails: [String] = []
+    @Published var participants: [InvitationParticipant] = []
+    @Published var emailInput: String = ""
     @Published var isLoading = false
     @Published var error: String?
     @Published var responseMessage: String?
@@ -77,6 +79,32 @@ class AddSubscriptionViewModel: ObservableObject {
         billingMonth = subscription.billingMonth ?? Calendar.current.component(.month, from: Date())
         reminderEnabled = subscription.reminderEnabled
         jointEmails = subscription.jointEmails ?? []
+        participants = subscription.participants ?? []
+    }
+    
+    func addJointEmail() {
+        let email = emailInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !email.isEmpty else { return }
+        
+        // Simple email validation
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        guard emailPredicate.evaluate(with: email) else {
+            error = "error_email_invalid".localized()
+            return
+        }
+        
+        if !jointEmails.contains(email) && !participants.contains(where: { $0.email == email }) {
+            jointEmails.append(email)
+            emailInput = ""
+        } else {
+            error = "Email already added" // Consider adding to Localizable.strings if needed
+        }
+    }
+    
+    func removeJointEmail(_ email: String) {
+        jointEmails.removeAll { $0 == email }
+        participants.removeAll { $0.email == email }
     }
     
     func applyShortcut(_ shortcut: QuickShortcut) {
@@ -208,6 +236,8 @@ class AddSubscriptionViewModel: ObservableObject {
         billingMonth = nil
         reminderEnabled = true
         jointEmails = []
+        participants = []
+        emailInput = ""
         error = nil
         responseMessage = nil
         nameError = nil

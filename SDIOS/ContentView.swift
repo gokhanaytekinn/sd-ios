@@ -185,6 +185,7 @@ struct ContentView: View {
                 // Bottom Navigation Bar
                 bottomNavBar
             }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
             
             // Expandable FAB Menu Overlay
             if showFabMenu {
@@ -198,8 +199,8 @@ struct ContentView: View {
             }
             
             fabButton
+                .padding(.bottom, 80) // Raise it above the bottom bar
         }
-        .ignoresSafeArea(.keyboard, edges: .bottom)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .environment(\.locale, .init(identifier: languagePref.selectedLanguage))
         .id(languagePref.selectedLanguage) // Force view refresh on language change
@@ -285,16 +286,16 @@ struct ContentView: View {
         }
         .padding(.horizontal, 8)
         .padding(.top, 8)
-        .padding(.bottom, 24)
         .background(
             Color.appSurface(for: colorScheme)
+                .ignoresSafeArea(edges: .bottom)
                 .shadow(color: .black.opacity(0.1), radius: 8, y: -4)
         )
     }
     
     // MARK: - FAB
     private var fabButton: some View {
-        VStack(spacing: 16) {
+        VStack(alignment: .trailing, spacing: 16) {
             if showFabMenu {
                 // Add Manually Bubble
                 HStack {

@@ -13,6 +13,8 @@ struct SubscriptionDetailsScreen: View {
     @State private var showCancelDialog = false
     @State private var isLoading = true
     @State private var errorMessage: String?
+    @State private var participantToRemove: InvitationParticipant?
+    @State private var showParticipantRemoveDialog = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -210,6 +212,66 @@ struct SubscriptionDetailsScreen: View {
                         }
                         .padding(.top, 8)
                         
+                        // Participants Section
+                        if let participants = sub.participants, !participants.isEmpty {
+                            VStack(alignment: .leading, spacing: 16) {
+                                HStack(spacing: 8) {
+                                    Image(systemName: "person.2.fill")
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                    Text("participants".localized())
+                                        .font(.system(size: 18, weight: .bold))
+                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                }
+                                .padding(.top, 8)
+                                
+                                VStack(spacing: 8) {
+                                    ForEach(participants) { participant in
+                                        HStack(spacing: 12) {
+                                            Circle()
+                                                .fill(Color.appSurface(for: colorScheme))
+                                                .frame(width: 40, height: 40)
+                                                .overlay(
+                                                    Image(systemName: "person.fill")
+                                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                                )
+                                            
+                                            VStack(alignment: .leading, spacing: 2) {
+                                                if let name = participant.name {
+                                                    Text(name)
+                                                        .font(.system(size: 14, weight: .medium))
+                                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                                }
+                                                Text(participant.email)
+                                                    .font(.system(size: 12))
+                                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            StatusIcon(status: participant.status)
+                                            
+                                            if sub.isOwner {
+                                                Button(action: {
+                                                    participantToRemove = participant
+                                                    showParticipantRemoveDialog = true
+                                                }) {
+                                                    Image(systemName: "trash")
+                                                        .font(.system(size: 14))
+                                                        .foregroundColor(.errorColor)
+                                                        .padding(8)
+                                                }
+                                            }
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .background(Color.appSurface(for: colorScheme).opacity(0.5))
+                                        .cornerRadius(12)
+                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
+                                    }
+                                }
+                            }
+                        }
+                        
                         Spacer().frame(height: 40)
                     }
                     .padding(.horizontal, 24)
@@ -236,6 +298,18 @@ struct SubscriptionDetailsScreen: View {
             }
         } message: {
             Text("delete_subscription_confirm_desc".localized())
+        }
+        .alert("remove_participant_title".localized(), isPresented: $showParticipantRemoveDialog) {
+            Button("cancel".localized(), role: .cancel) { participantToRemove = nil }
+            Button("remove".localized(), role: .destructive) {
+                if let participant = participantToRemove {
+                    removeParticipant(email: participant.email)
+                }
+            }
+        } message: {
+            if let participant = participantToRemove {
+                Text(String(format: "remove_participant_confirm".localized(), participant.name ?? participant.email))
+            }
         }
     }
     
@@ -321,6 +395,42 @@ struct SubscriptionDetailsScreen: View {
             let result = await SubscriptionRepository.shared.deleteSubscription(id: subscriptionId)
             if case .success = result {
                 onBack()
+            }
+        }
+    }
+    
+    private func removeParticipant(email: String) {
+        Task {
+            isLoading = true
+            let result = await SubscriptionRepository.shared.removeParticipant(subscriptionId: subscriptionId, email: email)
+            if case .success = result {
+                loadSubscription()
+            } else if case .failure(let err) = result {
+                self.errorMessage = err.localizedDescription
+            }
+            isLoading = false
+            participantToRemove = nil
+        }
+    }
+    
+    struct StatusIcon: View {
+        let status: String
+        
+        var body: some View {
+            let config = statusConfig
+            Image(systemName: config.icon)
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(config.color)
+        }
+        
+        private var statusConfig: (icon: String, color: Color) {
+            switch status {
+            case "ACCEPTED":
+                return ("checkmark.circle.fill", .green)
+            case "REJECTED":
+                return ("xmark.circle.fill", .red)
+            default:
+                return ("clock.fill", .gray)
             }
         }
     }

@@ -251,6 +251,8 @@ struct SDOutlinedTextField: View {
     var errorMessage: String?
     var isSecure: Bool = false
     var keyboardType: UIKeyboardType = .default
+    var trailingIcon: String? = nil
+    var onTrailingIconTap: (() -> Void)? = nil
     @State private var showPassword = false
     
     @Environment(\.colorScheme) var colorScheme
@@ -261,18 +263,29 @@ struct SDOutlinedTextField: View {
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
             
-            HStack {
-                if isSecure && !showPassword {
-                    SecureField(placeholder, text: $text)
-                } else {
-                    TextField(placeholder, text: $text)
-                        .keyboardType(keyboardType)
+            HStack(spacing: 12) {
+                Group {
+                    if isSecure && !showPassword {
+                        SecureField(placeholder, text: $text)
+                    } else {
+                        TextField(placeholder, text: $text)
+                            .keyboardType(keyboardType)
+                    }
                 }
                 
                 if isSecure {
                     Button(action: { showPassword.toggle() }) {
                         Image(systemName: showPassword ? "eye.fill" : "eye.slash.fill")
                             .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.5))
+                    }
+                } else if let icon = trailingIcon {
+                    Button(action: { onTrailingIconTap?() }) {
+                        Image(systemName: icon)
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 40, height: 40)
+                            .background(Color.primaryBlue)
+                            .cornerRadius(8)
                     }
                 }
             }

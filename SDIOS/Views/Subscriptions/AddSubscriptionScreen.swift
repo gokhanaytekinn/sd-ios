@@ -239,14 +239,63 @@ struct AddSubscriptionScreen: View {
                         }
                         
                         // Joint Users
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 12) {
                             Text("joint_users".localized())
                                 .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
                             
-                            // Joint users list and add field implemented here...
+                            SDOutlinedTextField(
+                                title: "",
+                                placeholder: "add_email_placeholder".localized(),
+                                text: $viewModel.emailInput,
+                                errorMessage: nil,
+                                keyboardType: .emailAddress,
+                                trailingIcon: "plus",
+                                onTrailingIconTap: { viewModel.addJointEmail() }
+                            )
+                            
+                            let combinedEmails = viewModel.jointEmails.map { (email: $0, status: String?.none, name: String?.none) }
+                            let participantEmails = viewModel.participants.map { (email: $0.email, status: String?($0.status), name: $0.name) }
+                            let allEmails = participantEmails + combinedEmails
+                            if !allEmails.isEmpty {
+                                VStack(spacing: 8) {
+                                    ForEach(allEmails, id: \.email) { item in
+                                        HStack {
+                                            VStack(alignment: .leading, spacing: 2) {
+                                                if let name = item.name {
+                                                    Text(name)
+                                                        .font(.system(size: 14, weight: .medium))
+                                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                                }
+                                                Text(item.email)
+                                                    .font(.system(size: 12))
+                                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            if let status = item.status {
+                                                StatusIcon(status: status)
+                                            }
+                                            
+                                            Button(action: { viewModel.removeJointEmail(item.email) }) {
+                                                Image(systemName: "xmark")
+                                                    .font(.system(size: 14, weight: .bold))
+                                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                                    .padding(8)
+                                            }
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .background(Color.appSurface(for: colorScheme))
+                                        .cornerRadius(12)
+                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
+                                    }
+                                }
+                            }
                         }
                         
-                        Spacer(minLength: 32)
+                        Spacer(minLength: 16)
                         
                         // Save Button
                         VStack {
@@ -296,6 +345,28 @@ struct AddSubscriptionScreen: View {
                 .cornerRadius(8)
         }
         .buttonStyle(.plain)
+    }
+    
+    struct StatusIcon: View {
+        let status: String
+        
+        var body: some View {
+            let config = statusConfig
+            Image(systemName: config.icon)
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(config.color)
+        }
+        
+        private var statusConfig: (icon: String, color: Color) {
+            switch status {
+            case "ACCEPTED":
+                return ("checkmark.circle.fill", .green)
+            case "REJECTED":
+                return ("xmark.circle.fill", .red)
+            default:
+                return ("clock.fill", .gray)
+            }
+        }
     }
     
     private func categoryChip(_ title: String, key: String) -> some View {
