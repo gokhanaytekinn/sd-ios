@@ -3,14 +3,14 @@ import Combine
 
 @MainActor
 class AddSubscriptionViewModel: ObservableObject {
-    @Published var name = ""
-    @Published var amount = ""
+    @Published var name = "" { didSet { nameError = nil } }
+    @Published var amount = "" { didSet { amountError = nil } }
     @Published var icon: String? = nil
-    @Published var selectedCategory: String = ""
-    @Published var selectedBillingCycle: BillingCycle = .monthly
-    @Published var billingDay: Int = Calendar.current.component(.day, from: Date())
-    @Published var billingMonth: Int = Calendar.current.component(.month, from: Date())
-    @Published var reminderEnabled = true
+    @Published var selectedCategory: String = "" { didSet { categoryError = nil } }
+    @Published var selectedBillingCycle: BillingCycle = .monthly { didSet { clearDateError() } }
+    @Published var billingDay: Int = Calendar.current.component(.day, from: Date()) { didSet { clearDateError() } }
+    @Published var billingMonth: Int? = nil { didSet { clearDateError() } }
+    @Published var reminderEnabled = true { didSet { clearDateError() } }
     @Published var jointEmails: [String] = []
     @Published var isLoading = false
     @Published var error: String?
@@ -19,6 +19,7 @@ class AddSubscriptionViewModel: ObservableObject {
     @Published var nameError: String?
     @Published var amountError: String?
     @Published var categoryError: String?
+    @Published var dateError: String?
     
     private let repository = SubscriptionRepository.shared
     private var editingSubscriptionId: String?
@@ -152,27 +153,47 @@ class AddSubscriptionViewModel: ObservableObject {
         nameError = nil
         amountError = nil
         categoryError = nil
+        dateError = nil
         var isValid = true
         
+        // Name Validation (@NotBlank)
         if name.trimmingCharacters(in: .whitespaces).isEmpty {
             nameError = "error_name_required".localized()
             isValid = false
         }
         
+        // Amount Validation (@NotNull & @DecimalMin(0.0))
+        let cleanAmount = amount.replacingOccurrences(of: ",", with: ".")
         if amount.trimmingCharacters(in: .whitespaces).isEmpty {
             amountError = "error_amount_required".localized()
             isValid = false
-        } else if Double(amount.replacingOccurrences(of: ",", with: ".")) == nil {
+        } else if let value = Double(cleanAmount) {
+            if value <= 0 {
+                amountError = "error_amount_invalid".localized()
+                isValid = false
+            }
+        } else {
             amountError = "error_amount_invalid".localized()
             isValid = false
         }
         
+        // Category Validation (@NotBlank)
         if selectedCategory.isEmpty {
             categoryError = "category".localized()
             isValid = false
         }
         
+        // Date Validation (Billing Day/Month @NotNull)
+        if selectedBillingCycle == .yearly && billingMonth == nil {
+            dateError = "error_date_required".localized()
+            isValid = false
+        }
+        
         return isValid
+    }
+    
+    private func clearDateError() {
+        dateError = nil
     }
     
     func reset() {
@@ -183,7 +204,7 @@ class AddSubscriptionViewModel: ObservableObject {
         selectedCategory = ""
         selectedBillingCycle = .monthly
         billingDay = Calendar.current.component(.day, from: Date())
-        billingMonth = Calendar.current.component(.month, from: Date())
+        billingMonth = nil
         reminderEnabled = true
         jointEmails = []
         error = nil

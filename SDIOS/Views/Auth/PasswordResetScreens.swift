@@ -43,9 +43,10 @@ struct ForgotPasswordScreen: View {
                         title: NSLocalizedString("email_address_label", comment: ""),
                         placeholder: NSLocalizedString("email_placeholder", comment: ""),
                         text: $email,
-                        error: authViewModel.emailError,
+                        errorMessage: authViewModel.emailError,
                         keyboardType: .emailAddress
                     )
+                    .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
                 }
                 .padding(.horizontal, 24)
             }
@@ -220,8 +221,10 @@ struct ResetPasswordScreen: View {
                         title: NSLocalizedString("new_password_label", comment: ""),
                         placeholder: NSLocalizedString("password_placeholder", comment: ""),
                         text: $newPassword,
+                        errorMessage: authViewModel.passwordError,
                         isSecure: true
                     )
+                    .onChange(of: newPassword) { _ in self.authViewModel.clearPasswordError() }
                     
                     Spacer().frame(height: 8)
                     
@@ -235,8 +238,10 @@ struct ResetPasswordScreen: View {
                         title: NSLocalizedString("confirm_password_label", comment: ""),
                         placeholder: NSLocalizedString("password_placeholder", comment: ""),
                         text: $confirmPassword,
+                        errorMessage: authViewModel.confirmPasswordError,
                         isSecure: true
                     )
+                    .onChange(of: confirmPassword) { _ in self.authViewModel.clearConfirmPasswordError() }
                     
                     if !confirmPassword.isEmpty {
                         Spacer().frame(height: 8)

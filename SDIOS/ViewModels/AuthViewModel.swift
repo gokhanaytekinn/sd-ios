@@ -10,8 +10,8 @@ class AuthViewModel: ObservableObject {
     @Published var passwordError: String?
     @Published var confirmPasswordError: String?
     @Published var isAuthenticated = false
-    @Published var userName: String?
-    @Published var userEmail: String?
+    @Published var userName: String? { didSet { nameError = nil } }
+    @Published var userEmail: String? { didSet { emailError = nil } }
     @Published var notificationsEnabled = true
     @Published var language: String? = "tr"
     @Published var resetEmail: String?
@@ -213,6 +213,11 @@ class AuthViewModel: ObservableObject {
     func clearGeneralError() {
         error = nil
     }
+    
+    func clearNameError() { nameError = nil }
+    func clearEmailError() { emailError = nil }
+    func clearPasswordError() { passwordError = nil }
+    func clearConfirmPasswordError() { confirmPasswordError = nil }
     
     // MARK: - Validation
     private func validateLogin(email: String, password: String) -> Bool {

@@ -49,9 +49,9 @@ struct RegisterScreen: View {
                         title: "full_name".localized(),
                         placeholder: "full_name_placeholder".localized(),
                         text: $fullName,
-                        error: authViewModel.nameError
+                        errorMessage: authViewModel.nameError
                     )
-                    .onChange(of: fullName) { _ in authViewModel.clearError() }
+                    .onChange(of: fullName) { _ in self.authViewModel.clearNameError() }
                     
                     Spacer().frame(height: 16)
                     
@@ -60,10 +60,10 @@ struct RegisterScreen: View {
                         title: "email".localized(),
                         placeholder: "email_placeholder".localized(),
                         text: $email,
-                        error: authViewModel.emailError,
+                        errorMessage: authViewModel.emailError,
                         keyboardType: .emailAddress
                     )
-                    .onChange(of: email) { _ in authViewModel.clearError() }
+                    .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
                     
                     Spacer().frame(height: 16)
                     
@@ -72,10 +72,10 @@ struct RegisterScreen: View {
                         title: "password".localized(),
                         placeholder: "password_placeholder".localized(),
                         text: $password,
-                        error: authViewModel.passwordError,
+                        errorMessage: authViewModel.passwordError,
                         isSecure: true
                     )
-                    .onChange(of: password) { _ in authViewModel.clearError() }
+                    .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
                     
                     Spacer().frame(height: 16)
                     
@@ -84,10 +84,10 @@ struct RegisterScreen: View {
                         title: "confirm_password_label".localized(),
                         placeholder: "password_placeholder".localized(),
                         text: $confirmPassword,
-                        error: authViewModel.confirmPasswordError,
+                        errorMessage: authViewModel.confirmPasswordError,
                         isSecure: true
                     )
-                    .onChange(of: confirmPassword) { _ in authViewModel.clearError() }
+                    .onChange(of: confirmPassword) { _ in self.authViewModel.clearConfirmPasswordError() }
                     
                     Spacer().frame(height: 16)
                     

@@ -37,21 +37,12 @@ struct AddSubscriptionScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     // Service Name
-                    VStack(alignment: .leading, spacing: 8) {
-                    Text("service_name".localized())
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(Color.appOnBackground(for: colorScheme))
-                        
-                        TextField("service_name_placeholder".localized(), text: $viewModel.name)
-                            .padding()
-                            .background(Color.appSurface(for: colorScheme))
-                            .cornerRadius(12)
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
-                        
-                        if let error = viewModel.nameError {
-                            Text(error).font(.system(size: 12)).foregroundColor(.errorColor)
-                        }
-                    }
+                    SDOutlinedTextField(
+                        title: "service_name".localized(),
+                        placeholder: "service_name_placeholder".localized(),
+                        text: $viewModel.name,
+                        errorMessage: viewModel.nameError
+                    )
                     
                     // Category
                     VStack(alignment: .leading, spacing: 8) {
@@ -65,6 +56,15 @@ struct AddSubscriptionScreen: View {
                                     categoryChip(category.key.localized(), key: category.key)
                                 }
                             }
+                            .padding(2) // Extra padding for border visibility
+                        }
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(viewModel.categoryError != nil ? Color.errorColor : Color.clear, lineWidth: 1)
+                        )
+                        
+                        if let error = viewModel.categoryError {
+                            Text(error).font(.system(size: 12)).foregroundColor(.errorColor)
                         }
                     }
                     
@@ -104,24 +104,20 @@ struct AddSubscriptionScreen: View {
                     
                     // Amount and Currency
                     HStack(alignment: .top, spacing: 12) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("amount".localized())
-                                .font(.system(size: 14, weight: .bold))
-                            
-                            TextField("0,00", text: $viewModel.amount)
-                                .padding()
-                                .background(Color.appSurface(for: colorScheme))
-                                .cornerRadius(12)
-                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
-                                .keyboardType(.decimalPad)
-                                .toolbar {
-                                    ToolbarItemGroup(placement: .keyboard) {
-                                        Spacer()
-                                        Button("done_btn".localized()) {
-                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        }
-                                    }
+                        SDOutlinedTextField(
+                            title: "amount".localized(),
+                            placeholder: "0,00",
+                            text: $viewModel.amount,
+                            errorMessage: viewModel.amountError,
+                            keyboardType: .decimalPad
+                        )
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
+                                Button("done_btn".localized()) {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                 }
+                            }
                         }
                         .frame(maxWidth: .infinity)
                         
@@ -164,6 +160,33 @@ struct AddSubscriptionScreen: View {
                         .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
                     }
                     
+                    // Payment Recurrence Month (Only for Yearly)
+                    if viewModel.selectedBillingCycle == .yearly {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("month".localized())
+                                .font(.system(size: 14, weight: .bold))
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 12) {
+                                    ForEach(1...12, id: \.self) { month in
+                                        Button(action: { viewModel.billingMonth = month }) {
+                                            Text("month_\(month)".localized())
+                                                .font(.system(size: 14, weight: .bold))
+                                                .padding(.horizontal, 16)
+                                                .frame(height: 44)
+                                                .background(viewModel.billingMonth == month ? Color.primaryBlue : Color.appSurface(for: colorScheme))
+                                                .foregroundColor(viewModel.billingMonth == month ? .white : Color.appOnBackground(for: colorScheme))
+                                                .cornerRadius(22)
+                                                .overlay(RoundedRectangle(cornerRadius: 22).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: viewModel.billingMonth == month ? 0 : 1))
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                                }
+                                .padding(.vertical, 4)
+                            }
+                        }
+                    }
+                    
                     // Payment Recurrence Day
                     VStack(alignment: .leading, spacing: 8) {
                         Text("payment_recurrence_day".localized())
@@ -185,6 +208,10 @@ struct AddSubscriptionScreen: View {
                                 }
                             }
                             .padding(.vertical, 4)
+                        }
+                        
+                        if let error = viewModel.dateError {
+                            Text(error).font(.system(size: 12)).foregroundColor(.errorColor)
                         }
                     }
                     

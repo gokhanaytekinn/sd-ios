@@ -248,7 +248,7 @@ struct SDOutlinedTextField: View {
     let title: String
     let placeholder: String
     @Binding var text: String
-    var error: String?
+    var errorMessage: String?
     var isSecure: Bool = false
     var keyboardType: UIKeyboardType = .default
     @State private var showPassword = false
@@ -278,21 +278,21 @@ struct SDOutlinedTextField: View {
             }
             .padding(.horizontal, 16)
             .frame(height: 56)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(
-                        error != nil ? Color.errorColor :
-                            Color.appOnBackground(for: colorScheme).opacity(0.2),
-                        lineWidth: 1
-                    )
-            )
-            .autocapitalization(.none)
-            
-            if let error = error {
-                Text(error)
-                    .font(.system(size: 12))
-                    .foregroundColor(.errorColor)
-            }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(
+                            errorMessage != nil ? Color.errorColor :
+                                Color.appOnBackground(for: colorScheme).opacity(0.2),
+                            lineWidth: 1
+                        )
+                )
+                .autocapitalization(.none)
+                
+                if let error = errorMessage {
+                    Text(error)
+                        .font(.system(size: 12))
+                        .foregroundColor(.errorColor)
+                }
         }
     }
 }

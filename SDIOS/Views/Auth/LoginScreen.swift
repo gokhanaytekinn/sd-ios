@@ -45,10 +45,10 @@ struct LoginScreen: View {
                         title: "email".localized(),
                         placeholder: "email_placeholder".localized(),
                         text: $email,
-                        error: authViewModel.emailError,
+                        errorMessage: authViewModel.emailError,
                         keyboardType: .emailAddress
                     )
-                    .onChange(of: email) { _ in authViewModel.clearError() }
+                    .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
                     
                     Spacer().frame(height: 16)
                     
@@ -57,10 +57,10 @@ struct LoginScreen: View {
                         title: "password".localized(),
                         placeholder: "password_placeholder".localized(),
                         text: $password,
-                        error: authViewModel.passwordError,
+                        errorMessage: authViewModel.passwordError,
                         isSecure: true
                     )
-                    .onChange(of: password) { _ in authViewModel.clearError() }
+                    .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
                     
                     Spacer().frame(height: 12)
                     
