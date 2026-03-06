@@ -29,19 +29,16 @@ class SubscriptionsViewModel: ObservableObject {
             error = nil
             
             async let subsResult = repository.getSubscriptions()
-            async let statsResult = repository.getStats()
             async let invitationsResult = repository.getPendingInvitations()
             
-            let (subs, st, inv) = await (subsResult, statsResult, invitationsResult)
+            let (subs, inv) = await (subsResult, invitationsResult)
             
             switch subs {
-            case .success(let list): allSubscriptions = list
-            case .failure(let err): error = err.localizedDescription
-            }
-            
-            switch st {
-            case .success(let s): stats = s
-            case .failure: break
+            case .success(let list):
+                allSubscriptions = list
+                stats = SubscriptionStats.calculate(from: list)
+            case .failure(let err):
+                error = err.localizedDescription
             }
             
             switch inv {

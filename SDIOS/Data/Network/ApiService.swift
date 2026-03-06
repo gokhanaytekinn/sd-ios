@@ -200,10 +200,6 @@ class ApiService {
         try await requestVoid(endpoint: "/api/subscriptions/\(id)", method: "DELETE")
     }
     
-    func getSubscriptionStats() async throws -> SubscriptionStats {
-        return try await request(endpoint: "/api/subscriptions/stats")
-    }
-    
     func getSuspiciousSubscriptions() async throws -> [SubscriptionResponse] {
         return try await request(endpoint: "/api/subscriptions/suspicious")
     }

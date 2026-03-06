@@ -17,22 +17,16 @@ class DashboardViewModel: ObservableObject {
             error = nil
             
             async let subsResult = repository.getSubscriptions()
-            async let statsResult = repository.getStats()
             async let upcomingResult = repository.getUpcomingSubscriptions()
             
-            let (subs, st, upcoming) = await (subsResult, statsResult, upcomingResult)
+            let (subs, upcoming) = await (subsResult, upcomingResult)
             
             switch subs {
             case .success(let list):
                 subscriptions = list.filter { $0.isActive }.sorted { $0.cost > $1.cost }
+                stats = SubscriptionStats.calculate(from: list)
             case .failure(let err):
                 error = err.localizedDescription
-            }
-            
-            switch st {
-            case .success(let s):
-                stats = s
-            case .failure: break
             }
             
             switch upcoming {

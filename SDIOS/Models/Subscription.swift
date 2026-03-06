@@ -124,6 +124,31 @@ struct SubscriptionStats: Codable {
     var activeCount: Int = 0
     var cancelledCount: Int = 0
     var suspiciousCount: Int = 0
+    
+    static func calculate(from list: [Subscription]) -> SubscriptionStats {
+        let activeSubs = list.filter { $0.isActive }
+        
+        let monthlyCost = activeSubs.reduce(0.0) { total, sub in
+            switch sub.billingCycle {
+            case .monthly:
+                return total + sub.cost
+            case .yearly:
+                return total + (sub.cost / 12.0)
+            case .weekly:
+                return total + (sub.cost * 4.0)
+            case .quarterly:
+                return total + (sub.cost / 3.0)
+            }
+        }
+        
+        var stats = SubscriptionStats()
+        stats.totalMonthlyCost = monthlyCost
+        stats.totalYearlyCost = monthlyCost * 12.0
+        stats.activeCount = activeSubs.count
+        stats.cancelledCount = list.filter { $0.status == 3 }.count
+        stats.suspiciousCount = list.filter { $0.isSuspicious }.count
+        return stats
+    }
 }
 
 // MARK: - Subscription Invitation

@@ -52,15 +52,6 @@ class SubscriptionRepository {
         }
     }
     
-    func getStats() async -> Result<SubscriptionStats, Error> {
-        do {
-            let stats = try await api.getSubscriptionStats()
-            return .success(stats)
-        } catch {
-            return .failure(error)
-        }
-    }
-    
     func getSuspiciousSubscriptions() async -> Result<[Subscription], Error> {
         do {
             let responses = try await api.getSuspiciousSubscriptions()
