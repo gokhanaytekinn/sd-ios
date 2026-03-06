@@ -123,10 +123,11 @@ struct SubscriptionCard: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
+                .contentShape(Rectangle())
+                .background(Color.appSurface(for: colorScheme).opacity(0.001))
             }
         }
         .buttonStyle(.plain)
-        .background(Color.clear)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)

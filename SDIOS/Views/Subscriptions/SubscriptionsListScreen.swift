@@ -203,8 +203,9 @@ struct SubscriptionsListScreen: View {
                 .foregroundColor(selectedTab == tag ? .white : Color.appOnSurfaceVariant(for: colorScheme))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
-                .background(selectedTab == tag ? Color.primaryBlue : Color.clear)
+                .background(selectedTab == tag ? Color.primaryBlue : Color.appSurface(for: colorScheme).opacity(0.001))
                 .cornerRadius(8)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }

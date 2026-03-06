@@ -341,8 +341,9 @@ struct AddSubscriptionScreen: View {
                 .foregroundColor(viewModel.selectedBillingCycle == cycle ? .white : Color.appOnSurfaceVariant(for: colorScheme))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
-                .background(viewModel.selectedBillingCycle == cycle ? Color.primaryBlue : Color.clear)
+                .background(viewModel.selectedBillingCycle == cycle ? Color.primaryBlue : Color.appSurface(for: colorScheme).opacity(0.001))
                 .cornerRadius(8)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }
