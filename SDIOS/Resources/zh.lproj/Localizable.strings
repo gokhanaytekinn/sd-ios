@@ -358,3 +358,17 @@
 
 "pending_approve" = "待核准";
 "add_mannually" = "手动添加";
+
+"month" = "月";
+"month_1" = "一月";
+"month_2" = "二月";
+"month_3" = "三月";
+"month_4" = "四月";
+"month_5" = "五月";
+"month_6" = "六月";
+"month_7" = "七月";
+"month_8" = "八月";
+"month_9" = "九月";
+"month_10" = "十月";
+"month_11" = "十一月";
+"month_12" = "十二月";

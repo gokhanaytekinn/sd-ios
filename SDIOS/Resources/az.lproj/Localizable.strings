@@ -352,3 +352,17 @@
 
 "pending_approve" = "Təsdiq Gözləyənlər";
 "add_mannually" = "Əllə əlavə et";
+
+"month" = "Ay";
+"month_1" = "Yanvar";
+"month_2" = "Fevral";
+"month_3" = "Mart";
+"month_4" = "Aprel";
+"month_5" = "May";
+"month_6" = "İyun";
+"month_7" = "İyul";
+"month_8" = "Avqust";
+"month_9" = "Sentyabr";
+"month_10" = "Oktyabr";
+"month_11" = "Noyabr";
+"month_12" = "Dekabr";

@@ -110,11 +110,11 @@ struct SubscriptionsListScreen: View {
                         tabButton("pending_approve".localized(), tag: 1)
                         tabButton("cancelled".localized(), tag: 2)
                     }
-                    .background(Color.appSurface(for: colorScheme))
+                    .background(Color.clear)
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
                     )
                     .padding(.horizontal, 24)
                     
@@ -200,10 +200,10 @@ struct SubscriptionsListScreen: View {
         Button(action: { selectedTab = tag }) {
             Text(title)
                 .font(.system(size: 14, weight: .medium))
-                .foregroundColor(selectedTab == tag ? .black : Color.appOnSurfaceVariant(for: colorScheme))
+                .foregroundColor(selectedTab == tag ? .white : Color.appOnSurfaceVariant(for: colorScheme))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
-                .background(selectedTab == tag ? Color.successColor : Color.clear)
+                .background(selectedTab == tag ? Color.primaryBlue : Color.clear)
                 .cornerRadius(8)
         }
         .buttonStyle(.plain)

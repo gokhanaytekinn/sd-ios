@@ -356,3 +356,17 @@
 
 "pending_approve" = "Tassyklama garaşylýanlar";
 "add_mannually" = "Elde goşmak";
+
+"month" = "Aý";
+"month_1" = "Ýanwar";
+"month_2" = "Fewral";
+"month_3" = "Mart";
+"month_4" = "Aprel";
+"month_5" = "Maý";
+"month_6" = "Iýun";
+"month_7" = "Iýul";
+"month_8" = "Awgust";
+"month_9" = "Sentýabr";
+"month_10" = "Oktýabr";
+"month_11" = "Noýabr";
+"month_12" = "Dekabr";
