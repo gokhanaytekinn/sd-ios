@@ -56,7 +56,7 @@ struct SkeletonCard: View {
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
         )
         .skeleton()
     }
@@ -130,7 +130,7 @@ struct SubscriptionCard: View {
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
         )
     }
     
@@ -303,7 +303,6 @@ struct SettingsToggleItem: View {
     let title: String
     @Binding var isOn: Bool
     let iconColor: Color
-    var isTransparent: Bool = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -326,11 +325,11 @@ struct SettingsToggleItem: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
-        .background(isTransparent ? Color.clear : Color.appSurface(for: colorScheme))
+        .background(Color.clear)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(isTransparent ? Color.appOutline(for: colorScheme).opacity(0.3) : Color.clear, lineWidth: 1)
+                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
         )
     }
 }
@@ -342,7 +341,6 @@ struct SettingsNavigationItem: View {
     var subtitle: String? = nil
     let iconColor: Color
     var textColor: Color? = nil
-    var isTransparent: Bool = false
     let onTap: () -> Void
     
     @Environment(\.colorScheme) var colorScheme
@@ -375,11 +373,11 @@ struct SettingsNavigationItem: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 14)
-            .background(isTransparent ? Color.clear : Color.appSurface(for: colorScheme))
+            .background(Color.clear)
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(isTransparent ? Color.appOutline(for: colorScheme).opacity(0.3) : Color.clear, lineWidth: 1)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
             )
         }
         .buttonStyle(.plain)

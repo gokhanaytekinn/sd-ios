@@ -62,7 +62,7 @@ struct SubscriptionsListScreen: View {
                     .background(Color.clear)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
                     )
                     .cornerRadius(12)
                     .padding(.horizontal, 24)
