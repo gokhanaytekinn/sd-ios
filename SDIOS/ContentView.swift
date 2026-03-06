@@ -145,7 +145,7 @@ struct ContentView: View {
     
     // MARK: - Main Tab View
     private var mainTabView: some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
                 NavigationStack(path: $navigationPath) {
                     Group {
@@ -262,10 +262,7 @@ struct ContentView: View {
     private var bottomNavBar: some View {
         HStack(spacing: 0) {
             ForEach(MainTab.allCases, id: \.rawValue) { tab in
-                if tab == .upcoming {
-                    // Placeholder space for the floating FAB
-                    Spacer().frame(width: 80)
-                }
+
                 
                 Button(action: {
                     selectedTab = tab
@@ -349,7 +346,8 @@ struct ContentView: View {
                 }
             }
         }
-        .padding(.bottom, 24)
+        .padding(.bottom, 16)
+        .padding(.trailing, 16)
     }
 }
 

@@ -139,9 +139,9 @@ struct AddSubscriptionScreen: View {
                                     }
                                     .padding()
                                     .frame(maxWidth: .infinity, minHeight: 56)
-                                    .background(Color.appSurface(for: colorScheme))
+                                    .background(Color.clear)
                                     .cornerRadius(12)
-                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
+                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1))
                                 }
                             }
                             .frame(width: 120)
@@ -153,17 +153,22 @@ struct AddSubscriptionScreen: View {
                                 .font(.system(size: 14, weight: .bold))
                             
                             HStack(spacing: 0) {
-                                periodButton(title: "billing_monthly_label".localized().uppercased(), cycle: .monthly)
-                                periodButton(title: "billing_yearly_label".localized().uppercased(), cycle: .yearly)
+                                periodButton(title: "billing_monthly_label".localized(), cycle: .monthly)
+                                periodButton(title: "billing_yearly_label".localized(), cycle: .yearly)
                             }
                             .background(Color.clear)
-                            .cornerRadius(12)
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1))
+                            .cornerRadius(8)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            )
                         }
                         
                         // Payment Recurrence Day
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("payment_recurrence_day".localized())
+                            Text(viewModel.selectedBillingCycle == .monthly ? 
+                                 "payment_recurrence_day".localized() : 
+                                 "payment_recurrence_day_month".localized())
                                 .font(.system(size: 14, weight: .bold))
                             
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -189,8 +194,7 @@ struct AddSubscriptionScreen: View {
                         // Payment Recurrence Month (Only for Yearly)
                         if viewModel.selectedBillingCycle == .yearly {
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("month".localized())
-                                    .font(.system(size: 14, weight: .bold))
+
                                 
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 12) {
@@ -284,19 +288,14 @@ struct AddSubscriptionScreen: View {
     private func periodButton(title: String, cycle: BillingCycle) -> some View {
         Button(action: { viewModel.selectedBillingCycle = cycle }) {
             Text(title)
-                .font(.system(size: 14, weight: .bold))
+                .font(.system(size: 14, weight: .medium))
                 .foregroundColor(viewModel.selectedBillingCycle == cycle ? .white : Color.appOnSurfaceVariant(for: colorScheme))
                 .frame(maxWidth: .infinity)
-                .frame(height: 48)
+                .padding(.vertical, 12)
                 .background(viewModel.selectedBillingCycle == cycle ? Color.primaryBlue : Color.clear)
-                .cornerRadius(10)
-                .padding(2)
+                .cornerRadius(8)
         }
         .buttonStyle(.plain)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-        )
     }
     
     private func categoryChip(_ title: String, key: String) -> some View {
