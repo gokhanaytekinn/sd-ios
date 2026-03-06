@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import GoogleSignIn
 
 @MainActor
 class AuthViewModel: ObservableObject {
@@ -97,6 +98,64 @@ class AuthViewModel: ObservableObject {
                 isLoading = false
                 error = err.localizedDescription
             }
+        }
+    }
+
+    func loginWithGoogle(idToken: String, onSuccess: @escaping () -> Void) {
+        Task {
+            isLoading = true
+            error = nil
+            let result = await repository.loginWithGoogle(idToken: idToken)
+            switch result {
+            case .success(let response):
+                isLoading = false
+                isAuthenticated = true
+                userName = response.user?.name
+                userEmail = response.user?.email
+                notificationsEnabled = response.user?.notificationsEnabled ?? true
+                language = response.user?.language ?? "tr"
+                tier = response.user?.tier ?? 1
+                syncLanguageIfNeeded()
+                onSuccess()
+            case .failure(let err):
+                isLoading = false
+                error = err.localizedDescription
+            }
+        }
+    }
+
+
+    func signInWithGoogle(onSuccess: @escaping () -> Void) {
+        guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {
+            return
+        }
+
+        // Load the iOS Client ID from the plist file provided by Google Cloud Console
+        let plistName = "client_511347263387-geasdab34clq1b778vu5i6m2l0m4anlr.apps.googleusercontent.com"
+        guard let plistPath = Bundle.main.path(forResource: plistName, ofType: "plist"),
+              let plistDict = NSDictionary(contentsOfFile: plistPath),
+              let clientID = plistDict["CLIENT_ID"] as? String else {
+            self.error = "Google configuration not found"
+            return
+        }
+
+        // The serverClientId is the Web Client ID from Google Cloud Console (same as Android)
+        let serverClientId = "511347263387-cv901jhvhfoap5ibn4rndu7irlgspkn7.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID, serverClientID: serverClientId)
+
+        GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [weak self] result, error in
+            if let error = error {
+                self?.error = error.localizedDescription
+                return
+            }
+
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else {
+                self?.error = "Failed to get ID Token"
+                return
+            }
+
+            self?.loginWithGoogle(idToken: idToken, onSuccess: onSuccess)
         }
     }
 

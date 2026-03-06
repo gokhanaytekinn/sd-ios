@@ -396,6 +396,33 @@ struct SettingsNavigationItem: View {
     }
 }
 
+// MARK: - Google Sign In Button
+struct GoogleSignInButton: View {
+    let action: () -> Void
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 12) {
+                Image(systemName: "g.circle.fill") // Placeholder for Google Icon
+                    .font(.system(size: 20))
+                
+                Text("sign_in_with_google".localized())
+                    .font(.system(size: 16, weight: .bold))
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 56)
+            .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.gray.opacity(0.1))
+            .foregroundColor(Color.appOnBackground(for: colorScheme))
+            .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+            )
+        }
+    }
+}
+
 // MARK: - SDErrorDialog
 struct SDErrorDialog: ViewModifier {
     @Binding var errorMessage: String?

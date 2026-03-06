@@ -93,6 +93,19 @@ struct LoginScreen: View {
                         authViewModel.login(email: email, password: password, onSuccess: onLoginSuccess)
                     }
                     
+                    HStack {
+                        VStack { Divider().background(Color.appOutline(for: colorScheme)) }
+                        Text("or".localized())
+                            .font(.system(size: 14))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                            .padding(.horizontal, 8)
+                        VStack { Divider().background(Color.appOutline(for: colorScheme)) }
+                    }
+                    
+                    GoogleSignInButton {
+                        authViewModel.signInWithGoogle(onSuccess: onLoginSuccess)
+                    }
+                    
                     // Register Link
                     HStack(spacing: 0) {
                         Text("no_account_prompt".localized())

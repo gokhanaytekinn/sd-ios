@@ -117,6 +117,7 @@
 "or" = "or";
 "no_account_prompt" = "Don't have an account? ";
 "google_sign_in_failed" = "Google sign in failed (%@)";
+"sign_in_with_google" = "Sign in with Google";
 "register_desc" = "Start managing your subscriptions and saving.";
 "full_name_placeholder" = "e.g. John Doe";
 "accept_terms_pre" = "I accept the ";

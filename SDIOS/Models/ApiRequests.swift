@@ -13,6 +13,10 @@ struct RegisterRequest: Codable {
     let language: String?
 }
 
+struct GoogleAuthRequest: Codable {
+    let idToken: String
+}
+
 
 
 struct ForgotPasswordRequest: Codable {

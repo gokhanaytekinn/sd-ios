@@ -117,6 +117,7 @@
 "or" = "veya";
 "no_account_prompt" = "Hesabın yok mu? ";
 "google_sign_in_failed" = "Google ile giriş başarısız (%@)";
+"sign_in_with_google" = "Google ile Giriş Yap";
 "register_desc" = "Aboneliklerini yönetmeye ve tasarruf etmeye başla.";
 "full_name_placeholder" = "Örn: Ahmet Yılmaz";
 "accept_terms_pre" = "";

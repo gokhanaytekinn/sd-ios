@@ -154,6 +154,10 @@ class ApiService {
         return try await self.request(endpoint: "/api/auth/register", method: "POST", body: request, requiresAuth: false)
     }
     
+    func loginWithGoogle(_ request: GoogleAuthRequest) async throws -> ApiAuthResponse {
+        return try await self.request(endpoint: "/api/auth/google", method: "POST", body: request, requiresAuth: false)
+    }
+    
     
     func getCurrentUser() async throws -> UserResponse {
         return try await request(endpoint: "/api/auth/me")
