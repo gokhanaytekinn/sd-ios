@@ -1,4 +1,4 @@
-﻿"joint_users" = "Utilisateurs conjoints";
+"joint_users" = "Utilisateurs conjoints";
 "add_email_placeholder" = "Ajouter une adresse e-mail";
 "remove" = "Supprimer";
 "app_name" = "Suivi d'Abonnement";
@@ -209,7 +209,17 @@
 "category_gaming" = "Jeux";
 "category_software" = "Logiciel";
 "category_shopping" = "Achats";
-"category_other" = "Autres";
+"category_other" = "Autre";
+"category_entertainment" = "Divertissement";
+"category_music" = "Musique";
+"category_sports" = "Sports et Santé";
+"category_education" = "Éducation";
+"category_cloud" = "Cloud et Productivité";
+"category_ecommerce" = "E-commerce";
+"category_news" = "Actualités et Édition";
+"category_transport" = "Transport";
+"category_finance" = "Finance";
+"category_technology" = "Technologie";
 "quick_amount" = "Montant Rapide";
 "quick_date" = "Date Rapide";
 "today_btn" = "Aujourd'hui";
@@ -350,6 +360,9 @@
 "done_btn" = "Terminé";
 
 "pending_approve" = "Approbation En Attente";
+"pending_invitations" = "Invitations en attente (%d)";
+"joint_subscription" = "Abonnement conjoint";
+"accept" = "Accepter";
 "add_mannually" = "Ajouter manuellement";
 
 "month" = "Mois";

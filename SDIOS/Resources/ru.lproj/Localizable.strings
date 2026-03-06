@@ -1,4 +1,4 @@
-﻿"joint_users" = "Совместные пользователи";
+"joint_users" = "Совместные пользователи";
 "add_email_placeholder" = "Добавить адрес электронной почты";
 "remove" = "Удалить";
 "app_name" = "Детектор Подписок";
@@ -212,6 +212,16 @@
 "category_software" = "ПО";
 "category_shopping" = "Покупки";
 "category_other" = "Другое";
+"category_entertainment" = "Развлечения";
+"category_music" = "Музыка";
+"category_sports" = "Спорт и Здоровье";
+"category_education" = "Образование";
+"category_cloud" = "Облако и Продуктивность";
+"category_ecommerce" = "Электронная коммерция";
+"category_news" = "Новости и Издательства";
+"category_transport" = "Транспорт";
+"category_finance" = "Финансы";
+"category_technology" = "Технология";
 "quick_amount" = "Быстрая сумма";
 "quick_date" = "Быстрая дата";
 "today_btn" = "Сегодня";
@@ -358,6 +368,9 @@
 "done_btn" = "Готово";
 
 "pending_approve" = "Ожидают подтверждения";
+"pending_invitations" = "Ожидающие приглашения (%d)";
+"joint_subscription" = "Совместная подписка";
+"accept" = "Принять";
 "add_mannually" = "Добавить вручную";
 
 "month" = "Месяц";

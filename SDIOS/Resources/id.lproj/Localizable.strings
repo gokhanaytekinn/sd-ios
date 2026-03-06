@@ -1,4 +1,4 @@
-﻿"joint_users" = "Pengguna Bersama";
+"joint_users" = "Pengguna Bersama";
 "add_email_placeholder" = "Tambah alamat email";
 "remove" = "Hapus";
 "app_name" = "Sub Tracker";
@@ -185,6 +185,16 @@
 "category_gaming" = "Game";
 "category_software" = "Perangkat Lunak";
 "category_other" = "Lainnya";
+"category_entertainment" = "Hiburan";
+"category_music" = "Musik";
+"category_sports" = "Olahraga & Kesehatan";
+"category_education" = "Pendidikan";
+"category_cloud" = "Cloud & Produktivitas";
+"category_ecommerce" = "E-commerce";
+"category_news" = "Berita & Penerbitan";
+"category_transport" = "Transportasi";
+"category_finance" = "Keuangan";
+"category_technology" = "Teknologi";
 "quick_amount" = "Jumlah Cepat";
 "quick_date" = "Tanggal Cepat";
 "today_btn" = "Hari Ini";
@@ -305,6 +315,9 @@
 "add_subscription_btn" = "Tambah Langganan";
 "done_btn" = "Selesai";
 "pending_approve" = "Persetujuan Tertunda";
+"pending_invitations" = "Undangan Tertunda (%d)";
+"joint_subscription" = "Berlangganan bersama";
+"accept" = "Terima";
 "add_mannually" = "Tambah manual";
 
 "month" = "Bulan";

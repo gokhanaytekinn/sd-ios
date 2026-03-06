@@ -1,4 +1,4 @@
-﻿"joint_users" = "Birgalikdagi foydalanuvchilar";
+"joint_users" = "Birgalikdagi foydalanuvchilar";
 "add_email_placeholder" = "Elektron pochta manzilini qo'shing";
 "remove" = "O'chirish";
 "app_name" = "Sub Tracker";
@@ -212,6 +212,16 @@
 "category_software" = "Dasturiy ta'minot";
 "category_shopping" = "Xaridlar";
 "category_other" = "Boshqa";
+"category_entertainment" = "Ko'ngilochar";
+"category_music" = "Musiqa";
+"category_sports" = "Sport va Salomatlik";
+"category_education" = "Ta'lim";
+"category_cloud" = "Bulud va Mahsuldorlik";
+"category_ecommerce" = "Elektron tijorat";
+"category_news" = "Yangiliklar va Nashriyot";
+"category_transport" = "Transport";
+"category_finance" = "Moliya";
+"category_technology" = "Texnologiya";
 "quick_amount" = "Tezkor summa";
 "quick_date" = "Tezkor sana";
 "today_btn" = "Bugun";
@@ -358,6 +368,9 @@
 "done_btn" = "Tayyor";
 
 "pending_approve" = "Tasdiqlash kutilmoqda";
+"pending_invitations" = "Kutilayotgan takliflar (%d)";
+"joint_subscription" = "Birgalikda obuna";
+"accept" = "Qabul qilish";
 "add_mannually" = "Qo‘lda qo‘shish";
 
 "month" = "Oy";

@@ -1,4 +1,4 @@
-﻿"joint_users" = "Birgə İstifadəçilər";
+"joint_users" = "Birgə İstifadəçilər";
 "add_email_placeholder" = "E-poçt ünvanı əlavə edin";
 "remove" = "Sil";
 "app_name" = "Sub Tracker";
@@ -211,6 +211,16 @@
 "category_gaming" = "Oyunlar";
 "category_software" = "Proqram Təminatı";
 "category_other" = "Digər";
+"category_entertainment" = "Əyləncə";
+"category_music" = "Musiqi";
+"category_sports" = "İdman və Sağlamlıq";
+"category_education" = "Təhsil";
+"category_cloud" = "Bulud və Məhsuldarlıq";
+"category_ecommerce" = "Elektron ticarət";
+"category_news" = "Xəbər və Nəşriyyat";
+"category_transport" = "Nəqliyyat";
+"category_finance" = "Maliyyə";
+"category_technology" = "Texnologiya";
 "quick_amount" = "Sürətli Məbləğ";
 "quick_date" = "Sürətli Tarix";
 "today_btn" = "Bugün";
@@ -353,6 +363,9 @@
 "done_btn" = "Tamam";
 
 "pending_approve" = "Təsdiq Gözləyənlər";
+"pending_invitations" = "Gözlənilən dəvətlər (%d)";
+"joint_subscription" = "Ortaq abunəlik";
+"accept" = "Qəbul et";
 "add_mannually" = "Əllə əlavə et";
 
 "month" = "Ay";

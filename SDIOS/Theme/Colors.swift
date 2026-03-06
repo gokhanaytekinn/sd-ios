@@ -34,6 +34,7 @@ extension Color {
     static let netflixRed = Color(hex: "E50914")
     static let spotifyGreen = Color(hex: "1DB954")
     static let adobeRed = Color(hex: "FF0000")
+    static let amazonOrange = Color(hex: "FF9900")
     
     // Slate colors used in theme
     static let slate100 = Color(hex: "F1F5F9")

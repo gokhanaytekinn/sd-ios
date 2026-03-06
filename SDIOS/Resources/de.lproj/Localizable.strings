@@ -1,4 +1,4 @@
-﻿"joint_users" = "Gemeinsame Nutzer";
+"joint_users" = "Gemeinsame Nutzer";
 "add_email_placeholder" = "E-Mail-Adresse hinzufügen";
 "remove" = "Entfernen";
 "app_name" = "Abonnement-Tracker";
@@ -211,6 +211,16 @@
 "category_gaming" = "Gaming";
 "category_software" = "Software";
 "category_other" = "Andere";
+"category_entertainment" = "Unterhaltung";
+"category_music" = "Musik";
+"category_sports" = "Sport & Gesundheit";
+"category_education" = "Bildung";
+"category_cloud" = "Cloud & Produktivität";
+"category_ecommerce" = "E-Commerce";
+"category_news" = "Nachrichten & Verlagswesen";
+"category_transport" = "Transport";
+"category_finance" = "Finanzen";
+"category_technology" = "Technologie";
 "quick_amount" = "Schnellbetrag";
 "quick_date" = "Schnelldatum";
 "today_btn" = "Heute";
@@ -353,6 +363,9 @@
 "done_btn" = "Fertig";
 
 "pending_approve" = "Ausstehende Genehmigung";
+"pending_invitations" = "Ausstehende Einladungen (%d)";
+"joint_subscription" = "Gemeinsames Abo";
+"accept" = "Akzeptieren";
 "add_mannually" = "Manuell hinzufügen";
 
 "month" = "Monat";

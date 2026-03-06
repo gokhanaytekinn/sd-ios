@@ -156,6 +156,9 @@ struct SubscriptionInvitation: Codable, Identifiable {
     let id: String
     let subscriptionName: String?
     let ownerEmail: String?
+    let amount: Double?
+    let currency: Int?
+    let billingCycle: Int?
     let createdAt: String
     let status: String
 }

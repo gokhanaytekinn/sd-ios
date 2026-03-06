@@ -1,4 +1,4 @@
-﻿"joint_users" = "Биргелешкен колдонуучулар";
+"joint_users" = "Биргелешкен колдонуучулар";
 "add_email_placeholder" = "Электрондук почта дарегин кошуңуз";
 "remove" = "Өчүрүү";
 "app_name" = "Sub Tracker";
@@ -213,11 +213,11 @@
 "category_other" = "Башка";
 "category_entertainment" = "Көңүл ачуу";
 "category_music" = "Музыка";
-"category_sports" = "Спорт жана ден соолук";
-"category_education" = "Билим";
-"category_cloud" = "Булут жана өндүрүмдүүлүк";
-"category_ecommerce" = "Соода";
-"category_news" = "Жаңылыктар жана басма";
+"category_sports" = "Спорт жана Ден соолук";
+"category_education" = "Билим берүү";
+"category_cloud" = "Булут жана Өндүрүмдүүлүк";
+"category_ecommerce" = "Электрондук соода";
+"category_news" = "Жаңалықтар жана Басылмалар";
 "category_transport" = "Транспорт";
 "category_finance" = "Каржы";
 "category_technology" = "Технология";
@@ -367,6 +367,9 @@
 "done_btn" = "Даяр";
 
 "pending_approve" = "Ырастоону күтүүдө";
+"pending_invitations" = "Күтүлүп жатқан чакыруулар (%d)";
+"joint_subscription" = "Биргелешкен жазылуу";
+"accept" = "Кабыл алуу";
 "add_mannually" = "Кол менен кошуу";
 
 "month" = "Ай";

@@ -1,4 +1,4 @@
-﻿"joint_users" = "Usuarios Conjuntos";
+"joint_users" = "Usuarios Conjuntos";
 "add_email_placeholder" = "Añadir dirección de correo";
 "remove" = "Eliminar";
 "app_name" = "Detector de Suscripciones";
@@ -212,6 +212,16 @@
 "category_software" = "Software";
 "category_shopping" = "Compras";
 "category_other" = "Otros";
+"category_entertainment" = "Entretenimiento";
+"category_music" = "Música";
+"category_sports" = "Deportes y Salud";
+"category_education" = "Educación";
+"category_cloud" = "Nube y Productividad";
+"category_ecommerce" = "Comercio electrónico";
+"category_news" = "Noticias y Editoriales";
+"category_transport" = "Transporte";
+"category_finance" = "Finanzas";
+"category_technology" = "Tecnología";
 "quick_amount" = "Cantidad Rápida";
 "quick_date" = "Fecha Rápida";
 "today_btn" = "Hoy";
@@ -358,6 +368,9 @@
 "done_btn" = "Hecho";
 
 "pending_approve" = "Aprobación Pendiente";
+"pending_invitations" = "Invitaciones pendientes (%d)";
+"joint_subscription" = "Suscripción conjunta";
+"accept" = "Aceptar";
 "add_mannually" = "Añadir manualmente";
 
 "month" = "Mes";

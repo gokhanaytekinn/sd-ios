@@ -1,4 +1,4 @@
-﻿"joint_users" = "Бірлескен пайдаланушылар";
+"joint_users" = "Бірлескен пайдаланушылар";
 "add_email_placeholder" = "Электрондық пошта мекенжайын қосыңыз";
 "remove" = "Жою";
 "app_name" = "Sub Tracker";
@@ -211,6 +211,16 @@
 "category_gaming" = "Ойындар";
 "category_software" = "Бағдарламалық қамтамасыз ету";
 "category_other" = "Басқа";
+"category_entertainment" = "Ойын-сауық";
+"category_music" = "Музыка";
+"category_sports" = "Спорт және Денсаулық";
+"category_education" = "Білім беру";
+"category_cloud" = "Бұлттық және Өнімділік";
+"category_ecommerce" = "Электрондық коммерция";
+"category_news" = "Жаңалықтар мен Басылымдар";
+"category_transport" = "Көлік";
+"category_finance" = "Қаржы";
+"category_technology" = "Технология";
 "quick_amount" = "Жылдам сома";
 "quick_date" = "Жылдам күн";
 "today_btn" = "Бүгін";
@@ -357,6 +367,9 @@
 "done_btn" = "Дайын";
 
 "pending_approve" = "Растауды күтуде";
+"pending_invitations" = "Күтудегі шақырулар (%d)";
+"joint_subscription" = "Бірлескен жазылым";
+"accept" = "Қабылдау";
 "add_mannually" = "Қолмен қосу";
 
 "month" = "Ай";

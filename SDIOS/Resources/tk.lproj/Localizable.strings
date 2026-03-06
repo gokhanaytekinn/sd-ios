@@ -1,4 +1,4 @@
-﻿"joint_users" = "Bilelikdäki ulanyjylar";
+"joint_users" = "Bilelikdäki ulanyjylar";
 "add_email_placeholder" = "E-poçta salgysyny goşuň";
 "remove" = "Aýyr";
 "app_name" = "Sub Tracker";
@@ -211,6 +211,16 @@
 "category_gaming" = "Oýunlar";
 "category_software" = "Programma üpjünçiligi";
 "category_other" = "Başga";
+"category_entertainment" = "Güýmenje";
+"category_music" = "Saz";
+"category_sports" = "Sport we Saglyk";
+"category_education" = "Bilim";
+"category_cloud" = "Bulud we Öndürijilik";
+"category_ecommerce" = "Elektron söwda";
+"category_news" = "Täzelikler we Neşirýat";
+"category_transport" = "Ulag";
+"category_finance" = "Maliýe";
+"category_technology" = "Tehnologiýa";
 "quick_amount" = "Çalt mukdar";
 "quick_date" = "Çalt sene";
 "today_btn" = "Bugün";
@@ -357,6 +367,9 @@
 "done_btn" = "Tamam";
 
 "pending_approve" = "Tassyklama garaşylýanlar";
+"pending_invitations" = "Garaşylýan çakylyklar (%d)";
+"joint_subscription" = "Bilelikde abunalyk";
+"accept" = "Kabul et";
 "add_mannually" = "Elde goşmak";
 
 "month" = "Aý";

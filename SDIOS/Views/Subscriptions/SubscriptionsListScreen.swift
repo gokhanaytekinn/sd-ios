@@ -120,23 +120,29 @@ struct SubscriptionsListScreen: View {
                     
                     Spacer().frame(height: 12)
                     
-                    // Pending Invitations
-                    if !viewModel.invitations.isEmpty && selectedTab == 0 {
-                        VStack(spacing: 8) {
-                            ForEach(viewModel.invitations) { invitation in
-                                invitationCard(invitation)
-                            }
-                        }
-                        .padding(.horizontal, 24)
-                        
-                        Spacer().frame(height: 12)
-                    }
                     
                     // Subscription List
                     ScrollView {
                         VStack(spacing: 8) {
+                            if selectedTab == 1 && !viewModel.invitations.isEmpty {
+                                HStack {
+                                    Text(String(format: "pending_invitations".localized(), viewModel.invitations.count))
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundColor(.primaryBlue)
+                                    Spacer()
+                                }
+                                .padding(.top, 12)
+                                .padding(.bottom, 4)
+                                
+                                ForEach(viewModel.invitations) { invitation in
+                                    invitationCard(invitation)
+                                }
+                                
+                                Spacer().frame(height: 12)
+                            }
+
                             let subs = currentTabSubscriptions
-                            if subs.isEmpty {
+                            if subs.isEmpty && (selectedTab != 1 || viewModel.invitations.isEmpty) {
                                 emptyState
                             } else {
                                 ForEach(subs) { sub in
@@ -211,43 +217,103 @@ struct SubscriptionsListScreen: View {
     }
     
     private func invitationCard(_ invitation: SubscriptionInvitation) -> some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(invitation.subscriptionName ?? "")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+        VStack(spacing: 12) {
+            HStack {
+                // Icon (Brand)
+                brandIcon(invitation.subscriptionName ?? "")
                 
-                Text(invitation.ownerEmail ?? "")
-                    .font(.system(size: 12))
-                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                Spacer().frame(width: 16)
+                
+                // Name & Info
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 4) {
+                        Text(invitation.subscriptionName ?? "")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        
+                        Image(systemName: "person.2.fill")
+                            .font(.system(size: 12))
+                            .foregroundColor(.primaryBlue)
+                    }
+                    
+                    Text("\( "joint_subscription".localized()) • \(billingCycleText(invitation.billingCycle ?? 1))")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                }
+                
+                Spacer()
+                
+                // Price
+                Text(CurrencyFormatter.formatAmount(invitation.amount ?? 0.0, currencyCode: invitation.currency ?? 1))
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme))
             }
+            .padding(.top, 4)
             
-            Spacer()
-            
-            HStack(spacing: 8) {
+            HStack(spacing: 12) {
+                Spacer()
+                
                 Button(action: { viewModel.rejectInvitation(id: invitation.id) }) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.errorColor)
-                        .frame(width: 32, height: 32)
-                        .overlay(Circle().stroke(Color.errorColor, lineWidth: 1))
+                    Text("reject".localized())
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.clear)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+                        )
                 }
                 
                 Button(action: { viewModel.acceptInvitation(id: invitation.id) }) {
-                    Image(systemName: "checkmark")
+                    Text("accept".localized())
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.successColor)
-                        .frame(width: 32, height: 32)
-                        .overlay(Circle().stroke(Color.successColor, lineWidth: 1))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.primaryBlue)
+                        .cornerRadius(8)
                 }
             }
         }
-        .padding(12)
-        .background(Color.primaryBlue.opacity(0.05))
+        .padding(16)
+        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+        .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.primaryBlue.opacity(0.2), lineWidth: 1)
+                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
         )
-        .cornerRadius(12)
+    }
+    
+    private func billingCycleText(_ cycle: Int) -> String {
+        switch cycle {
+        case 1: return "billing_monthly_label".localized()
+        case 2: return "billing_yearly_label".localized()
+        case 3: return "billing_weekly_label".localized()
+        default: return "billing_monthly_label".localized()
+        }
+    }
+    
+    private func brandIcon(_ name: String) -> some View {
+        let brandColor = getBrandColor(name)
+        return ZStack {
+            Circle()
+                .fill(brandColor.opacity(0.1))
+                .frame(width: 36, height: 36)
+            
+            Text(name.prefix(1).uppercased())
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(brandColor)
+        }
+    }
+    
+    private func getBrandColor(_ name: String) -> Color {
+        let lowered = name.lowercased()
+        if lowered.contains("netflix") { return .netflixRed }
+        if lowered.contains("spotify") { return .spotifyGreen }
+        if lowered.contains("adobe") { return .adobeRed }
+        if lowered.contains("amazon") { return .amazonOrange }
+        return .primaryBlue
     }
 }

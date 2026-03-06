@@ -1,4 +1,4 @@
-﻿"joint_users" = "Ortak Kullanıcılar";
+"joint_users" = "Ortak Kullanıcılar";
 "add_email_placeholder" = "E-posta adresi ekleyin";
 "remove" = "Kaldır";
 "app_name" = "Sub Tracker";
@@ -213,6 +213,16 @@
 "category_software" = "Yazılım";
 "category_shopping" = "Alışveriş";
 "category_other" = "Diğer";
+"category_entertainment" = "Eğlence";
+"category_music" = "Müzik";
+"category_sports" = "Spor & Sağlık";
+"category_education" = "Eğitim";
+"category_cloud" = "Bulut & Verimlilik";
+"category_ecommerce" = "E-ticaret";
+"category_news" = "Haber & Yayıncılık";
+"category_transport" = "Ulaşım";
+"category_finance" = "Finans";
+"category_technology" = "Teknoloji";
 "quick_amount" = "Hızlı Tutar";
 "quick_date" = "Hızlı Tarih";
 "today_btn" = "Bugün";
@@ -356,6 +366,9 @@
 "done_btn" = "Tamam";
 
 "pending_approve" = "Onay Bekleyenler";
+"pending_invitations" = "Bekleyen Davetiyeler (%d)";
+"joint_subscription" = "Ortak Abonelik";
+"accept" = "Kabul Et";
 "add_mannually" = "Manuel Ekle";
 
 "month_1" = "Ocak";

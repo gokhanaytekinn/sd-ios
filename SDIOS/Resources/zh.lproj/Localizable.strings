@@ -1,4 +1,4 @@
-﻿"joint_users" = "共同用户";
+"joint_users" = "共同用户";
 "add_email_placeholder" = "添加电子邮件地址";
 "remove" = "移除";
 "app_name" = "订阅追踪器";
@@ -212,6 +212,16 @@
 "category_software" = "软件";
 "category_shopping" = "购物";
 "category_other" = "其他";
+"category_entertainment" = "娱乐";
+"category_music" = "音乐";
+"category_sports" = "运动与健康";
+"category_education" = "教育";
+"category_cloud" = "云与生产力";
+"category_ecommerce" = "电子商务";
+"category_news" = "新闻与出版";
+"category_transport" = "运输";
+"category_finance" = "金融";
+"category_technology" = "科技";
 "quick_amount" = "快速金额";
 "quick_date" = "快速日期";
 "today_btn" = "今天";
@@ -358,6 +368,9 @@
 "done_btn" = "完成";
 
 "pending_approve" = "待核准";
+"pending_invitations" = "待处理的邀请 (%d)";
+"joint_subscription" = "共同订阅";
+"accept" = "接受";
 "add_mannually" = "手动添加";
 
 "month" = "月";

@@ -1,4 +1,4 @@
-﻿"joint_users" = "Joint Users";
+"joint_users" = "Joint Users";
 "add_email_placeholder" = "Add email address";
 "remove" = "Remove";
 "app_name" = "Sub Tracker";
@@ -371,6 +371,9 @@
 "done_btn" = "Done";
 
 "pending_approve" = "Pending Approval";
+"pending_invitations" = "Pending Invitations (%d)";
+"joint_subscription" = "Joint Subscription";
+"accept" = "Accept";
 "add_mannually" = "Add Manually";
 
 "month" = "Month";
