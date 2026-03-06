@@ -117,6 +117,7 @@
 "or" = "или";
 "no_account_prompt" = "Нет аккаунта? ";
 "google_sign_in_failed" = "Ошибка входа через Google (%@)";
+"sign_in_with_google" = "Войти через Google";
 "register_desc" = "Начните управлять подписками и экономить.";
 "full_name_placeholder" = "например, Иван Иванов";
 "accept_terms_pre" = "Я принимаю ";

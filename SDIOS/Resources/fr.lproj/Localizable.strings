@@ -116,6 +116,7 @@
 "or" = "ou";
 "no_account_prompt" = "Vous n'avez pas de compte ? ";
 "google_sign_in_failed" = "Échec de la connexion Google (%@)";
+"sign_in_with_google" = "Se connecter avec Google";
 "register_desc" = "Commencez à gérer vos abonnements et à économiser.";
 "full_name_placeholder" = "ex. John Doe";
 "accept_terms_pre" = "J'accepte les ";

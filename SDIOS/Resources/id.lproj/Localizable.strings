@@ -111,6 +111,7 @@
 "or" = "atau";
 "no_account_prompt" = "Belum punya akun? ";
 "google_sign_in_failed" = "Masuk Google gagal (%@)";
+"sign_in_with_google" = "Masuk dengan Google";
 "register_desc" = "Mulai mengelola dan menghemat langganan Anda.";
 "full_name_placeholder" = "Misal: Budi Santoso";
 "accept_terms_pre" = "Saya menyetujui ";

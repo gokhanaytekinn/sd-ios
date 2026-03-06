@@ -117,6 +117,7 @@
 "or" = "yoki";
 "no_account_prompt" = "Hisobingiz yoʻqmi? ";
 "google_sign_in_failed" = "Google orqali kirish amalga oshmadi (%@)";
+"sign_in_with_google" = "Google orqali kirish";
 "register_desc" = "Obunalaringizni boshqarishni va tejashni boshlang.";
 "full_name_placeholder" = "Misol uchun: Ali Valiov";
 "accept_terms_pre" = "";

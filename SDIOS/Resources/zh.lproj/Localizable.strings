@@ -117,6 +117,7 @@
 "or" = "或";
 "no_account_prompt" = "还没有账号？ ";
 "google_sign_in_failed" = "Google 登录失败 (%@)";
+"sign_in_with_google" = "使用 Google 登录";
 "register_desc" = "开始管理您的订阅并节省开支。";
 "full_name_placeholder" = "例如：张三";
 "accept_terms_pre" = "我接受 ";

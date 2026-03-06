@@ -117,6 +117,7 @@
 "or" = "o";
 "no_account_prompt" = "¿No tienes una cuenta? ";
 "google_sign_in_failed" = "Error al iniciar sesión con Google (%@)";
+"sign_in_with_google" = "Iniciar sesión con Google";
 "register_desc" = "Empieza a gestionar tus suscripciones y a ahorrar.";
 "full_name_placeholder" = "ej. Juan Pérez";
 "accept_terms_pre" = "Acepto los ";

@@ -117,6 +117,7 @@
 "or" = "oder";
 "no_account_prompt" = "Haben Sie noch kein Konto?";
 "google_sign_in_failed" = "Google-Anmeldung fehlgeschlagen: %@";
+"sign_in_with_google" = "Mit Google anmelden";
 "register_desc" = "Erstellen Sie ein Konto, um Ihre Abonnements zu verwalten.";
 "full_name_placeholder" = "Ihr Name";
 "accept_terms_pre" = "Ich akzeptiere die ";

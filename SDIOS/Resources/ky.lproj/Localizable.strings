@@ -117,6 +117,7 @@
 "or" = "же";
 "no_account_prompt" = "Аккаунтуңуз жокпу? ";
 "google_sign_in_failed" = "Google аркылуу кирүү ишке ашкан жок (%@)";
+"sign_in_with_google" = "Google аркылуу кирүү";
 "register_desc" = "Жазылууларыңызды башкарууну жана үнөмдөөнү баштаңыз.";
 "full_name_placeholder" = "Мисалы: Азамат Темирбеков";
 "accept_terms_pre" = "";

@@ -117,6 +117,7 @@
 "or" = "və ya";
 "no_account_prompt" = "Hesabınız yoxdur? ";
 "google_sign_in_failed" = "Google ilə giriş uğursuz oldu (%@)";
+"sign_in_with_google" = "Google ilə daxil ol";
 "register_desc" = "Abunəliklərinizi idarə etməyə və qənaət etməyə başlayın.";
 "full_name_placeholder" = "Məs: Əli Məmmədov";
 "accept_terms_pre" = "";

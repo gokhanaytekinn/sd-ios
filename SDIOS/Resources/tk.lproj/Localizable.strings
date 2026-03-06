@@ -117,6 +117,7 @@
 "or" = "ýa-da";
 "no_account_prompt" = "Hasabyňyz ýokmy? ";
 "google_sign_in_failed" = "Google bilen giriş şowsuz boldy (%@)";
+"sign_in_with_google" = "Google bilen giriş yap";
 "register_desc" = "Abunalyklaryňyzy dolandyrmaga we tygşytlamaga başlaň.";
 "full_name_placeholder" = "Mysal üçin: Aman Amanow";
 "accept_terms_pre" = "";
