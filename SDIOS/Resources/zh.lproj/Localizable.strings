@@ -389,3 +389,6 @@
 "month_10" = "十月";
 "month_11" = "十一月";
 "month_12" = "十二月";
+"limit_reached_title" = "达到限制";
+"limit_reached_message" = "免费计划限制为 5 个订阅。请升级到高级版以进行无限追踪。";
+"ok" = "确定";

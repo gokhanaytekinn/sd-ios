@@ -10,6 +10,7 @@ class DashboardViewModel: ObservableObject {
     @Published var error: String?
     
     private let repository = SubscriptionRepository.shared
+    var authViewModel: AuthViewModel?
     
     func loadDashboard() {
         Task {
@@ -25,6 +26,7 @@ class DashboardViewModel: ObservableObject {
             case .success(let list):
                 subscriptions = list.filter { $0.isActive }.sorted { $0.cost > $1.cost }
                 stats = SubscriptionStats.calculate(from: list)
+                authViewModel?.subscriptionCount = list.count
             case .failure(let err):
                 error = err.localizedDescription
             }

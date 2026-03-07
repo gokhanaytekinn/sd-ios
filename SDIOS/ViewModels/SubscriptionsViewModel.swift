@@ -8,8 +8,10 @@ class SubscriptionsViewModel: ObservableObject {
     @Published var stats: SubscriptionStats = SubscriptionStats()
     @Published var isLoading = true
     @Published var error: String?
+    @Published var showingLimitAlert = false
     
     private let repository = SubscriptionRepository.shared
+    var authViewModel: AuthViewModel?
     
     var activeSubscriptions: [Subscription] {
         allSubscriptions.filter { $0.status == 1 }
@@ -37,6 +39,7 @@ class SubscriptionsViewModel: ObservableObject {
             case .success(let list):
                 allSubscriptions = list
                 stats = SubscriptionStats.calculate(from: list)
+                authViewModel?.subscriptionCount = list.count
             case .failure(let err):
                 error = err.localizedDescription
             }
@@ -51,11 +54,18 @@ class SubscriptionsViewModel: ObservableObject {
     }
     
     func acceptInvitation(id: String) {
+        if authViewModel?.isSubscriptionLimitReached == true {
+            showingLimitAlert = true
+            return
+        }
+        
         Task {
             let result = await repository.acceptInvitation(id: id)
             if case .success = result {
                 invitations.removeAll { $0.id == id }
                 loadSubscriptions()
+            } else if case .failure(let err) = result {
+                error = err.localizedDescription
             }
         }
     }

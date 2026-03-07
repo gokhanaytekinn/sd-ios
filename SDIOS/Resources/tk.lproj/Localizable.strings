@@ -389,3 +389,6 @@
 "month_10" = "Oktýabr";
 "month_11" = "Noýabr";
 "month_12" = "Dekabr";
+"limit_reached_title" = "Çäge ýetildi";
+"limit_reached_message" = "Mugt meýilnama 5 abuna bilen çäklenýär. Çäksiz yzarlamak üçin Premium-a geçiň.";
+"ok" = "OK";

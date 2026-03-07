@@ -389,3 +389,6 @@
 "month_10" = "Oktyabr";
 "month_11" = "Noyabr";
 "month_12" = "Dekabr";
+"limit_reached_title" = "Limitga yetildi";
+"limit_reached_message" = "Bepul reja 5 ta obuna bilan cheklangan. Cheksiz kuzatish üçün Premium-ga o'ting.";
+"ok" = "OK";

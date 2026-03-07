@@ -154,6 +154,7 @@ struct DashboardScreen: View {
             }
         }
         .onAppear {
+            viewModel.authViewModel = authViewModel
             viewModel.loadDashboard()
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RefreshData"))) { _ in

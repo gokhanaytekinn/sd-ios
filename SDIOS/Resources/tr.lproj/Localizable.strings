@@ -390,3 +390,6 @@
 "month_12" = "Aralık";
 
 "month" = "Ay";
+"limit_reached_title" = "Sınıra Ulaşıldı";
+"limit_reached_message" = "Ücretsiz plan 5 abonelik ile sınırlıdır. Sınırsız takip için lütfen Premium'a yükseltin.";
+"ok" = "Tamam";

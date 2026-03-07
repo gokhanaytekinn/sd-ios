@@ -55,6 +55,7 @@ struct ContentView: View {
     @State private var selectedTab: MainTab = .dashboard
     @State private var showAddSubscription = false
     @State private var showFabMenu = false
+    @State private var showingLimitAlert = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -164,7 +165,13 @@ struct ContentView: View {
                             )
                         case .subscriptions:
                             SubscriptionsListScreen(
-                                onNavigateToAddSubscription: { navigationPath.append(.addSubscription) },
+                                onNavigateToAddSubscription: {
+                                    if authViewModel.isSubscriptionLimitReached {
+                                        showingLimitAlert = true
+                                    } else {
+                                        navigationPath.append(.addSubscription)
+                                    }
+                                },
                                 onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) }
                             )
                         case .upcoming:
@@ -221,6 +228,11 @@ struct ContentView: View {
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .environment(\.locale, .init(identifier: languagePref.selectedLanguage))
         .id(languagePref.selectedLanguage) // Force view refresh on language change
+        .alert("limit_reached_title".localized(), isPresented: $showingLimitAlert) {
+            Button("ok".localized(), role: .cancel) { }
+        } message: {
+            Text("limit_reached_message".localized())
+        }
         .onChange(of: navigationPath) { newValue in
             if newValue.isEmpty {
                 NotificationCenter.default.post(name: NSNotification.Name("RefreshData"), object: nil)
@@ -328,7 +340,9 @@ struct ContentView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             showFabMenu = false
                         }
-                        if navigationPath.last != .addSubscription {
+                        if authViewModel.isSubscriptionLimitReached {
+                            showingLimitAlert = true
+                        } else if navigationPath.last != .addSubscription {
                             navigationPath.append(.addSubscription)
                         }
                     }) {
@@ -347,7 +361,9 @@ struct ContentView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             showFabMenu = false
                         }
-                        if navigationPath.last != .addSubscription {
+                        if authViewModel.isSubscriptionLimitReached {
+                            showingLimitAlert = true
+                        } else if navigationPath.last != .addSubscription {
                             navigationPath.append(.addSubscription)
                         }
                     }) {

@@ -389,3 +389,6 @@
 "month_10" = "October";
 "month_11" = "November";
 "month_12" = "December";
+"limit_reached_title" = "Limit Reached";
+"limit_reached_message" = "Free plan is limited to 5 subscriptions. Please upgrade to Premium for unlimited tracking.";
+"ok" = "OK";

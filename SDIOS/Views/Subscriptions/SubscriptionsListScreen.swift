@@ -188,7 +188,13 @@ struct SubscriptionsListScreen: View {
             }
         }
         .onAppear {
+            viewModel.authViewModel = authViewModel
             viewModel.loadSubscriptions()
+        }
+        .alert("limit_reached_title".localized(), isPresented: $viewModel.showingLimitAlert) {
+            Button("ok".localized(), role: .cancel) { }
+        } message: {
+            Text("limit_reached_message".localized())
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RefreshData"))) { _ in
             viewModel.loadSubscriptions()

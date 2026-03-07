@@ -388,3 +388,6 @@
 "month_10" = "Oktober";
 "month_11" = "November";
 "month_12" = "Dezember";
+"limit_reached_title" = "Limit erreicht";
+"limit_reached_message" = "Der kostenlose Plan ist auf 5 Abonnements begrenzt. Bitte führen Sie ein Upgrade auf Premium durch.";
+"ok" = "OK";

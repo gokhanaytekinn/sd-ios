@@ -18,6 +18,11 @@ class AuthViewModel: ObservableObject {
     @Published var resetEmail: String?
     @Published var isResetCodeVerified = false
     @Published var tier: Int = 1
+    @Published var subscriptionCount: Int = 0
+    
+    var isSubscriptionLimitReached: Bool {
+        tier == 1 && subscriptionCount >= 5
+    }
     
     private var lastDeviceToken: String?
     

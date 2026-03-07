@@ -387,3 +387,6 @@
 "month_10" = "Oktober";
 "month_11" = "November";
 "month_12" = "Desember";
+"limit_reached_title" = "Batas Tercapai";
+"limit_reached_message" = "Paket gratis terbatas pada 5 langganan. Silakan tingkatkan ke Premium untuk pelacakan tanpa batas.";
+"ok" = "OK";

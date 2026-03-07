@@ -389,3 +389,6 @@
 "month_10" = "Oktyabr";
 "month_11" = "Noyabr";
 "month_12" = "Dekabr";
+"limit_reached_title" = "Limitə çatıldı";
+"limit_reached_message" = "Pulsuz plan 5 abunə ilə məhdudlaşır. Sərhədsiz izləmə üçün Premium-a keçin.";
+"ok" = "Tamam";
