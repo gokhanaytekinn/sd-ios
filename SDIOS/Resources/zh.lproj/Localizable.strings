@@ -370,7 +370,7 @@
 "add_subscription_btn" = "添加订阅";
 "done_btn" = "完成";
 
-"pending_approve" = "待核准";
+"pending_approve" = "批准";
 "pending_invitations" = "待处理的邀请 (%d)";
 "joint_subscription" = "共同订阅";
 "accept" = "接受";

@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Добавить подписку";
 "done_btn" = "Готово";
 
-"pending_approve" = "Ожидают подтверждения";
+"pending_approve" = "Одобрение";
 "pending_invitations" = "Ожидающие приглашения (%d)";
 "joint_subscription" = "Совместная подписка";
 "accept" = "Принять";

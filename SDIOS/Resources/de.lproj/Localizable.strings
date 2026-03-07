@@ -369,7 +369,7 @@
 "add_subscription_btn" = "Abonnement hinzufügen";
 "done_btn" = "Fertig";
 
-"pending_approve" = "Ausstehende Genehmigung";
+"pending_approve" = "Genehmigung";
 "pending_invitations" = "Ausstehende Einladungen (%d)";
 "joint_subscription" = "Gemeinsames Abo";
 "accept" = "Akzeptieren";

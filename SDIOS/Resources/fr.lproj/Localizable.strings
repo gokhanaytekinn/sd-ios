@@ -369,7 +369,7 @@
 "done_btn" = "Terminé";
 "upgrade_to_premium_btn" = "Passer au Premium";
 
-"pending_approve" = "Approbation En Attente";
+"pending_approve" = "Approbation";
 "pending_invitations" = "Invitations en attente (%d)";
 "joint_subscription" = "Abonnement conjoint";
 "accept" = "Accepter";

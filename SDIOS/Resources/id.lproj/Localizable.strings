@@ -368,7 +368,7 @@
 "notify_1_day_before" = "Notifikasi 1 hari sebelum pembayaran";
 "add_subscription_btn" = "Tambah Langganan";
 "done_btn" = "Selesai";
-"pending_approve" = "Persetujuan Tertunda";
+"pending_approve" = "Persetujuan";
 "pending_invitations" = "Undangan Tertunda (%d)";
 "joint_subscription" = "Berlangganan bersama";
 "accept" = "Terima";

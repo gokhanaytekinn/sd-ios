@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Abonelik Ekle";
 "done_btn" = "Tamam";
 
-"pending_approve" = "Onay Bekleyenler";
+"pending_approve" = "Onay";
 "pending_invitations" = "Bekleyen Davetiyeler (%d)";
 "joint_subscription" = "Ortak Abonelik";
 "accept" = "Kabul Et";

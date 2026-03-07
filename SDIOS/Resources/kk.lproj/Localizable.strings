@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Жазылымды қосу";
 "done_btn" = "Дайын";
 
-"pending_approve" = "Растауды күтуде";
+"pending_approve" = "Бекіту";
 "pending_invitations" = "Күтудегі шақырулар (%d)";
 "joint_subscription" = "Бірлескен жазылым";
 "accept" = "Қабылдау";

@@ -30,7 +30,7 @@ enum MainTab: Int, CaseIterable {
         switch self {
         case .dashboard: return "dashboard_title".localized()
         case .subscriptions: return "subscriptions".localized()
-        case .upcoming: return "upcoming_payments".localized()
+        case .upcoming: return "nav_upcoming".localized()
         case .settings: return "settings_title".localized()
         }
     }

@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Жазылуу кошуу";
 "done_btn" = "Даяр";
 
-"pending_approve" = "Ырастоону күтүүдө";
+"pending_approve" = "Ырастоо";
 "pending_invitations" = "Күтүлүп жатқан чакыруулар (%d)";
 "joint_subscription" = "Биргелешкен жазылуу";
 "accept" = "Кабыл алуу";

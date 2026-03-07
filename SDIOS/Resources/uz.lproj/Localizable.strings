@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Obuna qoʻshish";
 "done_btn" = "Tayyor";
 
-"pending_approve" = "Tasdiqlash kutilmoqda";
+"pending_approve" = "Tasdiqlash";
 "pending_invitations" = "Kutilayotgan takliflar (%d)";
 "joint_subscription" = "Birgalikda obuna";
 "accept" = "Qabul qilish";

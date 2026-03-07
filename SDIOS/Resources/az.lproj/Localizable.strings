@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Abunəlik Əlavə et";
 "done_btn" = "Tamam";
 
-"pending_approve" = "Təsdiq Gözləyənlər";
+"pending_approve" = "Təsdiq";
 "pending_invitations" = "Gözlənilən dəvətlər (%d)";
 "joint_subscription" = "Ortaq abunəlik";
 "accept" = "Qəbul et";

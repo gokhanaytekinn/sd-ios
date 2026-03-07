@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Abunalyk Goş";
 "done_btn" = "Tamam";
 
-"pending_approve" = "Tassyklama garaşylýanlar";
+"pending_approve" = "Onay";
 "pending_invitations" = "Garaşylýan çakylyklar (%d)";
 "joint_subscription" = "Bilelikde abunalyk";
 "accept" = "Kabul et";

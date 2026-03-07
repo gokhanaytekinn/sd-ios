@@ -370,7 +370,7 @@
 "add_subscription_btn" = "Añadir Suscripción";
 "done_btn" = "Hecho";
 
-"pending_approve" = "Aprobación Pendiente";
+"pending_approve" = "Aprobación";
 "pending_invitations" = "Invitaciones pendientes (%d)";
 "joint_subscription" = "Suscripción conjunta";
 "accept" = "Aceptar";
