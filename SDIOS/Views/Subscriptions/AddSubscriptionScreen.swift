@@ -74,13 +74,17 @@ struct AddSubscriptionScreen: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 16) {
                                     ForEach(AddSubscriptionViewModel.shortcuts) { shortcut in
+                                        let isSelected = viewModel.icon == shortcut.icon && viewModel.name == shortcut.name
                                         Button(action: { viewModel.applyShortcut(shortcut) }) {
                                             VStack(spacing: 8) {
                                                 ZStack {
                                                     RoundedRectangle(cornerRadius: 12)
-                                                        .fill(shortcut.color.opacity(0.1))
+                                                        .fill(isSelected ? shortcut.color.opacity(0.2) : shortcut.color.opacity(0.1))
                                                         .frame(width: 56, height: 56)
-                                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(shortcut.color.opacity(0.3), lineWidth: 1))
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: 12)
+                                                                .stroke(isSelected ? shortcut.color : shortcut.color.opacity(0.3), lineWidth: isSelected ? 2 : 1)
+                                                        )
                                                     
                                                     if let iconName = shortcut.icon {
                                                         BrandIconView(name: iconName, color: shortcut.color)
@@ -91,15 +95,19 @@ struct AddSubscriptionScreen: View {
                                                             .foregroundColor(shortcut.color)
                                                     }
                                                 }
+                                                .scaleEffect(isSelected ? 1.08 : 1.0)
+                                                .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isSelected)
                                                 
                                                 Text(shortcut.name)
-                                                    .font(.system(size: 11))
-                                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                                    .font(.system(size: 11, weight: isSelected ? .bold : .regular))
+                                                    .foregroundColor(isSelected ? shortcut.color : Color.appOnSurfaceVariant(for: colorScheme))
                                             }
                                         }
                                         .buttonStyle(.plain)
                                     }
                                 }
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 6)
                             }
                         }
                         

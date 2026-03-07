@@ -135,17 +135,41 @@ struct SubscriptionCard: View {
         )
     }
     
+    @ViewBuilder
     private var brandIcon: some View {
-        let brandColor = getBrandColor(subscription.name)
-        return ZStack {
-            Circle()
-                .fill(brandColor.opacity(0.1))
-                .frame(width: 36, height: 36)
-            
-            Text(subscription.name.prefix(1).uppercased())
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(brandColor)
+        if let info = getBrandIconInfo(subscription.name) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(info.color.opacity(0.12))
+                    .frame(width: 36, height: 36)
+                BrandIconView(name: info.icon, color: info.color)
+                    .frame(width: 20, height: 20)
+            }
+        } else {
+            let brandColor = getBrandColor(subscription.name)
+            ZStack {
+                Circle()
+                    .fill(brandColor.opacity(0.1))
+                    .frame(width: 36, height: 36)
+                Text(subscription.name.prefix(1).uppercased())
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(brandColor)
+            }
         }
+    }
+    
+    private func getBrandIconInfo(_ name: String) -> (icon: String, color: Color)? {
+        let map: [String: (String, Color)] = [
+            "netflix":  ("netflix",  Color(hex: "E50914")),
+            "spotify":  ("spotify",  Color(hex: "1DB954")),
+            "youtube":  ("youtube",  Color(hex: "FF0000")),
+            "google":   ("google",   Color(hex: "4285F4")),
+            "amazon":   ("amazon",   Color(hex: "00A8E1")),
+            "hbo max":  ("hbomax",   Color(hex: "5A2E81")),
+            "cursor":   ("cursor",   Color.primary),
+            "claude":   ("claude",   Color(hex: "E56038")),
+        ]
+        return map[name.lowercased()]
     }
     
     private var categoryText: String {
@@ -177,7 +201,9 @@ struct SubscriptionCard: View {
         let lowered = name.lowercased()
         if lowered.contains("netflix") { return .netflixRed }
         if lowered.contains("spotify") { return .spotifyGreen }
-        if lowered.contains("adobe") { return .adobeRed }
+        if lowered.contains("adobe")   { return .adobeRed }
+        if lowered.contains("youtube") { return Color(hex: "FF0000") }
+        if lowered.contains("amazon")  { return Color(hex: "00A8E1") }
         return .primaryBlue
     }
 }
