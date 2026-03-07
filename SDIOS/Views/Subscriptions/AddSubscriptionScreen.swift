@@ -38,19 +38,22 @@ struct AddSubscriptionScreen: View {
             
             GeometryReader { geometry in
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 24) {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Spacer().frame(height: 4)
+                        
                         // Service Name
                         SDOutlinedTextField(
                             title: "service_name".localized(),
                             placeholder: "service_name_placeholder".localized(),
                             text: $viewModel.name,
                             errorMessage: viewModel.nameError,
+                            leadingIcon: "magnifyingglass",
                             focusBinding: $focusedField,
                             focusValue: "serviceName"
                         )
                         
                         // Category
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 10) {
                             Text("category".localized())
                                 .font(.system(size: 14, weight: .bold))
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
@@ -123,6 +126,7 @@ struct AddSubscriptionScreen: View {
                                 text: $viewModel.amount,
                                 errorMessage: viewModel.amountError,
                                 keyboardType: .decimalPad,
+                                leadingIcon: "banknote",
                                 focusBinding: $focusedField,
                                 focusValue: "amount"
                             )
@@ -147,22 +151,36 @@ struct AddSubscriptionScreen: View {
                                         }
                                     }
                                 } label: {
-                                    HStack {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: "dollarsign.circle")
+                                            .font(.system(size: 20))
+                                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
+                                        
                                         Text(CurrencyPreferences.currencies.first(where: { $0.id == currency })?.symbol ?? "")
-                                        Image(systemName: "chevron.down").font(.system(size: 12))
+                                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: "chevron.down")
+                                            .font(.system(size: 12))
+                                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
                                     }
-                                    .padding()
-                                    .frame(maxWidth: .infinity, minHeight: 56)
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 45)
                                     .background(Color.clear)
                                     .cornerRadius(12)
-                                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                    )
                                 }
                             }
-                            .frame(width: 120)
+                            .frame(width: 140)
                         }
                         
                         // Period (MONTHLY / YEARLY)
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 10) {
                             Text("period".localized())
                                 .font(.system(size: 14, weight: .bold))
                             
@@ -179,7 +197,7 @@ struct AddSubscriptionScreen: View {
                         }
                         
                         // Payment Recurrence Day
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 10) {
                             Text(viewModel.selectedBillingCycle == .monthly ? 
                                  "payment_recurrence_day".localized() : 
                                  "payment_recurrence_day_month".localized())
@@ -207,9 +225,7 @@ struct AddSubscriptionScreen: View {
 
                         // Payment Recurrence Month (Only for Yearly)
                         if viewModel.selectedBillingCycle == .yearly {
-                            VStack(alignment: .leading, spacing: 8) {
-
-                                
+                            VStack(alignment: .leading, spacing: 10) {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 12) {
                                         ForEach(1...12, id: \.self) { month in
@@ -236,7 +252,7 @@ struct AddSubscriptionScreen: View {
                         }
                         
                         // Reminder
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 12) {
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text("reminder".localized())
@@ -265,6 +281,7 @@ struct AddSubscriptionScreen: View {
                                 errorMessage: nil,
                                 keyboardType: .emailAddress,
                                 trailingIcon: "plus",
+                                leadingIcon: "envelope",
                                 onTrailingIconTap: { viewModel.addJointEmail() },
                                 focusBinding: $focusedField,
                                 focusValue: "emailInput"
@@ -337,7 +354,7 @@ struct AddSubscriptionScreen: View {
                                 }
                             }
                             .frame(maxWidth: .infinity)
-                            .frame(height: 56)
+                            .frame(height: 45)
                             .background(Color.primaryBlue)
                             .cornerRadius(12)
                             .disabled(viewModel.isLoading)

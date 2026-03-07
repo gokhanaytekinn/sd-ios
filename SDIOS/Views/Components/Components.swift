@@ -260,7 +260,7 @@ struct SDButton: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 56)
+            .frame(height: 45)
             .background(isEnabled ? Color.primaryBlue : Color.primaryBlue.opacity(0.5))
             .foregroundColor(.white)
             .cornerRadius(12)
@@ -279,6 +279,7 @@ struct SDOutlinedTextField: View {
     var isSecure: Bool = false
     var keyboardType: UIKeyboardType = .default
     var trailingIcon: String? = nil
+    var leadingIcon: String? = nil
     var onTrailingIconTap: (() -> Void)? = nil
     
     // Focus management
@@ -304,6 +305,13 @@ struct SDOutlinedTextField: View {
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
             
             HStack(spacing: 12) {
+                if let icon = leadingIcon {
+                    Image(systemName: icon)
+                        .font(.system(size: 20))
+                        .foregroundColor(isFocused ? .primaryBlue : Color.appOnBackground(for: colorScheme).opacity(0.4))
+                        .frame(width: 24)
+                }
+
                 Group {
                     if isSecure && !showPassword {
                         if let focusBinding = focusBinding {
@@ -341,7 +349,7 @@ struct SDOutlinedTextField: View {
                 }
             }
             .padding(.horizontal, 16)
-            .frame(height: 56)
+            .frame(height: 45)
             .background(Color.appSurface(for: colorScheme).opacity(0.001)) // Transparent background for taps
             .contentShape(Rectangle())
             .onTapGesture {
@@ -481,7 +489,7 @@ struct GoogleSignInButton: View {
                     .font(.system(size: 16, weight: .bold))
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 56)
+            .frame(height: 45)
             .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.gray.opacity(0.1))
             .foregroundColor(Color.appOnBackground(for: colorScheme))
             .cornerRadius(12)

@@ -30,21 +30,19 @@ struct RegisterScreen: View {
             
             // Scrollable Content
             ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    Spacer().frame(height: 24)
+                VStack(alignment: .leading, spacing: 20) {
+                    Spacer().frame(height: 4)
                     
-                    Text("register".localized())
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                    
-                    Spacer().frame(height: 8)
-                    
-                    Text("register_desc".localized())
-                        .font(.system(size: 16))
-                        .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                        .lineSpacing(4)
-                    
-                    Spacer().frame(height: 24)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("register".localized())
+                            .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        
+                        Text("register_desc".localized())
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                            .lineSpacing(4)
+                    }
                     
                     // Full Name
                     SDOutlinedTextField(
@@ -52,12 +50,11 @@ struct RegisterScreen: View {
                         placeholder: "full_name_placeholder".localized(),
                         text: $fullName,
                         errorMessage: authViewModel.nameError,
+                        leadingIcon: "person",
                         focusBinding: $focusedField,
                         focusValue: "fullName"
                     )
                     .onChange(of: fullName) { _ in self.authViewModel.clearNameError() }
-                    
-                    Spacer().frame(height: 16)
                     
                     // Email
                     SDOutlinedTextField(
@@ -66,12 +63,11 @@ struct RegisterScreen: View {
                         text: $email,
                         errorMessage: authViewModel.emailError,
                         keyboardType: .emailAddress,
+                        leadingIcon: "envelope",
                         focusBinding: $focusedField,
                         focusValue: "email"
                     )
                     .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
-                    
-                    Spacer().frame(height: 16)
                     
                     // Password
                     SDOutlinedTextField(
@@ -80,12 +76,11 @@ struct RegisterScreen: View {
                         text: $password,
                         errorMessage: authViewModel.passwordError,
                         isSecure: true,
+                        leadingIcon: "lock",
                         focusBinding: $focusedField,
                         focusValue: "password"
                     )
                     .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
-                    
-                    Spacer().frame(height: 16)
                     
                     // Confirm Password
                     SDOutlinedTextField(
@@ -94,12 +89,11 @@ struct RegisterScreen: View {
                         text: $confirmPassword,
                         errorMessage: authViewModel.confirmPasswordError,
                         isSecure: true,
+                        leadingIcon: "lock",
                         focusBinding: $focusedField,
                         focusValue: "confirmPassword"
                     )
                     .onChange(of: confirmPassword) { _ in self.authViewModel.clearConfirmPasswordError() }
-                    
-                    Spacer().frame(height: 16)
                     
                     // Terms Checkbox
                     HStack(alignment: .top, spacing: 8) {
@@ -124,10 +118,9 @@ struct RegisterScreen: View {
                                 return .systemAction
                             })
                     }
-                    Spacer().frame(height: 12)
                     
                     // Register Footer inside ScrollView
-                    VStack(spacing: 16) {
+                    VStack(spacing: 20) {
                         SDButton(
                             title: "register".localized(),
                             isLoading: authViewModel.isLoading,
@@ -150,7 +143,6 @@ struct RegisterScreen: View {
                         
                         Spacer().frame(height: 16)
                     }
-                    .padding(.top, 8)
                 }
                 .padding(.horizontal, 24)
             }

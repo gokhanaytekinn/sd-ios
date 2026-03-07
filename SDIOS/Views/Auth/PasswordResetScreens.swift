@@ -46,13 +46,15 @@ struct ForgotPasswordScreen: View {
                         text: $email,
                         errorMessage: authViewModel.emailError,
                         keyboardType: .emailAddress,
+                        leadingIcon: "envelope",
                         focusBinding: $focusedField,
                         focusValue: "email"
                     )
                     .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
+                    
                     Spacer().frame(height: 32)
                     
-                    VStack(spacing: 16) {
+                    VStack(spacing: 20) {
                         SDButton(
                             title: NSLocalizedString("send_code", comment: ""),
                             isLoading: authViewModel.isLoading,
@@ -142,7 +144,7 @@ struct VerificationCodeScreen: View {
                             .font(.system(size: 24, weight: .bold, design: .monospaced))
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 16)
-                            .frame(height: 56)
+                            .frame(height: 45)
                             .background(Color.appSurface(for: colorScheme).opacity(0.001))
                             .contentShape(Rectangle())
                             .onTapGesture { isFocused = true }
@@ -160,7 +162,7 @@ struct VerificationCodeScreen: View {
                     
                     Spacer().frame(height: 32)
                     
-                    VStack(spacing: 16) {
+                    VStack(spacing: 20) {
                         SDButton(
                             title: NSLocalizedString("verify_and_continue", comment: ""),
                             isLoading: authViewModel.isLoading,
@@ -233,18 +235,20 @@ struct ResetPasswordScreen: View {
                         text: $newPassword,
                         errorMessage: authViewModel.passwordError,
                         isSecure: true,
+                        leadingIcon: "lock",
                         focusBinding: $focusedField,
                         focusValue: "newPassword"
                     )
                     .onChange(of: newPassword) { _ in self.authViewModel.clearPasswordError() }
                     
-                    Spacer().frame(height: 8)
+                    if newPassword.count < 6 {
+                        Spacer().frame(height: 8)
+                        Text(NSLocalizedString("min_6_chars", comment: ""))
+                            .font(.system(size: 12))
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                    }
                     
-                    Text(NSLocalizedString("min_6_chars", comment: ""))
-                        .font(.system(size: 12))
-                        .foregroundColor(newPassword.count >= 6 ? .successColor : Color.appOnSurfaceVariant(for: colorScheme))
-                    
-                    Spacer().frame(height: 16)
+                    Spacer().frame(height: 20)
                     
                     SDOutlinedTextField(
                         title: NSLocalizedString("confirm_password_label", comment: ""),
@@ -252,6 +256,7 @@ struct ResetPasswordScreen: View {
                         text: $confirmPassword,
                         errorMessage: authViewModel.confirmPasswordError,
                         isSecure: true,
+                        leadingIcon: "lock",
                         focusBinding: $focusedField,
                         focusValue: "confirmPassword"
                     )
@@ -266,7 +271,7 @@ struct ResetPasswordScreen: View {
                     
                     Spacer().frame(height: 32)
                     
-                    VStack(spacing: 16) {
+                    VStack(spacing: 20) {
                         SDButton(
                             title: NSLocalizedString("update_password", comment: ""),
                             isLoading: authViewModel.isLoading,

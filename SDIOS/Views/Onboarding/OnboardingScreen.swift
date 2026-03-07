@@ -23,7 +23,7 @@ struct OnboardingScreen: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .frame(height: 56)
+                .frame(height: 45)
                 
                 TabView(selection: $currentPage) {
                     onboardingPage(
@@ -68,7 +68,7 @@ struct OnboardingScreen: View {
                     Text(currentPage == 1 ? "get_started".localized() : "continue_btn".localized())
                         .font(.system(size: 18, weight: .bold))
                         .frame(maxWidth: .infinity)
-                        .frame(height: 56)
+                        .frame(height: 45)
                         .background(Color.primaryBlue)
                         .foregroundColor(.white)
                         .cornerRadius(16)

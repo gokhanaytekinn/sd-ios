@@ -30,7 +30,7 @@ struct SubscriptionDetailsScreen: View {
             .padding(16)
             
             if isLoading {
-                VStack(spacing: 24) {
+                VStack(spacing: 20) {
                     Circle().fill(Color.gray.opacity(0.3)).frame(width: 120, height: 120)
                     RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 200, height: 32)
                     RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 150, height: 40)
@@ -49,7 +49,7 @@ struct SubscriptionDetailsScreen: View {
                 .skeleton()
             } else if let sub = subscription {
                 ScrollView {
-                    VStack(spacing: 24) {
+                    VStack(spacing: 20) {
                         // Icon
                         ZStack {
                             RoundedRectangle(cornerRadius: 16)

@@ -47,13 +47,24 @@ struct HelpCenterScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     // Search
-                    HStack {
+                    HStack(spacing: 12) {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .font(.system(size: 20))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
+                        
                         TextField("help_search_placeholder".localized(), text: $searchText)
                             .font(.system(size: 16))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        
+                        if !searchText.isEmpty {
+                            Button(action: { searchText = "" }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            }
+                        }
                     }
-                    .padding(16)
+                    .padding(.horizontal, 16)
+                    .frame(height: 45)
                     .background(Color.appSurface(for: colorScheme))
                     .cornerRadius(12)
                     .overlay(

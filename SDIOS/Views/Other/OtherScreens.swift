@@ -38,10 +38,14 @@ struct SearchScreen: View {
             .padding(16)
             
             // Search Field
-            HStack {
+            HStack(spacing: 12) {
                 Image(systemName: "magnifyingglass")
-                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                    .font(.system(size: 20))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
+                
                 TextField(NSLocalizedString("search_placeholder", comment: ""), text: $searchText)
+                    .font(.system(size: 16))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme))
                     .autocapitalization(.none)
                 
                 if !searchText.isEmpty {
@@ -51,7 +55,8 @@ struct SearchScreen: View {
                     }
                 }
             }
-            .padding(12)
+            .padding(.horizontal, 16)
+            .frame(height: 45)
             .background(Color.appSurface(for: colorScheme))
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
@@ -189,7 +194,7 @@ struct PremiumUpgradeScreen: View {
                                     .font(.system(size: 18, weight: .bold))
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity)
-                                    .frame(height: 56)
+                                    .frame(height: 45)
                                     .background(isCurrentPlanSelected ? Color.gray.opacity(0.3) : Color.primaryBlue)
                                     .cornerRadius(12)
                             }

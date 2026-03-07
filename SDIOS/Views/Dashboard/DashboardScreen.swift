@@ -73,7 +73,7 @@ struct DashboardScreen: View {
                         .cornerRadius(12)
                         .padding(.horizontal, 24)
                         
-                        Spacer().frame(height: 24)
+                        Spacer().frame(height: 20)
                         
                         // Upcoming Payments
                         HStack {
@@ -105,7 +105,7 @@ struct DashboardScreen: View {
                             .padding(.horizontal, 24)
                         }
                         
-                        Spacer().frame(height: 24)
+                        Spacer().frame(height: 20)
                         
                         // Most Expensive
                         HStack {

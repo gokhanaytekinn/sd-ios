@@ -103,7 +103,7 @@ struct SubscriptionsListScreen: View {
                         .padding(.horizontal, 24)
                     }
                     
-                    Spacer().frame(height: 24)
+                    Spacer().frame(height: 20)
                     
                     // Tabs
                     HStack(spacing: 0) {
@@ -122,10 +122,14 @@ struct SubscriptionsListScreen: View {
                     Spacer().frame(height: 16)
                     
                     // Search Bar
-                    HStack {
+                    HStack(spacing: 12) {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .font(.system(size: 20))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
+                        
                         TextField("search_placeholder".localized(), text: $searchText)
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
                             .autocapitalization(.none)
                         
                         if !searchText.isEmpty {
@@ -135,7 +139,8 @@ struct SubscriptionsListScreen: View {
                             }
                         }
                     }
-                    .padding(12)
+                    .padding(.horizontal, 16)
+                    .frame(height: 45)
                     .background(Color.appSurface(for: colorScheme))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)

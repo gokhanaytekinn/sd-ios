@@ -25,22 +25,20 @@ struct LoginScreen: View {
             
             // Scrollable Content
             ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    Spacer().frame(height: 24)
+                VStack(alignment: .leading, spacing: 20) {
+                    Spacer().frame(height: 4)
                     
                     // Headline
-                    Text("welcome_back".localized())
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                    
-                    Spacer().frame(height: 8)
-                    
-                    Text("login_desc".localized())
-                        .font(.system(size: 16))
-                        .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                        .lineSpacing(4)
-                    
-                    Spacer().frame(height: 24)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("welcome_back".localized())
+                            .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        
+                        Text("login_desc".localized())
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                            .lineSpacing(4)
+                    }
                     
                     // Email Field
                     SDOutlinedTextField(
@@ -49,30 +47,27 @@ struct LoginScreen: View {
                         text: $email,
                         errorMessage: authViewModel.emailError,
                         keyboardType: .emailAddress,
+                        leadingIcon: "envelope",
                         focusBinding: $focusedField,
                         focusValue: "email"
                     )
                     .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
                     
-                    Spacer().frame(height: 16)
-                    
                     // Password Field
-                    SDOutlinedTextField(
-                        title: "password".localized(),
-                        placeholder: "password_placeholder".localized(),
-                        text: $password,
-                        errorMessage: authViewModel.passwordError,
-                        isSecure: true,
-                        focusBinding: $focusedField,
-                        focusValue: "password"
-                    )
-                    .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
-                    
-                    Spacer().frame(height: 12)
-                    
-                    // Forgot Password
-                    HStack {
-                        Spacer()
+                    VStack(alignment: .trailing, spacing: 8) {
+                        SDOutlinedTextField(
+                            title: "password".localized(),
+                            placeholder: "password_placeholder".localized(),
+                            text: $password,
+                            errorMessage: authViewModel.passwordError,
+                            isSecure: true,
+                            leadingIcon: "lock",
+                            focusBinding: $focusedField,
+                            focusValue: "password"
+                        )
+                        .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
+                        
+                        // Forgot Password
                         Button(action: onNavigateToForgotPassword) {
                             Text("forgot_password".localized())
                                 .font(.system(size: 14, weight: .medium))
@@ -80,10 +75,8 @@ struct LoginScreen: View {
                         }
                     }
                     
-                    Spacer().frame(height: 24)
-                    
                     // Footer content now inside ScrollView
-                    VStack(spacing: 0) {
+                    VStack(spacing: 20) {
                         Divider().opacity(0.1)
                         
                         VStack(spacing: 16) {
@@ -124,7 +117,6 @@ struct LoginScreen: View {
                             
                             Spacer().frame(height: 16)
                         }
-                        .padding(.top, 16)
                     }
                 }
                 .padding(.horizontal, 24)
