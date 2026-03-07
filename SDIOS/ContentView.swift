@@ -305,14 +305,22 @@ struct ContentView: View {
             if showFabMenu {
                 // Add Manually Bubble
                 HStack {
-                    Text("add_mannually".localized())
-                        .font(.system(size: 14, weight: .bold))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(Color.appSurface(for: colorScheme))
-                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                        .cornerRadius(20)
-                        .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                    Button(action: {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            showFabMenu = false
+                        }
+                        navigationPath.append(.addSubscription)
+                    }) {
+                        Text("add_mannually".localized())
+                            .font(.system(size: 14, weight: .bold))
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(Color.appSurface(for: colorScheme))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            .cornerRadius(20)
+                            .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                    }
+                    .buttonStyle(.plain)
                     
                     Button(action: {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
