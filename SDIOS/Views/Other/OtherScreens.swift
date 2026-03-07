@@ -206,11 +206,21 @@ struct PremiumUpgradeScreen: View {
                         // Bottom Section (Moved inside ScrollView)
                         VStack(spacing: 16) {
                             Button(action: { 
-                                if let product = authViewModel.iapProducts.first(where: { 
-                                    (selectedPlan == 1 && $0.id.contains("monthly")) || 
-                                    (selectedPlan == 2 && $0.id.contains("yearly"))
-                                }) {
+                                // Find the matching product based on selectedPlan ID
+                                let productToPurchase = authViewModel.iapProducts.first { product in
+                                    if selectedPlan == 1 {
+                                        return product.id.contains("monthly")
+                                    } else if selectedPlan == 2 {
+                                        return product.id.contains("yearly")
+                                    }
+                                    return false
+                                }
+                                
+                                if let product = productToPurchase {
                                     authViewModel.purchase(product: product)
+                                } else {
+                                    // Handle case where products might not be loaded but user clicks upgrade
+                                    print("No product found for selected plan: \(selectedPlan)")
                                 }
                             }) {
                                 if authViewModel.isLoading {
@@ -418,7 +428,8 @@ struct PremiumUpgradeScreen: View {
         case 2:
             selectedPlan = 1 // Monthly
         default:
-            selectedPlan = 0 // Free
+            // For free users, default selection to Yearly (index 2) so they can click Upgrade
+            selectedPlan = 2
         }
     }
     
@@ -429,6 +440,7 @@ struct PremiumUpgradeScreen: View {
         case 2:
             return selectedPlan == 1
         default:
+            // Free plan is ID 0
             return selectedPlan == 0
         }
     }

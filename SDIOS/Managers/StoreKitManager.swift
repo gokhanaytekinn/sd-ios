@@ -20,6 +20,7 @@ class StoreKitManager: ObservableObject {
         transactionListener = listenForTransactions()
         
         Task {
+            print("StoreKitManager: Initializing and fetching products...")
             await fetchProducts()
             await updatePurchasedProducts()
         }
@@ -31,10 +32,17 @@ class StoreKitManager: ObservableObject {
     
     func fetchProducts() async {
         do {
+            print("StoreKitManager: Fetching products for IDs: \([monthlyProductID, yearlyProductID])")
             let storeProducts = try await Product.products(for: [monthlyProductID, yearlyProductID])
+            print("StoreKitManager: Found \(storeProducts.count) products in App Store")
+            
+            for product in storeProducts {
+                print("StoreKitManager: Product - \(product.id), \(product.displayName), \(product.displayPrice)")
+            }
+            
             self.products = storeProducts.sorted(by: { $0.price < $1.price })
         } catch {
-            print("Failed to fetch products: \(error)")
+            print("StoreKitManager: Failed to fetch products: \(error)")
         }
     }
     
