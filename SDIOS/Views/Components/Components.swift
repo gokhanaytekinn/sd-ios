@@ -363,7 +363,13 @@ struct SettingsToggleItem: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 14)
-        .background(Color.clear)
+        .background(Color.black.opacity(0.001)) // Use nearly transparent black instead of clear for better hit testing
+        .contentShape(Rectangle())
+        .onTapGesture {
+            withAnimation(.spring(response: 0.2, dampingFraction: 0.7)) {
+                isOn.toggle()
+            }
+        }
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
@@ -411,7 +417,8 @@ struct SettingsNavigationItem: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 14)
-            .background(Color.clear)
+            .background(Color.black.opacity(0.001)) // Use nearly transparent black instead of clear
+            .contentShape(Rectangle())
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
