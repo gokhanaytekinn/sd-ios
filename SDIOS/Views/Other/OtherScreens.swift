@@ -81,7 +81,7 @@ struct SearchScreen: View {
                             }
                             .frame(maxWidth: .infinity)
                         } else {
-                            Text("\(filteredSubscriptions.count) \(NSLocalizedString("results_found", comment: ""))")
+                            Text(String(format: NSLocalizedString("results_found", comment: ""), filteredSubscriptions.count))
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .frame(maxWidth: .infinity, alignment: .leading)
