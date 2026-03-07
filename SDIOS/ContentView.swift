@@ -205,8 +205,9 @@ struct ContentView: View {
             }
             
             fabButton
-                .padding(.bottom, 80) // Raise it above the bottom bar
+                .padding(.bottom, 80)
         }
+        .ignoresSafeArea(.keyboard)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .environment(\.locale, .init(identifier: languagePref.selectedLanguage))
         .id(languagePref.selectedLanguage) // Force view refresh on language change
@@ -309,7 +310,9 @@ struct ContentView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             showFabMenu = false
                         }
-                        navigationPath.append(.addSubscription)
+                        if navigationPath.last != .addSubscription {
+                            navigationPath.append(.addSubscription)
+                        }
                     }) {
                         Text("add_mannually".localized())
                             .font(.system(size: 14, weight: .bold))
@@ -326,7 +329,9 @@ struct ContentView: View {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             showFabMenu = false
                         }
-                        navigationPath.append(.addSubscription)
+                        if navigationPath.last != .addSubscription {
+                            navigationPath.append(.addSubscription)
+                        }
                     }) {
                         ZStack {
                             Circle()
