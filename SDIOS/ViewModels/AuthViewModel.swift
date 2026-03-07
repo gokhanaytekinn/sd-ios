@@ -19,6 +19,8 @@ class AuthViewModel: ObservableObject {
     @Published var isResetCodeVerified = false
     @Published var tier: Int = 1
     
+    private var lastDeviceToken: String?
+    
     private let repository = AuthRepository.shared
     private let languagePreferences = LanguagePreferences.shared
     private let premiumPreferences = PremiumPreferences.shared
@@ -44,6 +46,11 @@ class AuthViewModel: ObservableObject {
                 tier = user.tier ?? 1
                 premiumPreferences.isPremium = user.tier == 2
                 syncLanguageIfNeeded()
+                
+                // Re-register push token if we have one
+                if let token = lastDeviceToken {
+                    updatePushToken(token: token)
+                }
             case .failure:
                 isLoading = false
                 isAuthenticated = false
@@ -68,6 +75,11 @@ class AuthViewModel: ObservableObject {
                 language = response.user?.language ?? "tr"
                 tier = response.user?.tier ?? 1
                 syncLanguageIfNeeded()
+                
+                // Re-register push token if we have one
+                if let token = lastDeviceToken {
+                    updatePushToken(token: token)
+                }
                 onSuccess()
             case .failure(let err):
                 isLoading = false
@@ -116,6 +128,11 @@ class AuthViewModel: ObservableObject {
                 language = response.user?.language ?? "tr"
                 tier = response.user?.tier ?? 1
                 syncLanguageIfNeeded()
+                
+                // Re-register push token if we have one
+                if let token = lastDeviceToken {
+                    updatePushToken(token: token)
+                }
                 onSuccess()
             case .failure(let err):
                 isLoading = false
@@ -231,8 +248,13 @@ class AuthViewModel: ObservableObject {
     }
     
     func updatePushToken(token: String) {
+        self.lastDeviceToken = token
         Task {
-            let _ = await repository.updatePushToken(token: token, platform: "ios")
+            var isSandbox = false
+            #if DEBUG
+            isSandbox = true
+            #endif
+            let _ = await repository.updatePushToken(token: token, platform: "ios", isSandbox: isSandbox)
         }
     }
     
