@@ -167,6 +167,7 @@
 "start_date" = "Bastaluu kuni";
 "cancel_subscription" = "Jazylymdy boldyrmau";
 "delete_subscription" = "Jazylymdy zhoy";
+"delete_account" = "Аккаунтты жою";
 "delete_subscription_confirm_desc" = "Бұл жазылымды және барлық қатысты деректерді біржола жойғыңыз келетініне сенімдісіз бе? Бұл әрекетті болдырмау мүмкін емес.";
 "participants" = "Қатысушылар";
 "remove_participant_title" = "Қатысушыны жою";
@@ -210,6 +211,7 @@
 "category_streaming" = "Кино және ТВ және Музыка";
 "category_gaming" = "Ойындар";
 "category_software" = "Бағдарламалық қамтамасыз ету";
+"category_shopping" = "Сауда";
 "category_other" = "Басқа";
 "category_entertainment" = "Ойын-сауық";
 "category_music" = "Музыка";
@@ -225,6 +227,8 @@
 "quick_date" = "Жылдам күн";
 "today_btn" = "Бүгін";
 "tomorrow_btn" = "Ертең";
+"select_date" = "Күнді таңдау";
+"select_day" = "Күнді таңдау";
 "transaction_history" = "Транзакциялар тарихы";
 "all_transactions" = "Барлық транзакциялар";
 "filter" = "Сүзгі";

@@ -166,8 +166,9 @@
 "category" = "Kategoriýa";
 "start_date" = "Baslangyc senesi";
 "cancel_subscription" = "Yazylmany yatyr";
-"delete_subscription" = "Yazylmany poz";
-"delete_subscription_confirm_desc" = "Bu abunalygy we ähli degişli maglumatlary hemişelik pozmak isleýändigiňize ynamlymy? Bu amaly yzyna gaýtaryp bolmaz.";
+"delete_subscription" = "Abunalygy poz";
+"delete_account" = "Hasaby poz";
+"delete_subscription_confirm_desc" = "Bu abunalygy we ähli baglanyşykly maglumatlary doly pozmak isleýändigiňize ynanýarsyňyzmy? Bu işlemi yzyna dolap bolmaz.";
 "participants" = "Gatnaşyjylar";
 "remove_participant_title" = "Gatnaşyjyny aýyr";
 "remove_participant_confirm" = "%@ gatnaşyjyny bu abunalykdan aýyrmak isleýändigiňize ynamlymy?";
@@ -210,6 +211,7 @@
 "category_streaming" = "Kinolar  TV  Saz";
 "category_gaming" = "Oýunlar";
 "category_software" = "Programma üpjünçiligi";
+"category_shopping" = "Söwda";
 "category_other" = "Başga";
 "category_entertainment" = "Güýmenje";
 "category_music" = "Saz";
@@ -225,7 +227,9 @@
 "quick_date" = "Çalt sene";
 "today_btn" = "Bugün";
 "tomorrow_btn" = "Ertir";
-"transaction_history" = "Amal Taryhy";
+"select_date" = "Senäni saýla";
+"select_day" = "Güni saýla";
+"transaction_history" = "Amallar taryhy";
 "all_transactions" = "Ähli Amallar";
 "filter" = "Süzgüç";
 "sort_by" = "Tertiplemek";

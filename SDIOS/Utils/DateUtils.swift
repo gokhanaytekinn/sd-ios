@@ -7,6 +7,7 @@ struct DateUtils {
         
         if let date = formatter.date(from: dateString) {
             let displayFormatter = DateFormatter()
+            displayFormatter.locale = Locale(identifier: LanguagePreferences.shared.selectedLanguage)
             displayFormatter.dateFormat = "dd MMM yyyy"
             return displayFormatter.string(from: date)
         }
@@ -16,6 +17,7 @@ struct DateUtils {
         altFormatter.dateFormat = "yyyy-MM-dd"
         if let date = altFormatter.date(from: dateString) {
             let displayFormatter = DateFormatter()
+            displayFormatter.locale = Locale(identifier: LanguagePreferences.shared.selectedLanguage)
             displayFormatter.dateFormat = "dd MMM yyyy"
             return displayFormatter.string(from: date)
         }
@@ -47,6 +49,7 @@ struct DateUtils {
     
     static func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: LanguagePreferences.shared.selectedLanguage)
         formatter.dateFormat = "dd MMM yyyy"
         return formatter.string(from: date)
     }

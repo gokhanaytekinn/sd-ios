@@ -166,8 +166,9 @@
 "category" = "Kateqoriya";
 "start_date" = "Baslanqic tarixi";
 "cancel_subscription" = "Aboneliyi legv et";
-"delete_subscription" = "Aboneliyi sil";
-"delete_subscription_confirm_desc" = "Bu abunəliyi və bütün əlaqəli məlumatları tamamilə silmək istədiyinizə əminsiniz? Bu əməliyyat geri qaytarıla bilməz.";
+"delete_subscription" = "Abunəliyi sil";
+"delete_account" = "Hesabı sil";
+"delete_subscription_confirm_desc" = "Bu abunəliyi və bütün əlaqəli verilənləri tamamilə silmək istədiyinizə əminsinizmi? Bu əməliyyat geri qaytarıla bilməz.";
 "participants" = "İştirakçılar";
 "remove_participant_title" = "İştirakçını sil";
 "remove_participant_confirm" = "%@ istifadəçisini bu abunədən silmək istədiyinizə əminsiniz?";
@@ -209,7 +210,8 @@
 "feature_auto_capture_premium_desc" = "Gizli ödənişləri dərhal tapır";
 "category_streaming" = "Kino, TV və Musiqi";
 "category_gaming" = "Oyunlar";
-"category_software" = "Proqram Təminatı";
+"category_software" = "Proqram təminatı";
+"category_shopping" = "Alış-veriş";
 "category_other" = "Digər";
 "category_entertainment" = "Əyləncə";
 "category_music" = "Musiqi";
@@ -225,7 +227,9 @@
 "quick_date" = "Sürətli Tarix";
 "today_btn" = "Bugün";
 "tomorrow_btn" = "Sabah";
-"transaction_history" = "Əməliyyat Tarixçəsi";
+"select_date" = "Tarix Seç";
+"select_day" = "Gün Seç";
+"transaction_history" = "Əməliyyat tarixçəsi";
 "all_transactions" = "Bütün Əməliyyatlar";
 "filter" = "Süzgəc";
 "sort_by" = "Sırala";
@@ -277,8 +281,12 @@
 "set_reminder" = "Xatırladıcı Qur";
 "edit_plan" = "Planı Düzəlt";
 "reactivate_subscription" = "Abunəliyi Yenidən Aktiv et";
-"cancel_subscription_btn" = "Abunəliyi Ləğv et";
-"payment_history" = "Ödəniş Tarixçəsi";
+"reactivate_subscription" = "Abunəliyi yenidən aktivləşdir";
+"cancel_subscription_btn" = "Abunəliyi ləğv et";
+"subscription_price" = "Abunəlik qiyməti";
+"renewal_cycle" = "Yenilənmə döngüsü";
+"turn_off" = "Xatırlatıcını söndür";
+"payment_history" = "Ödəniş tarixçəsi";
 "an_error_occurred" = "Xəta baş verdi";
 "go_back" = "Geri Qayıt";
 "subscription_id_not_found" = "Abunəlik ID tapılmadı";

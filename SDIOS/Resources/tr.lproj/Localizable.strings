@@ -225,6 +225,8 @@
 "category_technology" = "Teknoloji";
 "quick_amount" = "Hızlı Tutar";
 "quick_date" = "Hızlı Tarih";
+"select_date" = "Tarih Seç";
+"select_day" = "Gün Seç";
 "today_btn" = "Bugün";
 "tomorrow_btn" = "Yarın";
 "transaction_history" = "İşlem Geçmişi";
@@ -295,6 +297,7 @@
 "how_to_add_desc" = "Yeni bir servis eklemek için tüm abonelikler listesindeki artı simgesine tıklayın.";
 "cancel_anytime" = "İstediğiniz Zaman İptal Edin";
 "cancel_anytime_desc" = "Aboneliklerinizi doğrudan uygulama detayları üzerinden takip edebilir ve yönetebilirsiniz.";
+"automatic_tracking_desc" = "Aboneliklerinizi takip etmek için manuel olarak ekleyebilir veya güncelleyebilirsiniz.";
 "faq_q1" = "Abonelik nasıl iptal edilir?";
 "faq_a1" = "Abonelik detay sayfasına giderek en altta bulunan 'Aboneliği İptal Et' butonuna tıklayabilirsiniz. Bu işlem sadece uygulama içi takibi sonlandırır, servis sağlayıcı üzerinden de iptal etmeyi unutmayın.";
 "faq_q2" = "Verilerim güvende mi?";
@@ -305,6 +308,8 @@
 "faq_a4" = "Uygulama içi satın alımlarda Google Play/App Store politikaları geçerlidir. İade taleplerinizi ilgili mağaza üzerinden yapabilirsiniz.";
 "faq_q5" = "Hatırlatıcılar çalışmıyor, ne yapmalıyım?";
 "faq_a5" = "Cihaz ayarlarından uygulamanın bildirim izinlerinin açık olduğundan emin olun. Ayrıca pil tasarrufu modunun bildirimleri engellemediğini kontrol edin.";
+"faq_q6" = "Şüpheli işlem bildirimi nedir?";
+"faq_a6" = "Uygulama, normal harcama kalıplarınızın dışındaki ödemeleri veya tanımlanamayan masrafları tespit ettiğinde sizi uyarır. Bu işlemleri 'Şüpheli İşlemler' ekranından inceleyebilirsiniz.";
 "privacy_policy_title" = "Gizlilik Politikası";
 "privacy_last_updated" = "Son Güncelleme: 20 Şubat 2026";
 "privacy_title_1" = "1. Giriş";

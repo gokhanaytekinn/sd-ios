@@ -50,6 +50,7 @@
 "privacy_policy" = "Politique de confidentialité";
 "logout" = "Déconnexion";
 "version_info" = "Version %1$@ (Build %2$d)";
+"version" = "Version %@";
 "upgrade_to_premium" = "Passer au Premium";
 "premium_desc" = "Scannez automatiquement tous vos abonnements et économisez 30%% de plus.";
 "upgrade" = "Mettre à niveau";
@@ -167,6 +168,7 @@
 "cancel_subscription" = "Annuler l'abonnement";
 "delete_subscription" = "Supprimer l'abonnement";
 "delete_subscription_confirm_desc" = "Êtes-vous sûr de vouloir supprimer complètement cet abonnement et toutes les données associées ? Cette action ne peut pas être annulée.";
+"delete_account" = "Supprimer le compte";
 "participants" = "Participants";
 "remove_participant_title" = "Supprimer le participant";
 "remove_participant_confirm" = "Êtes-vous sûr de vouloir supprimer %@ de cet abonnement ?";
@@ -224,6 +226,8 @@
 "quick_date" = "Date Rapide";
 "today_btn" = "Aujourd'hui";
 "tomorrow_btn" = "Demain";
+"select_date" = "Sélectionner une date";
+"select_day" = "Sélectionner un jour";
 "transaction_history" = "Historique des transactions";
 "all_transactions" = "Toutes les transactions";
 "filter" = "Filtrer";
@@ -276,6 +280,10 @@
 "set_reminder" = "Définir un rappel";
 "edit_plan" = "Modifier le plan";
 "reactivate_subscription" = "Réactiver l'abonnement";
+"cancel_subscription_btn" = "Annuler l'abonnement";
+"subscription_price" = "Prix de l'abonnement";
+"renewal_cycle" = "Cycle de renouvellement";
+"turn_off" = "Désactiver le rappel";
 "payment_history" = "Historique des paiements";
 "an_error_occurred" = "Une erreur est survenue";
 "go_back" = "Retour";
@@ -291,6 +299,7 @@
 "how_to_add_desc" = "Appuyez sur le bouton + dans la liste des abonnements pour ajouter un nouveau service.";
 "automatic_tracking_desc" = "Nous analysons vos transactions pour trouver automatiquement les abonnements recurrents.";
 "cancel_anytime" = "Annuler n'importe quand";
+"cancel_anytime_desc" = "Vous pouvez suivre et gérer vos abonnements directement via les détails de l'application.";
 "faq_q1" = "Comment annuler un abonnement ?";
 "faq_a1" = "Vous pouvez aller sur la page des détails de l'abonnement et cliquer sur le bouton 'Annuler l'abonnement' en bas. Cette action ne fait que mettre fin au suivi dans l'application, n'oubliez pas d'annuler également via le fournisseur de services.";
 "faq_q2" = "Mes données sont-elles sécurisées ?";
@@ -358,6 +367,7 @@
 "notify_1_day_before" = "Notifier 1 jour avant le paiement";
 "add_subscription_btn" = "Ajouter un abonnement";
 "done_btn" = "Terminé";
+"upgrade_to_premium_btn" = "Passer au Premium";
 
 "pending_approve" = "Approbation En Attente";
 "pending_invitations" = "Invitations en attente (%d)";

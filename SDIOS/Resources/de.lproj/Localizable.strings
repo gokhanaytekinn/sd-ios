@@ -167,6 +167,7 @@
 "start_date" = "Startdatum";
 "cancel_subscription" = "Abonnement kündigen";
 "delete_subscription" = "Abonnement löschen";
+"delete_account" = "Konto löschen";
 "delete_subscription_confirm_desc" = "Möchten Sie dieses Abonnement und alle zugehörigen Daten wirklich dauerhaft löschen? Diese Aktion kann nicht rückgängig gemacht werden.";
 "participants" = "Teilnehmer";
 "remove_participant_title" = "Teilnehmer entfernen";
@@ -210,6 +211,7 @@
 "category_streaming" = "Filme  TV  Musik";
 "category_gaming" = "Gaming";
 "category_software" = "Software";
+"category_shopping" = "Shopping";
 "category_other" = "Andere";
 "category_entertainment" = "Unterhaltung";
 "category_music" = "Musik";
@@ -225,6 +227,8 @@
 "quick_date" = "Schnelldatum";
 "today_btn" = "Heute";
 "tomorrow_btn" = "Morgen";
+"select_date" = "Datum auswählen";
+"select_day" = "Tag auswählen";
 "transaction_history" = "Transaktionsverlauf";
 "all_transactions" = "Alle Transaktionen";
 "filter" = "Filtern";
@@ -278,6 +282,9 @@
 "edit_plan" = "Plan bearbeiten";
 "reactivate_subscription" = "Abonnement reaktivieren";
 "cancel_subscription_btn" = "Abonnement kündigen";
+"subscription_price" = "Abonnementpreis";
+"renewal_cycle" = "Erneuerungszyklus";
+"turn_off" = "Erinnerung ausschalten";
 "payment_history" = "Zahlungsverlauf";
 "an_error_occurred" = "Ein Fehler ist aufgetreten";
 "go_back" = "Zurückgehen";

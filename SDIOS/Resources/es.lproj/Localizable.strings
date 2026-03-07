@@ -167,6 +167,7 @@
 "start_date" = "Fecha de inicio";
 "cancel_subscription" = "Cancelar suscripcion";
 "delete_subscription" = "Eliminar suscripcion";
+"delete_account" = "Eliminar cuenta";
 "delete_subscription_confirm_desc" = "¿Estás seguro de que deseas eliminar completamente esta suscripción y todos los datos asociados? Esta acción no se puede deshacer.";
 "participants" = "Participantes";
 "remove_participant_title" = "Eliminar participante";
@@ -226,6 +227,8 @@
 "quick_date" = "Fecha Rápida";
 "today_btn" = "Hoy";
 "tomorrow_btn" = "Mañana";
+"select_date" = "Seleccionar fecha";
+"select_day" = "Seleccionar día";
 "transaction_history" = "Historial de transacciones";
 "all_transactions" = "Todas las transacciones";
 "filter" = "Filtrar";

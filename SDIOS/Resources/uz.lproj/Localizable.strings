@@ -167,6 +167,7 @@
 "start_date" = "Boshlanish sanasi";
 "cancel_subscription" = "Obunani bekor qilish";
 "delete_subscription" = "Obunani ochirish";
+"delete_account" = "Hisobni o'chirish";
 "delete_subscription_confirm_desc" = "Ushbu obunani va barcha tegishli maʼlumotlarni butunlay oʻchirib tashlamoqchimisiz? Ushbu amalni bekor qilib boʻlmaydi.";
 "participants" = "Ishtirokchilar";
 "remove_participant_title" = "Ishtirokchini o'chirish";
@@ -226,6 +227,8 @@
 "quick_date" = "Tezkor sana";
 "today_btn" = "Bugun";
 "tomorrow_btn" = "Ertaga";
+"select_date" = "Sanani tanlash";
+"select_day" = "Kunni tanlash";
 "transaction_history" = "Tranzaksiyalar tarixi";
 "all_transactions" = "Barcha tranzaksiyalar";
 "filter" = "Süzgüch";

@@ -167,6 +167,7 @@
 "start_date" = "开始日期";
 "cancel_subscription" = "取消订阅";
 "delete_subscription" = "删除订阅";
+"delete_account" = "删除账户";
 "delete_subscription_confirm_desc" = "您确定要完全删除此订阅及所有相关数据吗？此操作无法撤销。";
 "participants" = "参与者";
 "remove_participant_title" = "删除参与者";
@@ -226,6 +227,8 @@
 "quick_date" = "快速日期";
 "today_btn" = "今天";
 "tomorrow_btn" = "明天";
+"select_date" = "选择日期";
+"select_day" = "选择日期";
 "transaction_history" = "交易历史";
 "all_transactions" = "所有交易";
 "filter" = "筛选";

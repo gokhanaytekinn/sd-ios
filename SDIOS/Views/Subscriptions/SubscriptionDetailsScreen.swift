@@ -470,6 +470,7 @@ struct SubscriptionDetailsScreen: View {
     private func nextRenewalDayMonth(_ sub: Subscription) -> String {
         guard let nextDate = sub.getNextRenewalDate() else { return "-" }
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: LanguagePreferences.shared.selectedLanguage)
         formatter.dateFormat = "d MMMM"
         return formatter.string(from: nextDate)
     }

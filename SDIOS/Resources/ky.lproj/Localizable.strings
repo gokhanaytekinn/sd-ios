@@ -166,8 +166,9 @@
 "category" = "Категория";
 "start_date" = "Bashtaluu datasy";
 "cancel_subscription" = "Jazylmaadan bash tart";
-"delete_subscription" = "Jazylmany zhok kyl";
-"delete_subscription_confirm_desc" = "Бул жазылууну жана бардык тиешелүү маалыматтарды биратала өчүрүүнү каалайсызбы? Бул аракетти артка кайтаруу мүмкүн эмес.";
+"delete_subscription" = "Жазылууну өчүрүү";
+"delete_account" = "Аккаунтту өчүрүү";
+"delete_subscription_confirm_desc" = "Бул жазылууну жана бардык тиешелүү маалыматтарды толугумен өчүрүүнү каалайсызбы? Бул аракетти артка кайтаруу мүмкүн эмес.";
 "participants" = "Катышуучулар";
 "remove_participant_title" = "Катышуучуну өчүрүү";
 "remove_participant_confirm" = "Бул жазылуудан %@ катышуучусун өчүрүүнү ырастайсызбы?";
@@ -210,6 +211,7 @@
 "category_streaming" = "Кино және ТВ және Музыка";
 "category_gaming" = "Ойындар";
 "category_software" = "Программалык камсыздоо";
+"category_shopping" = "Соода";
 "category_other" = "Башка";
 "category_entertainment" = "Көңүл ачуу";
 "category_music" = "Музыка";
@@ -225,6 +227,8 @@
 "quick_date" = "Ыкчам күн";
 "today_btn" = "Бүгүн";
 "tomorrow_btn" = "Эртең";
+"select_date" = "Күндү тандоо";
+"select_day" = "Күндү тандоо";
 "transaction_history" = "Транзакциялар тарыхы";
 "all_transactions" = "Бардык транзакциялар";
 "filter" = "Чыпка";

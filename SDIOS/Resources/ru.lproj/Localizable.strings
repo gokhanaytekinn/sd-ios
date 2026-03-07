@@ -166,8 +166,9 @@
 "category" = "Категория";
 "start_date" = "Data nachala";
 "cancel_subscription" = "Otmenit podpisku";
-"delete_subscription" = "Udalit podpisku";
-"delete_subscription_confirm_desc" = "Вы уверены, что хотите полностью удалить эту подписку и все связанные с ней данные? Это действие нельзя отменить.";
+"delete_subscription" = "Удалить подписку";
+"delete_account" = "Удалить аккаунт";
+"delete_subscription_confirm_desc" = "Вы уверены, что хотите полностью удалить эту подписку и все связанные данные? Это действие нельзя отменить.";
 "participants" = "Участники";
 "remove_participant_title" = "Удалить участника";
 "remove_participant_confirm" = "Вы уверены, что хотите удалить %@ из этой подписки?";
@@ -226,6 +227,8 @@
 "quick_date" = "Быстрая дата";
 "today_btn" = "Сегодня";
 "tomorrow_btn" = "Завтра";
+"select_date" = "Выбрать дату";
+"select_day" = "Выбрать день";
 "transaction_history" = "История Транзакций";
 "all_transactions" = "Все Транзакции";
 "filter" = "Фильтр";
