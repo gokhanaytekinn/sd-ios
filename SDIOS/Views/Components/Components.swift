@@ -280,9 +280,22 @@ struct SDOutlinedTextField: View {
     var keyboardType: UIKeyboardType = .default
     var trailingIcon: String? = nil
     var onTrailingIconTap: (() -> Void)? = nil
+    
+    // Focus management
+    var focusBinding: FocusState<String?>.Binding? = nil
+    var focusValue: String? = nil
+    
     @State private var showPassword = false
+    @FocusState private var internalFocus: String?
     
     @Environment(\.colorScheme) var colorScheme
+    
+    private var isFocused: Bool {
+        if let binding = focusBinding {
+            return binding.wrappedValue == focusValue
+        }
+        return internalFocus == focusValue
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -293,10 +306,23 @@ struct SDOutlinedTextField: View {
             HStack(spacing: 12) {
                 Group {
                     if isSecure && !showPassword {
-                        SecureField(placeholder, text: $text)
+                        if let focusBinding = focusBinding {
+                            SecureField(placeholder, text: $text)
+                                .focused(focusBinding, equals: focusValue)
+                        } else {
+                            SecureField(placeholder, text: $text)
+                                .focused($internalFocus, equals: focusValue)
+                        }
                     } else {
-                        TextField(placeholder, text: $text)
-                            .keyboardType(keyboardType)
+                        if let focusBinding = focusBinding {
+                            TextField(placeholder, text: $text)
+                                .keyboardType(keyboardType)
+                                .focused(focusBinding, equals: focusValue)
+                        } else {
+                            TextField(placeholder, text: $text)
+                                .keyboardType(keyboardType)
+                                .focused($internalFocus, equals: focusValue)
+                        }
                     }
                 }
                 
@@ -316,24 +342,35 @@ struct SDOutlinedTextField: View {
             }
             .padding(.horizontal, 16)
             .frame(height: 56)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(
-                            errorMessage != nil ? Color.errorColor :
-                                Color.appOnBackground(for: colorScheme).opacity(0.2),
-                            lineWidth: 1
-                        )
-                )
-                .autocapitalization(.none)
-                
-                if let error = errorMessage {
-                    Text(error)
-                        .font(.system(size: 12))
-                        .foregroundColor(.errorColor)
+            .background(Color.appSurface(for: colorScheme).opacity(0.001)) // Transparent background for taps
+            .contentShape(Rectangle())
+            .onTapGesture {
+                if let binding = focusBinding {
+                    binding.wrappedValue = focusValue
+                } else {
+                    internalFocus = focusValue
                 }
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(
+                        errorMessage != nil ? Color.errorColor :
+                            isFocused ? .primaryBlue :
+                            Color.appOnBackground(for: colorScheme).opacity(0.2),
+                        lineWidth: isFocused || errorMessage != nil ? 2 : 1
+                    )
+            )
+            .autocapitalization(.none)
+            
+            if let error = errorMessage {
+                Text(error)
+                    .font(.system(size: 12))
+                    .foregroundColor(.errorColor)
+            }
         }
     }
 }
+
 
 // MARK: - Settings Toggle Item
 struct SettingsToggleItem: View {

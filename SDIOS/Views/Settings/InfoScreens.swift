@@ -68,7 +68,13 @@ struct HelpCenterScreen: View {
                     
                     // FAQ List
                     VStack(spacing: 12) {
-                        ForEach(faqs) { faq in
+                        let filteredFaqs = faqs.filter { faq in
+                            searchText.isEmpty || 
+                            faq.questionKey.localized().lowercased().contains(searchText.lowercased()) ||
+                            faq.answerKey.localized().lowercased().contains(searchText.lowercased())
+                        }
+                        
+                        ForEach(filteredFaqs) { faq in
                             DisclosureGroup {
                                 Text(faq.answerKey.localized())
                                     .font(.system(size: 15))
@@ -91,6 +97,19 @@ struct HelpCenterScreen: View {
                                 RoundedRectangle(cornerRadius: 16)
                                     .stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1)
                             )
+                        }
+                        
+                        if filteredFaqs.isEmpty && !searchText.isEmpty {
+                            VStack(spacing: 12) {
+                                Spacer().frame(height: 40)
+                                Image(systemName: "magnifyingglass")
+                                    .font(.system(size: 40))
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                Text("no_results".localized())
+                                    .font(.system(size: 16))
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            }
+                            .frame(maxWidth: .infinity)
                         }
                     }
                     
@@ -155,7 +174,7 @@ struct PrivacyPolicyScreen: View {
                     
                     ForEach(sections) { section in
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("\(section.order). \(section.titleKey.localized())")
+                            Text(section.titleKey.localized())
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundColor(.primaryBlue)
                             

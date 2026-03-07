@@ -7,6 +7,7 @@ struct ForgotPasswordScreen: View {
     let onBackToLogin: () -> Void
     
     @State private var email = ""
+    @FocusState private var focusedField: String?
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -44,36 +45,49 @@ struct ForgotPasswordScreen: View {
                         placeholder: NSLocalizedString("email_placeholder", comment: ""),
                         text: $email,
                         errorMessage: authViewModel.emailError,
-                        keyboardType: .emailAddress
+                        keyboardType: .emailAddress,
+                        focusBinding: $focusedField,
+                        focusValue: "email"
                     )
                     .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
+                    Spacer().frame(height: 32)
+                    
+                    VStack(spacing: 16) {
+                        SDButton(
+                            title: NSLocalizedString("send_code", comment: ""),
+                            isLoading: authViewModel.isLoading,
+                            isEnabled: !email.isEmpty
+                        ) {
+                            sendCode()
+                        }
+                        
+                        Button(action: onBackToLogin) {
+                            Text(NSLocalizedString("back_to_login", comment: ""))
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.primaryBlue)
+                        }
+                        
+                        Spacer().frame(height: 16)
+                    }
                 }
                 .padding(.horizontal, 24)
             }
-            
-            VStack(spacing: 16) {
-                SDButton(
-                    title: NSLocalizedString("send_code", comment: ""),
-                    isLoading: authViewModel.isLoading,
-                    isEnabled: !email.isEmpty
-                ) {
-                    authViewModel.forgotPassword(email: email, onSuccess: onCodeSent)
-                }
-                
-                Button(action: onBackToLogin) {
-                    Text(NSLocalizedString("back_to_login", comment: ""))
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(.primaryBlue)
-                }
-                
-                Spacer().frame(height: 16)
-            }
-            .padding(.horizontal, 24)
-            .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .withErrorDialog(errorMessage: $authViewModel.error) {
             authViewModel.clearGeneralError()
+        }
+    }
+    
+    private func sendCode() {
+        authViewModel.forgotPassword(email: email) {
+            onCodeSent()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if authViewModel.emailError != nil {
+                focusedField = "email"
+            }
         }
     }
 }
@@ -85,6 +99,7 @@ struct VerificationCodeScreen: View {
     let onBack: () -> Void
     
     @State private var code = ""
+    @FocusState private var isFocused: Bool
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -128,9 +143,13 @@ struct VerificationCodeScreen: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 16)
                             .frame(height: 56)
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                            .contentShape(Rectangle())
+                            .onTapGesture { isFocused = true }
+                            .focused($isFocused)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.appOnBackground(for: colorScheme).opacity(0.2), lineWidth: 1)
+                                    .stroke(isFocused ? Color.primaryBlue : Color.appOnBackground(for: colorScheme).opacity(0.2), lineWidth: isFocused ? 2 : 1)
                             )
                             .onChange(of: code) { newValue in
                                 if newValue.count > 6 {
@@ -138,23 +157,23 @@ struct VerificationCodeScreen: View {
                                 }
                             }
                     }
+                    
+                    Spacer().frame(height: 32)
+                    
+                    VStack(spacing: 16) {
+                        SDButton(
+                            title: NSLocalizedString("verify_and_continue", comment: ""),
+                            isLoading: authViewModel.isLoading,
+                            isEnabled: code.count == 6
+                        ) {
+                            authViewModel.verifyCode(code: code, onSuccess: onVerified)
+                        }
+                        
+                        Spacer().frame(height: 16)
+                    }
                 }
                 .padding(.horizontal, 24)
             }
-            
-            VStack(spacing: 16) {
-                SDButton(
-                    title: NSLocalizedString("verify_and_continue", comment: ""),
-                    isLoading: authViewModel.isLoading,
-                    isEnabled: code.count == 6
-                ) {
-                    authViewModel.verifyCode(code: code, onSuccess: onVerified)
-                }
-                
-                Spacer().frame(height: 16)
-            }
-            .padding(.horizontal, 24)
-            .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .withErrorDialog(errorMessage: $authViewModel.error) {
@@ -172,6 +191,7 @@ struct ResetPasswordScreen: View {
     
     @State private var newPassword = ""
     @State private var confirmPassword = ""
+    @FocusState private var focusedField: String?
     @Environment(\.colorScheme) var colorScheme
     
     var passwordsMatch: Bool {
@@ -212,7 +232,9 @@ struct ResetPasswordScreen: View {
                         placeholder: NSLocalizedString("password_placeholder", comment: ""),
                         text: $newPassword,
                         errorMessage: authViewModel.passwordError,
-                        isSecure: true
+                        isSecure: true,
+                        focusBinding: $focusedField,
+                        focusValue: "newPassword"
                     )
                     .onChange(of: newPassword) { _ in self.authViewModel.clearPasswordError() }
                     
@@ -229,7 +251,9 @@ struct ResetPasswordScreen: View {
                         placeholder: NSLocalizedString("password_placeholder", comment: ""),
                         text: $confirmPassword,
                         errorMessage: authViewModel.confirmPasswordError,
-                        isSecure: true
+                        isSecure: true,
+                        focusBinding: $focusedField,
+                        focusValue: "confirmPassword"
                     )
                     .onChange(of: confirmPassword) { _ in self.authViewModel.clearConfirmPasswordError() }
                     
@@ -239,27 +263,41 @@ struct ResetPasswordScreen: View {
                             .font(.system(size: 12))
                             .foregroundColor(passwordsMatch ? .successColor : .errorColor)
                     }
+                    
+                    Spacer().frame(height: 32)
+                    
+                    VStack(spacing: 16) {
+                        SDButton(
+                            title: NSLocalizedString("update_password", comment: ""),
+                            isLoading: authViewModel.isLoading,
+                            isEnabled: newPassword.count >= 6 && passwordsMatch
+                        ) {
+                            performReset()
+                        }
+                        
+                        Spacer().frame(height: 16)
+                    }
                 }
                 .padding(.horizontal, 24)
             }
-            
-            VStack(spacing: 16) {
-                SDButton(
-                    title: NSLocalizedString("update_password", comment: ""),
-                    isLoading: authViewModel.isLoading,
-                    isEnabled: newPassword.count >= 6 && passwordsMatch
-                ) {
-                    authViewModel.resetPassword(code: verificationCode, newPassword: newPassword, onSuccess: onPasswordReset)
-                }
-                
-                Spacer().frame(height: 16)
-            }
-            .padding(.horizontal, 24)
-            .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .withErrorDialog(errorMessage: $authViewModel.error) {
             authViewModel.clearGeneralError()
+        }
+    }
+    
+    private func performReset() {
+        authViewModel.resetPassword(code: verificationCode, newPassword: newPassword) {
+            onPasswordReset()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if authViewModel.passwordError != nil {
+                focusedField = "newPassword"
+            } else if authViewModel.confirmPasswordError != nil {
+                focusedField = "confirmPassword"
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ struct LoginScreen: View {
     @State private var password = ""
     @State private var passwordVisible = false
     
+    @FocusState private var focusedField: String?
+    
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -46,7 +48,9 @@ struct LoginScreen: View {
                         placeholder: "email_placeholder".localized(),
                         text: $email,
                         errorMessage: authViewModel.emailError,
-                        keyboardType: .emailAddress
+                        keyboardType: .emailAddress,
+                        focusBinding: $focusedField,
+                        focusValue: "email"
                     )
                     .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
                     
@@ -58,7 +62,9 @@ struct LoginScreen: View {
                         placeholder: "password_placeholder".localized(),
                         text: $password,
                         errorMessage: authViewModel.passwordError,
-                        isSecure: true
+                        isSecure: true,
+                        focusBinding: $focusedField,
+                        focusValue: "password"
                     )
                     .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
                     
@@ -87,7 +93,7 @@ struct LoginScreen: View {
                                 isLoading: authViewModel.isLoading,
                                 isEnabled: !email.isEmpty && !password.isEmpty
                             ) {
-                                authViewModel.login(email: email, password: password, onSuccess: onLoginSuccess)
+                                performLogin()
                             }
                             
                             HStack {
@@ -127,6 +133,21 @@ struct LoginScreen: View {
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .withErrorDialog(errorMessage: $authViewModel.error) {
             authViewModel.clearGeneralError()
+        }
+    }
+    
+    private func performLogin() {
+        authViewModel.login(email: email, password: password) {
+            onLoginSuccess()
+        }
+        
+        // Handle auto-focus on error
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if authViewModel.emailError != nil {
+                focusedField = "email"
+            } else if authViewModel.passwordError != nil {
+                focusedField = "password"
+            }
         }
     }
 }

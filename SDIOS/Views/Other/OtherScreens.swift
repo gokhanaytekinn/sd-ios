@@ -113,6 +113,8 @@ struct PremiumUpgradeScreen: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.colorScheme) var colorScheme
     @State private var selectedPlan = 0 // 0: Free, 1: Monthly, 2: Yearly
+    @State private var showTermsDialog = false
+    @State private var showPrivacyDialog = false
     
     var body: some View {
         ZStack {
@@ -194,9 +196,9 @@ struct PremiumUpgradeScreen: View {
                             .disabled(isCurrentPlanSelected)
                             
                             HStack(spacing: 20) {
-                                Button(NSLocalizedString("restore_purchase", comment: "")) { /* Restore */ }
-                                Button(NSLocalizedString("terms_of_use_title", comment: "")) { /* Terms */ }
-                                Button(NSLocalizedString("privacy_policy_title", comment: "")) { /* Privacy */ }
+                                Button("restore_purchase".localized()) { /* Restore */ }
+                                Button("terms_of_use_title".localized()) { showTermsDialog = true }
+                                Button("privacy_policy_title".localized()) { showPrivacyDialog = true }
                             }
                             .font(.system(size: 12))
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
@@ -211,6 +213,53 @@ struct PremiumUpgradeScreen: View {
         .onAppear {
             setupInitialSelection()
         }
+        .sheet(isPresented: $showTermsDialog) {
+            termsSheet
+        }
+        .sheet(isPresented: $showPrivacyDialog) {
+            privacySheet
+        }
+    }
+    
+    private var termsSheet: some View {
+        NavigationStack {
+            ScrollView {
+                Text("terms_of_use_content".localized())
+                    .padding()
+            }
+            .navigationTitle("terms_of_use_title".localized())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("understood".localized()) {
+                        showTermsDialog = false
+                    }
+                    .foregroundColor(.primaryBlue)
+                    .fontWeight(.bold)
+                }
+            }
+        }
+    }
+    
+    private var privacySheet: some View {
+        NavigationStack {
+            ScrollView {
+                Text("privacy_dialog_content".localized())
+                    .padding()
+            }
+            .navigationTitle("privacy_policy_title".localized())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("close".localized()) {
+                        showPrivacyDialog = false
+                    }
+                    .foregroundColor(.primaryBlue)
+                    .fontWeight(.bold)
+                }
+            }
+        }
+        .interactiveDismissDisabled() // Prevent accidental dismissal if we want explicit close
     }
     
     private var headerView: some View {

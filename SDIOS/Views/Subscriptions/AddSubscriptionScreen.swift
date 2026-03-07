@@ -6,6 +6,8 @@ struct AddSubscriptionScreen: View {
     let onSaved: () -> Void
     let onBack: () -> Void
     
+    @FocusState private var focusedField: String?
+    
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @Environment(\.colorScheme) var colorScheme
     
@@ -42,7 +44,9 @@ struct AddSubscriptionScreen: View {
                             title: "service_name".localized(),
                             placeholder: "service_name_placeholder".localized(),
                             text: $viewModel.name,
-                            errorMessage: viewModel.nameError
+                            errorMessage: viewModel.nameError,
+                            focusBinding: $focusedField,
+                            focusValue: "serviceName"
                         )
                         
                         // Category
@@ -118,7 +122,9 @@ struct AddSubscriptionScreen: View {
                                 placeholder: "0,00",
                                 text: $viewModel.amount,
                                 errorMessage: viewModel.amountError,
-                                keyboardType: .decimalPad
+                                keyboardType: .decimalPad,
+                                focusBinding: $focusedField,
+                                focusValue: "amount"
                             )
                             .toolbar {
                                 ToolbarItemGroup(placement: .keyboard) {
@@ -259,7 +265,9 @@ struct AddSubscriptionScreen: View {
                                 errorMessage: nil,
                                 keyboardType: .emailAddress,
                                 trailingIcon: "plus",
-                                onTrailingIconTap: { viewModel.addJointEmail() }
+                                onTrailingIconTap: { viewModel.addJointEmail() },
+                                focusBinding: $focusedField,
+                                focusValue: "emailInput"
                             )
                             
                             let combinedEmails = viewModel.jointEmails.map { (email: $0, status: String?.none, name: String?.none) }
@@ -307,7 +315,17 @@ struct AddSubscriptionScreen: View {
                         
                         // Save Button
                         VStack {
-                            Button(action: { viewModel.save(currency: currency, onSuccess: onSaved) }) {
+                            Button(action: { 
+                                viewModel.save(currency: currency, onSuccess: onSaved)
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    if viewModel.nameError != nil {
+                                        focusedField = "serviceName"
+                                    } else if viewModel.amountError != nil {
+                                        focusedField = "amount"
+                                    }
+                                }
+                            }) {
                                 if viewModel.isLoading {
                                     ProgressView().tint(.white)
                                 } else {

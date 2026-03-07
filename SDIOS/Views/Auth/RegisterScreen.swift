@@ -15,6 +15,8 @@ struct RegisterScreen: View {
     @State private var showTermsDialog = false
     @State private var showPrivacyDialog = false
     
+    @FocusState private var focusedField: String?
+    
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -49,7 +51,9 @@ struct RegisterScreen: View {
                         title: "full_name".localized(),
                         placeholder: "full_name_placeholder".localized(),
                         text: $fullName,
-                        errorMessage: authViewModel.nameError
+                        errorMessage: authViewModel.nameError,
+                        focusBinding: $focusedField,
+                        focusValue: "fullName"
                     )
                     .onChange(of: fullName) { _ in self.authViewModel.clearNameError() }
                     
@@ -61,7 +65,9 @@ struct RegisterScreen: View {
                         placeholder: "email_placeholder".localized(),
                         text: $email,
                         errorMessage: authViewModel.emailError,
-                        keyboardType: .emailAddress
+                        keyboardType: .emailAddress,
+                        focusBinding: $focusedField,
+                        focusValue: "email"
                     )
                     .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
                     
@@ -73,7 +79,9 @@ struct RegisterScreen: View {
                         placeholder: "password_placeholder".localized(),
                         text: $password,
                         errorMessage: authViewModel.passwordError,
-                        isSecure: true
+                        isSecure: true,
+                        focusBinding: $focusedField,
+                        focusValue: "password"
                     )
                     .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
                     
@@ -85,7 +93,9 @@ struct RegisterScreen: View {
                         placeholder: "password_placeholder".localized(),
                         text: $confirmPassword,
                         errorMessage: authViewModel.confirmPasswordError,
-                        isSecure: true
+                        isSecure: true,
+                        focusBinding: $focusedField,
+                        focusValue: "confirmPassword"
                     )
                     .onChange(of: confirmPassword) { _ in self.authViewModel.clearConfirmPasswordError() }
                     
@@ -99,26 +109,20 @@ struct RegisterScreen: View {
                                 .foregroundColor(termsAccepted ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
                         }
                         
-                        VStack(alignment: .leading) {
-                            (Text("accept_terms_pre".localized())
-                                .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                             + Text("terms_of_use_title".localized())
-                                .foregroundColor(.primaryBlue)
-                                .fontWeight(.medium)
-                             + Text("and".localized())
-                                .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                             + Text("privacy_policy_title".localized())
-                                .foregroundColor(.primaryBlue)
-                                .fontWeight(.medium)
-                             + Text("accept_terms_post".localized())
-                                .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                            )
-                            .font(.system(size: 14))
+                        Text(termsAndPrivacyText)
                             .lineSpacing(4)
-                            .onTapGesture {
-                                // Could show terms or privacy
-                            }
-                        }
+                            .environment(\.openURL, OpenURLAction { url in
+                                if url.scheme == "app" {
+                                    if url.host == "terms" {
+                                        showTermsDialog = true
+                                        return .handled
+                                    } else if url.host == "privacy" {
+                                        showPrivacyDialog = true
+                                        return .handled
+                                    }
+                                }
+                                return .systemAction
+                            })
                     }
                     Spacer().frame(height: 12)
                     
@@ -129,7 +133,7 @@ struct RegisterScreen: View {
                             isLoading: authViewModel.isLoading,
                             isEnabled: termsAccepted && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && !fullName.isEmpty
                         ) {
-                            authViewModel.register(name: fullName, email: email, password: password, confirmPassword: confirmPassword, onSuccess: onRegisterSuccess)
+                            performRegister()
                         }
                         
                         HStack(spacing: 0) {
@@ -167,6 +171,54 @@ struct RegisterScreen: View {
         }
         .sheet(isPresented: $showPrivacyDialog) {
             privacySheet
+        }
+    }
+    
+    private var termsAndPrivacyText: AttributedString {
+        let baseFont = Font.system(size: 14)
+        let mediumFont = Font.system(size: 14, weight: .medium)
+        
+        var pre = AttributedString("accept_terms_pre".localized())
+        pre.foregroundColor = Color.appOnBackground(for: colorScheme).opacity(0.6)
+        pre.font = baseFont
+        
+        var terms = AttributedString("terms_of_use_title".localized())
+        terms.link = URL(string: "app://terms")
+        terms.foregroundColor = .primaryBlue
+        terms.font = mediumFont
+        
+        var and = AttributedString("and".localized())
+        and.foregroundColor = Color.appOnBackground(for: colorScheme).opacity(0.6)
+        and.font = baseFont
+        
+        var privacy = AttributedString("privacy_policy_title".localized())
+        privacy.link = URL(string: "app://privacy")
+        privacy.foregroundColor = .primaryBlue
+        privacy.font = mediumFont
+        
+        var post = AttributedString("accept_terms_post".localized())
+        post.foregroundColor = Color.appOnBackground(for: colorScheme).opacity(0.6)
+        post.font = baseFont
+        
+        return pre + terms + and + privacy + post
+    }
+    
+    private func performRegister() {
+        authViewModel.register(name: fullName, email: email, password: password, confirmPassword: confirmPassword) {
+            onRegisterSuccess()
+        }
+        
+        // Handle auto-focus on error
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if authViewModel.nameError != nil {
+                focusedField = "fullName"
+            } else if authViewModel.emailError != nil {
+                focusedField = "email"
+            } else if authViewModel.passwordError != nil {
+                focusedField = "password"
+            } else if authViewModel.confirmPasswordError != nil {
+                focusedField = "confirmPassword"
+            }
         }
     }
     
