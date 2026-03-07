@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Güvenli ödeme altyapısı";
 "current_plan" = "Mevcut Planınız";
 "upgrade_to_premium_btn" = "Premium'a Geç";
+"upgrade_plan" = "Premium'u Yükselt";
+"downgrade_plan" = "Premium'u Düşür";
 "plans_header" = "PLANLAR";
 "feature_auto_capture_title" = "Kolay Yonetim";
 "feature_auto_capture_free_desc" = "Basit arayuz";

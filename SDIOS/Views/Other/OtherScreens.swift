@@ -271,7 +271,17 @@ struct PremiumUpgradeScreen: View {
     }
     
     private func planCard(id: Int, title: String, price: String, period: String, isPopular: Bool = false) -> some View {
-        Button(action: { selectedPlan = id }) {
+        let isSelected = selectedPlan == id
+        let isPremiumUser = authViewModel.tier >= 2
+        let isFreePlan = id == 0
+        
+        return Button(action: {
+            if isPremiumUser && isFreePlan {
+                // Block selecting free plan for premium users
+            } else {
+                selectedPlan = id
+            }
+        }) {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text(title)
@@ -302,14 +312,16 @@ struct PremiumUpgradeScreen: View {
                 }
             }
             .padding(20)
-            .background(Color.appSurface(for: colorScheme).opacity(selectedPlan == id ? 0.05 : 1))
+            .background(Color.clear) // Transparent background
+            .contentShape(Rectangle()) // Make the entire area tappable
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(selectedPlan == id ? Color.primaryBlue : Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 2)
+                    .stroke(isSelected ? Color.primaryBlue : Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1) // Line width 1
             )
         }
         .buttonStyle(.plain)
+        .opacity(isPremiumUser && isFreePlan ? 0.3 : 1.0) // Visual hint it's non-clickable
     }
     
     // MARK: - Logic Helpers
@@ -339,9 +351,23 @@ struct PremiumUpgradeScreen: View {
     private var upgradeButtonText: String {
         if isCurrentPlanSelected {
             return NSLocalizedString("current_plan", comment: "")
-        } else {
-            return NSLocalizedString("upgrade_to_premium_btn", comment: "")
         }
+        
+        let currentTier = authViewModel.tier // 1: Free, 2: Monthly, 3: Yearly
+        
+        if currentTier == 1 {
+            return NSLocalizedString("upgrade_to_premium_btn", comment: "") // "Premium'a Geç"
+        } else if currentTier == 2 {
+            if selectedPlan == 2 {
+                return NSLocalizedString("upgrade_plan", comment: "") // "Premium'u Yükselt"
+            }
+        } else if currentTier == 3 {
+            if selectedPlan == 1 {
+                return NSLocalizedString("downgrade_plan", comment: "") // "Premium'u Düşür"
+            }
+        }
+        
+        return NSLocalizedString("upgrade_to_premium_btn", comment: "")
     }
     
     private func featureDesc(for type: String) -> String {

@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Xavfsiz tolov. Istalgan vaqtda bekor qiling.";
 "current_plan" = "Joriy reja";
 "upgrade_to_premium_btn" = "Premiumga o'ting";
+"upgrade_plan" = "Premiumni yangilash";
+"downgrade_plan" = "Premiumni pasaytirish";
 "plans_header" = "Rejangizni tanlang";
 "feature_auto_capture_title" = "Avtomatik aniqlash";
 "feature_auto_capture_free_desc" = "Cheklangan skanerlash";

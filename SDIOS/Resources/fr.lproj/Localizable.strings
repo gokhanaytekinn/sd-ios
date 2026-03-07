@@ -198,7 +198,9 @@
 "plan_yearly_premium" = "Premium Annuel";
 "most_popular" = "Le plus populaire";
 "secure_payment_footer" = "Paiement securise. Annulez quand vous voulez.";
-"current_plan" = "Plan actuel";
+"upgrade_to_premium_btn" = "Passer à Premium";
+"upgrade_plan" = "Améliorer Premium";
+"downgrade_plan" = "Rétrograder Premium";
 "plans_header" = "Choisissez votre plan";
 "feature_auto_capture_title" = "Capture automatique";
 "feature_auto_capture_free_desc" = "Numérisation limitée";

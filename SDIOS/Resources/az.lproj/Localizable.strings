@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Tehlukesiz odenis. Istediyiniz vaxt legv edin.";
 "current_plan" = "Movcud Plan";
 "upgrade_to_premium_btn" = "Premiuma kecin";
+"upgrade_plan" = "Premiumu yüksəlt";
+"downgrade_plan" = "Premiumu endir";
 "plans_header" = "Planinizi Secin";
 "feature_auto_capture_title" = "Avtomatik Çəkiliş";
 "feature_auto_capture_free_desc" = "Məhdud skanlama";

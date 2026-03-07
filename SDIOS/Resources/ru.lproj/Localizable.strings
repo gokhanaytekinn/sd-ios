@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Bezopasnaya oplata. Otmenite v lyuboye vremya.";
 "current_plan" = "Tekushchiy plan";
 "upgrade_to_premium_btn" = "Pereyti na Premium";
+"upgrade_plan" = "Обновить Премиум";
+"downgrade_plan" = "Понизить Премиум";
 "plans_header" = "Vyberte plan";
 "feature_auto_capture_title" = "Автоматический захват";
 "feature_auto_capture_free_desc" = "Ограниченное сканирование";

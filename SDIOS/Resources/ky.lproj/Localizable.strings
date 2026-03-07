@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Koopsuz tolem. Kaalagan ubakta zhokko chygarynyz.";
 "current_plan" = "Uchurdagy plan";
 "upgrade_to_premium_btn" = "Premiumga otuu";
+"upgrade_plan" = "Premium-ду жаңыртуу";
+"downgrade_plan" = "Premium-ду төмөндөтүү";
 "plans_header" = "Planynyzy tandanyz";
 "feature_auto_capture_title" = "Автоматтык түрдө аныктоо";
 "feature_auto_capture_free_desc" = "Чектелген сканерлөө";

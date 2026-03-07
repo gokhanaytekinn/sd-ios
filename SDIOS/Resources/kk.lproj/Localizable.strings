@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Qaupsiiz tolem. Kez kelgen uaqytta boldyrmau.";
 "current_plan" = "Agymdy zhosp.";
 "upgrade_to_premium_btn" = "Premiumga otu";
+"upgrade_plan" = "Premium-ды жаңарту";
+"downgrade_plan" = "Premium-ды төмендету";
 "plans_header" = "Zhospan tanda";
 "feature_auto_capture_title" = "Автоматты түрде анықтау";
 "feature_auto_capture_free_desc" = "Шектеулі сканерлеу";

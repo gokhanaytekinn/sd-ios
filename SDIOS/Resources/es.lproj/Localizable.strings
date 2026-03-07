@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Pago seguro. Cancela cuando quieras.";
 "current_plan" = "Plan Actual";
 "upgrade_to_premium_btn" = "Actualizar a Premium";
+"upgrade_plan" = "Mejorar Premium";
+"downgrade_plan" = "Bajar Premium";
 "plans_header" = "Elige tu Plan";
 "feature_auto_capture_title" = "Captura automática";
 "feature_auto_capture_free_desc" = "Escaneo limitado";

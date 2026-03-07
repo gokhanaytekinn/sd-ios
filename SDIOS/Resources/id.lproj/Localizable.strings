@@ -199,6 +199,8 @@
 "secure_payment_footer" = "Infrastruktur pembayaran yang aman";
 "current_plan" = "Paket Anda Saat Ini";
 "upgrade_to_premium_btn" = "Tingkatkan ke Premium";
+"upgrade_plan" = "Tingkatkan Premium";
+"downgrade_plan" = "Turunkan Premium";
 "plans_header" = "PAKET";
 "feature_auto_capture_title" = "Kelola dengan Mudah";
 "feature_auto_capture_free_desc" = "Antarmuka yang sederhana";

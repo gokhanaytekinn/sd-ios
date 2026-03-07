@@ -200,6 +200,8 @@
 "secure_payment_footer" = "安全支付。随时取消。";
 "current_plan" = "当前计划";
 "upgrade_to_premium_btn" = "升级到高级版";
+"upgrade_plan" = "升级高级版";
+"downgrade_plan" = "降级高级版";
 "plans_header" = "选择您的计划";
 "feature_auto_capture_title" = "自动捕捉";
 "feature_auto_capture_free_desc" = "有限扫描";

@@ -200,6 +200,8 @@
 "secure_payment_footer" = "Howpsuz toleg. Islendik wagt yatyr.";
 "current_plan" = "Hazirki plan";
 "upgrade_to_premium_btn" = "Premiuma gec";
+"upgrade_plan" = "Premiumy täzele";
+"downgrade_plan" = "Premiumy peselt";
 "plans_header" = "Plany sayla";
 "feature_auto_capture_title" = "Awtomatik Tutmak";
 "feature_auto_capture_free_desc" = "Çäkli skanirlemek";

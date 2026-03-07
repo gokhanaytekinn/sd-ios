@@ -170,10 +170,17 @@ struct AppSettingsScreen: View {
                     Spacer().frame(height: 24)
                     
                     // Version
-                    Text(String(format: "version".localized(), "1.0.0"))
+                    #if DEBUG
+                    Text(String(format: "version".localized(), Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0") + " (debug)")
                         .font(.system(size: 12))
                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                         .frame(maxWidth: .infinity, alignment: .center)
+                    #else
+                    Text(String(format: "version".localized(), Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0") + " (release)")
+                        .font(.system(size: 12))
+                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    #endif
                     
                     Spacer().frame(height: 100)
                 }
