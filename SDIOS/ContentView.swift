@@ -188,8 +188,18 @@ struct ContentView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
-                // Bottom Navigation Bar
-                bottomNavBar
+                // Bottom area container
+                VStack(spacing: 0) {
+                    bottomNavBar
+                    
+                    // Banner Ad for non-premium users
+                    if authViewModel.tier == 1 {
+                        BannerAdView()
+                            .frame(height: 60) // Slightly larger for adaptive
+                            .background(Color.appSurface(for: colorScheme))
+                    }
+                }
+                .background(Color.appSurface(for: colorScheme).ignoresSafeArea(edges: .bottom))
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
@@ -233,7 +243,15 @@ struct ContentView: View {
             )
         case .addSubscription:
             AddSubscriptionScreen(
-                onSaved: { navigationPath.removeLast() },
+                onSaved: {
+                    navigationPath.removeLast()
+                    
+                    // Show interstitial ad every 3rd addition for non-premium users
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let rootVC = windowScene.windows.first?.rootViewController {
+                        AdMobManager.shared.incrementSubscriptionCount(from: rootVC, isPremium: authViewModel.tier == 2)
+                    }
+                },
                 onBack: { navigationPath.removeLast() }
             )
         case .editSubscription(let id):

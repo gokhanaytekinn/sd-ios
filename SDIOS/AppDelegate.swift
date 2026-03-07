@@ -9,6 +9,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Request notification permission
         requestNotificationPermission()
         
+        // Setup AdMob
+        AdMobManager.shared.setup()
+        
         return true
     }
     
