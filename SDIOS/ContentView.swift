@@ -105,6 +105,12 @@ struct ContentView: View {
                 mainTabView
             }
         }
+        .onChange(of: authViewModel.isAuthenticated) { isAuth in
+            if isAuth {
+                // Clear auth navigation path so main tab view starts clean
+                navigationPath = []
+            }
+        }
     }
     
     // MARK: - Auth Destination
