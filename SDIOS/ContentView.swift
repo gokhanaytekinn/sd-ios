@@ -261,7 +261,7 @@ struct ContentView: View {
                     // Show interstitial ad every 3rd addition for non-premium users
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                        let rootVC = windowScene.windows.first?.rootViewController {
-                        AdMobManager.shared.incrementSubscriptionCount(from: rootVC, isPremium: authViewModel.tier == 2)
+                        AdMobManager.shared.incrementSubscriptionCount(from: rootVC, isPremium: authViewModel.tier >= 2)
                     }
                 },
                 onBack: { navigationPath.removeLast() }

@@ -49,7 +49,7 @@ class AuthViewModel: ObservableObject {
                 notificationsEnabled = user.notificationsEnabled ?? true
                 language = user.language ?? "tr"
                 tier = user.tier ?? 1
-                premiumPreferences.isPremium = user.tier == 2
+                premiumPreferences.isPremium = user.tier >= 2
                 syncLanguageIfNeeded()
                 
                 // Re-register push token if we have one

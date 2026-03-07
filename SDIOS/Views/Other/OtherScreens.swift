@@ -179,34 +179,33 @@ struct PremiumUpgradeScreen: View {
                                 isPopular: true
                             )
                         }
+                        
+                        // Bottom Section (Moved inside ScrollView)
+                        VStack(spacing: 16) {
+                            Button(action: { /* Upgrade action */ }) {
+                                Text(upgradeButtonText)
+                                    .font(.system(size: 18, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 56)
+                                    .background(isCurrentPlanSelected ? Color.gray.opacity(0.3) : Color.primaryBlue)
+                                    .cornerRadius(12)
+                            }
+                            .disabled(isCurrentPlanSelected)
+                            
+                            HStack(spacing: 20) {
+                                Button(NSLocalizedString("restore_purchase", comment: "")) { /* Restore */ }
+                                Button(NSLocalizedString("terms_of_use_title", comment: "")) { /* Terms */ }
+                                Button(NSLocalizedString("privacy_policy_title", comment: "")) { /* Privacy */ }
+                            }
+                            .font(.system(size: 12))
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
+                        .padding(.top, 24)
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 20)
                 }
-                
-                // Bottom Section
-                VStack(spacing: 16) {
-                    Button(action: { /* Upgrade action */ }) {
-                        Text(upgradeButtonText)
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 56)
-                            .background(isCurrentPlanSelected ? Color.gray.opacity(0.3) : Color.primaryBlue)
-                            .cornerRadius(12)
-                    }
-                    .disabled(isCurrentPlanSelected)
-                    
-                    HStack(spacing: 20) {
-                        Button(NSLocalizedString("restore_purchase", comment: "")) { /* Restore */ }
-                        Button(NSLocalizedString("terms_of_use_title", comment: "")) { /* Terms */ }
-                        Button(NSLocalizedString("privacy_policy_title", comment: "")) { /* Privacy */ }
-                    }
-                    .font(.system(size: 12))
-                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                }
-                .padding(24)
-                .background(Color.appBackground(for: colorScheme))
             }
         }
         .onAppear {
@@ -316,18 +315,23 @@ struct PremiumUpgradeScreen: View {
     // MARK: - Logic Helpers
     
     private func setupInitialSelection() {
-        if authViewModel.tier == 2 {
-            // If user is already premium, default to yearly premium in view (or match their actual if we had that data)
-            selectedPlan = 2
-        } else {
+        switch authViewModel.tier {
+        case 3:
+            selectedPlan = 2 // Yearly
+        case 2:
+            selectedPlan = 1 // Monthly
+        default:
             selectedPlan = 0 // Free
         }
     }
     
     private var isCurrentPlanSelected: Bool {
-        if authViewModel.tier == 2 {
-            return selectedPlan == 1 || selectedPlan == 2 // Both monthly/yearly are premium
-        } else {
+        switch authViewModel.tier {
+        case 3:
+            return selectedPlan == 2
+        case 2:
+            return selectedPlan == 1
+        default:
             return selectedPlan == 0
         }
     }
@@ -349,13 +353,6 @@ struct PremiumUpgradeScreen: View {
     }
     
     private func featureIsActive(for title: String) -> Bool {
-        if selectedPlan > 0 { return true }
-        // For free plan, specific features might be limited but let's say they are "active" but with free descriptions
-        // In the Android screenshots, free plan shows "X" for some features? 
-        // Let's re-examine: Android screenshot 1 (Free selected) shows checkmarks for both but with "Basit arayuz" and "Maksimum 5 abonelik".
-        // Wait, screenshot 1 shows small "x" icons inside circles for the features when Free is selected?
-        // Let's look closer at screenshot 1. feature circles have an 'x' icon.
-        // Screenshot 3 (Aylık selected) shows checkmarks.
         return selectedPlan > 0
     }
 }

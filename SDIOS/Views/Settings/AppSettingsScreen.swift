@@ -72,7 +72,7 @@ struct AppSettingsScreen: View {
                         SettingsNavigationItem(
                             icon: "star.fill",
                             title: "membership_type".localized(),
-                            subtitle: authViewModel.tier == 2 ? "premium_plan".localized() : "free_plan".localized(),
+                            subtitle: authViewModel.tier >= 2 ? "premium_plan".localized() : "free_plan".localized(),
                             iconColor: .warningColor,
                             onTap: onNavigateToPremium
                         )
