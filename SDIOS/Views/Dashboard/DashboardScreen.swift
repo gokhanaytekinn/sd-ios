@@ -38,18 +38,6 @@ struct DashboardScreen: View {
                                     .font(.system(size: 24, weight: .bold))
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                             }
-                            
-                            Spacer()
-                            
-                            Button(action: onNavigateToSearch) {
-                                Image(systemName: "magnifyingglass")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
-                                    .frame(width: 42, height: 42)
-                                    .background(Color.appSurface(for: colorScheme))
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
-                            }
                         }
                         .padding(.horizontal, 24)
                         .padding(.top, 16)

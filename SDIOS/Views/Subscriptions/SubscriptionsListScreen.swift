@@ -9,6 +9,7 @@ struct SubscriptionsListScreen: View {
     
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @State private var selectedTab = 0
+    @State private var searchText = ""
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -102,7 +103,7 @@ struct SubscriptionsListScreen: View {
                         .padding(.horizontal, 24)
                     }
                     
-                    Spacer().frame(height: 16)
+                    Spacer().frame(height: 24)
                     
                     // Tabs
                     HStack(spacing: 0) {
@@ -118,8 +119,32 @@ struct SubscriptionsListScreen: View {
                     )
                     .padding(.horizontal, 24)
                     
-                    Spacer().frame(height: 12)
+                    Spacer().frame(height: 16)
                     
+                    // Search Bar
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        TextField("search_placeholder".localized(), text: $searchText)
+                            .autocapitalization(.none)
+                        
+                        if !searchText.isEmpty {
+                            Button(action: { searchText = "" }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            }
+                        }
+                    }
+                    .padding(12)
+                    .background(Color.appSurface(for: colorScheme))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                    )
+                    .cornerRadius(12)
+                    .padding(.horizontal, 24)
+                    
+                    Spacer().frame(height: 12)
                     
                     // Subscription List
                     ScrollView {
@@ -171,11 +196,21 @@ struct SubscriptionsListScreen: View {
     }
     
     private var currentTabSubscriptions: [Subscription] {
+        let baseSubscriptions: [Subscription]
         switch selectedTab {
-        case 0: return viewModel.activeSubscriptions
-        case 1: return viewModel.suspiciousSubscriptions
-        case 2: return viewModel.cancelledSubscriptions
-        default: return []
+        case 0: baseSubscriptions = viewModel.activeSubscriptions
+        case 1: baseSubscriptions = viewModel.suspiciousSubscriptions
+        case 2: baseSubscriptions = viewModel.cancelledSubscriptions
+        default: baseSubscriptions = []
+        }
+        
+        if searchText.isEmpty {
+            return baseSubscriptions
+        } else {
+            return baseSubscriptions.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText) ||
+                ($0.category?.localizedCaseInsensitiveContains(searchText) ?? false)
+            }
         }
     }
     
