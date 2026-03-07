@@ -269,6 +269,17 @@ class ApiService {
     func removeParticipant(subscriptionId: String, email: String) async throws {
         try await requestVoid(endpoint: "/api/subscriptions/\(subscriptionId)/participants/\(email)", method: "DELETE")
     }
+    
+    // MARK: - Purchase Endpoints
+    func verifyPurchase(_ request: PurchaseRequest) async throws -> UserResponse {
+        return try await self.request(endpoint: "/api/purchases/verify", method: "POST", body: request)
+    }
+}
+
+// MARK: - Purchase Models
+struct PurchaseRequest: Codable {
+    let purchaseToken: String
+    let productId: String
 }
 
 // MARK: - Empty Response

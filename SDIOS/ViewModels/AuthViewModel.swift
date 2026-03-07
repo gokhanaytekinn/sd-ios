@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import StoreKit
 import GoogleSignIn
 
 @MainActor
@@ -27,11 +28,23 @@ class AuthViewModel: ObservableObject {
     private var lastDeviceToken: String?
     
     private let repository = AuthRepository.shared
+    private let purchaseRepository = PurchaseRepository.shared
     private let languagePreferences = LanguagePreferences.shared
     private let premiumPreferences = PremiumPreferences.shared
+    private let storeKitManager = StoreKitManager.shared
+    
+    @Published var iapProducts: [Product] = []
+    
+    private var cancellables = Set<AnyCancellable>()
     
     init() {
         restoreSession()
+        setupStoreKitManager()
+    }
+    
+    private func setupStoreKitManager() {
+        storeKitManager.$products
+            .assign(to: &$iapProducts)
     }
     
     func restoreSession() {
@@ -289,6 +302,54 @@ class AuthViewModel: ObservableObject {
             case .failure(let err):
                 isLoading = false
                 error = err.localizedDescription
+            }
+        }
+    }
+    
+    func purchase(product: Product) {
+        Task {
+            isLoading = true
+            error = nil
+            do {
+                if let transaction = try await storeKitManager.purchase(product) {
+                    // Sync with backend
+                    let result = await purchaseRepository.verifyPurchase(
+                        productId: product.id,
+                        transactionId: String(transaction.id)
+                    )
+                    
+                    switch result {
+                    case .success(let user):
+                        self.tier = user.tier ?? 2
+                        self.premiumPreferences.isPremium = true
+                        isLoading = false
+                    case .failure(let err):
+                        isLoading = false
+                        error = err.localizedDescription
+                    }
+                } else {
+                    isLoading = false
+                }
+            } catch {
+                isLoading = false
+                self.error = error.localizedDescription
+            }
+        }
+    }
+    
+    func restorePurchases() {
+        Task {
+            isLoading = true
+            error = nil
+            do {
+                try await storeKitManager.restorePurchases()
+                // Fetch user again to sync tier
+                let _ = await repository.getCurrentUser()
+                restoreSession() // Refresh state
+                isLoading = false
+            } catch {
+                isLoading = false
+                self.error = error.localizedDescription
             }
         }
     }

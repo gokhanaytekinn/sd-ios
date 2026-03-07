@@ -112,6 +112,8 @@ struct SearchScreen: View {
 }
 
 // MARK: - Premium Upgrade Screen
+import StoreKit
+
 struct PremiumUpgradeScreen: View {
     let onBack: () -> Void
     
@@ -171,41 +173,66 @@ struct PremiumUpgradeScreen: View {
                                 period: ""
                             )
                             
-                            planCard(
-                                id: 1,
-                                title: NSLocalizedString("plan_monthly_premium", comment: ""),
-                                price: "₺99.99",
-                                period: NSLocalizedString("per_month", comment: "")
-                            )
+                            ForEach(authViewModel.iapProducts, id: \.id) { product in
+                                let isYearly = product.id.contains("yearly")
+                                planCard(
+                                    id: isYearly ? 2 : 1,
+                                    title: product.displayName,
+                                    price: product.displayPrice,
+                                    period: isYearly ? "/ \(NSLocalizedString("period_yearly", comment: ""))" : "/ \(NSLocalizedString("period_monthly", comment: ""))",
+                                    isPopular: isYearly
+                                )
+                            }
                             
-                            planCard(
-                                id: 2,
-                                title: NSLocalizedString("plan_yearly_premium", comment: ""),
-                                price: "₺799.99",
-                                period: NSLocalizedString("per_year", comment: ""),
-                                isPopular: true
-                            )
+                            // Fallback if products not loaded yet
+                            if authViewModel.iapProducts.isEmpty {
+                                planCard(
+                                    id: 1,
+                                    title: NSLocalizedString("plan_monthly_premium", comment: ""),
+                                    price: "₺99.99",
+                                    period: NSLocalizedString("per_month", comment: "")
+                                )
+                                
+                                planCard(
+                                    id: 2,
+                                    title: NSLocalizedString("plan_yearly_premium", comment: ""),
+                                    price: "₺799.99",
+                                    period: NSLocalizedString("per_year", comment: ""),
+                                    isPopular: true
+                                )
+                            }
                         }
                         
                         // Bottom Section (Moved inside ScrollView)
                         VStack(spacing: 16) {
-                            Button(action: { /* Upgrade action */ }) {
-                                Text(upgradeButtonText)
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundColor(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 45)
-                                    .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                                    .cornerRadius(12)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                                    )
+                            Button(action: { 
+                                if let product = authViewModel.iapProducts.first(where: { 
+                                    (selectedPlan == 1 && $0.id.contains("monthly")) || 
+                                    (selectedPlan == 2 && $0.id.contains("yearly"))
+                                }) {
+                                    authViewModel.purchase(product: product)
+                                }
+                            }) {
+                                if authViewModel.isLoading {
+                                    ProgressView().tint(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
+                                } else {
+                                    Text(upgradeButtonText)
+                                        .font(.system(size: 16, weight: .bold))
+                                }
                             }
-                            .disabled(isCurrentPlanSelected)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 45)
+                            .foregroundColor(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            )
+                            .disabled(isCurrentPlanSelected || authViewModel.isLoading)
                             
                             HStack(spacing: 20) {
-                                Button("restore_purchase".localized()) { /* Restore */ }
+                                Button("restore_purchase".localized()) { authViewModel.restorePurchases() }
                                 Button("terms_of_use_title".localized()) { showTermsDialog = true }
                                 Button("privacy_policy_title".localized()) { showPrivacyDialog = true }
                             }
