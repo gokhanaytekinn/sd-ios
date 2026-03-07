@@ -110,8 +110,9 @@ struct SearchScreen: View {
 struct PremiumUpgradeScreen: View {
     let onBack: () -> Void
     
+    @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.colorScheme) var colorScheme
-    @State private var selectedPlan = 2 // 0: Free, 1: Monthly, 2: Yearly (Popular)
+    @State private var selectedPlan = 0 // 0: Free, 1: Monthly, 2: Yearly
     
     var body: some View {
         ZStack {
@@ -121,18 +122,15 @@ struct PremiumUpgradeScreen: View {
                 // Header
                 headerView
                 
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 24) {
-                        // Title
+                        // Hero Title
                         VStack(spacing: 12) {
-                            Text(NSLocalizedString("plans_header", comment: "").uppercased())
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(.primaryBlue)
-                            
                             Text(NSLocalizedString("premium_hero_title", comment: ""))
-                                .font(.system(size: 32, weight: .bold))
+                                .font(.system(size: 36, weight: .bold))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                .padding(.top, 20)
                             
                             Text(NSLocalizedString("premium_hero_subtitle", comment: ""))
                                 .font(.system(size: 16))
@@ -140,22 +138,22 @@ struct PremiumUpgradeScreen: View {
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .padding(.horizontal, 20)
                         }
-                        .padding(.top, 20)
                         
                         // Features
                         VStack(spacing: 16) {
                             premiumFeature(
-                                icon: "power",
+                                icon: "bolt.circle.fill",
                                 title: NSLocalizedString("feature_auto_capture_title", comment: ""),
-                                desc: NSLocalizedString("feature_auto_capture_premium_desc", comment: "")
+                                desc: featureDesc(for: "auto_capture")
                             )
                             
                             premiumFeature(
                                 icon: "infinity",
                                 title: NSLocalizedString("feature_unlimited_tracking_title", comment: ""),
-                                desc: NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
+                                desc: featureDesc(for: "unlimited")
                             )
                         }
+                        .padding(.vertical, 20)
                         
                         // Plans
                         VStack(spacing: 12) {
@@ -186,22 +184,23 @@ struct PremiumUpgradeScreen: View {
                     .padding(.bottom, 20)
                 }
                 
-                // Bottom Button and Footer
+                // Bottom Section
                 VStack(spacing: 16) {
                     Button(action: { /* Upgrade action */ }) {
-                        Text(NSLocalizedString("upgrade_to_premium_btn", comment: ""))
+                        Text(upgradeButtonText)
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .frame(height: 56)
-                            .background(Color.primaryBlue)
+                            .background(isCurrentPlanSelected ? Color.gray.opacity(0.3) : Color.primaryBlue)
                             .cornerRadius(12)
                     }
+                    .disabled(isCurrentPlanSelected)
                     
                     HStack(spacing: 20) {
-                        Button(NSLocalizedString("restore_purchase", comment: "")) {}
-                        Button(NSLocalizedString("terms_of_use", comment: "")) {}
-                        Button(NSLocalizedString("privacy_policy", comment: "")) {}
+                        Button(NSLocalizedString("restore_purchase", comment: "")) { /* Restore */ }
+                        Button(NSLocalizedString("terms_of_use_title", comment: "")) { /* Terms */ }
+                        Button(NSLocalizedString("privacy_policy_title", comment: "")) { /* Privacy */ }
                     }
                     .font(.system(size: 12))
                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
@@ -210,19 +209,33 @@ struct PremiumUpgradeScreen: View {
                 .background(Color.appBackground(for: colorScheme))
             }
         }
+        .onAppear {
+            setupInitialSelection()
+        }
     }
     
     private var headerView: some View {
         HStack {
             Button(action: onBack) {
                 Image(systemName: "xmark")
-                    .font(.system(size: 20, weight: .bold))
+                    .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                     .frame(width: 44, height: 44)
                     .background(Color.appSurface(for: colorScheme))
                     .clipShape(Circle())
             }
+            
             Spacer()
+            
+            Text(NSLocalizedString("plans_header", comment: ""))
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(.primaryBlue)
+                .tracking(1)
+            
+            Spacer()
+            
+            // Dummy spacer to balance text
+            Color.clear.frame(width: 44, height: 44)
         }
         .padding(.horizontal, 24)
         .padding(.top, 10)
@@ -253,17 +266,18 @@ struct PremiumUpgradeScreen: View {
             
             Spacer()
             
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(.primaryBlue)
+            Image(systemName: featureIsActive(for: title) ? "checkmark.circle.fill" : "xmark.circle.fill")
+                .foregroundColor(featureIsActive(for: title) ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme).opacity(0.5))
         }
     }
     
     private func planCard(id: Int, title: String, price: String, period: String, isPopular: Bool = false) -> some View {
         Button(action: { selectedPlan = id }) {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text(title)
                         .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(Color.appOnBackground(for: colorScheme))
                     Spacer()
                     if isPopular {
                         Text(NSLocalizedString("most_popular", comment: ""))
@@ -279,13 +293,17 @@ struct PremiumUpgradeScreen: View {
                 HStack(alignment: .bottom, spacing: 4) {
                     Text(price)
                         .font(.system(size: 32, weight: .bold))
-                    Text(period)
-                        .font(.system(size: 16))
-                        .padding(.bottom, 4)
+                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                    if !period.isEmpty {
+                        Text(period)
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .padding(.bottom, 4)
+                    }
                 }
             }
             .padding(20)
-            .background(Color.appSurface(for: colorScheme))
+            .background(Color.appSurface(for: colorScheme).opacity(selectedPlan == id ? 0.05 : 1))
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
@@ -293,6 +311,52 @@ struct PremiumUpgradeScreen: View {
             )
         }
         .buttonStyle(.plain)
+    }
+    
+    // MARK: - Logic Helpers
+    
+    private func setupInitialSelection() {
+        if authViewModel.tier == 2 {
+            // If user is already premium, default to yearly premium in view (or match their actual if we had that data)
+            selectedPlan = 2
+        } else {
+            selectedPlan = 0 // Free
+        }
+    }
+    
+    private var isCurrentPlanSelected: Bool {
+        if authViewModel.tier == 2 {
+            return selectedPlan == 1 || selectedPlan == 2 // Both monthly/yearly are premium
+        } else {
+            return selectedPlan == 0
+        }
+    }
+    
+    private var upgradeButtonText: String {
+        if isCurrentPlanSelected {
+            return NSLocalizedString("current_plan", comment: "")
+        } else {
+            return NSLocalizedString("upgrade_to_premium_btn", comment: "")
+        }
+    }
+    
+    private func featureDesc(for type: String) -> String {
+        if type == "auto_capture" {
+            return selectedPlan == 0 ? NSLocalizedString("feature_auto_capture_free_desc", comment: "") : NSLocalizedString("feature_auto_capture_premium_desc", comment: "")
+        } else {
+            return selectedPlan == 0 ? NSLocalizedString("feature_unlimited_tracking_free_desc", comment: "") : NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
+        }
+    }
+    
+    private func featureIsActive(for title: String) -> Bool {
+        if selectedPlan > 0 { return true }
+        // For free plan, specific features might be limited but let's say they are "active" but with free descriptions
+        // In the Android screenshots, free plan shows "X" for some features? 
+        // Let's re-examine: Android screenshot 1 (Free selected) shows checkmarks for both but with "Basit arayuz" and "Maksimum 5 abonelik".
+        // Wait, screenshot 1 shows small "x" icons inside circles for the features when Free is selected?
+        // Let's look closer at screenshot 1. feature circles have an 'x' icon.
+        // Screenshot 3 (Aylık selected) shows checkmarks.
+        return selectedPlan > 0
     }
 }
 
