@@ -250,11 +250,7 @@ class AuthViewModel: ObservableObject {
     func updatePushToken(token: String) {
         self.lastDeviceToken = token
         Task {
-            var isSandbox = false
-            #if DEBUG
-            isSandbox = true
-            #endif
-            let _ = await repository.updatePushToken(token: token, platform: "ios", isSandbox: isSandbox)
+            let _ = await repository.updatePushToken(token: token, platform: "ios")
         }
     }
     

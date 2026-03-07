@@ -114,9 +114,9 @@ class AuthRepository {
         }
     }
 
-    func updatePushToken(token: String, platform: String, isSandbox: Bool) async -> Result<Void, Error> {
+    func updatePushToken(token: String, platform: String) async -> Result<Void, Error> {
         do {
-            try await api.updatePushToken(PushTokenRequest(token: token, platform: platform, isSandbox: isSandbox))
+            try await api.updatePushToken(PushTokenRequest(token: token, platform: platform))
             return .success(())
         } catch {
             return .failure(error)
