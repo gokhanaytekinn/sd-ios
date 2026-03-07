@@ -49,7 +49,7 @@ class AuthViewModel: ObservableObject {
                 notificationsEnabled = user.notificationsEnabled ?? true
                 language = user.language ?? "tr"
                 tier = user.tier ?? 1
-                premiumPreferences.isPremium = user.tier >= 2
+                premiumPreferences.isPremium = (user.tier ?? 1) >= 2
                 syncLanguageIfNeeded()
                 
                 // Re-register push token if we have one
@@ -79,6 +79,7 @@ class AuthViewModel: ObservableObject {
                 notificationsEnabled = response.user?.notificationsEnabled ?? true
                 language = response.user?.language ?? "tr"
                 tier = response.user?.tier ?? 1
+                premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
                 syncLanguageIfNeeded()
                 
                 // Re-register push token if we have one
@@ -110,6 +111,7 @@ class AuthViewModel: ObservableObject {
                 notificationsEnabled = response.user?.notificationsEnabled ?? true
                 language = response.user?.language ?? localLanguage
                 tier = response.user?.tier ?? 1
+                premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
                 onSuccess()
             case .failure(let err):
                 isLoading = false
@@ -132,6 +134,7 @@ class AuthViewModel: ObservableObject {
                 notificationsEnabled = response.user?.notificationsEnabled ?? true
                 language = response.user?.language ?? "tr"
                 tier = response.user?.tier ?? 1
+                premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
                 syncLanguageIfNeeded()
                 
                 // Re-register push token if we have one
