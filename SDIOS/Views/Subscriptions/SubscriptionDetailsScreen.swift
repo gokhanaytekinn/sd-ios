@@ -183,8 +183,13 @@ struct SubscriptionDetailsScreen: View {
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(.errorColor)
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 52)
-                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.errorColor.opacity(0.5), lineWidth: 1))
+                                .frame(height: 45)
+                                .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                )
                             }
                         } else {
                             Button(action: reactivateSubscription) {
@@ -193,11 +198,15 @@ struct SubscriptionDetailsScreen: View {
                                     Text("reactivate_subscription".localized())
                                 }
                                 .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.white)
+                                .foregroundColor(Color(hex: "4CAF50"))
                                 .frame(maxWidth: .infinity)
-                                .frame(height: 52)
-                                .background(Color(hex: "4CAF50"))
+                                .frame(height: 45)
+                                .background(Color.appSurface(for: colorScheme).opacity(0.001))
                                 .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                )
                             }
                         }
                         
@@ -207,8 +216,16 @@ struct SubscriptionDetailsScreen: View {
                                 Image(systemName: "trash")
                                 Text("delete_subscription".localized())
                             }
-                            .font(.system(size: 14, weight: .medium))
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(.errorColor)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 45)
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            )
                         }
                         .padding(.top, 8)
                         
@@ -457,13 +474,16 @@ struct SubscriptionDetailsScreen: View {
                 Image(systemName: icon)
                 Text(title)
             }
-            .font(.system(size: 14, weight: .bold))
+            .font(.system(size: 16, weight: .bold))
             .foregroundColor(color)
             .frame(maxWidth: .infinity)
-            .frame(height: 52)
-            .background(Color.appSurface(for: colorScheme))
+            .frame(height: 45)
+            .background(Color.appSurface(for: colorScheme).opacity(0.001))
             .cornerRadius(12)
-            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+            )
         }
     }
     

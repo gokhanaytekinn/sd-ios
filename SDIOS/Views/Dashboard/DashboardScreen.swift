@@ -140,11 +140,15 @@ struct DashboardScreen: View {
                                 Image(systemName: "arrow.right")
                                     .font(.system(size: 16, weight: .bold))
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.primaryBlue)
                             .frame(maxWidth: .infinity)
-                            .frame(height: 52)
-                            .background(Color.primaryBlue)
+                            .frame(height: 45)
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
                             .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            )
                         }
                         .padding(.horizontal, 24)
                         

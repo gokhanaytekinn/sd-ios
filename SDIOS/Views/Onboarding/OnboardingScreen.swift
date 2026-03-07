@@ -66,12 +66,16 @@ struct OnboardingScreen: View {
                     }
                 }) {
                     Text(currentPage == 1 ? "get_started".localized() : "continue_btn".localized())
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: 16, weight: .bold))
                         .frame(maxWidth: .infinity)
                         .frame(height: 45)
-                        .background(Color.primaryBlue)
-                        .foregroundColor(.white)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                        .foregroundColor(.primaryBlue)
                         .cornerRadius(16)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                        )
                 }
                 .padding(.horizontal, 24)
                 

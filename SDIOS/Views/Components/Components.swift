@@ -247,6 +247,8 @@ struct SDButton: View {
     var isEnabled: Bool = true
     let action: () -> Void
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         Button(action: action) {
             HStack {
@@ -255,18 +257,21 @@ struct SDButton: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: .white))
                         .scaleEffect(0.8)
                 } else {
-                    Text(title)
-                        .font(.system(size: 16, weight: .bold))
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 45)
-            .background(isEnabled ? Color.primaryBlue : Color.primaryBlue.opacity(0.5))
-            .foregroundColor(.white)
-            .cornerRadius(12)
-            .shadow(color: Color.primaryBlue.opacity(0.3), radius: 4, y: 2)
+            Text(title)
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(isEnabled ? .primaryBlue : .primaryBlue.opacity(0.5))
         }
-        .disabled(!isEnabled || isLoading)
+    }
+    .frame(maxWidth: .infinity)
+    .frame(height: 45)
+    .background(Color.appSurface(for: colorScheme).opacity(0.001))
+    .cornerRadius(12)
+    .overlay(
+        RoundedRectangle(cornerRadius: 12)
+            .stroke(isEnabled ? Color.appOutline(for: colorScheme).opacity(1) : Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+    )
+}
+.disabled(!isEnabled || isLoading)
     }
 }
 
@@ -490,14 +495,14 @@ struct GoogleSignInButton: View {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 45)
-            .background(colorScheme == .dark ? Color.white.opacity(0.1) : Color.gray.opacity(0.1))
+            .background(Color.appSurface(for: colorScheme).opacity(0.001))
             .foregroundColor(Color.appOnBackground(for: colorScheme))
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
             )
-        }
+}
     }
 }
 

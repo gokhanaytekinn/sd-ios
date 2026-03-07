@@ -47,7 +47,7 @@ struct AddSubscriptionScreen: View {
                             placeholder: "service_name_placeholder".localized(),
                             text: $viewModel.name,
                             errorMessage: viewModel.nameError,
-                            leadingIcon: "magnifyingglass",
+                            leadingIcon: "pencil",
                             focusBinding: $focusedField,
                             focusValue: "serviceName"
                         )
@@ -344,19 +344,23 @@ struct AddSubscriptionScreen: View {
                                 }
                             }) {
                                 if viewModel.isLoading {
-                                    ProgressView().tint(.white)
+                                    ProgressView().tint(.primaryBlue)
                                 } else {
                                     Text(viewModel.isEditing ?
                                         "update".localized() :
                                         "add_subscription_btn".localized())
                                         .font(.system(size: 16, weight: .bold))
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.primaryBlue)
                                 }
                             }
                             .frame(maxWidth: .infinity)
                             .frame(height: 45)
-                            .background(Color.primaryBlue)
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
                             .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            )
                             .disabled(viewModel.isLoading)
                         }
                         .padding(.bottom, geometry.safeAreaInsets.bottom + 16)

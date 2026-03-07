@@ -314,12 +314,16 @@ struct SubscriptionsListScreen: View {
                 
                 Button(action: { viewModel.acceptInvitation(id: invitation.id) }) {
                     Text("accept".localized())
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.white)
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.primaryBlue)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(Color.primaryBlue)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.001))
                         .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                        )
                 }
             }
         }

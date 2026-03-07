@@ -191,12 +191,16 @@ struct PremiumUpgradeScreen: View {
                         VStack(spacing: 16) {
                             Button(action: { /* Upgrade action */ }) {
                                 Text(upgradeButtonText)
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundColor(.white)
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundColor(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 45)
-                                    .background(isCurrentPlanSelected ? Color.gray.opacity(0.3) : Color.primaryBlue)
+                                    .background(Color.appSurface(for: colorScheme).opacity(0.001))
                                     .cornerRadius(12)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                    )
                             }
                             .disabled(isCurrentPlanSelected)
                             

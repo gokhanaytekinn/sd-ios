@@ -222,7 +222,7 @@ struct ContentView: View {
             }
             
             fabButton
-                .padding(.bottom, 80)
+                .padding(.bottom, authViewModel.tier == 1 ? 140 : 80)
         }
         .ignoresSafeArea(.keyboard)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
@@ -347,13 +347,16 @@ struct ContentView: View {
                         }
                     }) {
                         Text("add_mannually".localized())
-                            .font(.system(size: 14, weight: .bold))
+                            .font(.system(size: 16, weight: .bold))
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
-                            .background(Color.appSurface(for: colorScheme))
-                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                            .foregroundColor(.primaryBlue)
                             .cornerRadius(20)
-                            .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            )
                     }
                     .buttonStyle(.plain)
                     
@@ -369,9 +372,12 @@ struct ContentView: View {
                     }) {
                         ZStack {
                             Circle()
-                                .fill(Color.appSurface(for: colorScheme))
+                                .fill(Color.appSurface(for: colorScheme).opacity(0.001))
                                 .frame(width: 48, height: 48)
-                                .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                )
                             Image(systemName: "pencil")
                                 .font(.system(size: 20))
                                 .foregroundColor(.primaryBlue)
@@ -389,13 +395,16 @@ struct ContentView: View {
             }) {
                 ZStack {
                     Circle()
-                        .fill(Color.primaryBlue)
+                        .fill(Color.appSurface(for: colorScheme).opacity(0.001))
                         .frame(width: 56, height: 56)
-                        .shadow(color: Color.primaryBlue.opacity(0.3), radius: 8, y: 4)
+                        .overlay(
+                            Circle()
+                                .stroke(Color.primaryBlue, lineWidth: 1)
+                        )
                     
                     Image(systemName: "plus")
                         .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(.primaryBlue)
                         .rotationEffect(.degrees(showFabMenu ? 45 : 0))
                 }
             }
