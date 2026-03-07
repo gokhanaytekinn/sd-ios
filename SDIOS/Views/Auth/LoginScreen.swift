@@ -75,56 +75,54 @@ struct LoginScreen: View {
                     }
                     
                     Spacer().frame(height: 24)
-                }
-                .padding(.horizontal, 24)
-            }
-            
-            // Sticky Footer
-            VStack(spacing: 0) {
-                Divider().opacity(0.1)
-                
-                VStack(spacing: 16) {
-                    // Login Button
-                    SDButton(
-                        title: "login".localized(),
-                        isLoading: authViewModel.isLoading,
-                        isEnabled: !email.isEmpty && !password.isEmpty
-                    ) {
-                        authViewModel.login(email: email, password: password, onSuccess: onLoginSuccess)
-                    }
                     
-                    HStack {
-                        VStack { Divider().background(Color.appOutline(for: colorScheme)) }
-                        Text("or".localized())
-                            .font(.system(size: 14))
-                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                            .padding(.horizontal, 8)
-                        VStack { Divider().background(Color.appOutline(for: colorScheme)) }
-                    }
-                    
-                    GoogleSignInButton {
-                        authViewModel.signInWithGoogle(onSuccess: onLoginSuccess)
-                    }
-                    
-                    // Register Link
-                    HStack(spacing: 0) {
-                        Text("no_account_prompt".localized())
-                            .font(.system(size: 14))
-                            .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                    // Footer content now inside ScrollView
+                    VStack(spacing: 0) {
+                        Divider().opacity(0.1)
                         
-                        Button(action: onNavigateToRegister) {
-                            Text("register".localized())
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(.primaryBlue)
+                        VStack(spacing: 16) {
+                            // Login Button
+                            SDButton(
+                                title: "login".localized(),
+                                isLoading: authViewModel.isLoading,
+                                isEnabled: !email.isEmpty && !password.isEmpty
+                            ) {
+                                authViewModel.login(email: email, password: password, onSuccess: onLoginSuccess)
+                            }
+                            
+                            HStack {
+                                VStack { Divider().background(Color.appOutline(for: colorScheme)) }
+                                Text("or".localized())
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                                    .padding(.horizontal, 8)
+                                VStack { Divider().background(Color.appOutline(for: colorScheme)) }
+                            }
+                            
+                            GoogleSignInButton {
+                                authViewModel.signInWithGoogle(onSuccess: onLoginSuccess)
+                            }
+                            
+                            // Register Link
+                            HStack(spacing: 0) {
+                                Text("no_account_prompt".localized())
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                                
+                                Button(action: onNavigateToRegister) {
+                                    Text("register".localized())
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundColor(.primaryBlue)
+                                }
+                            }
+                            
+                            Spacer().frame(height: 16)
                         }
+                        .padding(.top, 16)
                     }
-                    
-                    Spacer().frame(height: 16)
                 }
                 .padding(.horizontal, 24)
-                .padding(.top, 16)
             }
-            .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .withErrorDialog(errorMessage: $authViewModel.error) {

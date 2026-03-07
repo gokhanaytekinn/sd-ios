@@ -272,7 +272,7 @@ struct SubscriptionDetailsScreen: View {
                             }
                         }
                         
-                        Spacer().frame(height: 40)
+                        Spacer().frame(height: 20)
                     }
                     .padding(.horizontal, 24)
                 }

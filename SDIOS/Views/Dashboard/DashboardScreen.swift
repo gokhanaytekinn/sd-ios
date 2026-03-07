@@ -17,7 +17,7 @@ struct DashboardScreen: View {
             
             if viewModel.isLoading {
                 VStack(spacing: 8) {
-                    Spacer().frame(height: 100)
+                    Spacer().frame(height: 20)
                     ForEach(0..<4, id: \.self) { _ in
                         SkeletonCard()
                     }
@@ -148,7 +148,7 @@ struct DashboardScreen: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        Spacer().frame(height: 100)
+                        Spacer().frame(height: 20)
                     }
                 }
             }

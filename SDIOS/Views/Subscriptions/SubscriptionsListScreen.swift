@@ -18,7 +18,7 @@ struct SubscriptionsListScreen: View {
             
             if viewModel.isLoading {
                 VStack(spacing: 8) {
-                    Spacer().frame(height: 100)
+                    Spacer().frame(height: 20)
                     ForEach(0..<6, id: \.self) { _ in
                         SkeletonCard()
                     }
@@ -182,7 +182,7 @@ struct SubscriptionsListScreen: View {
                             }
                         }
                         .padding(.horizontal, 24)
-                        .padding(.bottom, 100)
+                        .padding(.bottom, 20)
                     }
                 }
             }

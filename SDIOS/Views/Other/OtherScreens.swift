@@ -97,7 +97,7 @@ struct SearchScreen: View {
                         }
                     }
                     .padding(.horizontal, 24)
-                    .padding(.bottom, 100)
+                    .padding(.bottom, 20)
                 }
             }
         }
@@ -455,7 +455,7 @@ struct TransactionHistoryScreen: View {
                         }
                     }
                     .padding(.horizontal, 24)
-                    .padding(.bottom, 100)
+                    .padding(.bottom, 20)
                 }
             }
         }

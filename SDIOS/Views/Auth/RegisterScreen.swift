@@ -120,36 +120,36 @@ struct RegisterScreen: View {
                             }
                         }
                     }
+                    Spacer().frame(height: 12)
+                    
+                    // Register Footer inside ScrollView
+                    VStack(spacing: 16) {
+                        SDButton(
+                            title: "register".localized(),
+                            isLoading: authViewModel.isLoading,
+                            isEnabled: termsAccepted && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && !fullName.isEmpty
+                        ) {
+                            authViewModel.register(name: fullName, email: email, password: password, confirmPassword: confirmPassword, onSuccess: onRegisterSuccess)
+                        }
+                        
+                        HStack(spacing: 0) {
+                            Text("already_have_account_prompt".localized())
+                                .font(.system(size: 14))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                            
+                            Button(action: onNavigateToLogin) {
+                                Text("login".localized())
+                                    .font(.system(size: 14, weight: .bold))
+                                    .foregroundColor(.primaryBlue)
+                            }
+                        }
+                        
+                        Spacer().frame(height: 16)
+                    }
+                    .padding(.top, 8)
                 }
                 .padding(.horizontal, 24)
             }
-            
-            // Sticky Footer
-            VStack(spacing: 16) {
-                SDButton(
-                    title: "register".localized(),
-                    isLoading: authViewModel.isLoading,
-                    isEnabled: termsAccepted && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && !fullName.isEmpty
-                ) {
-                    authViewModel.register(name: fullName, email: email, password: password, confirmPassword: confirmPassword, onSuccess: onRegisterSuccess)
-                }
-                
-                HStack(spacing: 0) {
-                    Text("already_have_account_prompt".localized())
-                        .font(.system(size: 14))
-                        .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
-                    
-                    Button(action: onNavigateToLogin) {
-                        Text("login".localized())
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.primaryBlue)
-                    }
-                }
-                
-                Spacer().frame(height: 16)
-            }
-            .padding(.horizontal, 24)
-            .background(Color.appBackground(for: colorScheme))
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .alert("error".localized(), isPresented: Binding(

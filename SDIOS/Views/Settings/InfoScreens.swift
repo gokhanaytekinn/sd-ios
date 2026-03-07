@@ -94,7 +94,7 @@ struct HelpCenterScreen: View {
                         }
                     }
                     
-                    Spacer().frame(height: 100)
+                    Spacer().frame(height: 20)
                 }
                 .padding(.horizontal, 24)
             }
@@ -168,7 +168,7 @@ struct PrivacyPolicyScreen: View {
                         .padding(.bottom, 8)
                     }
                     
-                    Spacer().frame(height: 100)
+                    Spacer().frame(height: 20)
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 16)
@@ -243,7 +243,7 @@ struct UpcomingSubscriptionsScreen: View {
                             }
                         }
                         .padding(.horizontal, 24)
-                        .padding(.bottom, 100)
+                        .padding(.bottom, 20)
                     }
                 }
             }

@@ -182,7 +182,7 @@ struct AppSettingsScreen: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                     #endif
                     
-                    Spacer().frame(height: 100)
+                    Spacer().frame(height: 20)
                 }
             }
         }
