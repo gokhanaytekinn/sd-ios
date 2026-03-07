@@ -14,8 +14,8 @@ class AdMobManager: NSObject, FullScreenContentDelegate {
     // IMPORTANT: These MUST be iOS-specific IDs from AdMob console. 
     // Android IDs will cause "Ad unit doesn't match format" errors.
     private let isTestMode = false 
-    private let interstitialID = "ca-app-pub-9378769298209012/5204853779"
-    static let bannerID = "ca-app-pub-9378769298209012/4825075246"
+    private let interstitialID = "ca-app-pub-9378769298209012/5797241525"
+    static let bannerID = "ca-app-pub-9378769298209012/9812983517"
     #endif
     
     private var interstitial: InterstitialAd?
