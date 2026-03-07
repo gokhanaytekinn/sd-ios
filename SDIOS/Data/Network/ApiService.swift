@@ -183,6 +183,10 @@ class ApiService {
         try await requestVoid(endpoint: "/api/users/notifications", method: "PATCH", body: request)
     }
     
+    func updatePushToken(_ request: PushTokenRequest) async throws {
+        try await requestVoid(endpoint: "/api/users/push-token", method: "PATCH", body: request)
+    }
+    
     // MARK: - Subscription Endpoints
     func getSubscriptions() async throws -> [SubscriptionResponse] {
         return try await request(endpoint: "/api/subscriptions")

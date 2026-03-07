@@ -113,6 +113,15 @@ class AuthRepository {
             return .failure(error)
         }
     }
+
+    func updatePushToken(token: String, platform: String) async -> Result<Void, Error> {
+        do {
+            try await api.updatePushToken(PushTokenRequest(token: token, platform: platform))
+            return .success(())
+        } catch {
+            return .failure(error)
+        }
+    }
     
     var isLoggedIn: Bool {
         tokenManager.isLoggedIn

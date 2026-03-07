@@ -16,6 +16,7 @@
 		D94C04862F59F9880014BB86 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D94C06212F5A03370014BB86 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D99143142F5B4AE000877555 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D9B32E532F5B50B500EF2D76 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -83,6 +84,13 @@
 			sourceTree = "<group>";
 		};
 		D99143162F5B4AE000877555 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D9B32E552F5B50B500EF2D76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -159,6 +167,10 @@
 			productRefGroup = D94C046E2F59F91A0014BB86 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = D9B32E552F5B50B500EF2D76 /* Products */;
+					ProjectRef = D9B32E532F5B50B500EF2D76 /* SDiOS.xcodeproj */;
+				},
 				{
 					ProductGroup = D94C04872F59F9880014BB86 /* Products */;
 					ProjectRef = D94C04862F59F9880014BB86 /* SDiOS.xcodeproj */;

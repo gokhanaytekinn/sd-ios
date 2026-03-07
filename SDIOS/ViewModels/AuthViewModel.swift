@@ -230,6 +230,12 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    func updatePushToken(token: String) {
+        Task {
+            let _ = await repository.updatePushToken(token: token, platform: "ios")
+        }
+    }
+    
     func logout() {
         repository.logout()
         premiumPreferences.isPremium = false
