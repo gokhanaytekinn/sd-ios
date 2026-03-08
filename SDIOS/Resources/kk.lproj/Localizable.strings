@@ -210,7 +210,7 @@
 "feature_unlimited_tracking_premium_desc" = "Қалағаныңызша қосыңыз";
 "premium_plan" = "Premium жоспар";
 "feature_auto_capture_premium_desc" = "Жасырын төлемдерді бірден табады";
-"category_streaming" = "Кино және ТВ және Музыка";
+"category_streaming" = "Кино & ТВ & Музыка";
 "category_gaming" = "Ойындар";
 "category_software" = "Бағдарламалық қамтамасыз ету";
 "category_shopping" = "Сауда";
@@ -394,3 +394,4 @@
 "limit_reached_title" = "Лимит толы";
 "limit_reached_message" = "Тегін жоспар 5 жазылыммен шектелген. Шексіз бақылау үшін Premium-ға жаңартыңыз.";
 "ok" = "ОК";
+"monthly_renewal_format" = "Әр айдың %@-і";

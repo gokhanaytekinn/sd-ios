@@ -58,4 +58,61 @@ struct DateUtils {
         let formatter = ISO8601DateFormatter()
         return formatter.string(from: date)
     }
+    
+    static func formatTurkishDay(_ day: Int) -> String {
+        let suffix: String
+        let lastDigit = day % 10
+        let lastTwoDigits = day % 100
+        
+        switch day {
+        case 10, 30: suffix = "u"
+        case 20: suffix = "si"
+        default:
+            switch lastDigit {
+            case 1, 5, 8: suffix = "i"
+            case 2, 7: suffix = "si"
+            case 3, 4: suffix = "ü"
+            case 6: suffix = "sı"
+            case 9: suffix = "u"
+            case 0: suffix = "ı" // Default for 0 if it ever happens
+            default: suffix = "i"
+            }
+        }
+        return "\(day)'\(suffix)"
+    }
+    
+    static func formatTurkishMonthlyRenewal(day: Int) -> String {
+        let formattedDay = formatTurkishDay(day)
+        return String(format: NSLocalizedString("monthly_renewal_format", comment: ""), formattedDay)
+    }
+    
+    static func formatDayWithSuffix(day: Int, language: String) -> String {
+        if language == "tr" || language == "az" {
+            return formatTurkishDay(day)
+        }
+        
+        if language == "en" {
+            let j = day % 10
+            let k = day % 100
+            if j == 1 && k != 11 {
+                return "\(day)st"
+            }
+            if j == 2 && k != 12 {
+                return "\(day)nd"
+            }
+            if j == 3 && k != 13 {
+                return "\(day)rd"
+            }
+            return "\(day)th"
+        }
+        
+        // Default to just the number for other languages (most use "day X")
+        return "\(day)"
+    }
+    
+    static func formatMonthlyRenewal(day: Int, language: String) -> String {
+        let formattedDay = formatDayWithSuffix(day: day, language: language)
+        let format = NSLocalizedString("monthly_renewal_format", comment: "")
+        return String(format: format, formattedDay)
+    }
 }

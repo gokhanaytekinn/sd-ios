@@ -105,7 +105,7 @@
 "sign_in" = "Se connecter";
 "sign_up" = "S'inscrire";
 "create_account" = "Créer un compte";
-"welcome_back" = "Bon retour";
+"welcome_back" = "Bienvenue";
 "start_tracking" = "Commencez à suivre vos abonnements";
 "join_us" = "Rejoignez-nous";
 "manage_subscriptions" = "Gérez vos abonnements facilement";
@@ -209,7 +209,7 @@
 "feature_unlimited_tracking_premium_desc" = "Ajoutez-en autant que vous voulez";
 "premium_plan" = "Plan Premium";
 "feature_auto_capture_premium_desc" = "Trouve les paiements cachés instantanément";
-"category_streaming" = "Films, TV et Musique";
+"category_streaming" = "Films & TV & Musique";
 "category_gaming" = "Jeux";
 "category_software" = "Logiciel";
 "category_shopping" = "Achats";
@@ -393,3 +393,4 @@
 "limit_reached_title" = "Limite atteinte";
 "limit_reached_message" = "Le plan gratuit est limité à 5 abonnements. Veuillez passer à Premium pour un suivi illimité.";
 "ok" = "OK";
+"monthly_renewal_format" = "Le %@ de chaque mois";

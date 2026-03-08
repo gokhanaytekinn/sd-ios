@@ -210,7 +210,7 @@
 "feature_unlimited_tracking_premium_desc" = "Istalgancha qo'shing";
 "premium_plan" = "Premium reja";
 "feature_auto_capture_premium_desc" = "Yashirin to'lovlarni darhol topadi";
-"category_streaming" = "Kino, TV va Musiqa";
+"category_streaming" = "Kino & TV & Musiqa";
 "category_gaming" = "O'yinlar";
 "category_software" = "Dasturiy ta'minot";
 "category_shopping" = "Xaridlar";
@@ -394,3 +394,4 @@
 "limit_reached_title" = "Limitga yetildi";
 "limit_reached_message" = "Bepul reja 5 ta obuna bilan cheklangan. Cheksiz kuzatish üçün Premium-ga o'ting.";
 "ok" = "OK";
+"monthly_renewal_format" = "Har oyning %@-sanasi";

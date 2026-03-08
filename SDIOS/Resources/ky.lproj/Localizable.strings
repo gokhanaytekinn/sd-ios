@@ -210,7 +210,7 @@
 "feature_unlimited_tracking_premium_desc" = "Каалаганыңызча кошуңуз";
 "premium_plan" = "Premium план";
 "feature_auto_capture_premium_desc" = "Жашыруун төлөмдөрдү дароо табат";
-"category_streaming" = "Кино және ТВ және Музыка";
+"category_streaming" = "Кино & ТВ & Музыка";
 "category_gaming" = "Ойындар";
 "category_software" = "Программалык камсыздоо";
 "category_shopping" = "Соода";
@@ -394,3 +394,4 @@
 "limit_reached_title" = "Лимит толду";
 "limit_reached_message" = "Акысыз план 5 жазылуу менен чектелген. Чектөөсүз көзөмөлдөө үшін Premium-га өтүңүз.";
 "ok" = "ОК";
+"monthly_renewal_format" = "Ар айдын %@-күнү";

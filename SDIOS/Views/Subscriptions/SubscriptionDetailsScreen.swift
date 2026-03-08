@@ -119,9 +119,16 @@ struct SubscriptionDetailsScreen: View {
                                     Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
                                         .font(.system(size: 16, weight: .bold))
                                     if let nextDate = sub.getNextRenewalDate() {
-                                        Text(nextDate, format: .dateTime.day().month().year())
-                                            .font(.system(size: 12))
-                                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                        if sub.billingCycle == .monthly,
+                                           let billingDay = sub.billingDay {
+                                            Text(DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage))
+                                                .font(.system(size: 12))
+                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                        } else {
+                                            Text(nextDate, format: .dateTime.day().month().year())
+                                                .font(.system(size: 12))
+                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                        }
                                     }
                                 }
                             }
@@ -488,6 +495,11 @@ struct SubscriptionDetailsScreen: View {
     }
     
     private func nextRenewalDayMonth(_ sub: Subscription) -> String {
+        if sub.billingCycle == .monthly,
+           let billingDay = sub.billingDay {
+            return DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage)
+        }
+        
         guard let nextDate = sub.getNextRenewalDate() else { return "-" }
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: LanguagePreferences.shared.selectedLanguage)

@@ -104,7 +104,7 @@
 "sign_in" = "Masuk";
 "sign_up" = "Daftar";
 "create_account" = "Buat Akun";
-"welcome_back" = "Selamat Datang Kembali";
+"welcome_back" = "Selamat Datang";
 "start_tracking" = "Mulai melacak langganan Anda";
 "join_us" = "Bergabunglah dengan kami";
 "manage_subscriptions" = "Kelola langganan Anda dengan mudah";
@@ -209,7 +209,7 @@
 "feature_unlimited_tracking_premium_desc" = "Tambahkan langganan sebanyak yang Anda inginkan";
 "premium_plan" = "Paket Premium";
 "feature_auto_capture_premium_desc" = "Pengingat pembayaran";
-"category_streaming" = "Film  TV  Musik";
+"category_streaming" = "Film & TV & Musik";
 "category_gaming" = "Game";
 "category_software" = "Perangkat Lunak";
 "category_shopping" = "Belanja";
@@ -392,3 +392,4 @@
 "limit_reached_title" = "Batas Tercapai";
 "limit_reached_message" = "Paket gratis terbatas pada 5 langganan. Silakan tingkatkan ke Premium untuk pelacakan tanpa batas.";
 "ok" = "OK";
+"monthly_renewal_format" = "Setiap bulan pada tanggal %@";

@@ -105,7 +105,7 @@
 "sign_in" = "Daxil ol";
 "sign_up" = "Qeydiyyatdan keç";
 "create_account" = "Hesab yaradın";
-"welcome_back" = "Yenidən xoş gəldiniz";
+"welcome_back" = "Xoş gəldiniz";
 "start_tracking" = "Abunəliklərinizi izləməyə başlayın";
 "join_us" = "Bizə qoşulun";
 "manage_subscriptions" = "Abunəliklərinizi asanlıqla idarə edin";
@@ -210,7 +210,7 @@
 "feature_unlimited_tracking_premium_desc" = "İstədiyiniz qədər əlavə edin";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Gizli ödənişləri dərhal tapır";
-"category_streaming" = "Kino, TV və Musiqi";
+"category_streaming" = "Kino & TV & Musiqi";
 "category_gaming" = "Oyunlar";
 "category_software" = "Proqram təminatı";
 "category_shopping" = "Alış-veriş";
@@ -394,3 +394,4 @@
 "limit_reached_title" = "Limitə çatıldı";
 "limit_reached_message" = "Pulsuz plan 5 abunə ilə məhdudlaşır. Sərhədsiz izləmə üçün Premium-a keçin.";
 "ok" = "Tamam";
+"monthly_renewal_format" = "Hər ayın %@";

@@ -105,7 +105,7 @@
 "sign_in" = "Sign In";
 "sign_up" = "Sign Up";
 "create_account" = "Create Account";
-"welcome_back" = "Welcome Back";
+"welcome_back" = "Welcome";
 "start_tracking" = "Start tracking your subscriptions";
 "join_us" = "Join us";
 "manage_subscriptions" = "Manage your subscriptions easily";
@@ -210,7 +210,7 @@
 "feature_unlimited_tracking_premium_desc" = "Add as many as you want";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Payment reminders";
-"category_streaming" = "Movie  TV  Music";
+"category_streaming" = "Movie & TV & Music";
 "category_gaming" = "Gaming";
 "category_software" = "Software";
 "category_shopping" = "Shopping";
@@ -394,3 +394,4 @@
 "limit_reached_title" = "Limit Reached";
 "limit_reached_message" = "Free plan is limited to 5 subscriptions. Please upgrade to Premium for unlimited tracking.";
 "ok" = "OK";
+"monthly_renewal_format" = "Every month on the %@";
