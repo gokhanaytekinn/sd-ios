@@ -243,11 +243,13 @@ struct UpcomingSubscriptionsScreen: View {
                 } else {
                     ScrollView {
                         VStack(spacing: 8) {
+                            let tenDaysFromNow = Calendar.current.date(byAdding: .day, value: 10, to: Date()) ?? Date()
                             let upcoming = viewModel.activeSubscriptions
                                 .compactMap { sub -> (Subscription, Date)? in
                                     guard let date = sub.getNextRenewalDate() else { return nil }
                                     return (sub, date)
                                 }
+                                .filter { $0.1 <= tenDaysFromNow }
                                 .sorted { $0.1 < $1.1 }
                             
                             if upcoming.isEmpty {

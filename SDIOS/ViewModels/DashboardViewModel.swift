@@ -33,7 +33,14 @@ class DashboardViewModel: ObservableObject {
             
             switch upcoming {
             case .success(let list):
-                upcomingSubscriptions = list
+                let tenDaysFromNow = Calendar.current.date(byAdding: .day, value: 10, to: Date()) ?? Date()
+                upcomingSubscriptions = list.filter { sub in
+                    guard let nextDate = sub.getNextRenewalDate() else { return false }
+                    return nextDate <= tenDaysFromNow
+                }.sorted { 
+                    guard let d1 = $0.getNextRenewalDate(), let d2 = $1.getNextRenewalDate() else { return false }
+                    return d1 < d2
+                }
             case .failure: break
             }
             
