@@ -330,24 +330,28 @@ struct AddSubscriptionScreen: View {
                                     }
                                 }
                             }) {
-                                if viewModel.isLoading {
-                                    ProgressView().tint(.primaryBlue)
-                                } else {
-                                    Text(viewModel.isEditing ?
-                                        "update".localized() :
-                                        "add_subscription_btn".localized())
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundColor(.primaryBlue)
+                                Group {
+                                    if viewModel.isLoading {
+                                        ProgressView().tint(.primaryBlue)
+                                    } else {
+                                        Text(viewModel.isEditing ?
+                                            "update".localized() :
+                                            "add_subscription_btn".localized())
+                                            .font(.system(size: 16, weight: .bold))
+                                            .foregroundColor(.primaryBlue)
+                                    }
                                 }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                )
+                                .contentShape(Rectangle())
                             }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 45)
-                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                            .cornerRadius(12)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                            )
+                            .buttonStyle(.plain)
                             .disabled(viewModel.isLoading)
                         }
                         .padding(.bottom, geometry.safeAreaInsets.bottom + 16)
