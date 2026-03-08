@@ -221,8 +221,10 @@ struct ContentView: View {
                     }
             }
             
-            fabButton
-                .padding(.bottom, authViewModel.tier == 1 ? 140 : 80)
+            if navigationPath.isEmpty {
+                fabButton
+                    .padding(.bottom, authViewModel.tier == 1 ? 140 : 80)
+            }
         }
         .ignoresSafeArea(.keyboard)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())

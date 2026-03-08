@@ -329,19 +329,23 @@ struct SDOutlinedTextField: View {
                         if let focusBinding = focusBinding {
                             SecureField(placeholder, text: $text)
                                 .focused(focusBinding, equals: focusValue)
+                                .onSubmit { onTrailingIconTap?() }
                         } else {
                             SecureField(placeholder, text: $text)
                                 .focused($internalFocus, equals: focusValue)
+                                .onSubmit { onTrailingIconTap?() }
                         }
                     } else {
                         if let focusBinding = focusBinding {
                             TextField(placeholder, text: $text)
                                 .keyboardType(keyboardType)
                                 .focused(focusBinding, equals: focusValue)
+                                .onSubmit { onTrailingIconTap?() }
                         } else {
                             TextField(placeholder, text: $text)
                                 .keyboardType(keyboardType)
                                 .focused($internalFocus, equals: focusValue)
+                                .onSubmit { onTrailingIconTap?() }
                         }
                     }
                 }

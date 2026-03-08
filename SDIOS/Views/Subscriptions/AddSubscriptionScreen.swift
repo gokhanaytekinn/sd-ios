@@ -275,7 +275,6 @@ struct AddSubscriptionScreen: View {
                             text: $viewModel.emailInput,
                             errorMessage: nil,
                             keyboardType: .emailAddress,
-                            trailingIcon: "plus",
                             leadingIcon: "envelope",
                             onTrailingIconTap: { viewModel.addJointEmail() },
                             focusBinding: $focusedField,
