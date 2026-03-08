@@ -269,24 +269,19 @@ struct AddSubscriptionScreen: View {
                         }
                         
                         // Joint Users
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("joint_users".localized())
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(Color.appOnBackground(for: colorScheme))
-                            
-                            SDOutlinedTextField(
-                                title: "",
-                                placeholder: "add_email_placeholder".localized(),
-                                text: $viewModel.emailInput,
-                                errorMessage: nil,
-                                keyboardType: .emailAddress,
-                                trailingIcon: "plus",
-                                leadingIcon: "envelope",
-                                onTrailingIconTap: { viewModel.addJointEmail() },
-                                focusBinding: $focusedField,
-                                focusValue: "emailInput"
-                            )
-                            
+                        SDOutlinedTextField(
+                            title: "joint_users".localized(),
+                            placeholder: "add_email_placeholder".localized(),
+                            text: $viewModel.emailInput,
+                            errorMessage: nil,
+                            keyboardType: .emailAddress,
+                            trailingIcon: "plus",
+                            leadingIcon: "envelope",
+                            onTrailingIconTap: { viewModel.addJointEmail() },
+                            focusBinding: $focusedField,
+                            focusValue: "emailInput"
+                        )
+    
                             let combinedEmails = viewModel.jointEmails.map { (email: $0, status: String?.none, name: String?.none) }
                             let participantEmails = viewModel.participants.map { (email: $0.email, status: String?($0.status), name: $0.name) }
                             let allEmails = participantEmails + combinedEmails
@@ -326,9 +321,7 @@ struct AddSubscriptionScreen: View {
                                     }
                                 }
                             }
-                        }
                         
-                        Spacer(minLength: 16)
                         
                         // Save Button
                         VStack {

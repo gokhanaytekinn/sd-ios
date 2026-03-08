@@ -83,7 +83,7 @@ struct DateUtils {
     
     static func formatTurkishMonthlyRenewal(day: Int) -> String {
         let formattedDay = formatTurkishDay(day)
-        return String(format: NSLocalizedString("monthly_renewal_format", comment: ""), formattedDay)
+        return String(format: "monthly_renewal_format".localized(), formattedDay)
     }
     
     static func formatDayWithSuffix(day: Int, language: String) -> String {
@@ -112,7 +112,7 @@ struct DateUtils {
     
     static func formatMonthlyRenewal(day: Int, language: String) -> String {
         let formattedDay = formatDayWithSuffix(day: day, language: language)
-        let format = NSLocalizedString("monthly_renewal_format", comment: "")
+        let format = "monthly_renewal_format".localized()
         return String(format: format, formattedDay)
     }
 }
