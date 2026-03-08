@@ -119,7 +119,7 @@ struct DashboardScreen: View {
                         Spacer().frame(height: 12)
                         
                         VStack(spacing: 8) {
-                            ForEach(Array(viewModel.subscriptions.prefix(5))) { sub in
+                            ForEach(Array(viewModel.subscriptions.prefix(3))) { sub in
                                 SubscriptionCard(
                                     subscription: sub,
                                     currency: currency,
