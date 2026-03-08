@@ -360,7 +360,7 @@ struct SubscriptionsListScreen: View {
         if let info = map[name.lowercased()] {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(info.color.opacity(0.12))
+                    .stroke(info.color.opacity(0.3), lineWidth: 1)
                     .frame(width: 36, height: 36)
                 BrandIconView(name: info.icon, color: info.color)
                     .frame(width: 20, height: 20)
@@ -368,8 +368,8 @@ struct SubscriptionsListScreen: View {
         } else {
             let brandColor = getBrandColor(name)
             ZStack {
-                Circle()
-                    .fill(brandColor.opacity(0.1))
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(brandColor.opacity(0.3), lineWidth: 1)
                     .frame(width: 36, height: 36)
                 Text(name.prefix(1).uppercased())
                     .font(.system(size: 16, weight: .bold))
@@ -384,6 +384,6 @@ struct SubscriptionsListScreen: View {
         if lowered.contains("spotify") { return .spotifyGreen }
         if lowered.contains("adobe")   { return .adobeRed }
         if lowered.contains("amazon")  { return Color(hex: "00A8E1") }
-        return .primaryBlue
+        return Color.dynamicColor(from: name)
     }
 }
