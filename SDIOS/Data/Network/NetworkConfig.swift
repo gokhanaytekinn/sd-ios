@@ -1,5 +1,5 @@
 import Foundation
 
 struct NetworkConfig {
-    static let baseURL = "http://187.124.16.135:8080"
+    static let baseURL = "https://sd.nxsapps.com"
 }
