@@ -395,3 +395,4 @@
 "limit_reached_message" = "El plan gratuito está limitado a 5 suscripciones. Actualice a Premium para un seguimiento ilimitado.";
 "ok" = "Aceptar";
 "monthly_renewal_format" = "El %@ de cada mes";
+"yearly_renewal_format" = "Cada año el %1$@ de %2$@";

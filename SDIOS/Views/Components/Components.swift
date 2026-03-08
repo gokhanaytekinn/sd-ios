@@ -109,18 +109,25 @@ struct SubscriptionCard: View {
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
-                        if showDate, let nextDate = subscription.getNextRenewalDate() {
+                        if showDate {
                             if subscription.billingCycle == .monthly, 
                                let billingDay = subscription.billingDay {
                                 Text(DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage))
                                     .font(.system(size: 12))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                            } else {
+                            } else if subscription.billingCycle == .yearly,
+                                      let billingDay = subscription.billingDay,
+                                      let billingMonth = subscription.billingMonth {
+                                Text(DateUtils.formatYearlyRenewal(day: billingDay, month: billingMonth, language: LanguagePreferences.shared.selectedLanguage))
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            } else if let nextDate = subscription.getNextRenewalDate() {
                                 Text(DateUtils.formatDate(nextDate))
                                     .font(.system(size: 12))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
-                        } else if showCountdown, let nextDate = subscription.getNextRenewalDate() {
+                        }
+ else if showCountdown, let nextDate = subscription.getNextRenewalDate() {
                             let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? -1
                             Text(daysText(days))
                                 .font(.system(size: 12, weight: .medium))

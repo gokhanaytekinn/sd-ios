@@ -115,4 +115,18 @@ struct DateUtils {
         let format = "monthly_renewal_format".localized()
         return String(format: format, formattedDay)
     }
+    
+    static func formatYearlyRenewal(day: Int, month: Int, language: String) -> String {
+        let monthName = "month_\(month)".localized()
+        let format = "yearly_renewal_format".localized()
+        
+        let formattedDay: String
+        if language == "tr" || language == "az" {
+            formattedDay = "\(day)"
+        } else {
+            formattedDay = formatDayWithSuffix(day: day, language: language)
+        }
+        
+        return String(format: format, formattedDay, monthName)
+    }
 }

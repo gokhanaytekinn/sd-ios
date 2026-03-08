@@ -394,3 +394,4 @@
 "limit_reached_message" = "Le plan gratuit est limité à 5 abonnements. Veuillez passer à Premium pour un suivi illimité.";
 "ok" = "OK";
 "monthly_renewal_format" = "Le %@ de chaque mois";
+"yearly_renewal_format" = "Chaque année le %1$@ %2$@";
