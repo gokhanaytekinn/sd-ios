@@ -4,7 +4,7 @@ import Combine
 @MainActor
 class AddSubscriptionViewModel: ObservableObject {
     @Published var name = "" { didSet { nameError = nil } }
-    @Published var amount = "" { didSet { amountError = nil } }
+    @Published var amount = ""
     @Published var icon: String? = nil
     @Published var selectedCategory: String = "" { didSet { categoryError = nil } }
     @Published var selectedBillingCycle: BillingCycle = .monthly { didSet { clearDateError() } }
@@ -116,10 +116,81 @@ class AddSubscriptionViewModel: ObservableObject {
         }
     }
     
+    func handleAmountChange(_ newValue: String) {
+        let formatted = formatBankingAmount(newText: newValue)
+        
+        // CRITICAL: We update on the next run loop to force SwiftUI to re-sync the TextField internal state
+        // with the formatted value, ensuring "live" character-by-character formatting.
+        DispatchQueue.main.async {
+            if formatted != self.amount {
+                self.amount = formatted
+            }
+        }
+        amountError = nil
+    }
+    
+    private func formatBankingAmount(newText: String) -> String {
+        if newText.isEmpty { return "" }
+        
+        // 1. Remove grouping separators (dots) to handle intended value correctly
+        let cleanedInput = newText.replacingOccurrences(of: ".", with: "")
+        
+        // 2. Filter characters: only digits and the FIRST comma/dot
+        var filtered = ""
+        var hasComma = false
+        
+        for char in cleanedInput {
+            if char == "," || char == "." {
+                if !hasComma {
+                    filtered.append(",")
+                    hasComma = true
+                }
+            } else if char.isNumber {
+                filtered.append(char)
+            }
+        }
+        
+        if filtered.isEmpty { return "" }
+        
+        // Split into integer and decimal parts
+        let parts = filtered.split(separator: ",", omittingEmptySubsequences: false)
+        let integerPartString = String(parts.first ?? "")
+        var decimalPartString = parts.count > 1 ? String(parts[1]) : ""
+        
+        // Limit decimal to 2 digits
+        if decimalPartString.count > 2 {
+            decimalPartString = String(decimalPartString.prefix(2))
+        }
+        
+        // Format integer part with thousands separators (dots)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = "."
+        formatter.decimalSeparator = ","
+        
+        var formattedInteger = ""
+        if integerPartString.isEmpty {
+            if parts.count > 1 {
+                formattedInteger = "0"
+            } else {
+                return ""
+            }
+        } else {
+            let integerNumber = Int64(integerPartString) ?? 0
+            formattedInteger = formatter.string(from: NSNumber(value: integerNumber)) ?? integerPartString
+        }
+        
+        if parts.count > 1 {
+            return formattedInteger + "," + decimalPartString
+        } else {
+            return formattedInteger
+        }
+    }
+    
     func save(currency: Int, onSuccess: @escaping () -> Void) {
         guard validate() else { return }
         
-        let costValue = Double(amount.replacingOccurrences(of: ",", with: ".")) ?? 0.0
+        let costValue = CurrencyFormatter.parseBankingAmount(amount)
         
         Task {
             isLoading = true
@@ -189,18 +260,15 @@ class AddSubscriptionViewModel: ObservableObject {
         }
         
         // Amount Validation (@NotNull & @DecimalMin(0.0))
-        let cleanAmount = amount.replacingOccurrences(of: ",", with: ".")
         if amount.trimmingCharacters(in: .whitespaces).isEmpty {
             amountError = "error_amount_required".localized()
             isValid = false
-        } else if let value = Double(cleanAmount) {
+        } else {
+            let value = CurrencyFormatter.parseBankingAmount(amount)
             if value <= 0 {
                 amountError = "error_amount_invalid".localized()
                 isValid = false
             }
-        } else {
-            amountError = "error_amount_invalid".localized()
-            isValid = false
         }
         
         if selectedCategory.isEmpty {

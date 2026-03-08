@@ -329,10 +329,14 @@ struct SDOutlinedTextField: View {
                         if let focusBinding = focusBinding {
                             SecureField(placeholder, text: $text)
                                 .focused(focusBinding, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         } else {
                             SecureField(placeholder, text: $text)
                                 .focused($internalFocus, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         }
                     } else {
@@ -340,11 +344,15 @@ struct SDOutlinedTextField: View {
                             TextField(placeholder, text: $text)
                                 .keyboardType(keyboardType)
                                 .focused(focusBinding, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         } else {
                             TextField(placeholder, text: $text)
                                 .keyboardType(keyboardType)
                                 .focused($internalFocus, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         }
                     }

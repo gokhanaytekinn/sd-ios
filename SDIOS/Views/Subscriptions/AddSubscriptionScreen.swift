@@ -123,21 +123,16 @@ struct AddSubscriptionScreen: View {
                             SDOutlinedTextField(
                                 title: "amount".localized(),
                                 placeholder: "0,00",
-                                text: $viewModel.amount,
+                                text: Binding(
+                                    get: { viewModel.amount },
+                                    set: { viewModel.handleAmountChange($0) }
+                                ),
                                 errorMessage: viewModel.amountError,
                                 keyboardType: .decimalPad,
                                 leadingIcon: "banknote",
                                 focusBinding: $focusedField,
                                 focusValue: "amount"
                             )
-                            .toolbar {
-                                ToolbarItemGroup(placement: .keyboard) {
-                                    Spacer()
-                                    Button("done_btn".localized()) {
-                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                    }
-                                }
-                            }
                             .frame(maxWidth: .infinity)
                             
                             VStack(alignment: .leading, spacing: 8) {
