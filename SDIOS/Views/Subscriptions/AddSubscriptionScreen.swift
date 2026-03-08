@@ -406,21 +406,17 @@ struct AddSubscriptionScreen: View {
     
     private func categoryChip(_ title: String, key: String) -> some View {
         Button(action: { viewModel.selectedCategory = key }) {
-            HStack(spacing: 8) {
-                Image(systemName: "play.fill") // Placeholder for category icon
-                    .font(.system(size: 10))
-                Text(title)
-                    .font(.system(size: 14, weight: .medium))
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(viewModel.selectedCategory == key ? Color.primaryBlue : Color.appSurface(for: colorScheme))
-            .foregroundColor(viewModel.selectedCategory == key ? .white : Color.appOnBackground(for: colorScheme))
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: viewModel.selectedCategory == key ? 0 : 1)
-            )
+            Text(title)
+                .font(.system(size: 14, weight: .medium))
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(viewModel.selectedCategory == key ? Color.primaryBlue : Color.clear)
+                .foregroundColor(viewModel.selectedCategory == key ? .white : Color.appOnBackground(for: colorScheme))
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(viewModel.selectedCategory == key ? Color.clear : Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                )
         }
         .buttonStyle(.plain)
     }
