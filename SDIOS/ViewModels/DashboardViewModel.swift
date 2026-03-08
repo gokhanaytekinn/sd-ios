@@ -24,8 +24,9 @@ class DashboardViewModel: ObservableObject {
             
             switch subs {
             case .success(let list):
+                let currency = UserDefaults.standard.integer(forKey: "selectedCurrency")
                 subscriptions = list.filter { $0.isActive }.sorted { $0.cost > $1.cost }
-                stats = SubscriptionStats.calculate(from: list)
+                stats = SubscriptionStats.calculate(from: list, targetCurrency: currency == 0 ? 1 : currency)
                 authViewModel?.subscriptionCount = list.count
             case .failure(let err):
                 error = err.localizedDescription

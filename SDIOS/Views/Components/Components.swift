@@ -105,7 +105,7 @@ struct SubscriptionCard: View {
                     
                     // Cost & Date
                     VStack(alignment: .trailing, spacing: 2) {
-                        Text(CurrencyFormatter.formatAmount(subscription.cost, currencyCode: currency))
+                        Text(CurrencyFormatter.formatAmount(subscription.cost, currencyCode: subscription.currency))
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         

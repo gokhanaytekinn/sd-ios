@@ -70,7 +70,7 @@ struct SubscriptionDetailsScreen: View {
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             
                             HStack(alignment: .firstTextBaseline, spacing: 4) {
-                                Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
+                                Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
                                     .font(.system(size: 32, weight: .black))
                                     .foregroundColor(.primaryBlue)
                                 
@@ -116,7 +116,7 @@ struct SubscriptionDetailsScreen: View {
                                 Spacer()
                                 
                                 VStack(alignment: .trailing, spacing: 2) {
-                                    Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
+                                    Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
                                         .font(.system(size: 16, weight: .bold))
                                     if let nextDate = sub.getNextRenewalDate() {
                                         if sub.billingCycle == .monthly,
@@ -164,7 +164,7 @@ struct SubscriptionDetailsScreen: View {
                         
                         // Info Grid
                         HStack(spacing: 16) {
-                            gridBlock(title: "subscription_price".localized(), value: CurrencyFormatter.formatAmount(sub.cost, currencyCode: currency))
+                            gridBlock(title: "subscription_price".localized(), value: CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
                             gridBlock(title: "renewal_cycle".localized(), value: nextRenewalDayMonth(sub))
                         }
                         
