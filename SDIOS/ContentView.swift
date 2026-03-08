@@ -240,6 +240,18 @@ struct ContentView: View {
                 NotificationCenter.default.post(name: NSNotification.Name("RefreshData"), object: nil)
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("DidRequestNavigation"))) { notification in
+            if let destination = notification.object as? String {
+                if destination == "add_subscription" {
+                    if authViewModel.isSubscriptionLimitReached {
+                        showingLimitAlert = true
+                    } else {
+                        // Reset navigation path and navigate to add subscription
+                        navigationPath = [.addSubscription]
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Main Destination
