@@ -86,7 +86,7 @@ struct AddSubscriptionScreen: View {
                                             VStack(spacing: 8) {
                                                 ZStack {
                                                     RoundedRectangle(cornerRadius: 12)
-                                                        .fill(isSelected ? shortcut.color.opacity(0.2) : shortcut.color.opacity(0.1))
+                                                        .fill(Color.clear)
                                                         .frame(width: 56, height: 56)
                                                         .overlay(
                                                             RoundedRectangle(cornerRadius: 12)

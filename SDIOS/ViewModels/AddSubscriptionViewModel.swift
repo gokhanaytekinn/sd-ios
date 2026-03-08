@@ -37,11 +37,9 @@ class AddSubscriptionViewModel: ObservableObject {
     
     static let shortcuts: [QuickShortcut] = [
         QuickShortcut(name: "Google", icon: "google", category: "category_software", defaultCost: nil, color: Color(hex: "4285F4")),
-        QuickShortcut(name: "Cursor", icon: "cursor", category: "category_software", defaultCost: nil, color: Color.primary),
-        QuickShortcut(name: "Claude", icon: "claude", category: "category_software", defaultCost: nil, color: Color(hex: "E56038")),
-        QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
-        QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
         QuickShortcut(name: "YouTube", icon: "youtube", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF0000")),
+        QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
+        QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
         QuickShortcut(name: "Amazon", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "00A8E1")),
         QuickShortcut(name: "HBO Max", icon: "hbomax", category: "category_streaming", defaultCost: nil, color: Color(hex: "5A2E81")),
     ]
