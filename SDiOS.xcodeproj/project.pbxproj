@@ -14,6 +14,7 @@
 
 /* Begin PBXFileReference section */
 		D9099C862F5EAED00085D543 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D94AA0502F5F096F00CBB873 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D94C046D2F59F91A0014BB86 /* SDIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D94C04862F59F9880014BB86 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D94C06212F5A03370014BB86 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
@@ -57,6 +58,13 @@
 
 /* Begin PBXGroup section */
 		D9099C882F5EAED00085D543 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D94AA0522F5F096F00CBB873 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -182,6 +190,10 @@
 				{
 					ProductGroup = D9B32E552F5B50B500EF2D76 /* Products */;
 					ProjectRef = D9B32E532F5B50B500EF2D76 /* SDiOS.xcodeproj */;
+				},
+				{
+					ProductGroup = D94AA0522F5F096F00CBB873 /* Products */;
+					ProjectRef = D94AA0502F5F096F00CBB873 /* SDiOS.xcodeproj */;
 				},
 				{
 					ProductGroup = D94C04872F59F9880014BB86 /* Products */;
@@ -361,7 +373,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SDIOS/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Sub Tracker";
+				INFOPLIST_KEY_CFBundleDisplayName = Subify;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -396,7 +408,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SDIOS/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Sub Tracker";
+				INFOPLIST_KEY_CFBundleDisplayName = Subify;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
