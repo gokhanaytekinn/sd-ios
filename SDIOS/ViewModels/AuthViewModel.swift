@@ -182,18 +182,22 @@ class AuthViewModel: ObservableObject {
         GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID, serverClientID: serverClientId)
 
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [weak self] result, error in
-            if let error = error {
-                self?.error = error.localizedDescription
-                return
-            }
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    self.error = error.localizedDescription
+                    return
+                }
 
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString else {
-                self?.error = "Failed to get ID Token"
-                return
-            }
+                guard let user = result?.user,
+                      let idToken = user.idToken?.tokenString else {
+                    self.error = "Failed to get ID Token"
+                    return
+                }
 
-            self?.loginWithGoogle(idToken: idToken, onSuccess: onSuccess)
+                self.loginWithGoogle(idToken: idToken, onSuccess: onSuccess)
+            }
         }
     }
 

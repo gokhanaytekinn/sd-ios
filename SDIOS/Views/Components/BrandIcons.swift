@@ -290,7 +290,7 @@ struct BrandIcons {
             path.closeSubpath()
             return (path, CGSize(width: 50, height: 50))
 
-        case "claude", "cursor":
+        case "claude":
             var path = Path()
             path.move(to: CGPoint(x: 7.105, y: 19.29))
             path.addLine(to: CGPoint(x: 12.218, y: 16.421))
@@ -455,8 +455,6 @@ struct BrandIcons {
             path.closeSubpath()
             return (path, CGSize(width: 30, height: 30))
             
-        case "netflix":
-            return (Path(), CGSize(width: 24, height: 24))
         default:
             return (Path(), CGSize(width: 24, height: 24))
         }

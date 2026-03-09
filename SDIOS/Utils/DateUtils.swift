@@ -62,7 +62,6 @@ struct DateUtils {
     static func formatTurkishDay(_ day: Int) -> String {
         let suffix: String
         let lastDigit = day % 10
-        let lastTwoDigits = day % 100
         
         switch day {
         case 10, 30: suffix = "u"

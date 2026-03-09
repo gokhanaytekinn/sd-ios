@@ -107,7 +107,7 @@ struct ContentView: View {
                 mainTabView
             }
         }
-        .onChange(of: authViewModel.isAuthenticated) { isAuth in
+        .onChange(of: authViewModel.isAuthenticated) { oldValue, isAuth in
             if isAuth {
                 // Clear auth navigation path so main tab view starts clean
                 navigationPath = []
@@ -237,7 +237,7 @@ struct ContentView: View {
         } message: {
             Text("limit_reached_message".localized())
         }
-        .onChange(of: navigationPath) { newValue in
+        .onChange(of: navigationPath) { oldValue, newValue in
             if newValue.isEmpty {
                 NotificationCenter.default.post(name: NSNotification.Name("RefreshData"), object: nil)
             }

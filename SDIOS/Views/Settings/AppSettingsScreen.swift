@@ -91,7 +91,7 @@ struct AppSettingsScreen: View {
                             isOn: $notificationsEnabled,
                             iconColor: .primaryBlue
                         )
-                        .onChange(of: notificationsEnabled) { newValue in
+                        .onChange(of: notificationsEnabled) { oldValue, newValue in
                             authViewModel.updateNotificationSettings(enabled: newValue)
                         }
                         

@@ -22,12 +22,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if #available(iOS 14, *) {
                 ATTrackingManager.requestTrackingAuthorization { status in
-                    print("ATTrackingManager Status: \(status.rawValue)")
-                    // Setup AdMob regardless of status, but it helps with fill rate if accepted
-                    AdMobManager.shared.setup()
+                    Task { @MainActor in
+                        print("ATTrackingManager Status: \(status.rawValue)")
+                        // Setup AdMob regardless of status, but it helps with fill rate if accepted
+                        AdMobManager.shared.setup()
+                    }
                 }
             } else {
-                AdMobManager.shared.setup()
+                Task { @MainActor in
+                    AdMobManager.shared.setup()
+                }
             }
         }
     }
@@ -36,7 +40,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { granted, error in
             if granted {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     UIApplication.shared.registerForRemoteNotifications()
                 }
             }

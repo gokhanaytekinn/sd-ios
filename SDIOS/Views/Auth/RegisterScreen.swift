@@ -54,7 +54,7 @@ struct RegisterScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "fullName"
                     )
-                    .onChange(of: fullName) { _ in self.authViewModel.clearNameError() }
+                    .onChange(of: fullName) { oldValue, newValue in self.authViewModel.clearNameError() }
                     
                     // Email
                     SDOutlinedTextField(
@@ -67,7 +67,7 @@ struct RegisterScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "email"
                     )
-                    .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
+                    .onChange(of: email) { oldValue, newValue in self.authViewModel.clearEmailError() }
                     
                     // Password
                     SDOutlinedTextField(
@@ -80,7 +80,7 @@ struct RegisterScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "password"
                     )
-                    .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
+                    .onChange(of: password) { oldValue, newValue in self.authViewModel.clearPasswordError() }
                     
                     // Confirm Password
                     SDOutlinedTextField(
@@ -93,7 +93,7 @@ struct RegisterScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "confirmPassword"
                     )
-                    .onChange(of: confirmPassword) { _ in self.authViewModel.clearConfirmPasswordError() }
+                    .onChange(of: confirmPassword) { oldValue, newValue in self.authViewModel.clearConfirmPasswordError() }
                     
                     // Terms Checkbox
                     HStack(alignment: .top, spacing: 8) {
