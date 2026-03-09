@@ -309,9 +309,9 @@ struct AddSubscriptionScreen: View {
                                         }
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 12)
-                                        .background(Color.appSurface(for: colorScheme))
+                                        .background(Color.clear)
                                         .cornerRadius(12)
-                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1))
+                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(1.0), lineWidth: 1))
                                     }
                                 }
                             }

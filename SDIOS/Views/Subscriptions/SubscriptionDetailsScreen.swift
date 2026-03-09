@@ -288,9 +288,9 @@ struct SubscriptionDetailsScreen: View {
                                         }
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 12)
-                                        .background(Color.appSurface(for: colorScheme).opacity(0.5))
+                                        .background(Color.clear)
                                         .cornerRadius(12)
-                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
+                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(1.0), lineWidth: 1))
                                     }
                                 }
                             }

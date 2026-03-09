@@ -57,10 +57,10 @@ struct SearchScreen: View {
             }
             .padding(.horizontal, 16)
             .frame(height: 45)
-            .background(Color.appSurface(for: colorScheme))
+            .background(Color.clear)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(1.0), lineWidth: 1)
             )
             .cornerRadius(12)
             .padding(.horizontal, 24)
