@@ -16,18 +16,15 @@ struct SubscriptionsListScreen: View {
         ZStack {
             Color.appBackground(for: colorScheme).ignoresSafeArea()
             
-            if viewModel.isLoading {
-                VStack(spacing: 8) {
-                    Spacer().frame(height: 20)
-                    ForEach(0..<6, id: \.self) { _ in
-                        SkeletonCard()
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal, 24)
-            } else {
+            StatefulView(
+                isLoading: viewModel.isLoading,
+                isEmpty: currentTabSubscriptions.isEmpty && (selectedTab != 1 || viewModel.invitations.isEmpty),
+                emptyMessage: emptyStateText,
+                emptyIcon: "tray.fill",
+                skeleton: { SubscriptionListSkeleton() }
+            ) {
                 VStack(spacing: 0) {
-                    // Header
+                    // Üst Başlık
                     HStack {
                         Text("subscriptions".localized())
                             .font(.sdHeadline)
@@ -39,7 +36,7 @@ struct SubscriptionsListScreen: View {
                     
                     Spacer().frame(height: 16)
                     
-                    // Summary Card
+                    // Özet Kartı
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("total_monthly".localized())
@@ -53,38 +50,43 @@ struct SubscriptionsListScreen: View {
                         
                         Spacer()
                         
-                        VStack(alignment: .trailing, spacing: 4) {
+                        VStack(alignment: .trailing, spacing: 12) {
                             Text("\(viewModel.activeSubscriptions.count) \("active".localized().lowercased())")
                                 .font(.sdSmallMedium)
                                 .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : .primaryBlue)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 4)
+                                .background(
+                                    Capsule().fill(authViewModel.isSubscriptionLimitReached ? Color.errorColor.opacity(0.1) : Color.primaryBlue.opacity(0.1))
+                                )
                         }
                     }
                     .padding(16)
                     .background(Color.clear)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
                     )
                     .cornerRadius(12)
                     .padding(.horizontal, 24)
                     
-                    // Subscription Limit (Free Plan)
+                    // Abonelik Limiti (Ücretsiz Plan)
                     if authViewModel.tier == 1 {
                         Spacer().frame(height: 12)
                         
-                        VStack(alignment: .leading, spacing: 6) {
+                        VStack(alignment: .leading, spacing: 8) {
                             HStack {
                                 Text("\(viewModel.allSubscriptions.count)/5 \("subscriptions".localized())")
                                     .font(.sdSmallMedium)
                                     .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
                                 Spacer()
                                 Text("free_plan".localized())
-                                    .font(.sdLabelSemibold) // Map semantic if needed, or stick to current
+                                    .font(.sdLabelSemibold)
                                     .foregroundColor(.primaryBlue)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 2)
                                     .background(Color.primaryBlue.opacity(0.1))
-                                    .cornerRadius(4)
+                                    .cornerRadius(6)
                             }
                             
                             GeometryReader { geo in
@@ -105,7 +107,7 @@ struct SubscriptionsListScreen: View {
                     
                     Spacer().frame(height: 20)
                     
-                    // Tabs
+                    // Sekmeler (Tabs)
                     HStack(spacing: 0) {
                         tabButton("active".localized(), tag: 0)
                         tabButton("pending_approve".localized(), tag: 1)
@@ -115,13 +117,13 @@ struct SubscriptionsListScreen: View {
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
                     )
                     .padding(.horizontal, 24)
                     
                     Spacer().frame(height: 16)
                     
-                    // Search Bar
+                    // Arama Çubuğu
                     HStack(spacing: 12) {
                         Image(systemName: "magnifyingglass")
                             .font(.sdSubheadline)
@@ -140,18 +142,18 @@ struct SubscriptionsListScreen: View {
                         }
                     }
                     .padding(.horizontal, 16)
-                    .frame(height: 45)
-                    .background(Color.appSurface(for: colorScheme))
+                    .frame(height: 48)
+                    .background(Color.appSurface(for: colorScheme).opacity(0.001))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                            .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
                     )
                     .cornerRadius(12)
                     .padding(.horizontal, 24)
                     
                     Spacer().frame(height: 12)
                     
-                    // Subscription List
+                    // Abonelik Listesi
                     ScrollView {
                         VStack(spacing: 8) {
                             if selectedTab == 1 && !viewModel.invitations.isEmpty {
@@ -170,20 +172,16 @@ struct SubscriptionsListScreen: View {
                                 
                                 Spacer().frame(height: 12)
                             }
-
+                            
                             let subs = currentTabSubscriptions
-                            if subs.isEmpty && (selectedTab != 1 || viewModel.invitations.isEmpty) {
-                                emptyState
-                            } else {
-                                ForEach(subs) { sub in
-                                    SubscriptionCard(
-                                        subscription: sub,
-                                        currency: currency,
-                                        showDate: true,
-                                        isJoint: (sub.participants?.count ?? 0) > 0,
-                                        onTap: { onNavigateToSubscriptionDetail(sub.id) }
-                                    )
-                                }
+                            ForEach(subs) { sub in
+                                SubscriptionCard(
+                                    subscription: sub,
+                                    currency: currency,
+                                    showDate: true,
+                                    isJoint: (sub.participants?.count ?? 0) > 0,
+                                    onTap: { onNavigateToSubscriptionDetail(sub.id) }
+                                )
                             }
                         }
                         .padding(.horizontal, 24)

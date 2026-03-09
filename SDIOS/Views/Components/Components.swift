@@ -18,6 +18,10 @@ extension View {
     func skeleton() -> some View {
         self.modifier(SkeletonModifier())
     }
+    
+    func withErrorDialog(errorMessage: Binding<String?>, onDismiss: @escaping () -> Void = {}) -> some View {
+        self.modifier(SDErrorDialog(errorMessage: errorMessage, onDismiss: onDismiss))
+    }
 }
 
 struct SkeletonCard: View {
@@ -266,25 +270,25 @@ struct SDButton: View {
         Button(action: action) {
             HStack {
                 if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        .scaleEffect(0.8)
+                    Text("loading".localized())
+                        .font(.sdSubheadline)
+                        .foregroundColor(.primaryBlue)
                 } else {
                     Text(title)
                         .font(.sdBodyBold)
                         .foregroundColor(isEnabled ? .primaryBlue : .primaryBlue.opacity(0.5))
                 }
-    }
-    .frame(maxWidth: .infinity)
-    .frame(height: 45)
-    .background(Color.appSurface(for: colorScheme).opacity(0.001))
-    .cornerRadius(12)
-    .overlay(
-        RoundedRectangle(cornerRadius: 12)
-            .stroke(isEnabled ? Color.appOutline(for: colorScheme).opacity(1) : Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
-    )
-}
-.disabled(!isEnabled || isLoading)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+            .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(isEnabled ? Color.appOutline(for: colorScheme).opacity(1) : Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+            )
+        }
+        .disabled(!isEnabled || isLoading)
     }
 }
 
@@ -552,8 +556,104 @@ struct SDErrorDialog: ViewModifier {
             }
     }
 }
-extension View {
-    func withErrorDialog(errorMessage: Binding<String?>, onDismiss: @escaping () -> Void) -> some View {
-        self.modifier(SDErrorDialog(errorMessage: errorMessage, onDismiss: onDismiss))
+// MARK: - Glass Card (Modern Cam Efektli Kart)
+struct GlassCard<Content: View>: View {
+    let content: Content
+    var gradientColors: [Color] = [.primaryBlue.opacity(0.6), .primaryBlue.opacity(0.1)]
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        content
+            .background(
+                ZStack {
+                    // Hafif Cam Efekti
+                    BlurView(style: colorScheme == .dark ? .systemThinMaterialDark : .systemThinMaterialLight)
+                    
+                    // İç Gradyan Aydınlatma
+                    LinearGradient(
+                        colors: [.white.opacity(0.05), .clear],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                }
+            )
+            .cornerRadius(24)
+            .overlay(
+                // Gradyan Bordür (Premium Görünüm)
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(
+                        LinearGradient(
+                            colors: [.white.opacity(0.2), .clear, .white.opacity(0.05)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    )
+            )
+            .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 10)
+    }
+}
+
+struct BlurView: UIViewRepresentable {
+    var style: UIBlurEffect.Style
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        UIVisualEffectView(effect: UIBlurEffect(style: style))
+    }
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
+}
+
+// MARK: - Premium Button (Gelişmiş Etkileşimli Buton)
+struct PremiumButton: View {
+    let title: String
+    var icon: String? = nil
+    var backgroundColor: Color = .primaryBlue
+    var isEnabled: Bool = true
+    var isLoading: Bool = false
+    let action: () -> Void
+    
+    @State private var isPressed = false
+    
+    var body: some View {
+        Button(action: {
+            #if os(iOS)
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+            #endif
+            action()
+        }) {
+            HStack(spacing: 8) {
+                if isLoading {
+                    Text("loading".localized())
+                        .font(.sdSubheadline)
+                        .foregroundColor(.white)
+                } else {
+                    if let icon = icon {
+                        Image(systemName: icon)
+                            .font(.system(size: 16, weight: .bold))
+                    }
+                    Text(title)
+                        .font(.sdBodyBold)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .background(isEnabled ? backgroundColor : backgroundColor.opacity(0.5))
+            .foregroundColor(.white)
+            .cornerRadius(16)
+            .scaleEffect(isPressed ? 0.96 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .disabled(!isEnabled || isLoading)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded { _ in isPressed = false }
+        )
     }
 }

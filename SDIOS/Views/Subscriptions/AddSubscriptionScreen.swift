@@ -332,7 +332,9 @@ struct AddSubscriptionScreen: View {
                             }) {
                                 Group {
                                     if viewModel.isLoading {
-                                        ProgressView().tint(.primaryBlue)
+                                        Text("loading".localized())
+                                            .font(.sdBodyBold)
+                                            .foregroundColor(.primaryBlue)
                                     } else {
                                         Text(viewModel.isEditing ?
                                             "update".localized() :

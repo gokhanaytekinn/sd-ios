@@ -67,38 +67,31 @@ struct SearchScreen: View {
             
             Spacer().frame(height: 16)
             
-            if viewModel.isLoading {
-                Spacer()
-                ProgressView().tint(.primaryBlue)
-                Spacer()
-            } else {
+            StatefulView(
+                isLoading: viewModel.isLoading,
+                isEmpty: filteredSubscriptions.isEmpty && !searchText.isEmpty,
+                emptyMessage: "no_results".localized(),
+                emptyIcon: "magnifyingglass",
+                skeleton: { SearchListSkeleton() }
+            ) {
                 ScrollView {
                     VStack(spacing: 8) {
-                        if filteredSubscriptions.isEmpty {
-                            VStack(spacing: 12) {
-                                Spacer().frame(height: 60)
-                                Image(systemName: "magnifyingglass")
-                                    .font(.system(size: 40))
-                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                Text(NSLocalizedString("no_results", comment: ""))
-                                    .font(.system(size: 16))
-                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                            }
-                            .frame(maxWidth: .infinity)
-                        } else {
+                        if !searchText.isEmpty {
                             Text(String(format: NSLocalizedString("results_found", comment: ""), filteredSubscriptions.count))
-                                .font(.system(size: 12, weight: .medium))
+                                .font(.sdCaptionMedium)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            ForEach(filteredSubscriptions) { sub in
-                                SubscriptionCard(
-                                    subscription: sub,
-                                    currency: currency,
-                                    showDate: true,
-                                    onTap: { onSubscriptionTap(sub.id) }
-                                )
-                            }
+                        } else if filteredSubscriptions.isEmpty {
+                            EmptyStateView(message: "search_start_hint".localized(), icon: "magnifyingglass")
+                        }
+                        
+                        ForEach(filteredSubscriptions) { sub in
+                            SubscriptionCard(
+                                subscription: sub,
+                                currency: currency,
+                                showDate: true,
+                                onTap: { onSubscriptionTap(sub.id) }
+                            )
                         }
                     }
                     .padding(.horizontal, 24)
@@ -174,14 +167,7 @@ struct PremiumUpgradeScreen: View {
                             )
                             
                             if authViewModel.iapProducts.isEmpty {
-                                VStack(spacing: 16) {
-                                    ProgressView()
-                                        .tint(.primaryBlue)
-                                    Text("loading".localized())
-                                        .font(.system(size: 14))
-                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                }
-                                .frame(height: 150)
+                                PlanCardSkeleton()
                             } else {
                                 ForEach(authViewModel.iapProducts, id: \.id) { product in
                                     let isYearly = product.id.contains("yearly")
@@ -199,7 +185,7 @@ struct PremiumUpgradeScreen: View {
                         // Bottom Section (Moved inside ScrollView)
                         VStack(spacing: 16) {
                             Button(action: { 
-                                // Find the matching product based on selectedPlan ID
+                                // Uygun ürünü bul
                                 let productToPurchase = authViewModel.iapProducts.first { product in
                                     if selectedPlan == 1 {
                                         return product.id.contains("monthly")
@@ -211,17 +197,10 @@ struct PremiumUpgradeScreen: View {
                                 
                                 if let product = productToPurchase {
                                     authViewModel.purchase(product: product)
-                                } else if selectedPlan != 0 {
-                                    // If a premium plan is selected but products are not loaded
-                                    print("No product found for selected plan: \(selectedPlan)")
                                 }
                             }) {
-                                if authViewModel.isLoading {
-                                    ProgressView().tint(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
-                                } else {
-                                    Text(upgradeButtonText)
-                                        .font(.system(size: 16, weight: .bold))
-                                }
+                                Text(authViewModel.isLoading ? "loading".localized() : upgradeButtonText)
+                                    .font(.sdBodyBold)
                             }
                             .frame(maxWidth: .infinity)
                             .frame(height: 45)
@@ -250,10 +229,14 @@ struct PremiumUpgradeScreen: View {
             }
             
             if authViewModel.isLoading {
-                Color.black.opacity(0.2).ignoresSafeArea()
-                ProgressView()
-                    .tint(.primaryBlue)
-                    .scaleEffect(1.5)
+                Color.appBackground(for: colorScheme).opacity(0.8).ignoresSafeArea()
+                VStack(spacing: 16) {
+                    PlanCardSkeleton()
+                    Text("loading".localized())
+                        .font(.sdBodyBold)
+                        .foregroundColor(.primaryBlue)
+                }
+                .transition(.opacity)
             }
         }
         .alert("error".localized(), isPresented: Binding(
@@ -500,13 +483,13 @@ struct PremiumUpgradeScreen: View {
 struct TransactionHistoryScreen: View {
     let onBack: () -> Void
     
-    @State private var transactions: [TransactionResponse] = []
-    @State private var isLoading = true
+    @StateObject private var viewModel = TransactionsViewModel()
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(spacing: 0) {
+            // Üst Başlık
             HStack {
                 Button(action: onBack) {
                     Image(systemName: "chevron.left")
@@ -518,44 +501,38 @@ struct TransactionHistoryScreen: View {
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
-                Color.clear.frame(width: 24, height: 24)
+                // Ortalamayı korumak için boş alan
+                Color.clear.frame(width: 20)
             }
-            .padding(16)
+            .padding(.horizontal, 24)
+            .padding(.top, 20)
+            .padding(.bottom, 24)
             
-            if isLoading {
-                Spacer()
-                ProgressView().tint(.primaryBlue)
-                Spacer()
-            } else if transactions.isEmpty {
-                Spacer()
-                VStack(spacing: 12) {
-                    Image(systemName: "doc.text")
-                        .font(.system(size: 40))
-                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                    Text(NSLocalizedString("no_transactions", comment: ""))
-                        .font(.system(size: 16))
-                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                }
-                Spacer()
-            } else {
+            StatefulView(
+                isLoading: viewModel.isLoading,
+                isEmpty: viewModel.transactions.isEmpty,
+                emptyMessage: "no_transactions".localized(),
+                emptyIcon: "list.bullet.rectangle",
+                skeleton: { TransactionListSkeleton() }
+            ) {
                 ScrollView {
                     VStack(spacing: 8) {
-                        ForEach(transactions) { tx in
+                        ForEach(viewModel.transactions) { tx in
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(tx.description ?? NSLocalizedString("transaction", comment: ""))
-                                        .font(.system(size: 14, weight: .medium))
+                                        .font(.sdBodyMedium)
                                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                                     
                                     Text(DateUtils.formatDate(tx.createdAt))
-                                        .font(.system(size: 12))
+                                        .font(.sdSmall)
                                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 }
                                 
                                 Spacer()
                                 
                                 Text(CurrencyFormatter.formatAmount(tx.amount, currencyCode: tx.currency ?? currency))
-                                    .font(.system(size: 14, weight: .bold))
+                                    .font(.sdBodyBold)
                                     .foregroundColor(tx.type == 1 ? .errorColor : .successColor)
                             }
                             .padding(16)
@@ -573,17 +550,6 @@ struct TransactionHistoryScreen: View {
             }
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
-        .onAppear { loadTransactions() }
-    }
-    
-    private func loadTransactions() {
-        Task {
-            isLoading = true
-            let result = await SubscriptionRepository.shared.getTransactions()
-            if case .success(let page) = result {
-                transactions = page.content
-            }
-            isLoading = false
-        }
+        .onAppear { viewModel.loadTransactions() }
     }
 }

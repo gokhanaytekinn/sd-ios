@@ -15,19 +15,16 @@ struct DashboardScreen: View {
         ZStack {
             Color.appBackground(for: colorScheme).ignoresSafeArea()
             
-            if viewModel.isLoading {
-                VStack(spacing: 8) {
-                    Spacer().frame(height: 20)
-                    ForEach(0..<4, id: \.self) { _ in
-                        SkeletonCard()
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal, 24)
-            } else {
+            StatefulView(
+                isLoading: viewModel.isLoading,
+                isEmpty: viewModel.subscriptions.isEmpty,
+                emptyMessage: "dashboard_empty_text".localized(),
+                emptyIcon: "plus.circle.fill",
+                skeleton: { DashboardSkeleton() }
+            ) {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
-                        // Header
+                        // Üst Başlık ve Karşılama
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(String(format: "hello_user".localized(), authViewModel.userName ?? "guest_user".localized()))
@@ -44,9 +41,9 @@ struct DashboardScreen: View {
                         
                         Spacer().frame(height: 20)
                         
-                        // Summary Card (replacing Hero Card)
+                        // Özet Kartı - Transparan ve Kenarlıklı (Kullanıcı İsteği)
                         HStack {
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 8) {
                                 Text("total_monthly".localized())
                                     .font(.sdSmallMedium)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
@@ -58,24 +55,30 @@ struct DashboardScreen: View {
                             
                             Spacer()
                             
-                            VStack(alignment: .trailing, spacing: 4) {
+                            VStack(alignment: .trailing, spacing: 8) {
                                 Text("\(viewModel.subscriptions.count) \("active".localized().lowercased())")
                                     .font(.sdSmallMedium)
                                     .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : .primaryBlue)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 4)
+                                    .background(
+                                        Capsule()
+                                            .fill(authViewModel.isSubscriptionLimitReached ? Color.errorColor.opacity(0.1) : Color.primaryBlue.opacity(0.1))
+                                    )
                             }
                         }
-                        .padding(16)
-                        .background(Color.clear)
+                        .padding(24)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                        .cornerRadius(24)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                            RoundedRectangle(cornerRadius: 24)
+                                .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
                         )
-                        .cornerRadius(12)
                         .padding(.horizontal, 24)
                         
-                        Spacer().frame(height: 20)
+                        Spacer().frame(height: 28)
                         
-                        // Upcoming Payments
+                        // Yaklaşan Ödemeler Bölümü
                         HStack {
                             Text("upcoming_payments".localized())
                                 .font(.sdSubheadlineSemibold)
@@ -91,6 +94,7 @@ struct DashboardScreen: View {
                                 .font(.sdCaption)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .padding(.horizontal, 24)
+                                .padding(.vertical, 12)
                         } else {
                             VStack(spacing: 8) {
                                 ForEach(viewModel.upcomingSubscriptions) { sub in
@@ -105,9 +109,9 @@ struct DashboardScreen: View {
                             .padding(.horizontal, 24)
                         }
                         
-                        Spacer().frame(height: 20)
+                        Spacer().frame(height: 28)
                         
-                        // Most Expensive
+                        // En Yüksek Ücretli Abonelikler
                         HStack {
                             Text("most_expensive".localized())
                                 .font(.sdSubheadlineSemibold)
@@ -130,29 +134,22 @@ struct DashboardScreen: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        Spacer().frame(height: 16)
+                        Spacer().frame(height: 24)
                         
-                        // View All Subscriptions Button
-                        Button(action: onNavigateToSubscriptions) {
-                            HStack {
-                                Text("view_all_subscriptions".localized())
-                                    .font(.sdBodyBold)
-                                Image(systemName: "arrow.right")
-                                    .font(.sdBodyBold)
-                            }
-                            .foregroundColor(.primaryBlue)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 45)
-                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                            .cornerRadius(12)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                            )
-                        }
+                        // Tüm Abonelikleri Görüntüle Butonu
+                        PremiumButton(
+                            title: "view_all_subscriptions".localized(),
+                            icon: "arrow.right",
+                            backgroundColor: Color.appSurface(for: colorScheme).opacity(0.001),
+                            action: onNavigateToSubscriptions
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+                        )
                         .padding(.horizontal, 24)
                         
-                        Spacer().frame(height: 20)
+                        Spacer().frame(height: 32)
                     }
                 }
             }

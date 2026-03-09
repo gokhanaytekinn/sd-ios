@@ -27,7 +27,19 @@ class AuthViewModel: ObservableObject {
     
     private var lastDeviceToken: String?
     
-    private let repository = AuthRepository.shared
+    // MARK: - Use Cases (İş Mantığı Katmanları)
+    // ViewModel, repository ile doğrudan konuşmak yerine bu Use-Case'leri kullanır.
+    private let loginUseCase: LoginUseCaseProtocol
+    private let registerUseCase: RegisterUseCaseProtocol
+    private let googleLoginUseCase: GoogleLoginUseCaseProtocol
+    private let forgotPasswordUseCase: ForgotPasswordUseCaseProtocol
+    private let verifyCodeUseCase: VerifyCodeUseCaseProtocol
+    private let resetPasswordUseCase: ResetPasswordUseCaseProtocol
+    private let deleteAccountUseCase: DeleteAccountUseCaseProtocol
+    
+    // MARK: - Legacy Repositories & Managers
+    // Gelecekte bunlar da ilgili Use-Case veya Service katmanlarına taşınabilir.
+    private let repository: AuthRepositoryProtocol
     private let purchaseRepository = PurchaseRepository.shared
     private let languagePreferences = LanguagePreferences.shared
     private let premiumPreferences = PremiumPreferences.shared
@@ -37,7 +49,26 @@ class AuthViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    /// ViewModel Başlatıcısı (Dependency Injection destekli)
+    init(
+        repository: AuthRepositoryProtocol? = nil,
+        loginUseCase: LoginUseCaseProtocol? = nil,
+        registerUseCase: RegisterUseCaseProtocol? = nil,
+        googleLoginUseCase: GoogleLoginUseCaseProtocol? = nil,
+        forgotPasswordUseCase: ForgotPasswordUseCaseProtocol? = nil,
+        verifyCodeUseCase: VerifyCodeUseCaseProtocol? = nil,
+        resetPasswordUseCase: ResetPasswordUseCaseProtocol? = nil,
+        deleteAccountUseCase: DeleteAccountUseCaseProtocol? = nil
+    ) {
+        self.repository = repository ?? AuthRepository.shared
+        self.loginUseCase = loginUseCase ?? LoginUseCase()
+        self.registerUseCase = registerUseCase ?? RegisterUseCase()
+        self.googleLoginUseCase = googleLoginUseCase ?? GoogleLoginUseCase()
+        self.forgotPasswordUseCase = forgotPasswordUseCase ?? ForgotPasswordUseCase()
+        self.verifyCodeUseCase = verifyCodeUseCase ?? VerifyCodeUseCase()
+        self.resetPasswordUseCase = resetPasswordUseCase ?? ResetPasswordUseCase()
+        self.deleteAccountUseCase = deleteAccountUseCase ?? DeleteAccountUseCase()
+        
         restoreSession()
         setupStoreKitManager()
     }
@@ -76,15 +107,25 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    /// Kullanıcı giriş işlemi
+    /// - Parameters:
+    ///   - email: Kullanıcı e-postası
+    ///   - password: Kullanıcı şifresi
+    ///   - onSuccess: Başarılı giriş sonrası çalışacak callback
     func login(email: String, password: String, onSuccess: @escaping () -> Void) {
+        // 1. Önce verileri doğrula (Validation)
         guard validateLogin(email: email, password: password) else { return }
         
         Task {
             isLoading = true
             error = nil
-            let result = await repository.login(email: email, password: password)
+            
+            // 2. İş mantığını Use-Case üzerinden yürüt
+            let result = await loginUseCase.execute(email: email, password: password)
+            
             switch result {
             case .success(let response):
+                // 3. UI State'i güncelle
                 isLoading = false
                 isAuthenticated = true
                 userName = response.user?.name
@@ -95,28 +136,41 @@ class AuthViewModel: ObservableObject {
                 premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
                 syncLanguageIfNeeded()
                 
-                // Re-register push token if we have one
+                // Push token'ı güncelle (varsa)
                 if let token = lastDeviceToken {
                     updatePushToken(token: token)
                 }
                 onSuccess()
             case .failure(let err):
+                // Hata durumunda mesajı göster
                 isLoading = false
                 error = err.localizedDescription
             }
         }
     }
     
+    /// Yeni kullanıcı kayıt işlemi
+    /// - Parameters:
+    ///   - name: İsim
+    ///   - email: E-posta
+    ///   - password: Şifre
+    ///   - confirmPassword: Şifre tekrarı
+    ///   - onSuccess: Başarılı kayıt sonrası çalışacak callback
     func register(name: String, email: String, password: String, confirmPassword: String, onSuccess: @escaping () -> Void) {
+        // 1. Veri doğruluğunu kontrol et
         guard validateRegister(name: name, email: email, password: password, confirmPassword: confirmPassword) else { return }
         
         Task {
             isLoading = true
             error = nil
             let localLanguage = languagePreferences.selectedLanguage
-            let result = await repository.register(email: email, password: password, name: name, language: localLanguage)
+            
+            // 2. Kayıt iş mantığını Use-Case üzerinden yürüt
+            let result = await registerUseCase.execute(name: name, email: email, password: password, language: localLanguage)
+            
             switch result {
             case .success(let response):
+                // 3. UI State ve oturum bilgilerini güncelle
                 isLoading = false
                 isAuthenticated = true
                 userName = response.user?.name
@@ -127,19 +181,28 @@ class AuthViewModel: ObservableObject {
                 premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
                 onSuccess()
             case .failure(let err):
+                // Hata mesajını kullanıcıya yansıt
                 isLoading = false
                 error = err.localizedDescription
             }
         }
     }
 
+    /// Google ID Token kullanarak backend'de oturum açma
+    /// - Parameters:
+    ///   - idToken: Google'dan gelen token
+    ///   - onSuccess: Başarılı sonuç callback'i
     func loginWithGoogle(idToken: String, onSuccess: @escaping () -> Void) {
         Task {
             isLoading = true
             error = nil
-            let result = await repository.loginWithGoogle(idToken: idToken)
+            
+            // İş mantığını Use-Case üzerinden yürüt
+            let result = await googleLoginUseCase.execute(idToken: idToken)
+            
             switch result {
             case .success(let response):
+                // UI ve oturum durumunu güncelle
                 isLoading = false
                 isAuthenticated = true
                 userName = response.user?.name
@@ -150,7 +213,7 @@ class AuthViewModel: ObservableObject {
                 premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
                 syncLanguageIfNeeded()
                 
-                // Re-register push token if we have one
+                // Push token senkronizasyonu
                 if let token = lastDeviceToken {
                     updatePushToken(token: token)
                 }
@@ -202,7 +265,12 @@ class AuthViewModel: ObservableObject {
     }
 
     
+    /// Şifre sıfırlama talebi gönderir
+    /// - Parameters:
+    ///   - email: E-posta adresi
+    ///   - onSuccess: Talep başarılı olduğunda çalışır
     func forgotPassword(email: String, onSuccess: @escaping () -> Void) {
+        // E-posta boş olamaz kontrolü
         guard !email.isEmpty else {
             emailError = NSLocalizedString("error_email_required", comment: "")
             return
@@ -211,11 +279,14 @@ class AuthViewModel: ObservableObject {
         Task {
             isLoading = true
             error = nil
-            let result = await repository.forgotPassword(email: email)
+            
+            // ForgotPassword Use-Case çağrısı
+            let result = await forgotPasswordUseCase.execute(email: email)
+            
             switch result {
             case .success:
                 isLoading = false
-                resetEmail = email
+                resetEmail = email // Hangi e-posta için sıfırlama yapıldığını hatırla
                 onSuccess()
             case .failure(let err):
                 isLoading = false
@@ -224,17 +295,25 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    /// Şifre sıfırlama kodunu doğrular
+    /// - Parameters:
+    ///   - code: 6 haneli kod
+    ///   - onSuccess: Doğrulama başarılı olduğunda çalışır
     func verifyCode(code: String, onSuccess: @escaping () -> Void) {
+        // Basit validasyon: e-posta biliniyor olmalı ve kod 6 haneli olmalı
         guard let email = resetEmail, code.count == 6 else { return }
         
         Task {
             isLoading = true
             error = nil
-            let result = await repository.verifyCode(email: email, code: code)
+            
+            // VerifyCode Use-Case çağrısı
+            let result = await verifyCodeUseCase.execute(email: email, code: code)
+            
             switch result {
             case .success:
                 isLoading = false
-                isResetCodeVerified = true
+                isResetCodeVerified = true // UI'da şifre belirleme ekranına geçişi sağlar
                 onSuccess()
             case .failure(let err):
                 isLoading = false
@@ -243,17 +322,25 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    /// Yeni şifreyi kaydeder
+    /// - Parameters:
+    ///   - code: Doğrulanmış kod
+    ///   - newPassword: Yeni belirlenen şifre
+    ///   - onSuccess: İşlem başarılı olduğunda çalışır
     func resetPassword(code: String, newPassword: String, onSuccess: @escaping () -> Void) {
         guard let email = resetEmail else { return }
         
         Task {
             isLoading = true
             error = nil
-            let result = await repository.resetPassword(email: email, code: code, newPassword: newPassword)
+            
+            // ResetPassword Use-Case çağrısı
+            let result = await resetPasswordUseCase.execute(email: email, code: code, newPassword: newPassword)
+            
             switch result {
             case .success:
                 isLoading = false
-                resetEmail = nil
+                resetEmail = nil // Temizlik
                 isResetCodeVerified = false
                 onSuccess()
             case .failure(let err):
@@ -290,13 +377,18 @@ class AuthViewModel: ObservableObject {
         tier = 1
     }
     
+    /// Kullanıcı hesabını tamamen siler
     func deleteAccount() {
         Task {
             isLoading = true
             error = nil
-            let result = await repository.deleteAccount()
+            
+            // DeleteAccount Use-Case çağrısı
+            let result = await deleteAccountUseCase.execute()
+            
             switch result {
             case .success:
+                // Yerel oturum verilerini temizle
                 premiumPreferences.isPremium = false
                 isAuthenticated = false
                 userName = nil
@@ -318,8 +410,7 @@ class AuthViewModel: ObservableObject {
                 if let transaction = try await storeKitManager.purchase(product) {
                     // Sync with backend
                     let result = await purchaseRepository.verifyPurchase(
-                        productId: product.id,
-                        transactionId: String(transaction.id)
+                        PurchaseRequest(purchaseToken: String(transaction.id), productId: product.id)
                     )
                     
                     switch result {

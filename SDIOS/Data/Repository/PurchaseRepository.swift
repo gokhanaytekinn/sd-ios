@@ -1,17 +1,23 @@
 import Foundation
 
-class PurchaseRepository {
-    static let shared = PurchaseRepository()
+/// Uygulama içi satın alma (IAP) ve fatura doğrulama işlemlerinden sorumlu Repository.
+class PurchaseRepository: PurchaseRepositoryProtocol {
+    /// Singleton örneği - Protokol tipinde.
+    static let shared: PurchaseRepositoryProtocol = PurchaseRepository()
     
-    private let api = ApiService.shared
+    /// API servis bağımlılığı.
+    private let api: ApiServiceProtocol
     
-    private init() {}
+    /// Bağımlılık Enjeksiyonu destekli başlatıcı.
+    init(api: ApiServiceProtocol = ApiService.shared) {
+        self.api = api
+    }
     
-    func verifyPurchase(productId: String, transactionId: String) async -> Result<UserResponse, Error> {
+    /// Apple tarafında gerçekleşen satın almayı sunucu tarafında doğrular.
+    func verifyPurchase(_ request: PurchaseRequest) async -> Result<UserResponse, Error> {
         do {
-            let request = PurchaseRequest(purchaseToken: transactionId, productId: productId)
-            let user = try await api.verifyPurchase(request)
-            return .success(user)
+            let response = try await api.verifyPurchase(request)
+            return .success(response)
         } catch {
             return .failure(error)
         }
