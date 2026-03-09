@@ -7,13 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D92552002F5F61B700DC8A83 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92551FF2F5F61B700DC8A83 /* WidgetKit.framework */; };
+		D92552022F5F61B700DC8A83 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92552012F5F61B700DC8A83 /* SwiftUI.framework */; };
+		D92552112F5F61B800DC8A83 /* SDWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D92551FD2F5F61B700DC8A83 /* SDWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D94C065B2F5B3B2F0014BB86 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D94C065A2F5B3B2F0014BB86 /* GoogleSignIn */; };
 		D94C065D2F5B3B2F0014BB86 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D94C065C2F5B3B2F0014BB86 /* GoogleSignInSwift */; };
 		D9B32E9C2F5C598F00EF2D76 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = D9B32E9B2F5C598F00EF2D76 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D925520F2F5F61B800DC8A83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D94C04652F59F91A0014BB86 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D92551FC2F5F61B700DC8A83;
+			remoteInfo = SDWidgetsExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D92552162F5F61B800DC8A83 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D92552112F5F61B800DC8A83 /* SDWidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D9099C862F5EAED00085D543 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D92551872F5F5D9600DC8A83 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D92551FD2F5F61B700DC8A83 /* SDWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SDWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D92551FF2F5F61B700DC8A83 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D92552012F5F61B700DC8A83 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D92552342F5F627900DC8A83 /* SDWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		D93102352F5F551700E36134 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D94AA0502F5F096F00CBB873 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D94C046D2F59F91A0014BB86 /* SDIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D94C04862F59F9880014BB86 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
@@ -23,10 +56,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D92552302F5F61DF00DC8A83 /* Exceptions for "SDIOS" folder in "SDWidgetsExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Data/Local/WidgetDataManager.swift,
+				Models/Subscription.swift,
+				SDWidgets/MostExpensiveWidget.swift,
+				SDWidgets/SDWidgets.swift,
+				SDWidgets/UpcomingPaymentsWidget.swift,
+				SDWidgets/WidgetViews.swift,
+				Services/CurrencyService.swift,
+				Theme/Colors.swift,
+			);
+			target = D92551FC2F5F61B700DC8A83 /* SDWidgetsExtension */;
+		};
 		D94C04EE2F59FA100014BB86 /* Exceptions for "SDIOS" folder in "SDIOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				SDWidgets/MostExpensiveWidget.swift,
+				SDWidgets/SDWidgets.swift,
+				SDWidgets/UpcomingPaymentsWidget.swift,
+				SDWidgets/WidgetViews.swift,
 			);
 			target = D94C046C2F59F91A0014BB86 /* SDIOS */;
 		};
@@ -37,6 +88,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				D94C04EE2F59FA100014BB86 /* Exceptions for "SDIOS" folder in "SDIOS" target */,
+				D92552302F5F61DF00DC8A83 /* Exceptions for "SDIOS" folder in "SDWidgetsExtension" target */,
 			);
 			path = SDIOS;
 			sourceTree = "<group>";
@@ -44,6 +96,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D92551FA2F5F61B700DC8A83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D92552022F5F61B700DC8A83 /* SwiftUI.framework in Frameworks */,
+				D92552002F5F61B700DC8A83 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D94C046A2F59F91A0014BB86 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,6 +125,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D92551892F5F5D9600DC8A83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D92551FE2F5F61B700DC8A83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D92551FF2F5F61B700DC8A83 /* WidgetKit.framework */,
+				D92552012F5F61B700DC8A83 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D93102372F5F551700E36134 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D94AA0522F5F096F00CBB873 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,7 +158,9 @@
 		D94C04642F59F91A0014BB86 = {
 			isa = PBXGroup;
 			children = (
+				D92552342F5F627900DC8A83 /* SDWidgetsExtension.entitlements */,
 				D94C046F2F59F91A0014BB86 /* SDIOS */,
+				D92551FE2F5F61B700DC8A83 /* Frameworks */,
 				D94C046E2F59F91A0014BB86 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				D94C046D2F59F91A0014BB86 /* SDIOS.app */,
+				D92551FD2F5F61B700DC8A83 /* SDWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,6 +205,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D92551FC2F5F61B700DC8A83 /* SDWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D92552122F5F61B800DC8A83 /* Build configuration list for PBXNativeTarget "SDWidgetsExtension" */;
+			buildPhases = (
+				D92551F92F5F61B700DC8A83 /* Sources */,
+				D92551FA2F5F61B700DC8A83 /* Frameworks */,
+				D92551FB2F5F61B700DC8A83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDWidgetsExtension;
+			packageProductDependencies = (
+			);
+			productName = SDWidgetsExtension;
+			productReference = D92551FD2F5F61B700DC8A83 /* SDWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D94C046C2F59F91A0014BB86 /* SDIOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D94C04782F59F91B0014BB86 /* Build configuration list for PBXNativeTarget "SDIOS" */;
@@ -125,10 +231,12 @@
 				D94C04692F59F91A0014BB86 /* Sources */,
 				D94C046A2F59F91A0014BB86 /* Frameworks */,
 				D94C046B2F59F91A0014BB86 /* Resources */,
+				D92552162F5F61B800DC8A83 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D92552102F5F61B800DC8A83 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D94C046F2F59F91A0014BB86 /* SDIOS */,
@@ -153,6 +261,9 @@
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
+					D92551FC2F5F61B700DC8A83 = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
 					D94C046C2F59F91A0014BB86 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
@@ -192,6 +303,10 @@
 					ProjectRef = D9B32E532F5B50B500EF2D76 /* SDiOS.xcodeproj */;
 				},
 				{
+					ProductGroup = D92551892F5F5D9600DC8A83 /* Products */;
+					ProjectRef = D92551872F5F5D9600DC8A83 /* SDiOS.xcodeproj */;
+				},
+				{
 					ProductGroup = D94AA0522F5F096F00CBB873 /* Products */;
 					ProjectRef = D94AA0502F5F096F00CBB873 /* SDiOS.xcodeproj */;
 				},
@@ -211,15 +326,27 @@
 					ProductGroup = D94C06232F5A03370014BB86 /* Products */;
 					ProjectRef = D94C06212F5A03370014BB86 /* SDiOS.xcodeproj */;
 				},
+				{
+					ProductGroup = D93102372F5F551700E36134 /* Products */;
+					ProjectRef = D93102352F5F551700E36134 /* SDiOS.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				D94C046C2F59F91A0014BB86 /* SDIOS */,
+				D92551FC2F5F61B700DC8A83 /* SDWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D92551FB2F5F61B700DC8A83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D94C046B2F59F91A0014BB86 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +357,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D92551F92F5F61B700DC8A83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D94C04692F59F91A0014BB86 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -239,7 +373,77 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D92552102F5F61B800DC8A83 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D92551FC2F5F61B700DC8A83 /* SDWidgetsExtension */;
+			targetProxy = D925520F2F5F61B800DC8A83 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		D92552132F5F61B800DC8A83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SDWidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U5R64N99GG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SDWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SDWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd.SDWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D92552142F5F61B800DC8A83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SDWidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U5R64N99GG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SDWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SDWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd.SDWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D94C04762F59F91B0014BB86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -375,6 +579,7 @@
 				INFOPLIST_FILE = SDIOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Subify;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Bu izin, size daha ilgi çekici ve kişiselleştirilmiş reklamlar gösterebilmemiz için kullanılacaktır.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -411,6 +616,7 @@
 				INFOPLIST_FILE = SDIOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Subify;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Bu izin, size daha ilgi çekici ve kişiselleştirilmiş reklamlar gösterebilmemiz için kullanılacaktır.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -436,6 +642,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D92552122F5F61B800DC8A83 /* Build configuration list for PBXNativeTarget "SDWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D92552132F5F61B800DC8A83 /* Debug */,
+				D92552142F5F61B800DC8A83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D94C04682F59F91A0014BB86 /* Build configuration list for PBXProject "SDIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

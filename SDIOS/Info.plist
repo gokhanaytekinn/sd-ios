@@ -18,12 +18,15 @@
 			</array>
 		</dict>
 	</array>
-	<key>GIDClientID</key>
-	<string>511347263387-geasdab34clq1b778vu5i6m2l0m4anlr.apps.googleusercontent.com</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-9378769298209012~6911488006</string>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Bu izin, size daha ilgi çekici ve kişiselleştirilmiş reklamlar gösterebilmemiz için kullanılacaktır.</string>
+	<key>GIDClientID</key>
+	<string>511347263387-geasdab34clq1b778vu5i6m2l0m4anlr.apps.googleusercontent.com</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -251,10 +254,5 @@
 			<string>as62qbe3tq.skadnetwork</string>
 		</dict>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 </dict>
 </plist>

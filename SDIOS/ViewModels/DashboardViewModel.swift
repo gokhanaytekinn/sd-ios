@@ -58,6 +58,9 @@ class DashboardViewModel: ObservableObject {
                 // Toplam abonelik sayısını AuthViewModel (global state) ile senkronize et
                 authViewModel?.subscriptionCount = list.count
                 
+                // Widget verilerini güncelle
+                WidgetDataManager.shared.saveSnapshot(list)
+                
             case .failure(let err):
                 // Hata oluşursa kullanıcıya göstermek üzere 'error' değişkenine aktar
                 error = err.localizedDescription

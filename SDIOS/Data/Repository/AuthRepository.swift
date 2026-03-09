@@ -8,13 +8,13 @@ class AuthRepository: AuthRepositoryProtocol {
     
     /// API isteklerini yöneten servis bağımlılığı.
     private let api: ApiServiceProtocol
-    /// Token ve oturum bilgilerini yerel diskte (Keychain/UserDefaults) yönetir.
-    private let tokenManager = TokenManager.shared
+    private let tokenManager: TokenManagerProtocol
     
     /// Bağımlılık Enjeksiyonu (Dependency Injection) destekli başlatıcı.
-    /// Testlerde sahte (mock) API servisleri enjekte edilebilir.
-    init(api: ApiServiceProtocol = ApiService.shared) {
+    /// Testlerde sahte (mock) API servisleri ve TokenManager enjekte edilebilir.
+    init(api: ApiServiceProtocol = ApiService.shared, tokenManager: TokenManagerProtocol = TokenManager.shared) {
         self.api = api
+        self.tokenManager = tokenManager
     }
     
     /// Kullanıcı giriş işlemini API üzerinden gerçekleştirir.
