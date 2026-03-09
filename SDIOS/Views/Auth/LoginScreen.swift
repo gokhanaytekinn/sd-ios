@@ -51,7 +51,7 @@ struct LoginScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "email"
                     )
-                    .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
+                    .onChange(of: email) { oldValue, newValue in self.authViewModel.clearEmailError() }
                     
                     // Password Field
                     VStack(alignment: .trailing, spacing: 8) {
@@ -65,7 +65,7 @@ struct LoginScreen: View {
                             focusBinding: $focusedField,
                             focusValue: "password"
                         )
-                        .onChange(of: password) { _ in self.authViewModel.clearPasswordError() }
+                        .onChange(of: password) { oldValue, newValue in self.authViewModel.clearPasswordError() }
                         
                         // Forgot Password
                         Button(action: onNavigateToForgotPassword) {

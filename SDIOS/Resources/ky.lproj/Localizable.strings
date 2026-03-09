@@ -395,3 +395,4 @@
 "limit_reached_message" = "Акысыз план 5 жазылуу менен чектелген. Чектөөсүз көзөмөлдөө үшін Premium-га өтүңүз.";
 "ok" = "ОК";
 "monthly_renewal_format" = "Ар айдын %@-күнү";
+"yearly_renewal_format" = "Жыл сайын %1$@ %2$@";

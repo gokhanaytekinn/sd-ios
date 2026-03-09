@@ -25,7 +25,7 @@ struct AppSettingsScreen: View {
                 VStack(alignment: .leading, spacing: 0) {
                     // Header
                     Text("settings".localized())
-                        .font(.system(size: 24, weight: .bold))
+                        .font(.sdHeadline)
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
@@ -44,17 +44,17 @@ struct AppSettingsScreen: View {
                                     .frame(width: 48, height: 48)
                                 
                                 Text((authViewModel.userName ?? "?").prefix(1).uppercased())
-                                    .font(.system(size: 20, weight: .bold))
+                                    .font(.sdSubheadlineSemibold)
                                     .foregroundColor(.primaryBlue)
                             }
                             
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(authViewModel.userName ?? "guest_user".localized())
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.sdBodyBold)
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                                 
                                 Text(authViewModel.userEmail ?? "not_logged_in".localized())
-                                    .font(.system(size: 12))
+                                    .font(.sdSmall)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
                             
@@ -91,7 +91,7 @@ struct AppSettingsScreen: View {
                             isOn: $notificationsEnabled,
                             iconColor: .primaryBlue
                         )
-                        .onChange(of: notificationsEnabled) { newValue in
+                        .onChange(of: notificationsEnabled) { oldValue, newValue in
                             authViewModel.updateNotificationSettings(enabled: newValue)
                         }
                         
@@ -172,12 +172,12 @@ struct AppSettingsScreen: View {
                     // Version
                     #if DEBUG
                     Text(String(format: "version".localized(), Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0") + " (debug)")
-                        .font(.system(size: 12))
+                        .font(.sdSmall)
                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                         .frame(maxWidth: .infinity, alignment: .center)
                     #else
                     Text(String(format: "version".localized(), Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0") + " (release)")
-                        .font(.system(size: 12))
+                        .font(.sdSmall)
                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                         .frame(maxWidth: .infinity, alignment: .center)
                     #endif
@@ -208,7 +208,7 @@ struct AppSettingsScreen: View {
     
     private func sectionHeader(_ title: String) -> some View {
         Text(title)
-            .font(.system(size: 12, weight: .bold))
+            .font(.sdLabelSemibold)
             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
             .tracking(1)
             .padding(.horizontal, 24)
@@ -258,9 +258,10 @@ struct AppSettingsScreen: View {
                 }) {
                     HStack {
                         Text(curr.symbol)
-                            .font(.system(size: 18, weight: .bold))
+                            .font(.sdSubheadlineSemibold)
                             .frame(width: 28)
                         Text("\(curr.code) - \(curr.name)")
+                            .font(.sdBody)
                             .foregroundColor(.primary)
                         Spacer()
                         if selectedCurrency == curr.id {

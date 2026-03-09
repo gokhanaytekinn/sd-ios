@@ -100,4 +100,20 @@ extension Color {
     static func appSurfaceVariant(for scheme: ColorScheme) -> Color {
         scheme == .dark ? Color(hex: "273549") : .slate100
     }
+    
+    static func dynamicColor(from name: String) -> Color {
+        let colors: [Color] = [
+            .primaryBlue, .errorColor, .successColor, .warningColor,
+            Color(hex: "8B5CF6"), // Purple
+            Color(hex: "EC4899"), // Pink
+            Color(hex: "06B6D4"), // Cyan
+            Color(hex: "F59E0B"), // Amber
+            Color(hex: "10B981"), // Emerald
+            Color(hex: "6366F1")  // Indigo
+        ]
+        
+        let hash = name.lowercased().hashValue
+        let index = abs(hash) % colors.count
+        return colors[index]
+    }
 }

@@ -125,19 +125,25 @@ struct SubscriptionStats: Codable {
     var cancelledCount: Int = 0
     var suspiciousCount: Int = 0
     
-    static func calculate(from list: [Subscription]) -> SubscriptionStats {
+    static func calculate(from list: [Subscription], targetCurrency: Int = 1) -> SubscriptionStats {
         let activeSubs = list.filter { $0.isActive }
         
         let monthlyCost = activeSubs.reduce(0.0) { total, sub in
+            let convertedCost = CurrencyService.shared.convert(
+                amount: sub.cost,
+                from: sub.currency,
+                to: targetCurrency
+            )
+            
             switch sub.billingCycle {
             case .monthly:
-                return total + sub.cost
+                return total + convertedCost
             case .yearly:
-                return total + (sub.cost / 12.0)
+                return total + (convertedCost / 12.0)
             case .weekly:
-                return total + (sub.cost * 4.0)
+                return total + (convertedCost * 4.0)
             case .quarterly:
-                return total + (sub.cost / 3.0)
+                return total + (convertedCost / 3.0)
             }
         }
         

@@ -53,9 +53,8 @@ struct ContentView: View {
     
     @State private var navigationPath: [AppRoute] = []
     @State private var selectedTab: MainTab = .dashboard
-    @State private var showAddSubscription = false
-    @State private var showFabMenu = false
     @State private var showingLimitAlert = false
+    @State private var isBannerLoaded = true
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -65,7 +64,16 @@ struct ContentView: View {
                 // Splash
                 ZStack {
                     Color.appBackground(for: colorScheme).ignoresSafeArea()
-                    ProgressView().tint(.primaryBlue)
+                    VStack(spacing: 20) {
+                        Image(systemName: "creditcard.fill")
+                            .font(.system(size: 60))
+                            .foregroundColor(.primaryBlue)
+                            .shimmer()
+                        
+                        Text("loading".localized())
+                            .font(.sdBodyMedium)
+                            .foregroundColor(.primaryBlue)
+                    }
                 }
             } else if !authViewModel.isAuthenticated {
                 // Auth Flow
@@ -106,7 +114,7 @@ struct ContentView: View {
                 mainTabView
             }
         }
-        .onChange(of: authViewModel.isAuthenticated) { isAuth in
+        .onChange(of: authViewModel.isAuthenticated) { oldValue, isAuth in
             if isAuth {
                 // Clear auth navigation path so main tab view starts clean
                 navigationPath = []
@@ -201,30 +209,13 @@ struct ContentView: View {
                     
                     // Banner Ad for non-premium users
                     if authViewModel.tier == 1 {
-                        BannerAdView()
-                            .frame(height: 60) // Slightly larger for adaptive
-                            .background(Color.appSurface(for: colorScheme))
+                        BannerAdView(isLoaded: $isBannerLoaded)
+                            .frame(height: isBannerLoaded ? 60 : 0) // Hide when not loaded
+                            .clipped()
                     }
                 }
-                .background(Color.appSurface(for: colorScheme).ignoresSafeArea(edges: .bottom))
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
-            
-            // Expandable FAB Menu Overlay
-            if showFabMenu {
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            showFabMenu = false
-                        }
-                    }
-            }
-            
-            if navigationPath.isEmpty {
-                fabButton
-                    .padding(.bottom, authViewModel.tier == 1 ? 140 : 80)
-            }
         }
         .ignoresSafeArea(.keyboard)
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
@@ -235,9 +226,21 @@ struct ContentView: View {
         } message: {
             Text("limit_reached_message".localized())
         }
-        .onChange(of: navigationPath) { newValue in
+        .onChange(of: navigationPath) { oldValue, newValue in
             if newValue.isEmpty {
                 NotificationCenter.default.post(name: NSNotification.Name("RefreshData"), object: nil)
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("DidRequestNavigation"))) { notification in
+            if let destination = notification.object as? String {
+                if destination == "add_subscription" {
+                    if authViewModel.isSubscriptionLimitReached {
+                        showingLimitAlert = true
+                    } else {
+                        // Reset navigation path and navigate to add subscription
+                        navigationPath = [.addSubscription]
+                    }
+                }
             }
         }
     }
@@ -301,118 +304,101 @@ struct ContentView: View {
     // MARK: - Bottom Navigation Bar
     private var bottomNavBar: some View {
         HStack(spacing: 0) {
-            ForEach(MainTab.allCases, id: \.rawValue) { tab in
-
-                
-                Button(action: {
-                    selectedTab = tab
-                    navigationPath = []
-                }) {
-                    VStack(spacing: 4) {
-                        Image(systemName: tab.icon)
-                            .font(.system(size: 20))
-                            .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
-                        
-                        Text(tab.title)
-                            .font(.system(size: 10, weight: .medium))
-                            .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
+            // First 2 Tabs
+            ForEach(0..<2) { index in
+                if let tab = MainTab(rawValue: index) {
+                    tabButton(tab)
                 }
-                .buttonStyle(.plain)
-            }
-        }
-        .padding(.horizontal, 8)
-        .padding(.top, 8)
-        .background(
-            Color.appSurface(for: colorScheme)
-                .ignoresSafeArea(edges: .bottom)
-                .shadow(color: .black.opacity(0.1), radius: 8, y: -4)
-        )
-    }
-    
-    // MARK: - FAB
-    private var fabButton: some View {
-        VStack(alignment: .trailing, spacing: 16) {
-            if showFabMenu {
-                // Add Manually Bubble
-                HStack {
-                    Button(action: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            showFabMenu = false
-                        }
-                        if authViewModel.isSubscriptionLimitReached {
-                            showingLimitAlert = true
-                        } else if navigationPath.last != .addSubscription {
-                            navigationPath.append(.addSubscription)
-                        }
-                    }) {
-                        Text("add_mannually".localized())
-                            .font(.system(size: 16, weight: .bold))
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                            .foregroundColor(.primaryBlue)
-                            .cornerRadius(20)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                            )
-                    }
-                    .buttonStyle(.plain)
-                    
-                    Button(action: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            showFabMenu = false
-                        }
-                        if authViewModel.isSubscriptionLimitReached {
-                            showingLimitAlert = true
-                        } else if navigationPath.last != .addSubscription {
-                            navigationPath.append(.addSubscription)
-                        }
-                    }) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.appSurface(for: colorScheme).opacity(0.001))
-                                .frame(width: 48, height: 48)
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                                )
-                            Image(systemName: "pencil")
-                                .font(.system(size: 20))
-                                .foregroundColor(.primaryBlue)
-                        }
-                    }
-                }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
             }
             
-            // Main FAB
-            Button(action: {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                    showFabMenu.toggle()
-                }
-            }) {
-                ZStack {
-                    Circle()
-                        .fill(Color.appSurface(for: colorScheme).opacity(0.001))
-                        .frame(width: 56, height: 56)
-                        .overlay(
-                            Circle()
-                                .stroke(Color.primaryBlue, lineWidth: 1)
-                        )
-                    
-                    Image(systemName: "plus")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.primaryBlue)
-                        .rotationEffect(.degrees(showFabMenu ? 45 : 0))
+            // Center Add Button
+            centerAddButton
+            
+            // Last 2 Tabs
+            ForEach(2..<4) { index in
+                if let tab = MainTab(rawValue: index) {
+                    tabButton(tab)
                 }
             }
         }
-        .padding(.bottom, 16)
-        .padding(.trailing, 16)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 4)
+        .background(
+            ZStack {
+                Capsule()
+                    .fill(Color.appSurface(for: colorScheme))
+                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                
+                Capsule()
+                    .stroke(
+                        LinearGradient(
+                            colors: [
+                                .white.opacity(0.4),
+                                .white.opacity(0.1),
+                                .clear,
+                                .white.opacity(0.2)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1.0
+                    )
+            }
+        )
+        .padding(.horizontal, 16)
+        .padding(.bottom, 8)
+    }
+    
+    @ViewBuilder
+    private func tabButton(_ tab: MainTab) -> some View {
+        Button(action: {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                selectedTab = tab
+                navigationPath = []
+            }
+        }) {
+            VStack(spacing: 2) {
+                Image(systemName: selectedTab == tab ? tab.icon : tab.icon.replacingOccurrences(of: ".fill", with: ""))
+                    .font(.system(size: 18))
+                    .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
+                
+                Text(tab.title)
+                    .font(selectedTab == tab ? .sdLabelSmall : .sdLabel)
+                    .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 6)
+        }
+        .buttonStyle(.plain)
+    }
+    
+    private var centerAddButton: some View {
+        Button(action: {
+            if authViewModel.isSubscriptionLimitReached {
+                showingLimitAlert = true
+            } else {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    navigationPath = [.addSubscription]
+                }
+            }
+        }) {
+            ZStack {
+                Circle()
+                    .fill(Color.appSurface(for: colorScheme).opacity(0.001))
+                    .frame(width: 48, height: 48)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.primaryBlue, lineWidth: 1)
+                    )
+                
+                Image(systemName: "plus")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.primaryBlue)
+            }
+            .padding(.horizontal, 12)
+        }
+        .buttonStyle(.plain)
+        .offset(y: 0)
     }
 }
 

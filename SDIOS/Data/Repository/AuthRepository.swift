@@ -1,31 +1,46 @@
 import Foundation
 
-class AuthRepository {
-    static let shared = AuthRepository()
+/// Kimlik doğrulama ve kullanıcı verilerinin yönetiminden sorumlu Repository.
+/// İş mantığı (Domain) katmanı ile Veri (Data) katmanı arasında köprü görevi görür.
+class AuthRepository: AuthRepositoryProtocol {
+    /// Singleton örneği - Uygulama genelinde tek bir örnek üzerinden erişim sağlanır.
+    static let shared: AuthRepositoryProtocol = AuthRepository()
     
-    private let api = ApiService.shared
+    /// API isteklerini yöneten servis bağımlılığı.
+    private let api: ApiServiceProtocol
+    /// Token ve oturum bilgilerini yerel diskte (Keychain/UserDefaults) yönetir.
     private let tokenManager = TokenManager.shared
     
-    private init() {}
+    /// Bağımlılık Enjeksiyonu (Dependency Injection) destekli başlatıcı.
+    /// Testlerde sahte (mock) API servisleri enjekte edilebilir.
+    init(api: ApiServiceProtocol = ApiService.shared) {
+        self.api = api
+    }
     
+    /// Kullanıcı giriş işlemini API üzerinden gerçekleştirir.
+    /// Başarılı olursa dönen token'ı TokenManager'a kaydeder.
     func login(email: String, password: String) async -> Result<ApiAuthResponse, Error> {
         do {
             let response = try await api.login(LoginRequest(email: email, password: password))
+            // Token'ı yerel depolamaya güvenli bir şekilde kaydet
             if let token = response.token {
                 tokenManager.saveToken(token)
             }
+            // Kullanıcı e-postasını oturum yönetimi için sakla
             if let email = response.user?.email {
                 tokenManager.saveUserEmail(email)
             }
             return .success(response)
         } catch {
-            return .failure(error)
+            return .failure(error) // Hata durumunu yukarı katmana ilet
         }
     }
     
+    /// Yeni kullanıcı kaydı oluşturur.
     func register(email: String, password: String, name: String?, language: String?) async -> Result<ApiAuthResponse, Error> {
         do {
             let response = try await api.register(RegisterRequest(email: email, password: password, name: name, language: language))
+            // Kayıt sonrası otomatik giriş için token ve e-postayı sakla
             if let token = response.token {
                 tokenManager.saveToken(token)
             }
@@ -38,9 +53,11 @@ class AuthRepository {
         }
     }
     
+    /// Google ID Token ile oturum açma işlemini yönetir.
     func loginWithGoogle(idToken: String) async -> Result<ApiAuthResponse, Error> {
         do {
             let response = try await api.loginWithGoogle(GoogleAuthRequest(idToken: idToken))
+            // Sosyal login sonrası token yönetimini gerçekleştir
             if let token = response.token {
                 tokenManager.saveToken(token)
             }
@@ -55,6 +72,7 @@ class AuthRepository {
     
 
     
+    /// Mevcut kullanıcının profil bilgilerini getirir.
     func getCurrentUser() async -> Result<UserResponse, Error> {
         do {
             let response = try await api.getCurrentUser()
@@ -64,6 +82,7 @@ class AuthRepository {
         }
     }
     
+    /// Yerel oturumu sonlandırır ve token'ları temizler.
     func logout() {
         tokenManager.clearToken()
     }

@@ -3,29 +3,36 @@ import Combine
 
 @MainActor
 class AddSubscriptionViewModel: ObservableObject {
-    @Published var name = "" { didSet { nameError = nil } }
-    @Published var amount = "" { didSet { amountError = nil } }
-    @Published var icon: String? = nil
-    @Published var selectedCategory: String = "" { didSet { categoryError = nil } }
-    @Published var selectedBillingCycle: BillingCycle = .monthly { didSet { clearDateError() } }
-    @Published var billingDay: Int = Calendar.current.component(.day, from: Date()) { didSet { clearDateError() } }
-    @Published var billingMonth: Int? = nil { didSet { clearDateError() } }
-    @Published var reminderEnabled = true { didSet { clearDateError() } }
-    @Published var jointEmails: [String] = []
-    @Published var participants: [InvitationParticipant] = []
-    @Published var emailInput: String = ""
-    @Published var isLoading = false
-    @Published var error: String?
+    // MARK: - Published Properties (UI State)
+    @Published var name = "" { didSet { nameError = nil } }    // Abonelik adı
+    @Published var amount = ""                                 // Kullanıcının girdiği formatlı tutar
+    @Published var icon: String? = nil                         // Seçilen ikon (string key)
+    @Published var selectedCategory: String = "" { didSet { categoryError = nil } } // Kategori
+    @Published var selectedBillingCycle: BillingCycle = .monthly { didSet { clearDateError() } } // Ödeme periyodu
+    @Published var billingDay: Int = Calendar.current.component(.day, from: Date()) { didSet { clearDateError() } } // Ödeme günü
+    @Published var billingMonth: Int? = nil { didSet { clearDateError() } } // Ödeme ayı (Yıllık paketler için)
+    @Published var reminderEnabled = true { didSet { clearDateError() } } // Hatırlatıcı aktif mi?
+    @Published var jointEmails: [String] = []                  // Paylaşımlı abonelik için eklenen e-postalar
+    @Published var participants: [InvitationParticipant] = []  // Mevcut katılımcılar (düzenleme modunda)
+    @Published var emailInput: String = ""                     // Yeni e-posta girişi için geçici değişken
+    @Published var isLoading = false                           // İşlem devam ediyor mu?
+    @Published var error: String?                               // Genel hata mesajı
     @Published var responseMessage: String?
     
+    // MARK: - Validation Errors (Alan Bazlı Hatalar)
     @Published var nameError: String?
     @Published var amountError: String?
     @Published var categoryError: String?
     @Published var dateError: String?
     
-    private let repository = SubscriptionRepository.shared
-    private var editingSubscriptionId: String?
+    // MARK: - Use Cases (İş Mantığı Katmanları)
+    private let createSubscriptionUseCase: CreateSubscriptionUseCaseProtocol
+    private let updateSubscriptionUseCase: UpdateSubscriptionUseCaseProtocol
     
+    // MARK: - Private state
+    private var editingSubscriptionId: String? // Düzenleme modundaysak abonelik ID'si
+    
+    /// Yardımcı model: Hızlı seçim butonları için veri yapısı
     struct QuickShortcut: Identifiable {
         let id = UUID()
         let name: String
@@ -35,15 +42,15 @@ class AddSubscriptionViewModel: ObservableObject {
         let color: Color
     }
     
+    // MARK: - Static Data (Kategoriler ve Kısayollar)
+    
     static let shortcuts: [QuickShortcut] = [
         QuickShortcut(name: "Google", icon: "google", category: "category_software", defaultCost: nil, color: Color(hex: "4285F4")),
-        QuickShortcut(name: "Cursor", icon: "cursor", category: "category_software", defaultCost: nil, color: Color.primary),
-        QuickShortcut(name: "Claude", icon: "claude", category: "category_software", defaultCost: nil, color: Color(hex: "E56038")),
-        QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
-        QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
         QuickShortcut(name: "YouTube", icon: "youtube", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF0000")),
-        QuickShortcut(name: "Amazon", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "00A8E1")),
-        QuickShortcut(name: "HBO Max", icon: "hbomax", category: "category_streaming", defaultCost: nil, color: Color(hex: "5A2E81")),
+        QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
+        QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
+        QuickShortcut(name: "Amazon", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "FF9900")),
+        QuickShortcut(name: "HBO Max", icon: "hbomax", category: "category_streaming", defaultCost: nil, color: Color(hex: "000000")),
     ]
     
     static let categories: [(key: String, label: String)] = [
@@ -64,13 +71,27 @@ class AddSubscriptionViewModel: ObservableObject {
         ("category_other", "category_other"),
     ]
     
+    // MARK: - Initializer (Dependency Injection)
+    init(
+        createSubscriptionUseCase: CreateSubscriptionUseCaseProtocol? = nil,
+        updateSubscriptionUseCase: UpdateSubscriptionUseCaseProtocol? = nil
+    ) {
+        self.createSubscriptionUseCase = createSubscriptionUseCase ?? CreateSubscriptionUseCase()
+        self.updateSubscriptionUseCase = updateSubscriptionUseCase ?? UpdateSubscriptionUseCase()
+    }
+    
+    // Düzenleme modunda olup olmadığımızı kontrol eden yardımcı mülk
     var isEditing: Bool {
         editingSubscriptionId != nil
     }
     
+    // MARK: - Setup Logic (Veri Hazırlama)
+    
+    /// Mevcut bir aboneliği düzenleme ekranı için verileri doldurur.
     func setupForEdit(subscription: Subscription) {
         editingSubscriptionId = subscription.id
         name = subscription.name
+        // Tutar bilgisini bankacılık formatına çevirerek input alanına yazarız.
         amount = CurrencyFormatter.formatAmountWithoutSymbol(subscription.cost)
         icon = subscription.icon
         selectedCategory = subscription.category ?? "category_other"
@@ -82,11 +103,14 @@ class AddSubscriptionViewModel: ObservableObject {
         participants = subscription.participants ?? []
     }
     
+    // MARK: - Joint Email Logic (Ortak Üyelik Yönetimi)
+    
+    /// Listeye yeni bir katılımcı e-postası ekler.
     func addJointEmail() {
         let email = emailInput.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !email.isEmpty else { return }
         
-        // Simple email validation
+        // Temel e-posta validasyonu (RegEx)
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         guard emailPredicate.evaluate(with: email) else {
@@ -94,19 +118,25 @@ class AddSubscriptionViewModel: ObservableObject {
             return
         }
         
+        // Mükerrer kayıt kontrolü
         if !jointEmails.contains(email) && !participants.contains(where: { $0.email == email }) {
             jointEmails.append(email)
-            emailInput = ""
+            emailInput = "" // Giriş alanını temizle
         } else {
-            error = "Email already added" // Consider adding to Localizable.strings if needed
+            // "Email already added" mesajı UI'da gösterilir.
+            error = "Email already added"
         }
     }
     
+    /// Katılımcı e-postasını listeden çıkarır.
     func removeJointEmail(_ email: String) {
         jointEmails.removeAll { $0 == email }
         participants.removeAll { $0.email == email }
     }
     
+    // MARK: - Helpers (Yardımcı Araçlar)
+    
+    /// Hızlı seçim butonlarından (Google, Netflix vb.) gelen verileri forma uygular.
     func applyShortcut(_ shortcut: QuickShortcut) {
         name = shortcut.name
         icon = shortcut.icon
@@ -116,16 +146,97 @@ class AddSubscriptionViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Banking Amount Formatting (Canlı Tutar Formatlama)
+    
+    /// Kullanıcı yazdıkça binlik ayraçlı (nokta) ve ondalıklı (virgül) formatı uygular.
+    func handleAmountChange(_ newValue: String) {
+        let formatted = formatBankingAmount(newText: newValue)
+        
+        // KRİTİK: SwiftUI'nın TextField iç durumunu zorla senkronize etmek için bir sonraki run loop'ta güncelliyoruz.
+        // Bu sayede karakter karakter yazarken imleç takılması yaşanmaz.
+        DispatchQueue.main.async {
+            if formatted != self.amount {
+                self.amount = formatted
+            }
+        }
+        amountError = nil
+    }
+    
+    /// Bankacılık tarzı formatlama mantığı.
+    private func formatBankingAmount(newText: String) -> String {
+        if newText.isEmpty { return "" }
+        
+        // 1. Gruplama ayraçlarını (noktaları) temizle
+        let cleanedInput = newText.replacingOccurrences(of: ".", with: "")
+        
+        // 2. Sadece rakamları ve İLK virgül/noktayı kabul et
+        var filtered = ""
+        var hasComma = false
+        
+        for char in cleanedInput {
+            if char == "," || char == "." {
+                if !hasComma {
+                    filtered.append(",")
+                    hasComma = true
+                }
+            } else if char.isNumber {
+                filtered.append(char)
+            }
+        }
+        
+        if filtered.isEmpty { return "" }
+        
+        // Tam sayı ve ondalık kısımlara ayır
+        let parts = filtered.split(separator: ",", omittingEmptySubsequences: false)
+        let integerPartString = String(parts.first ?? "")
+        var decimalPartString = parts.count > 1 ? String(parts[1]) : ""
+        
+        // Ondalık kısmı 2 basamakla sınırla
+        if decimalPartString.count > 2 {
+            decimalPartString = String(decimalPartString.prefix(2))
+        }
+        
+        // Tam sayı kısmını binlik ayraçla (nokta) formatla
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = "."
+        formatter.decimalSeparator = ","
+        
+        var formattedInteger = ""
+        if integerPartString.isEmpty {
+            if parts.count > 1 {
+                formattedInteger = "0"
+            } else {
+                return ""
+            }
+        } else {
+            let integerNumber = Int64(integerPartString) ?? 0
+            formattedInteger = formatter.string(from: NSNumber(value: integerNumber)) ?? integerPartString
+        }
+        
+        if parts.count > 1 {
+            return formattedInteger + "," + decimalPartString
+        } else {
+            return formattedInteger
+        }
+    }
+    
+    // MARK: - Save Logic (Kayıt İşlemi)
+    
+    /// Formu kaydeder (Yeni oluşturma veya Güncelleme).
     func save(currency: Int, onSuccess: @escaping () -> Void) {
+        // Form validasyonu yap
         guard validate() else { return }
         
-        let costValue = Double(amount.replacingOccurrences(of: ",", with: ".")) ?? 0.0
+        // Bankacılık formatlı string'i sayısal değere (Double) çevir
+        let costValue = CurrencyFormatter.parseBankingAmount(amount)
         
         Task {
             isLoading = true
             error = nil
             
             if let editId = editingSubscriptionId {
+                // GÜNCELLEME MODU
                 let request = SubscriptionUpdateRequest(
                     name: name,
                     icon: icon,
@@ -139,16 +250,10 @@ class AddSubscriptionViewModel: ObservableObject {
                     reminderEnabled: reminderEnabled,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
-                let result = await repository.updateSubscription(id: editId, request)
-                switch result {
-                case .success(_):
-                    isLoading = false
-                    onSuccess()
-                case .failure(let err):
-                    isLoading = false
-                    error = err.localizedDescription
-                }
+                let result = await updateSubscriptionUseCase.execute(id: editId, request: request)
+                handleResult(result, onSuccess: onSuccess)
             } else {
+                // YENİ EKLEME MODU
                 let request = SubscriptionRequest(
                     name: name,
                     icon: icon,
@@ -162,53 +267,59 @@ class AddSubscriptionViewModel: ObservableObject {
                     reminderEnabled: reminderEnabled,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
-                let result = await repository.createSubscription(request)
-                switch result {
-                case .success(_):
-                    isLoading = false
-                    onSuccess()
-                case .failure(let err):
-                    isLoading = false
-                    error = err.localizedDescription
-                }
+                let result = await createSubscriptionUseCase.execute(request: request)
+                handleResult(result, onSuccess: onSuccess)
             }
         }
     }
     
+    /// API sonucunu yöneten yardımcı fonksiyon.
+    private func handleResult<T>(_ result: Result<T, Error>, onSuccess: @escaping () -> Void) {
+        isLoading = false
+        switch result {
+        case .success:
+            onSuccess()
+        case .failure(let err):
+            error = err.localizedDescription
+        }
+    }
+    
+    // MARK: - Validation (Alan Kontrolleri)
+    
+    /// Formun geçerli olup olmadığını kontrol eder.
     func validate() -> Bool {
+        // Hataları sıfırla
         nameError = nil
         amountError = nil
         categoryError = nil
         dateError = nil
         var isValid = true
         
-        // Name Validation (@NotBlank)
+        // İsim Kontrolü
         if name.trimmingCharacters(in: .whitespaces).isEmpty {
             nameError = "error_name_required".localized()
             isValid = false
         }
         
-        // Amount Validation (@NotNull & @DecimalMin(0.0))
-        let cleanAmount = amount.replacingOccurrences(of: ",", with: ".")
+        // Tutar Kontrolü
         if amount.trimmingCharacters(in: .whitespaces).isEmpty {
             amountError = "error_amount_required".localized()
             isValid = false
-        } else if let value = Double(cleanAmount) {
+        } else {
+            let value = CurrencyFormatter.parseBankingAmount(amount)
             if value <= 0 {
                 amountError = "error_amount_invalid".localized()
                 isValid = false
             }
-        } else {
-            amountError = "error_amount_invalid".localized()
-            isValid = false
         }
         
+        // Kategori Kontrolü
         if selectedCategory.isEmpty {
             categoryError = "error_category_required".localized()
             isValid = false
         }
         
-        // Date Validation (Billing Day/Month @NotNull)
+        // Tarih Kontrolü (Yıllık döngülerde ay seçimi zorunludur)
         if selectedBillingCycle == .yearly && billingMonth == nil {
             dateError = "error_date_required".localized()
             isValid = false
@@ -216,6 +327,8 @@ class AddSubscriptionViewModel: ObservableObject {
         
         return isValid
     }
+    
+    // MARK: - Utility (Yardımcılar)
     
     private func clearDateError() {
         dateError = nil
@@ -225,6 +338,7 @@ class AddSubscriptionViewModel: ObservableObject {
         error = nil
     }
     
+    /// Formu başlangıç durumuna döndürür.
     func reset() {
         editingSubscriptionId = nil
         name = ""

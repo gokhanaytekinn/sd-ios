@@ -395,3 +395,4 @@
 "limit_reached_message" = "Free plan is limited to 5 subscriptions. Please upgrade to Premium for unlimited tracking.";
 "ok" = "OK";
 "monthly_renewal_format" = "Every month on the %@";
+"yearly_renewal_format" = "Every year on %1$@ %2$@";

@@ -395,3 +395,4 @@
 "limit_reached_message" = "Bepul reja 5 ta obuna bilan cheklangan. Cheksiz kuzatish üçün Premium-ga o'ting.";
 "ok" = "OK";
 "monthly_renewal_format" = "Har oyning %@-sanasi";
+"yearly_renewal_format" = "Har yili %1$@-%2$@";

@@ -396,3 +396,4 @@
 "limit_reached_message" = "Ücretsiz plan 5 abonelik ile sınırlıdır. Sınırsız takip için lütfen Premium'a yükseltin.";
 "ok" = "Tamam";
 "monthly_renewal_format" = "Her ayın %@";
+"yearly_renewal_format" = "Her yıl %1$@ %2$@";

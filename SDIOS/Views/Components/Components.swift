@@ -18,6 +18,10 @@ extension View {
     func skeleton() -> some View {
         self.modifier(SkeletonModifier())
     }
+    
+    func withErrorDialog(errorMessage: Binding<String?>, onDismiss: @escaping () -> Void = {}) -> some View {
+        self.modifier(SDErrorDialog(errorMessage: errorMessage, onDismiss: onDismiss))
+    }
 }
 
 struct SkeletonCard: View {
@@ -86,18 +90,18 @@ struct SubscriptionCard: View {
                     VStack(alignment: .leading, spacing: 2) {
                         HStack(spacing: 4) {
                             Text(subscription.name)
-                                .font(.system(size: 16, weight: .bold))
+                                .font(.sdBodyBold)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             
                             if isJoint || (subscription.participants?.count ?? 0) > 0 {
                                 Image(systemName: "person.2.fill")
-                                    .font(.system(size: 12))
+                                    .font(.sdSmallBold)
                                     .foregroundColor(.primaryBlue)
                             }
                         }
                         
                         Text(categoryText)
-                            .font(.system(size: 12))
+                            .font(.sdSmall)
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                     }
                     
@@ -105,25 +109,31 @@ struct SubscriptionCard: View {
                     
                     // Cost & Date
                     VStack(alignment: .trailing, spacing: 2) {
-                        Text(CurrencyFormatter.formatAmount(subscription.cost, currencyCode: currency))
-                            .font(.system(size: 16, weight: .bold))
+                        Text(CurrencyFormatter.formatAmount(subscription.cost, currencyCode: subscription.currency))
+                            .font(.sdBodyBold)
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
-                        if showDate, let nextDate = subscription.getNextRenewalDate() {
+                        if showDate {
                             if subscription.billingCycle == .monthly, 
                                let billingDay = subscription.billingDay {
                                 Text(DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage))
-                                    .font(.system(size: 12))
+                                    .font(.sdSmall)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                            } else {
+                            } else if subscription.billingCycle == .yearly,
+                                      let billingDay = subscription.billingDay,
+                                      let billingMonth = subscription.billingMonth {
+                                Text(DateUtils.formatYearlyRenewal(day: billingDay, month: billingMonth, language: LanguagePreferences.shared.selectedLanguage))
+                                    .font(.sdSmall)
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            } else if let nextDate = subscription.getNextRenewalDate() {
                                 Text(DateUtils.formatDate(nextDate))
-                                    .font(.system(size: 12))
+                                    .font(.sdSmall)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
                         } else if showCountdown, let nextDate = subscription.getNextRenewalDate() {
                             let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? -1
                             Text(daysText(days))
-                                .font(.system(size: 12, weight: .medium))
+                                .font(.sdSmallMedium)
                                 .foregroundColor(days <= 3 && days >= 0 ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
                         }
                     }
@@ -147,7 +157,7 @@ struct SubscriptionCard: View {
         if let info = getBrandIconInfo(subscription.name) {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(info.color.opacity(0.12))
+                    .stroke(info.color.opacity(0.3), lineWidth: 1)
                     .frame(width: 36, height: 36)
                 BrandIconView(name: info.icon, color: info.color)
                     .frame(width: 20, height: 20)
@@ -155,8 +165,8 @@ struct SubscriptionCard: View {
         } else {
             let brandColor = getBrandColor(subscription.name)
             ZStack {
-                Circle()
-                    .fill(brandColor.opacity(0.1))
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(brandColor.opacity(0.3), lineWidth: 1)
                     .frame(width: 36, height: 36)
                 Text(subscription.name.prefix(1).uppercased())
                     .font(.system(size: 16, weight: .bold))
@@ -211,7 +221,7 @@ struct SubscriptionCard: View {
         if lowered.contains("adobe")   { return .adobeRed }
         if lowered.contains("youtube") { return Color(hex: "FF0000") }
         if lowered.contains("amazon")  { return Color(hex: "00A8E1") }
-        return .primaryBlue
+        return Color.dynamicColor(from: name)
     }
 }
 
@@ -223,20 +233,20 @@ struct ErrorDialog: View {
     var body: some View {
         VStack(spacing: 16) {
             Image(systemName: "exclamationmark.triangle.fill")
-                .font(.system(size: 40))
+                .font(.sdSubheadline)
                 .foregroundColor(.errorColor)
             
             Text("error".localized())
-                .font(.system(size: 18, weight: .bold))
+                .font(.sdSubheadlineSemibold)
             
             Text(message)
-                .font(.system(size: 14))
+                .font(.sdCaption)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.secondary)
             
             Button(action: onDismiss) {
                 Text("close".localized())
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.sdBodyBold)
                     .foregroundColor(.primaryBlue)
             }
         }
@@ -260,25 +270,25 @@ struct SDButton: View {
         Button(action: action) {
             HStack {
                 if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        .scaleEffect(0.8)
+                    Text("loading".localized())
+                        .font(.sdSubheadline)
+                        .foregroundColor(.primaryBlue)
                 } else {
-            Text(title)
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(isEnabled ? .primaryBlue : .primaryBlue.opacity(0.5))
+                    Text(title)
+                        .font(.sdBodyBold)
+                        .foregroundColor(isEnabled ? .primaryBlue : .primaryBlue.opacity(0.5))
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+            .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(isEnabled ? Color.appOutline(for: colorScheme).opacity(1) : Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+            )
         }
-    }
-    .frame(maxWidth: .infinity)
-    .frame(height: 45)
-    .background(Color.appSurface(for: colorScheme).opacity(0.001))
-    .cornerRadius(12)
-    .overlay(
-        RoundedRectangle(cornerRadius: 12)
-            .stroke(isEnabled ? Color.appOutline(for: colorScheme).opacity(1) : Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
-    )
-}
-.disabled(!isEnabled || isLoading)
+        .disabled(!isEnabled || isLoading)
     }
 }
 
@@ -313,13 +323,13 @@ struct SDOutlinedTextField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
-                .font(.system(size: 14, weight: .medium))
+                .font(.sdCaptionMedium)
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
             
             HStack(spacing: 12) {
                 if let icon = leadingIcon {
                     Image(systemName: icon)
-                        .font(.system(size: 20))
+                        .font(.sdSubheadline)
                         .foregroundColor(isFocused ? .primaryBlue : Color.appOnBackground(for: colorScheme).opacity(0.4))
                         .frame(width: 24)
                 }
@@ -329,10 +339,14 @@ struct SDOutlinedTextField: View {
                         if let focusBinding = focusBinding {
                             SecureField(placeholder, text: $text)
                                 .focused(focusBinding, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         } else {
                             SecureField(placeholder, text: $text)
                                 .focused($internalFocus, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         }
                     } else {
@@ -340,11 +354,15 @@ struct SDOutlinedTextField: View {
                             TextField(placeholder, text: $text)
                                 .keyboardType(keyboardType)
                                 .focused(focusBinding, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         } else {
                             TextField(placeholder, text: $text)
                                 .keyboardType(keyboardType)
                                 .focused($internalFocus, equals: focusValue)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.none)
                                 .onSubmit { onTrailingIconTap?() }
                         }
                     }
@@ -358,7 +376,7 @@ struct SDOutlinedTextField: View {
                 } else if let icon = trailingIcon {
                     Button(action: { onTrailingIconTap?() }) {
                         Image(systemName: icon)
-                            .font(.system(size: 20, weight: .bold))
+                            .font(.sdSubheadlineSemibold)
                             .foregroundColor(.primaryBlue)
                             .frame(width: 40, height: 40)
                     }
@@ -408,12 +426,12 @@ struct SettingsToggleItem: View {
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: icon)
-                .font(.system(size: 18))
+                .font(.sdSubheadline)
                 .foregroundColor(iconColor)
                 .frame(width: 24, height: 24)
             
             Text(title)
-                .font(.system(size: 16))
+                .font(.sdBody)
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
             
             Spacer()
@@ -454,18 +472,18 @@ struct SettingsNavigationItem: View {
         Button(action: onTap) {
             HStack(spacing: 16) {
                 Image(systemName: icon)
-                    .font(.system(size: 18))
+                    .font(.sdSubheadline)
                     .foregroundColor(iconColor)
                     .frame(width: 24, height: 24)
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
-                        .font(.system(size: 16))
+                        .font(.sdBody)
                         .foregroundColor(textColor ?? Color.appOnBackground(for: colorScheme))
                     
                     if let subtitle = subtitle {
                         Text(subtitle)
-                            .font(.system(size: 12))
+                            .font(.sdSmall)
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                     }
                 }
@@ -473,7 +491,7 @@ struct SettingsNavigationItem: View {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.sdSmallSemibold)
                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
             }
             .padding(.horizontal, 16)
@@ -498,11 +516,11 @@ struct GoogleSignInButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 12) {
-                Image(systemName: "g.circle.fill") // Placeholder for Google Icon
-                    .font(.system(size: 20))
+                Image(systemName: "g.circle.fill")
+                    .font(.sdSubheadline)
                 
                 Text("sign_in_with_google".localized())
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.sdBodyBold)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 45)
@@ -538,8 +556,104 @@ struct SDErrorDialog: ViewModifier {
             }
     }
 }
-extension View {
-    func withErrorDialog(errorMessage: Binding<String?>, onDismiss: @escaping () -> Void) -> some View {
-        self.modifier(SDErrorDialog(errorMessage: errorMessage, onDismiss: onDismiss))
+// MARK: - Glass Card (Modern Cam Efektli Kart)
+struct GlassCard<Content: View>: View {
+    let content: Content
+    var gradientColors: [Color] = [.primaryBlue.opacity(0.6), .primaryBlue.opacity(0.1)]
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        content
+            .background(
+                ZStack {
+                    // Hafif Cam Efekti
+                    BlurView(style: colorScheme == .dark ? .systemThinMaterialDark : .systemThinMaterialLight)
+                    
+                    // İç Gradyan Aydınlatma
+                    LinearGradient(
+                        colors: [.white.opacity(0.05), .clear],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                }
+            )
+            .cornerRadius(24)
+            .overlay(
+                // Gradyan Bordür (Premium Görünüm)
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(
+                        LinearGradient(
+                            colors: [.white.opacity(0.2), .clear, .white.opacity(0.05)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    )
+            )
+            .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 10)
+    }
+}
+
+struct BlurView: UIViewRepresentable {
+    var style: UIBlurEffect.Style
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        UIVisualEffectView(effect: UIBlurEffect(style: style))
+    }
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
+}
+
+// MARK: - Premium Button (Gelişmiş Etkileşimli Buton)
+struct PremiumButton: View {
+    let title: String
+    var icon: String? = nil
+    var backgroundColor: Color = .primaryBlue
+    var isEnabled: Bool = true
+    var isLoading: Bool = false
+    let action: () -> Void
+    
+    @State private var isPressed = false
+    
+    var body: some View {
+        Button(action: {
+            #if os(iOS)
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+            #endif
+            action()
+        }) {
+            HStack(spacing: 8) {
+                if isLoading {
+                    Text("loading".localized())
+                        .font(.sdSubheadline)
+                        .foregroundColor(.white)
+                } else {
+                    if let icon = icon {
+                        Image(systemName: icon)
+                            .font(.system(size: 16, weight: .bold))
+                    }
+                    Text(title)
+                        .font(.sdBodyBold)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .background(isEnabled ? backgroundColor : backgroundColor.opacity(0.5))
+            .foregroundColor(.white)
+            .cornerRadius(16)
+            .scaleEffect(isPressed ? 0.96 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .disabled(!isEnabled || isLoading)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded { _ in isPressed = false }
+        )
     }
 }

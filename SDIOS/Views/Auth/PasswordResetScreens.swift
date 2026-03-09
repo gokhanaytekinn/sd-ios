@@ -50,7 +50,7 @@ struct ForgotPasswordScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "email"
                     )
-                    .onChange(of: email) { _ in self.authViewModel.clearEmailError() }
+                    .onChange(of: email) { oldValue, newValue in self.authViewModel.clearEmailError() }
                     
                     Spacer().frame(height: 32)
                     
@@ -153,7 +153,7 @@ struct VerificationCodeScreen: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(isFocused ? Color.primaryBlue : Color.appOnBackground(for: colorScheme).opacity(0.2), lineWidth: isFocused ? 2 : 1)
                             )
-                            .onChange(of: code) { newValue in
+                            .onChange(of: code) { oldValue, newValue in
                                 if newValue.count > 6 {
                                     code = String(newValue.prefix(6))
                                 }
@@ -239,7 +239,7 @@ struct ResetPasswordScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "newPassword"
                     )
-                    .onChange(of: newPassword) { _ in self.authViewModel.clearPasswordError() }
+                    .onChange(of: newPassword) { oldValue, newValue in self.authViewModel.clearPasswordError() }
                     
                     if newPassword.count < 6 {
                         Spacer().frame(height: 8)
@@ -260,7 +260,7 @@ struct ResetPasswordScreen: View {
                         focusBinding: $focusedField,
                         focusValue: "confirmPassword"
                     )
-                    .onChange(of: confirmPassword) { _ in self.authViewModel.clearConfirmPasswordError() }
+                    .onChange(of: confirmPassword) { oldValue, newValue in self.authViewModel.clearConfirmPasswordError() }
                     
                     if !confirmPassword.isEmpty {
                         Spacer().frame(height: 8)

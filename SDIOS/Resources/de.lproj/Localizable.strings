@@ -394,3 +394,4 @@
 "limit_reached_message" = "Der kostenlose Plan ist auf 5 Abonnements begrenzt. Bitte führen Sie ein Upgrade auf Premium durch.";
 "ok" = "OK";
 "monthly_renewal_format" = "Jeden Monat am %@";
+"yearly_renewal_format" = "Jedes Jahr am %1$@. %2$@";

@@ -62,7 +62,6 @@ struct DateUtils {
     static func formatTurkishDay(_ day: Int) -> String {
         let suffix: String
         let lastDigit = day % 10
-        let lastTwoDigits = day % 100
         
         switch day {
         case 10, 30: suffix = "u"
@@ -114,5 +113,19 @@ struct DateUtils {
         let formattedDay = formatDayWithSuffix(day: day, language: language)
         let format = "monthly_renewal_format".localized()
         return String(format: format, formattedDay)
+    }
+    
+    static func formatYearlyRenewal(day: Int, month: Int, language: String) -> String {
+        let monthName = "month_\(month)".localized()
+        let format = "yearly_renewal_format".localized()
+        
+        let formattedDay: String
+        if language == "tr" || language == "az" {
+            formattedDay = "\(day)"
+        } else {
+            formattedDay = formatDayWithSuffix(day: day, language: language)
+        }
+        
+        return String(format: format, formattedDay, monthName)
     }
 }

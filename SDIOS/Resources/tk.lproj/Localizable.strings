@@ -395,3 +395,4 @@
 "limit_reached_message" = "Mugt meýilnama 5 abuna bilen çäklenýär. Çäksiz yzarlamak üçin Premium-a geçiň.";
 "ok" = "OK";
 "monthly_renewal_format" = "Her aýyň %@-yna";
+"yearly_renewal_format" = "Her ýyl %1$@ %2$@";

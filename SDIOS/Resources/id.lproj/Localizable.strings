@@ -393,3 +393,4 @@
 "limit_reached_message" = "Paket gratis terbatas pada 5 langganan. Silakan tingkatkan ke Premium untuk pelacakan tanpa batas.";
 "ok" = "OK";
 "monthly_renewal_format" = "Setiap bulan pada tanggal %@";
+"yearly_renewal_format" = "Setiap tahun pada %1$@ %2$@";

@@ -395,3 +395,4 @@
 "limit_reached_message" = "Pulsuz plan 5 abunə ilə məhdudlaşır. Sərhədsiz izləmə üçün Premium-a keçin.";
 "ok" = "Tamam";
 "monthly_renewal_format" = "Hər ayın %@";
+"yearly_renewal_format" = "Hər il %1$@ %2$@";

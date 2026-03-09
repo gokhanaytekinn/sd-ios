@@ -2,6 +2,7 @@ import Foundation
 import GoogleMobileAds
 import UIKit
 
+@MainActor
 class AdMobManager: NSObject, FullScreenContentDelegate {
     static let shared = AdMobManager()
     
@@ -46,12 +47,19 @@ class AdMobManager: NSObject, FullScreenContentDelegate {
         print("AdMob: Attempting to load interstitial with ID: \(interstitialID)")
         let request = Request()
         InterstitialAd.load(with: interstitialID, request: request) { [weak self] ad, error in
-            if let error = error {
-                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
-                return
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    let nsError = error as NSError
+                    print("AdMob: Failed to load interstitial ad with error: \(nsError.localizedDescription)")
+                    print("AdMob: Error Domain: \(nsError.domain)")
+                    print("AdMob: Error Code: \(nsError.code)")
+                    return
+                }
+                self.interstitial = ad
+                self.interstitial?.fullScreenContentDelegate = self
             }
-            self?.interstitial = ad
-            self?.interstitial?.fullScreenContentDelegate = self
         }
     }
     

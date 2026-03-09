@@ -31,6 +31,18 @@ struct CurrencyFormatter {
     }
     
     static func formatAmountWithoutSymbol(_ amount: Double) -> String {
-        return String(format: "%.2f", amount)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = "."
+        formatter.decimalSeparator = ","
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: NSNumber(value: amount)) ?? "0,00"
+    }
+    
+    static func parseBankingAmount(_ string: String) -> Double {
+        let clean = string.replacingOccurrences(of: ".", with: "")
+                          .replacingOccurrences(of: ",", with: ".")
+        return Double(clean) ?? 0.0
     }
 }

@@ -395,3 +395,4 @@
 "limit_reached_message" = "Тегін жоспар 5 жазылыммен шектелген. Шексіз бақылау үшін Premium-ға жаңартыңыз.";
 "ok" = "ОК";
 "monthly_renewal_format" = "Әр айдың %@-і";
+"yearly_renewal_format" = "Жыл сайын %1$@ %2$@";

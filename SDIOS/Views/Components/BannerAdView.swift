@@ -2,14 +2,27 @@ import SwiftUI
 import GoogleMobileAds
 
 struct BannerAdView: UIViewRepresentable {
+    @Binding var isLoaded: Bool
     
     class Coordinator: NSObject, BannerViewDelegate {
+        var parent: BannerAdView
+        
+        init(_ parent: BannerAdView) {
+            self.parent = parent
+        }
+        
         func bannerViewDidReceiveAd(_ bannerView: BannerView) {
             print("AdMob: Banner ad received successfully.")
+            DispatchQueue.main.async {
+                self.parent.isLoaded = true
+            }
         }
 
         func bannerView(_ bannerView: BannerView, didFailToReceiveAdWithError error: Error) {
             print("AdMob: Banner ad failed to load with error: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                self.parent.isLoaded = false
+            }
         }
 
         func bannerViewDidRecordImpression(_ bannerView: BannerView) {
@@ -18,13 +31,12 @@ struct BannerAdView: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(self)
     }
 
     func makeUIView(context: Context) -> BannerView {
-        // Use adaptive banner size
-        let viewWidth = UIScreen.main.bounds.width
-        let banner = BannerView(adSize: currentOrientationAnchoredAdaptiveBanner(width: viewWidth))
+        // Use standard banner size for better compatibility
+        let banner = BannerView(adSize: AdSizeBanner)
         
         banner.adUnitID = AdMobManager.bannerID
         banner.delegate = context.coordinator

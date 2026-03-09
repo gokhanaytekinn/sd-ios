@@ -395,3 +395,4 @@
 "limit_reached_message" = "免费计划限制为 5 个订阅。请升级到高级版以进行无限追踪。";
 "ok" = "确定";
 "monthly_renewal_format" = "每月 %@ 日";
+"yearly_renewal_format" = "每年 %2$@ %1$@ 日";
