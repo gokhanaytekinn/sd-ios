@@ -61,7 +61,7 @@ struct DashboardScreen: View {
                             VStack(alignment: .trailing, spacing: 4) {
                                 Text("\(viewModel.subscriptions.count) \("active".localized().lowercased())")
                                     .font(.system(size: 12, weight: .medium))
-                                    .foregroundColor(.primaryBlue)
+                                    .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : .primaryBlue)
                             }
                         }
                         .padding(16)

@@ -56,7 +56,7 @@ struct SubscriptionsListScreen: View {
                         VStack(alignment: .trailing, spacing: 4) {
                             Text("\(viewModel.activeSubscriptions.count) \("active".localized().lowercased())")
                                 .font(.system(size: 12, weight: .medium))
-                                .foregroundColor(.primaryBlue)
+                                .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : .primaryBlue)
                         }
                     }
                     .padding(16)
@@ -76,7 +76,7 @@ struct SubscriptionsListScreen: View {
                             HStack {
                                 Text("\(viewModel.allSubscriptions.count)/5 \("subscriptions".localized())")
                                     .font(.system(size: 12, weight: .medium))
-                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                    .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
                                 Spacer()
                                 Text("free_plan".localized())
                                     .font(.system(size: 10, weight: .bold))
@@ -94,7 +94,7 @@ struct SubscriptionsListScreen: View {
                                         .frame(height: 6)
                                     
                                     RoundedRectangle(cornerRadius: 4)
-                                        .fill(Color.primaryBlue)
+                                        .fill(authViewModel.isSubscriptionLimitReached ? .errorColor : Color.primaryBlue)
                                         .frame(width: geo.size.width * min(CGFloat(viewModel.allSubscriptions.count) / 5.0, 1.0), height: 6)
                                 }
                             }
