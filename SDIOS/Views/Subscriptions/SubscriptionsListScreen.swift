@@ -30,7 +30,7 @@ struct SubscriptionsListScreen: View {
                     // Header
                     HStack {
                         Text("subscriptions".localized())
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.sdHeadline)
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         Spacer()
                     }
@@ -43,11 +43,11 @@ struct SubscriptionsListScreen: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("total_monthly".localized())
-                                .font(.system(size: 12, weight: .medium))
+                                .font(.sdSmallMedium)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             
                             Text(CurrencyFormatter.formatAmount(viewModel.stats.totalMonthlyCost, currencyCode: currency))
-                                .font(.system(size: 22, weight: .bold))
+                                .font(.sdAmount)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                         }
                         
@@ -55,7 +55,7 @@ struct SubscriptionsListScreen: View {
                         
                         VStack(alignment: .trailing, spacing: 4) {
                             Text("\(viewModel.activeSubscriptions.count) \("active".localized().lowercased())")
-                                .font(.system(size: 12, weight: .medium))
+                                .font(.sdSmallMedium)
                                 .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : .primaryBlue)
                         }
                     }
@@ -75,11 +75,11 @@ struct SubscriptionsListScreen: View {
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
                                 Text("\(viewModel.allSubscriptions.count)/5 \("subscriptions".localized())")
-                                    .font(.system(size: 12, weight: .medium))
+                                    .font(.sdSmallMedium)
                                     .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
                                 Spacer()
                                 Text("free_plan".localized())
-                                    .font(.system(size: 10, weight: .bold))
+                                    .font(.sdLabelSemibold) // Map semantic if needed, or stick to current
                                     .foregroundColor(.primaryBlue)
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 2)
@@ -124,11 +124,11 @@ struct SubscriptionsListScreen: View {
                     // Search Bar
                     HStack(spacing: 12) {
                         Image(systemName: "magnifyingglass")
-                            .font(.system(size: 20))
+                            .font(.sdSubheadline)
                             .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
                         
                         TextField("search_placeholder".localized(), text: $searchText)
-                            .font(.system(size: 16))
+                            .font(.sdBody)
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                             .autocapitalization(.none)
                         
@@ -157,7 +157,7 @@ struct SubscriptionsListScreen: View {
                             if selectedTab == 1 && !viewModel.invitations.isEmpty {
                                 HStack {
                                     Text(String(format: "pending_invitations".localized(), viewModel.invitations.count))
-                                        .font(.system(size: 14, weight: .bold))
+                                        .font(.sdCaptionBold)
                                         .foregroundColor(.primaryBlue)
                                     Spacer()
                                 }
@@ -251,7 +251,7 @@ struct SubscriptionsListScreen: View {
     private func tabButton(_ title: String, tag: Int) -> some View {
         Button(action: { selectedTab = tag }) {
             Text(title)
-                .font(.system(size: 14, weight: .medium))
+                .font(.sdCaptionMedium)
                 .foregroundColor(selectedTab == tag ? .white : Color.appOnSurfaceVariant(for: colorScheme))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
@@ -274,16 +274,16 @@ struct SubscriptionsListScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 4) {
                         Text(invitation.subscriptionName ?? "")
-                            .font(.system(size: 16, weight: .bold))
+                            .font(.sdBodyBold)
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
                         Image(systemName: "person.2.fill")
-                            .font(.system(size: 12))
+                            .font(.sdSmallBold)
                             .foregroundColor(.primaryBlue)
                     }
                     
                     Text("\( "joint_subscription".localized()) • \(billingCycleText(invitation.billingCycle ?? 1))")
-                        .font(.system(size: 12))
+                        .font(.sdSmall)
                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                 }
                 
@@ -291,7 +291,7 @@ struct SubscriptionsListScreen: View {
                 
                 // Price
                 Text(CurrencyFormatter.formatAmount(invitation.amount ?? 0.0, currencyCode: invitation.currency ?? 1))
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.sdBodyBold)
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
             }
             .padding(.top, 4)
@@ -301,7 +301,7 @@ struct SubscriptionsListScreen: View {
                 
                 Button(action: { viewModel.rejectInvitation(id: invitation.id) }) {
                     Text("reject".localized())
-                        .font(.system(size: 14, weight: .medium))
+                        .font(.sdCaptionMedium)
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
@@ -314,7 +314,7 @@ struct SubscriptionsListScreen: View {
                 
                 Button(action: { viewModel.acceptInvitation(id: invitation.id) }) {
                     Text("accept".localized())
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.sdBodyBold)
                         .foregroundColor(.primaryBlue)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)

@@ -31,11 +31,11 @@ struct DashboardScreen: View {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(String(format: "hello_user".localized(), authViewModel.userName ?? "guest_user".localized()))
-                                    .font(.system(size: 14))
+                                    .font(.sdCaption)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 
                                 Text("dashboard_title".localized())
-                                    .font(.system(size: 24, weight: .bold))
+                                    .font(.sdHeadline)
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                             }
                         }
@@ -48,11 +48,11 @@ struct DashboardScreen: View {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("total_monthly".localized())
-                                    .font(.system(size: 12, weight: .medium))
+                                    .font(.sdSmallMedium)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 
                                 Text(CurrencyFormatter.formatAmount(viewModel.stats.totalMonthlyCost, currencyCode: currency))
-                                    .font(.system(size: 22, weight: .bold))
+                                    .font(.sdAmount)
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                             }
                             
@@ -60,7 +60,7 @@ struct DashboardScreen: View {
                             
                             VStack(alignment: .trailing, spacing: 4) {
                                 Text("\(viewModel.subscriptions.count) \("active".localized().lowercased())")
-                                    .font(.system(size: 12, weight: .medium))
+                                    .font(.sdSmallMedium)
                                     .foregroundColor(authViewModel.isSubscriptionLimitReached ? .errorColor : .primaryBlue)
                             }
                         }
@@ -78,7 +78,7 @@ struct DashboardScreen: View {
                         // Upcoming Payments
                         HStack {
                             Text("upcoming_payments".localized())
-                                .font(.system(size: 18, weight: .bold))
+                                .font(.sdSubheadlineSemibold)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             Spacer()
                         }
@@ -88,7 +88,7 @@ struct DashboardScreen: View {
                         
                         if viewModel.upcomingSubscriptions.isEmpty {
                             Text("no_upcoming_payments".localized())
-                                .font(.system(size: 14))
+                                .font(.sdCaption)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .padding(.horizontal, 24)
                         } else {
@@ -110,7 +110,7 @@ struct DashboardScreen: View {
                         // Most Expensive
                         HStack {
                             Text("most_expensive".localized())
-                                .font(.system(size: 18, weight: .bold))
+                                .font(.sdSubheadlineSemibold)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             Spacer()
                         }
@@ -136,9 +136,9 @@ struct DashboardScreen: View {
                         Button(action: onNavigateToSubscriptions) {
                             HStack {
                                 Text("view_all_subscriptions".localized())
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.sdBodyBold)
                                 Image(systemName: "arrow.right")
-                                    .font(.system(size: 16, weight: .bold))
+                                    .font(.sdBodyBold)
                             }
                             .foregroundColor(.primaryBlue)
                             .frame(maxWidth: .infinity)

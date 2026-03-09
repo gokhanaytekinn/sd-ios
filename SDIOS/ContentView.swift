@@ -204,11 +204,9 @@ struct ContentView: View {
                     if authViewModel.tier == 1 {
                         BannerAdView(isLoaded: $isBannerLoaded)
                             .frame(height: isBannerLoaded ? 60 : 0) // Hide when not loaded
-                            .background(Color.appSurface(for: colorScheme))
                             .clipped()
                     }
                 }
-                .background(Color.appSurface(for: colorScheme).ignoresSafeArea(edges: .bottom))
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
@@ -319,31 +317,47 @@ struct ContentView: View {
 
                 
                 Button(action: {
-                    selectedTab = tab
-                    navigationPath = []
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        selectedTab = tab
+                        navigationPath = []
+                    }
                 }) {
-                    VStack(spacing: 4) {
-                        Image(systemName: tab.icon)
-                            .font(.system(size: 20))
+                    VStack(spacing: 2) {
+                        Image(systemName: selectedTab == tab ? tab.icon : tab.icon.replacingOccurrences(of: ".fill", with: ""))
+                            .font(.system(size: 18))
                             .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
                         
                         Text(tab.title)
-                            .font(.system(size: 10, weight: .medium))
+                            .font(selectedTab == tab ? .sdLabelSmall : .sdLabel)
                             .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 6)
                 }
                 .buttonStyle(.plain)
             }
         }
-        .padding(.horizontal, 8)
-        .padding(.top, 8)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 4)
         .background(
-            Color.appSurface(for: colorScheme)
-                .ignoresSafeArea(edges: .bottom)
-                .shadow(color: .black.opacity(0.1), radius: 8, y: -4)
+            ZStack {
+                Capsule()
+                    .stroke(
+                        LinearGradient(
+                            colors: [
+                                .white.opacity(0.4),
+                                .white.opacity(0.1),
+                                .clear,
+                                .white.opacity(0.2)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1.0
+                    )
+            }
         )
+        .padding(.horizontal, 32)
     }
     
     // MARK: - FAB
