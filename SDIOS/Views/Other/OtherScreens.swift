@@ -229,13 +229,12 @@ struct PremiumUpgradeScreen: View {
             }
             
             if authViewModel.isLoading {
-                Color.appBackground(for: colorScheme).opacity(0.8).ignoresSafeArea()
-                VStack(spacing: 16) {
+                Color.appBackground(for: colorScheme).opacity(0.6).ignoresSafeArea()
+                VStack(spacing: 12) {
                     PlanCardSkeleton()
-                    Text("loading".localized())
-                        .font(.sdBodyBold)
-                        .foregroundColor(.primaryBlue)
+                    PlanCardSkeleton()
                 }
+                .padding(24)
                 .transition(.opacity)
             }
         }

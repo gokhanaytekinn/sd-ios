@@ -67,6 +67,8 @@
 				SDWidgets/WidgetViews.swift,
 				Services/CurrencyService.swift,
 				Theme/Colors.swift,
+				Utils/CurrencyFormatter.swift,
+				Views/Components/BrandIcons.swift,
 			);
 			target = D92551FC2F5F61B700DC8A83 /* SDWidgetsExtension */;
 		};

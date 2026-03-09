@@ -29,9 +29,11 @@ struct UpcomingEntry: TimelineEntry {
 }
 
 struct UpcomingPaymentsWidgetView : View {
+    @Environment(\.widgetFamily) var family
     var entry: UpcomingProvider.Entry
 
     var upcomingSubs: [Subscription] {
+        let count = family == .systemLarge ? 5 : 2
         let tenDaysFromNow = Calendar.current.date(byAdding: .day, value: 10, to: Date()) ?? Date()
         return entry.subscriptions.filter { sub in
             guard let nextDate = sub.getNextRenewalDate() else { return false }
@@ -39,38 +41,38 @@ struct UpcomingPaymentsWidgetView : View {
         }.sorted { 
             guard let d1 = $0.getNextRenewalDate(), let d2 = $1.getNextRenewalDate() else { return false }
             return d1 < d2
-        }.prefix(5).map { $0 }
+        }.prefix(count).map { $0 }
     }
 
     var body: some View {
-        ZStack {
-            WidgetBackground()
+        VStack(alignment: .leading, spacing: 10) {
+            WidgetHeader(title: "Yaklaşan Ödemeler", icon: "calendar")
             
-            VStack(alignment: .leading, spacing: 0) {
-                WidgetHeader(title: "Yaklaşan Ödemeler", icon: "calendar")
-                
-                if upcomingSubs.isEmpty {
-                    Spacer()
-                    Text("Yaklaşan ödeme yok")
-                        .font(.system(size: 12))
-                        .foregroundColor(.gray)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                    Spacer()
-                } else {
-                    VStack(spacing: 4) {
-                        ForEach(upcomingSubs) { sub in
-                            SubscriptionWidgetRow(
-                                name: sub.name,
-                                cost: String(format: "%.2f", sub.cost),
-                                date: sub.getNextRenewalDate()?.formatted(date: .abbreviated, time: .omitted),
-                                icon: sub.icon
-                            )
-                        }
+            if upcomingSubs.isEmpty {
+                Spacer()
+                Text("Yaklaşan ödeme yok")
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Spacer()
+            } else {
+                VStack(spacing: family == .systemLarge ? 12 : 8) {
+                    ForEach(upcomingSubs) { sub in
+                        SubscriptionWidgetRow(
+                            name: sub.name,
+                            cost: CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency),
+                            date: sub.getNextRenewalDate()?.formatted(date: .abbreviated, time: .omitted),
+                            icon: sub.icon,
+                            cycle: sub.billingCycle
+                        )
+                    }
+                    if family == .systemLarge {
+                        Spacer()
+                    } else {
+                        Spacer(minLength: 0)
                     }
                 }
-                Spacer()
             }
-            .padding()
         }
     }
 }
@@ -81,7 +83,7 @@ struct UpcomingPaymentsWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: UpcomingProvider()) { entry in
             UpcomingPaymentsWidgetView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .containerBackground(.clear, for: .widget)
         }
         .configurationDisplayName("Yaklaşan Ödemeler")
         .description("Gelecek 10 gün içindeki ödemelerinizi gösterir.")

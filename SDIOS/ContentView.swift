@@ -61,20 +61,8 @@ struct ContentView: View {
     var body: some View {
         Group {
             if authViewModel.isLoading && !authViewModel.isAuthenticated {
-                // Splash
-                ZStack {
-                    Color.appBackground(for: colorScheme).ignoresSafeArea()
-                    VStack(spacing: 20) {
-                        Image(systemName: "creditcard.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(.primaryBlue)
-                            .shimmer()
-                        
-                        Text("loading".localized())
-                            .font(.sdBodyMedium)
-                            .foregroundColor(.primaryBlue)
-                    }
-                }
+                // Splash / Loading
+                DashboardSkeleton()
             } else if !authViewModel.isAuthenticated {
                 // Auth Flow
                 NavigationStack(path: $navigationPath) {
