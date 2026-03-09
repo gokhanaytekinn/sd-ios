@@ -173,33 +173,26 @@ struct PremiumUpgradeScreen: View {
                                 period: ""
                             )
                             
-                            ForEach(authViewModel.iapProducts, id: \.id) { product in
-                                let isYearly = product.id.contains("yearly")
-                                planCard(
-                                    id: isYearly ? 2 : 1,
-                                    title: product.displayName,
-                                    price: product.displayPrice,
-                                    period: isYearly ? "/ \(NSLocalizedString("period_yearly", comment: ""))" : "/ \(NSLocalizedString("period_monthly", comment: ""))",
-                                    isPopular: isYearly
-                                )
-                            }
-                            
-                            // Fallback if products not loaded yet
                             if authViewModel.iapProducts.isEmpty {
-                                planCard(
-                                    id: 1,
-                                    title: NSLocalizedString("plan_monthly_premium", comment: ""),
-                                    price: "₺99.99",
-                                    period: NSLocalizedString("per_month", comment: "")
-                                )
-                                
-                                planCard(
-                                    id: 2,
-                                    title: NSLocalizedString("plan_yearly_premium", comment: ""),
-                                    price: "₺799.99",
-                                    period: NSLocalizedString("per_year", comment: ""),
-                                    isPopular: true
-                                )
+                                VStack(spacing: 16) {
+                                    ProgressView()
+                                        .tint(.primaryBlue)
+                                    Text("loading".localized())
+                                        .font(.system(size: 14))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                }
+                                .frame(height: 150)
+                            } else {
+                                ForEach(authViewModel.iapProducts, id: \.id) { product in
+                                    let isYearly = product.id.contains("yearly")
+                                    planCard(
+                                        id: isYearly ? 2 : 1,
+                                        title: product.displayName,
+                                        price: product.displayPrice,
+                                        period: isYearly ? "/ \(NSLocalizedString("period_yearly", comment: ""))" : "/ \(NSLocalizedString("period_monthly", comment: ""))",
+                                        isPopular: isYearly
+                                    )
+                                }
                             }
                         }
                         
@@ -218,8 +211,8 @@ struct PremiumUpgradeScreen: View {
                                 
                                 if let product = productToPurchase {
                                     authViewModel.purchase(product: product)
-                                } else {
-                                    // Handle case where products might not be loaded but user clicks upgrade
+                                } else if selectedPlan != 0 {
+                                    // If a premium plan is selected but products are not loaded
                                     print("No product found for selected plan: \(selectedPlan)")
                                 }
                             }) {
@@ -239,7 +232,7 @@ struct PremiumUpgradeScreen: View {
                                 RoundedRectangle(cornerRadius: 12)
                                     .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
                             )
-                            .disabled(isCurrentPlanSelected || authViewModel.isLoading)
+                            .disabled(isCurrentPlanSelected || authViewModel.isLoading || (selectedPlan != 0 && authViewModel.iapProducts.isEmpty))
                             
                             HStack(spacing: 20) {
                                 Button("restore_purchase".localized()) { authViewModel.restorePurchases() }
@@ -255,9 +248,32 @@ struct PremiumUpgradeScreen: View {
                     .padding(.bottom, 20)
                 }
             }
+            
+            if authViewModel.isLoading {
+                Color.black.opacity(0.2).ignoresSafeArea()
+                ProgressView()
+                    .tint(.primaryBlue)
+                    .scaleEffect(1.5)
+            }
+        }
+        .alert("error".localized(), isPresented: Binding(
+            get: { authViewModel.error != nil },
+            set: { if !$0 { authViewModel.clearGeneralError() } }
+        )) {
+            Button("ok".localized(), role: .cancel) { }
+        } message: {
+            if let error = authViewModel.error {
+                Text(error)
+            }
         }
         .onAppear {
             setupInitialSelection()
+            // Ensure products are fetched if they are missing
+            if authViewModel.iapProducts.isEmpty {
+                Task {
+                    await StoreKitManager.shared.fetchProducts()
+                }
+            }
         }
         .sheet(isPresented: $showTermsDialog) {
             termsSheet
