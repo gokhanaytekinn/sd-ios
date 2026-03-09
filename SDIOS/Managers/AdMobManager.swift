@@ -47,7 +47,10 @@ class AdMobManager: NSObject, FullScreenContentDelegate {
         let request = Request()
         InterstitialAd.load(with: interstitialID, request: request) { [weak self] ad, error in
             if let error = error {
-                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                let nsError = error as NSError
+                print("AdMob: Failed to load interstitial ad with error: \(nsError.localizedDescription)")
+                print("AdMob: Error Domain: \(nsError.domain)")
+                print("AdMob: Error Code: \(nsError.code)")
                 return
             }
             self?.interstitial = ad

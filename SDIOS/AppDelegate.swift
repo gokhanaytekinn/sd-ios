@@ -1,5 +1,7 @@
 import UIKit
 import UserNotifications
+import AppTrackingTransparency
+import AdSupport
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -9,10 +11,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Request notification permission
         requestNotificationPermission()
         
-        // Setup AdMob
-        AdMobManager.shared.setup()
+        // Request IDFA tracking permission and then setup AdMob
+        requestTrackingPermission()
         
         return true
+    }
+    
+    func requestTrackingPermission() {
+        // Delay slightly to ensure the app is in the foreground
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { status in
+                    print("ATTrackingManager Status: \(status.rawValue)")
+                    // Setup AdMob regardless of status, but it helps with fill rate if accepted
+                    AdMobManager.shared.setup()
+                }
+            } else {
+                AdMobManager.shared.setup()
+            }
+        }
     }
     
     func requestNotificationPermission() {

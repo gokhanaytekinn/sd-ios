@@ -56,6 +56,7 @@ struct ContentView: View {
     @State private var showAddSubscription = false
     @State private var showFabMenu = false
     @State private var showingLimitAlert = false
+    @State private var isBannerLoaded = true
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -201,9 +202,10 @@ struct ContentView: View {
                     
                     // Banner Ad for non-premium users
                     if authViewModel.tier == 1 {
-                        BannerAdView()
-                            .frame(height: 60) // Slightly larger for adaptive
+                        BannerAdView(isLoaded: $isBannerLoaded)
+                            .frame(height: isBannerLoaded ? 60 : 0) // Hide when not loaded
                             .background(Color.appSurface(for: colorScheme))
+                            .clipped()
                     }
                 }
                 .background(Color.appSurface(for: colorScheme).ignoresSafeArea(edges: .bottom))
@@ -223,7 +225,7 @@ struct ContentView: View {
             
             if navigationPath.isEmpty {
                 fabButton
-                    .padding(.bottom, authViewModel.tier == 1 ? 140 : 80)
+                    .padding(.bottom, authViewModel.tier == 1 && isBannerLoaded ? 140 : 80)
             }
         }
         .ignoresSafeArea(.keyboard)
