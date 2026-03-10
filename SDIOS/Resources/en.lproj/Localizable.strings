@@ -398,3 +398,17 @@
 "widget_expensive_desc" = "Lists your most expensive subscriptions.";
 "quick_add_title" = "Quick Add";
 "widget_quick_add_desc" = "Add a new subscription with a single tap.";
+
+// Analytics
+"analytics_title" = "Analytics";
+"analytics_entry_title" = "Spending Insights";
+"analytics_entry_desc" = "Analyze your spending in detail";
+"monthly_total" = "TOTAL MONTHLY SPENDING";
+"yearly_estimated" = "YEARLY ESTIMATED:";
+"category_distribution" = "Category Distribution";
+"spending_trends" = "Spending Trends";
+"smart_insights" = "Smart Insights";
+"no_data_available" = "No data available yet";
+"premium_analytics_locked" = "Analytics is Premium Only";
+"premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
+"unlock_with_premium" = "Unlock with Premium";

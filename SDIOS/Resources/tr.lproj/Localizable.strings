@@ -399,3 +399,17 @@
 "widget_expensive_desc" = "En yüksek tutarlı aboneliklerinizi listeler.";
 "quick_add_title" = "Hızlı Ekle";
 "widget_quick_add_desc" = "Tek dokunuşla yeni abonelik ekleyin.";
+
+// Analytics
+"analytics_title" = "Analizler";
+"analytics_entry_title" = "Gider Analizleri";
+"analytics_entry_desc" = "Harcamalarınızı detaylıca inceleyin";
+"monthly_total" = "AYLIK TOPLAM GİDER";
+"yearly_estimated" = "YILLIK TAHMİNİ:";
+"category_distribution" = "Kategori Dağılımı";
+"spending_trends" = "Harcama Trendi";
+"smart_insights" = "Akıllı Öngörüler";
+"no_data_available" = "Henüz veri bulunmuyor";
+"premium_analytics_locked" = "Analizler Premium'a Özel";
+"premium_analytics_desc" = "Tüm harcamalarınızı grafiklerle görmek ve tasarruf önerileri almak için Premium'a geçin.";
+"unlock_with_premium" = "Premium ile Kilidi Aç";

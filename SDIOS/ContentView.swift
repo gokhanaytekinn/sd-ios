@@ -17,6 +17,7 @@ enum AppRoute: Hashable {
     case privacyPolicy
     case premiumUpgrade
     case transactionHistory
+    case analytics
 }
 
 // MARK: - Main Tab
@@ -157,7 +158,8 @@ struct ContentView: View {
                             DashboardScreen(
                                 onNavigateToSubscriptions: { selectedTab = .subscriptions },
                                 onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) },
-                                onNavigateToSearch: { navigationPath.append(.search) }
+                                onNavigateToSearch: { navigationPath.append(.search) },
+                                onNavigateToAnalytics: { navigationPath.append(.analytics) }
                             )
                         case .subscriptions:
                             SubscriptionsListScreen(
@@ -287,6 +289,14 @@ struct ContentView: View {
             PremiumUpgradeScreen(onBack: { navigationPath.removeLast() })
         case .transactionHistory:
             TransactionHistoryScreen(onBack: { navigationPath.removeLast() })
+        case .analytics:
+            AnalyticsScreen(
+                onBack: { navigationPath.removeLast() },
+                onNavigateToPremium: {
+                    navigationPath.removeLast()
+                    navigationPath.append(.premiumUpgrade)
+                }
+            )
         default:
             EmptyView()
         }

@@ -7,6 +7,7 @@ struct DashboardScreen: View {
     let onNavigateToSubscriptions: () -> Void
     let onNavigateToSubscriptionDetail: (String) -> Void
     let onNavigateToSearch: () -> Void
+    let onNavigateToAnalytics: () -> Void
     
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @Environment(\.colorScheme) var colorScheme
@@ -74,6 +75,40 @@ struct DashboardScreen: View {
                             RoundedRectangle(cornerRadius: 24)
                                 .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
                         )
+                        .padding(.horizontal, 24)
+                        
+                        Spacer().frame(height: 16)
+                        
+                        // Analiz Önizleme Kartı (Premium Feature Entry)
+                        Button(action: onNavigateToAnalytics) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("analytics_entry_title".localized())
+                                        .font(.sdLabelSemibold)
+                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                    Text("analytics_entry_desc".localized())
+                                        .font(.sdCaption)
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                }
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chart.pie.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.primaryBlue)
+                                
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            }
+                            .padding(20)
+                            .background(Color.primaryBlue.opacity(0.05))
+                            .cornerRadius(20)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.primaryBlue.opacity(0.1), lineWidth: 1)
+                            )
+                        }
                         .padding(.horizontal, 24)
                         
                         Spacer().frame(height: 28)

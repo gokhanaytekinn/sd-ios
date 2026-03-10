@@ -150,6 +150,21 @@ class ApiService: ApiServiceProtocol {
         return try await client.execute(MiscEndpoint.getReminders)
     }
     
+    // MARK: - Analytics
+    #if !WIDGET
+    func getAnalyticsSummary() async throws -> AnalyticsSummaryResponse {
+        return try await client.execute(AnalyticsEndpoint.getSummary)
+    }
+    
+    func getAnalyticsTrends() async throws -> AnalyticsTrendResponse {
+        return try await client.execute(AnalyticsEndpoint.getTrends)
+    }
+    
+    func getAnalyticsInsights() async throws -> AnalyticsInsightResponse {
+        return try await client.execute(AnalyticsEndpoint.getInsights)
+    }
+    #endif
+    
     func getConvertedAmount(_ request: ConversionRequest) async throws -> Double {
         return try await client.execute(MiscEndpoint.getConvertedAmount(request))
     }
