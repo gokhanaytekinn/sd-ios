@@ -46,14 +46,15 @@ struct UpcomingPaymentsWidgetView : View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            WidgetHeader(title: "Yaklaşan Ödemeler", icon: "calendar")
+            WidgetHeader(title: "widget_upcoming_title".widgetLocalized(), icon: "calendar")
             
             if upcomingSubs.isEmpty {
                 Spacer()
-                Text("Yaklaşan ödeme yok")
+                Text(LocalizedStringKey("no_upcoming_payments"), tableName: "WidgetLocalizable", bundle: .main)
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
                 Spacer()
             } else {
                 VStack(spacing: family == .systemLarge ? 12 : 8) {
@@ -85,8 +86,8 @@ struct UpcomingPaymentsWidget: Widget {
             UpcomingPaymentsWidgetView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("Yaklaşan Ödemeler")
-        .description("Gelecek 10 gün içindeki ödemelerinizi gösterir.")
+        .configurationDisplayName("widget_upcoming_title".widgetLocalized())
+        .description("widget_upcoming_desc".widgetLocalized())
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

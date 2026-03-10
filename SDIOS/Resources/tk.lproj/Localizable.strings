@@ -326,10 +326,6 @@
 "privacy_content_5" = "Programma size bildiriş iberip bilmek üçin bildiriş rugsady talap edip biler. Bu rugsat diňe abunalyk ýatlatmalary üçin ulanylýar.";
 "privacy_title_6" = "6. Aragatnaşyk";
 "privacy_content_6" = "Gizlinlik syýasatymyz barada soraglaryňyz bolsa, biz bilen habarlaşyp bilersiňiz:\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Indiki toleg";
-"widget_upcoming_desc" = "%1$@ üçin %2$@";
-"widget_expensive_title" = "In gymmat yazylma";
-"widget_expensive_desc" = "%1$@ - %2$@/aý";
 "widget_login_required" = "Giris";
 "widget_no_data" = "Yazylma yok";
 "widget_days_left" = "%d gun galdy";
@@ -396,3 +392,9 @@
 "ok" = "OK";
 "monthly_renewal_format" = "Her aýyň %@-yna";
 "yearly_renewal_format" = "Her ýyl %1$@ %2$@";
+"quick_add_title" = "Çalt goşmak";
+"widget_quick_add_desc" = "Bir gezek basmak bilen täze abunalygy goşuň.";
+"widget_upcoming_title" = "Gelejekki tölegler";
+"widget_upcoming_desc" = "Indiki 10 günüň dowamynda töleneriňizi görkezýär.";
+"widget_expensive_title" = "Iň gymmat abunalyklar";
+"widget_expensive_desc" = "Iň gymmat abunalyklaryňyzy sanawa alýar.";

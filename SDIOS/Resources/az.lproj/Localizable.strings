@@ -330,10 +330,6 @@
 "privacy_content_5" = "Proqram, sizə bildiriş göndərə bilmək üçün bildiriş icazəsi tələb edə bilər. Bu icazə yalnız abunəlik xatırlatmaları üçün istifadə olunur.";
 "privacy_title_6" = "6. Əlaqə";
 "privacy_content_6" = "Məxfilik siyasətimizlə bağlı suallarınız üçün bizimlə əlaqə saxlaya bilərsiniz:\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Gələcək Ödəniş";
-"widget_upcoming_desc" = "%1$@ üçün %2$@";
-"widget_expensive_title" = "En Bahali Abonelik";
-"widget_expensive_desc" = "%1$@ - %2$@/ay";
 "widget_login_required" = "Daxil olun";
 "widget_no_data" = "Abonelik yoxdur";
 "widget_days_left" = "%d gun qaldi";
@@ -396,3 +392,9 @@
 "ok" = "Tamam";
 "monthly_renewal_format" = "Hər ayın %@";
 "yearly_renewal_format" = "Hər il %1$@ %2$@";
+"quick_add_title" = "Tez Əlavə Et";
+"widget_quick_add_desc" = "Tək toxunuşla yeni abunəlik əlavə edin.";
+"widget_upcoming_title" = "Gələcək Ödənişlər";
+"widget_upcoming_desc" = "Növbəti 10 gün üçün ödənişlərinizi göstərir.";
+"widget_expensive_title" = "Ən Bahalı Abunəliklər";
+"widget_expensive_desc" = "Ən yüksək məbləğli abunəliklərinizi sadalayır.";

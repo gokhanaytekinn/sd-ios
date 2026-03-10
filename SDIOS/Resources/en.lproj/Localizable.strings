@@ -326,10 +326,6 @@
 "privacy_content_5" = "The application may request notification permission to send you notifications. This permission is only used for subscription reminders.";
 "privacy_title_6" = "6. Contact";
 "privacy_content_6" = "For questions regarding our privacy policy, you can contact us at:\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Upcoming Subscriptions";
-"widget_upcoming_desc" = "Shows subscriptions due in next 7 days";
-"widget_expensive_title" = "Top Expensive";
-"widget_expensive_desc" = "Shows your top 3 most expensive subs";
 "widget_login_required" = "Please Login";
 "widget_no_data" = "No data found";
 "widget_days_left" = "%d days left";
@@ -396,3 +392,9 @@
 "ok" = "OK";
 "monthly_renewal_format" = "Every month on the %@";
 "yearly_renewal_format" = "Every year on %1$@ %2$@";
+"widget_upcoming_title" = "Upcoming Payments";
+"widget_upcoming_desc" = "Shows your payments due in the next 10 days.";
+"widget_expensive_title" = "Most Expensive";
+"widget_expensive_desc" = "Lists your most expensive subscriptions.";
+"quick_add_title" = "Quick Add";
+"widget_quick_add_desc" = "Add a new subscription with a single tap.";

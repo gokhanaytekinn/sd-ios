@@ -42,14 +42,15 @@ struct MostExpensiveWidgetView : View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            WidgetHeader(title: "En Pahalı Ödemeler", icon: "crown.fill")
+            WidgetHeader(title: "widget_expensive_title".widgetLocalized(), icon: "creditcard.fill")
             
             if expensiveSubs.isEmpty {
                 Spacer()
-                Text("Herhangi bir abonelik bulunamadı")
+                Text(LocalizedStringKey("no_subscriptions"), tableName: "WidgetLocalizable", bundle: Bundle(for: WidgetDataManager.self))
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
                 Spacer()
             } else {
                 VStack(spacing: family == .systemLarge ? 12 : 6) {
@@ -57,7 +58,7 @@ struct MostExpensiveWidgetView : View {
                         SubscriptionWidgetRow(
                             name: sub.name,
                             cost: CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency),
-                            date: sub.billingCycle == .monthly ? "Aylık" : "Yıllık",
+                            date: sub.billingCycle == .monthly ? String(localized: "billing_monthly_label", table: "WidgetLocalizable", bundle: .main) : String(localized: "billing_yearly_label", table: "WidgetLocalizable", bundle: .main),
                             icon: sub.icon,
                             cycle: sub.billingCycle
                         )
@@ -81,8 +82,8 @@ struct MostExpensiveWidget: Widget {
             MostExpensiveWidgetView(entry: entry)
                 .containerBackground(.clear, for: .widget)
         }
-        .configurationDisplayName("En Pahalı Ödemeler")
-        .description("En yüksek tutarlı 5 aboneliğinizi listeler.")
+        .configurationDisplayName("widget_expensive_title".widgetLocalized())
+        .description("widget_expensive_desc".widgetLocalized())
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

@@ -40,35 +40,53 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D9099C862F5EAED00085D543 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
-		D92551872F5F5D9600DC8A83 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D92551FD2F5F61B700DC8A83 /* SDWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SDWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D92551FF2F5F61B700DC8A83 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D92552012F5F61B700DC8A83 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D92552342F5F627900DC8A83 /* SDWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWidgetsExtension.entitlements; sourceTree = "<group>"; };
-		D93102352F5F551700E36134 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
-		D94AA0502F5F096F00CBB873 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D94C046D2F59F91A0014BB86 /* SDIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D94C04862F59F9880014BB86 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
-		D94C06212F5A03370014BB86 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
-		D99143142F5B4AE000877555 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
-		D9B32E532F5B50B500EF2D76 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D9E89D4C2F5FF88400C6D2F0 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		D92552302F5F61DF00DC8A83 /* Exceptions for "SDIOS" folder in "SDWidgetsExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Data/Local/WidgetDataManager.swift,
-				Models/Subscription.swift,
-				SDWidgets/MostExpensiveWidget.swift,
-				SDWidgets/SDWidgets.swift,
-				SDWidgets/UpcomingPaymentsWidget.swift,
-				SDWidgets/WidgetViews.swift,
-				Services/CurrencyService.swift,
+				AppDelegate.swift,
+				"client_511347263387-geasdab34clq1b778vu5i6m2l0m4anlr.apps.googleusercontent.com.plist",
+				ContentView.swift,
+				Domain/UseCases/AuthExtraUseCases.swift,
+				Domain/UseCases/GoogleLoginUseCase.swift,
+				Domain/UseCases/LoginUseCase.swift,
+				Domain/UseCases/RegisterUseCase.swift,
+				Domain/UseCases/SubscriptionUseCases.swift,
+				Info.plist,
+				Managers/AdMobManager.swift,
+				Managers/StoreKitManager.swift,
+				SDiOSApp.swift,
 				Theme/Colors.swift,
-				Utils/CurrencyFormatter.swift,
-				Views/Components/BrandIcons.swift,
+				Theme/Theme.swift,
+				Theme/Typography.swift,
+				ViewModels/AddSubscriptionViewModel.swift,
+				ViewModels/AuthViewModel.swift,
+				ViewModels/DashboardViewModel.swift,
+				ViewModels/SubscriptionsViewModel.swift,
+				ViewModels/TransactionsViewModel.swift,
+				Views/Auth/LoginScreen.swift,
+				Views/Auth/PasswordResetScreens.swift,
+				Views/Auth/RegisterScreen.swift,
+				Views/Components/BannerAdView.swift,
+				Views/Components/Components.swift,
+				Views/Components/SkeletonViews.swift,
+				Views/Components/StatefulView.swift,
+				Views/Dashboard/DashboardScreen.swift,
+				Views/Onboarding/OnboardingScreen.swift,
+				Views/Other/OtherScreens.swift,
+				Views/Settings/AppSettingsScreen.swift,
+				Views/Settings/InfoScreens.swift,
+				Views/Subscriptions/AddSubscriptionScreen.swift,
+				Views/Subscriptions/SubscriptionDetailsScreen.swift,
+				Views/Subscriptions/SubscriptionsListScreen.swift,
 			);
 			target = D92551FC2F5F61B700DC8A83 /* SDWidgetsExtension */;
 		};
@@ -77,8 +95,10 @@
 			membershipExceptions = (
 				Info.plist,
 				SDWidgets/MostExpensiveWidget.swift,
+				SDWidgets/QuickAddWidget.swift,
 				SDWidgets/SDWidgets.swift,
 				SDWidgets/UpcomingPaymentsWidget.swift,
+				SDWidgets/WidgetLocalizable.xcstrings,
 				SDWidgets/WidgetViews.swift,
 			);
 			target = D94C046C2F59F91A0014BB86 /* SDIOS */;
@@ -120,20 +140,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D9099C882F5EAED00085D543 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D92551892F5F5D9600DC8A83 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		D92551FE2F5F61B700DC8A83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,20 +147,6 @@
 				D92552012F5F61B700DC8A83 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D93102372F5F551700E36134 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D94AA0522F5F096F00CBB873 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D94C04642F59F91A0014BB86 = {
@@ -176,28 +168,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D94C04872F59F9880014BB86 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D94C06232F5A03370014BB86 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D99143162F5B4AE000877555 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D9B32E552F5B50B500EF2D76 /* Products */ = {
+		D9E89D4E2F5FF88400C6D2F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -218,6 +189,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D94C046F2F59F91A0014BB86 /* SDIOS */,
 			);
 			name = SDWidgetsExtension;
 			packageProductDependencies = (
@@ -301,36 +275,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = D9B32E552F5B50B500EF2D76 /* Products */;
-					ProjectRef = D9B32E532F5B50B500EF2D76 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D92551892F5F5D9600DC8A83 /* Products */;
-					ProjectRef = D92551872F5F5D9600DC8A83 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D94AA0522F5F096F00CBB873 /* Products */;
-					ProjectRef = D94AA0502F5F096F00CBB873 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D94C04872F59F9880014BB86 /* Products */;
-					ProjectRef = D94C04862F59F9880014BB86 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D9099C882F5EAED00085D543 /* Products */;
-					ProjectRef = D9099C862F5EAED00085D543 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D99143162F5B4AE000877555 /* Products */;
-					ProjectRef = D99143142F5B4AE000877555 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D94C06232F5A03370014BB86 /* Products */;
-					ProjectRef = D94C06212F5A03370014BB86 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D93102372F5F551700E36134 /* Products */;
-					ProjectRef = D93102352F5F551700E36134 /* SDiOS.xcodeproj */;
+					ProductGroup = D9E89D4E2F5FF88400C6D2F0 /* Products */;
+					ProjectRef = D9E89D4C2F5FF88400C6D2F0 /* SDiOS.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -388,7 +334,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = SDWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -419,7 +364,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = SDWidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

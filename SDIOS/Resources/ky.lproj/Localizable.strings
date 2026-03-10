@@ -326,10 +326,6 @@
 "privacy_content_5" = "Тиркеме эскертүүлөрдү жөнөтүү үчүн билдирме уруксатын сурашы мүмкүн.";
 "privacy_title_6" = "6. Байланыш";
 "privacy_content_6" = "Суроолор боюнча бизге жаза аласыз: gokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Kiinki tolem";
-"widget_upcoming_desc" = "%1$@ үчүн %2$@";
-"widget_expensive_title" = "En kymba jazyluu";
-"widget_expensive_desc" = "%1$@ - %2$@/ay";
 "widget_login_required" = "Kiruu";
 "widget_no_data" = "Jazyluu zhok";
 "widget_days_left" = "%d kun kaldy";
@@ -396,3 +392,9 @@
 "ok" = "ОК";
 "monthly_renewal_format" = "Ар айдын %@-күнү";
 "yearly_renewal_format" = "Жыл сайын %1$@ %2$@";
+"quick_add_title" = "Тез Кошуу";
+"widget_quick_add_desc" = "Бир жолу басу менен жаңы жазылууну кошуңуз.";
+"widget_upcoming_title" = "Жакынкы төлөмдөр";
+"widget_upcoming_desc" = "Алдағы 10 күндөгү төлөмдөрүңүздү көрсөтөт.";
+"widget_expensive_title" = "Эң кымбат жазылуулар";
+"widget_expensive_desc" = "Эң кымбат жазылууларыңызды тизмелейт.";

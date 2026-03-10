@@ -326,10 +326,6 @@
 "privacy_content_5" = "La aplicación puede solicitar permiso de notificación para enviarle notificaciones. Este permiso solo se utiliza para recordatorios de suscripción.";
 "privacy_title_6" = "6. Contacto";
 "privacy_content_6" = "Para preguntas sobre nuestra política de privacidad, puede contactarnos en:\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Proximo Pago";
-"widget_upcoming_desc" = "%1$@ por %2$@";
-"widget_expensive_title" = "Suscripcion mas cara";
-"widget_expensive_desc" = "%1$@ - %2$@/mes";
 "widget_login_required" = "Inicia sesion";
 "widget_no_data" = "Sin suscripciones";
 "widget_days_left" = "%d dias restantes";
@@ -396,3 +392,9 @@
 "ok" = "Aceptar";
 "monthly_renewal_format" = "El %@ de cada mes";
 "yearly_renewal_format" = "Cada año el %1$@ de %2$@";
+"quick_add_title" = "Añadir Rápido";
+"widget_quick_add_desc" = "Añade una nueva suscripción con un solo toque.";
+"widget_upcoming_title" = "Próximos Pagos";
+"widget_upcoming_desc" = "Muestra tus pagos vencidos en los próximos 10 días.";
+"widget_expensive_title" = "Más Caros";
+"widget_expensive_desc" = "Enumera tus suscripciones más caras.";

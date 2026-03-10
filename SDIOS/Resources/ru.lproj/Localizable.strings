@@ -326,10 +326,6 @@
 "privacy_content_5" = "Приложение может запрашивать разрешение на уведомления для отправки вам сообщений. Это разрешение используется только для напоминаний о подписках.";
 "privacy_title_6" = "6. Контакты";
 "privacy_content_6" = "По вопросам, касающимся нашей политики конфиденциальности, вы можете связаться с нами по адресу:\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Blizhayshiy platezh";
-"widget_upcoming_desc" = "%1$@ za %2$@";
-"widget_expensive_title" = "Dorogaya podpiska";
-"widget_expensive_desc" = "%1$@ - %2$@ v mes";
 "widget_login_required" = "Voydite";
 "widget_no_data" = "Net podpisok";
 "widget_days_left" = "Ostalos %d dney";
@@ -396,3 +392,9 @@
 "ok" = "ОК";
 "monthly_renewal_format" = "Каждое %@ число месяца";
 "yearly_renewal_format" = "Каждый год %1$@ %2$@";
+"widget_upcoming_title" = "Предстоящие платежи";
+"widget_upcoming_desc" = "Показывает ваши платежи, подлежащие оплате в ближайшие 10 дней.";
+"widget_expensive_title" = "Самые дорогие";
+"widget_expensive_desc" = "Список ваших самых дорогих подписок.";
+"quick_add_title" = "Быстрое добавление";
+"widget_quick_add_desc" = "Добавьте новую подписку одним нажатием.";

@@ -221,14 +221,27 @@ struct ContentView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("DidRequestNavigation"))) { notification in
             if let destination = notification.object as? String {
-                if destination == "add_subscription" {
-                    if authViewModel.isSubscriptionLimitReached {
-                        showingLimitAlert = true
-                    } else {
-                        // Reset navigation path and navigate to add subscription
-                        navigationPath = [.addSubscription]
-                    }
-                }
+                handleNavigation(to: destination)
+            }
+        }
+        .onAppear {
+            if let pending = DeepLinkManager.shared.consume() {
+                handleNavigation(to: pending)
+            }
+        }
+        .onReceive(DeepLinkManager.shared.$pendingRoute) { route in
+            if let route = route {
+                handleNavigation(to: DeepLinkManager.shared.consume() ?? route)
+            }
+        }
+    }
+    
+    private func handleNavigation(to destination: String) {
+        if destination == "add_subscription" {
+            if authViewModel.isSubscriptionLimitReached {
+                showingLimitAlert = true
+            } else {
+                navigationPath = [.addSubscription]
             }
         }
     }

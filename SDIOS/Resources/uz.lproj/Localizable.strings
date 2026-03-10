@@ -326,10 +326,6 @@
 "privacy_content_5" = "Ilova eslatmalarni yuborish uchun bildirishnoma ruxsatini soʻrashi mumkin.";
 "privacy_title_6" = "6. Aloqa";
 "privacy_content_6" = "Savollar boʻyicha bizga yozishingiz mumkin: gokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Keyingi tolov";
-"widget_upcoming_desc" = "%1$@ uchun %2$@";
-"widget_expensive_title" = "Eng qimmat obuna";
-"widget_expensive_desc" = "%1$@ - %2$@/oy";
 "widget_login_required" = "Kirish";
 "widget_no_data" = "Obuna yoq";
 "widget_days_left" = "%d kun qoldi";
@@ -396,3 +392,9 @@
 "ok" = "OK";
 "monthly_renewal_format" = "Har oyning %@-sanasi";
 "yearly_renewal_format" = "Har yili %1$@-%2$@";
+"quick_add_title" = "Tez Qo\'shish";
+"widget_quick_add_desc" = "Bir marta bosish orqali yangi obunani qo\'shing.";
+"widget_upcoming_title" = "Kelgusi To'lovlar";
+"widget_upcoming_desc" = "Keyingi 10 kun ichidagi to'lovlarni ko'rsatadi.";
+"widget_expensive_title" = "Eng Qimmat Obunalar";
+"widget_expensive_desc" = "Eng qimmat obunalaringiz ro'yxatini ko'rsatadi.";

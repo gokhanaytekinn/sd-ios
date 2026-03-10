@@ -326,10 +326,6 @@
 "privacy_content_5" = "Uygulama, size bildirim gönderebilmek için bildirim izni talep edebilir. Bu izin, yalnızca abonelik hatırlatıcıları için kullanılır.";
 "privacy_title_6" = "6. İletişim";
 "privacy_content_6" = "Gizlilik politikamızla ilgili sorularınız için bizimle iletişime geçebilirsiniz:\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Yaklaşan Ödemeler";
-"widget_upcoming_desc" = "Önümüzdeki 7 gün içindeki ödemeleri gösterir";
-"widget_expensive_title" = "En Pahalı Abonelikler";
-"widget_expensive_desc" = "En pahalı 3 aboneliğinizi gösterir";
 "widget_login_required" = "Lütfen Giriş Yapın";
 "widget_no_data" = "Veri bulunamadı";
 "widget_days_left" = "%d gün kaldı";
@@ -397,3 +393,9 @@
 "ok" = "Tamam";
 "monthly_renewal_format" = "Her ayın %@";
 "yearly_renewal_format" = "Her yıl %1$@ %2$@";
+"widget_upcoming_title" = "Yaklaşan Ödemeler";
+"widget_upcoming_desc" = "Gelecek 10 gün içindeki ödemelerinizi gösterir.";
+"widget_expensive_title" = "En Pahalı Ödemeler";
+"widget_expensive_desc" = "En yüksek tutarlı aboneliklerinizi listeler.";
+"quick_add_title" = "Hızlı Ekle";
+"widget_quick_add_desc" = "Tek dokunuşla yeni abonelik ekleyin.";

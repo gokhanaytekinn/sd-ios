@@ -316,10 +316,6 @@
 "faq_a5" = "Pastikan notifikasi diaktifkan dari pengaturan. Pastikan juga mode hemat daya tidak menghangatkannya.";
 "faq_q6" = "Apa itu transaksi mencurigakan?";
 "faq_a6" = "Aplikasi akan memperingatkan Anda ketika mendeteksi pengeluaran yang tidak biasa atau tidak dikenal. Anda dapat meninjau transaksi ini di halaman 'Pembayaran Mencurigakan'.";
-"widget_upcoming_title" = "Pembayaran Mendatang";
-"widget_upcoming_desc" = "Menampilkan pembayaran dalam 7 hari ke depan";
-"widget_expensive_title" = "Langganan Termahal";
-"widget_expensive_desc" = "Menampilkan 3 langganan termahal Anda";
 "widget_login_required" = "Silakan Masuk";
 "widget_no_data" = "Data tidak ditemukan";
 "widget_days_left" = "%d hari tersisa";
@@ -394,3 +390,9 @@
 "ok" = "OK";
 "monthly_renewal_format" = "Setiap bulan pada tanggal %@";
 "yearly_renewal_format" = "Setiap tahun pada %1$@ %2$@";
+"quick_add_title" = "Tambah Cepat";
+"widget_quick_add_desc" = "Tambah langganan baru dengan satu ketukan.";
+"widget_upcoming_title" = "Pembayaran Mendatang";
+"widget_upcoming_desc" = "Menampilkan pembayaran Anda yang jatuh tempo dalam 10 hari ke depan.";
+"widget_expensive_title" = "Langganan Termahal";
+"widget_expensive_desc" = "Mencantumkan langganan Anda yang paling mahal.";

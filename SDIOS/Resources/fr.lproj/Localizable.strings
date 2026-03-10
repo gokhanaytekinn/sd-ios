@@ -328,10 +328,6 @@
 "privacy_content_5" = "L'application peut demander la permission de notification pour vous envoyer des notifications. Cette permission est uniquement utilisée pour les rappels d'abonnement.";
 "privacy_title_6" = "6. Contact";
 "privacy_content_6" = "Pour des questions concernant notre politique de confidentialité, vous pouvez nous contacter à :\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Prochain paiement";
-"widget_upcoming_desc" = "%1$@ pour %2$@";
-"widget_expensive_title" = "Abonnement le plus cher";
-"widget_expensive_desc" = "%1$@ - %2$@/mois";
 "widget_login_required" = "Connectez-vous";
 "widget_no_data" = "Aucun abonnement";
 "widget_days_left" = "%d jours restants";
@@ -395,3 +391,9 @@
 "ok" = "OK";
 "monthly_renewal_format" = "Le %@ de chaque mois";
 "yearly_renewal_format" = "Chaque année le %1$@ %2$@";
+"quick_add_title" = "Ajout Rapide";
+"widget_quick_add_desc" = "Ajoutez un nouvel abonnement en un seul clic.";
+"widget_upcoming_title" = "Paiements à Venir";
+"widget_upcoming_desc" = "Affiche vos paiements dus dans les 10 prochains jours.";
+"widget_expensive_title" = "Plus Chers";
+"widget_expensive_desc" = "Liste vos abonnements les plus chers.";

@@ -326,10 +326,6 @@
 "privacy_content_5" = "应用程序可能会请求通知权限以向您发送通知。此权限仅用于订阅提醒。";
 "privacy_title_6" = "6. 联系方式";
 "privacy_content_6" = "有关我们隐私政策的问题，您可以通过以下方式联系我们：\ngokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "即将付款";
-"widget_upcoming_desc" = "%1$@ 的 %2$@";
-"widget_expensive_title" = "最贵的订阅";
-"widget_expensive_desc" = "%1$@ - %2$@/月";
 "widget_login_required" = "请登录";
 "widget_no_data" = "无订阅";
 "widget_days_left" = "剩 %d 天";
@@ -396,3 +392,9 @@
 "ok" = "确定";
 "monthly_renewal_format" = "每月 %@ 日";
 "yearly_renewal_format" = "每年 %2$@ %1$@ 日";
+"quick_add_title" = "快速添加";
+"widget_quick_add_desc" = "只需点击一下即可添加新订阅。";
+"widget_upcoming_title" = "即将到来的付款";
+"widget_upcoming_desc" = "显示您在接下来的 10 天内到期的付款。";
+"widget_expensive_title" = "最昂贵的订阅";
+"widget_expensive_desc" = "列出您最昂贵的订阅。";

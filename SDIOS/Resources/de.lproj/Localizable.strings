@@ -329,10 +329,6 @@
 "privacy_content_5" = "Die App kann Benachrichtigungsberechtigungen anfordern.";
 "privacy_title_6" = "6. Kontakt";
 "privacy_content_6" = "Fur Datenschutzfragen: gokhanaytekinn@yandex.com";
-"widget_upcoming_title" = "Nachste Zahlung";
-"widget_upcoming_desc" = "%1$@ fur %2$@";
-"widget_expensive_title" = "Teuerstes Abonnement";
-"widget_expensive_desc" = "%1$@ - %2$@/Monat";
 "widget_login_required" = "Anmelden";
 "widget_no_data" = "Keine Abonnements";
 "widget_days_left" = "%d Tage verbleibend";
@@ -395,3 +391,9 @@
 "ok" = "OK";
 "monthly_renewal_format" = "Jeden Monat am %@";
 "yearly_renewal_format" = "Jedes Jahr am %1$@. %2$@";
+"quick_add_title" = "Schnelles Hinzufügen";
+"widget_quick_add_desc" = "Fügen Sie mit einem einzigen Tippen ein neues Abonnement hinzu.";
+"widget_upcoming_title" = "Anstehende Zahlungen";
+"widget_upcoming_desc" = "Zeigt Ihre in den nächsten 10 Tagen fälligen Zahlungen an.";
+"widget_expensive_title" = "Teuerste Abonnements";
+"widget_expensive_desc" = "Listet Ihre teuersten Abonnements auf.";

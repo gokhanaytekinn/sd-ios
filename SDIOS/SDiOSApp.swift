@@ -12,6 +12,10 @@ struct SDiOSApp: App {
                 .environmentObject(themeManager)
                 .environmentObject(authViewModel)
                 .preferredColorScheme(themeManager.isDarkMode ? .dark : .light)
+                .onOpenURL { url in
+                    DeepLinkManager.shared.handle(url: url)
+                    NotificationCenter.default.post(name: NSNotification.Name("DidRequestNavigation"), object: url.host)
+                }
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name("DidRegisterRemoteNotification"))) { notification in
                     if let token = notification.object as? String {
                         authViewModel.updatePushToken(token: token)

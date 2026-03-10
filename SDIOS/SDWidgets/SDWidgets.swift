@@ -6,5 +6,6 @@ struct SDWidgets: WidgetBundle {
     var body: some Widget {
         UpcomingPaymentsWidget()
         MostExpensiveWidget()
+        QuickAddWidget()
     }
 }
