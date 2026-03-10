@@ -1,7 +1,7 @@
 import Foundation
 
 protocol AnalyticsRepositoryProtocol {
-    func getSummary() async -> Result<AnalyticsSummaryResponse, Error>
-    func getTrends() async -> Result<AnalyticsTrendResponse, Error>
+    func getSummary(category: String?) async -> Result<AnalyticsSummaryResponse, Error>
+
     func getInsights() async -> Result<AnalyticsInsightResponse, Error>
 }

@@ -36,8 +36,8 @@ protocol ApiServiceProtocol {
     
     // Analytics
     #if !WIDGET
-    func getAnalyticsSummary() async throws -> AnalyticsSummaryResponse
-    func getAnalyticsTrends() async throws -> AnalyticsTrendResponse
+    func getAnalyticsSummary(category: String?) async throws -> AnalyticsSummaryResponse
+
     func getAnalyticsInsights() async throws -> AnalyticsInsightResponse
     #endif
     func getConvertedAmount(_ request: ConversionRequest) async throws -> Double

@@ -2,12 +2,9 @@ import Foundation
 
 // MARK: - Protocols
 protocol GetAnalyticsSummaryUseCaseProtocol {
-    func execute() async -> Result<AnalyticsSummaryResponse, Error>
+    func execute(category: String?) async -> Result<AnalyticsSummaryResponse, Error>
 }
 
-protocol GetAnalyticsTrendsUseCaseProtocol {
-    func execute() async -> Result<AnalyticsTrendResponse, Error>
-}
 
 protocol GetAnalyticsInsightsUseCaseProtocol {
     func execute() async -> Result<AnalyticsInsightResponse, Error>
@@ -21,22 +18,11 @@ class GetAnalyticsSummaryUseCase: GetAnalyticsSummaryUseCaseProtocol {
         self.repository = repository
     }
     
-    func execute() async -> Result<AnalyticsSummaryResponse, Error> {
-        await repository.getSummary()
+    func execute(category: String?) async -> Result<AnalyticsSummaryResponse, Error> {
+        await repository.getSummary(category: category)
     }
 }
 
-class GetAnalyticsTrendsUseCase: GetAnalyticsTrendsUseCaseProtocol {
-    private let repository: AnalyticsRepositoryProtocol
-    
-    init(repository: AnalyticsRepositoryProtocol = AnalyticsRepository.shared) {
-        self.repository = repository
-    }
-    
-    func execute() async -> Result<AnalyticsTrendResponse, Error> {
-        await repository.getTrends()
-    }
-}
 
 class GetAnalyticsInsightsUseCase: GetAnalyticsInsightsUseCaseProtocol {
     private let repository: AnalyticsRepositoryProtocol

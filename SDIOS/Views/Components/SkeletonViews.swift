@@ -258,3 +258,64 @@ struct SearchListSkeleton: View {
         }
     }
 }
+// MARK: - Analytics Skeleton
+struct AnalyticsSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 24) {
+                // Kategori Seçici Skeleton
+                HStack(spacing: 12) {
+                    ForEach(0..<4) { _ in
+                        RoundedRectangle(cornerRadius: 12)
+                            .baseSkeleton(colorScheme: colorScheme)
+                            .frame(width: 80, height: 36)
+                    }
+                }
+                .padding(.horizontal, 24)
+                
+                // Özet Kartı Skeleton
+                RoundedRectangle(cornerRadius: 24)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 160)
+                    .padding(.horizontal, 24)
+                
+                // Takvim Skeleton
+                VStack(spacing: 16) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 120, height: 18)
+                    
+                    RoundedRectangle(cornerRadius: 24)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 300)
+                }
+                .padding(.horizontal, 24)
+                
+                // Liste Skeleton
+                VStack(alignment: .leading, spacing: 16) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 150, height: 18)
+                    
+                    ForEach(0..<3) { _ in
+                        RoundedRectangle(cornerRadius: 16)
+                            .baseSkeleton(colorScheme: colorScheme)
+                            .frame(height: 60)
+                    }
+                }
+                .padding(.horizontal, 24)
+            }
+            .padding(.vertical, 24)
+        }
+    }
+}
+
+#Preview {
+    ZStack {
+        Color.backgroundDark.ignoresSafeArea()
+        AnalyticsSkeleton()
+            .environment(\.colorScheme, .dark)
+    }
+}

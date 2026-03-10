@@ -152,13 +152,15 @@ class ApiService: ApiServiceProtocol {
     
     // MARK: - Analytics
     #if !WIDGET
-    func getAnalyticsSummary() async throws -> AnalyticsSummaryResponse {
-        return try await client.execute(AnalyticsEndpoint.getSummary)
+    func getAnalyticsSummary(category: String?) async throws -> AnalyticsSummaryResponse {
+        var path = "/api/user-analytics/summary"
+        if let category = category {
+            path += "?category=\(category)"
+        }
+        let endpoint = GenericEndpoint(path: path, method: .get)
+        return try await client.execute(endpoint)
     }
     
-    func getAnalyticsTrends() async throws -> AnalyticsTrendResponse {
-        return try await client.execute(AnalyticsEndpoint.getTrends)
-    }
     
     func getAnalyticsInsights() async throws -> AnalyticsInsightResponse {
         return try await client.execute(AnalyticsEndpoint.getInsights)

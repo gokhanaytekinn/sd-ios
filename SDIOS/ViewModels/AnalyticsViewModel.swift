@@ -6,15 +6,24 @@ import Combine
 class AnalyticsViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var summary: AnalyticsSummaryResponse?
-    @Published var trends: [AnalyticsTrendResponse.MonthTrend] = []
     @Published var insights: [String] = []
+    @Published var selectedCategory: String = "All" {
+        didSet {
+            if oldValue != selectedCategory {
+                loadAnalytics()
+            }
+        }
+    }
+    
+    @Published var categories: [String] = ["All", "Entertainment", "Productivity", "Finance", "Health", "Shopping", "Other"]
+    @Published var allSubscriptions: [Subscription] = []
     @Published var isLoading = false
     @Published var error: String?
     
     // MARK: - Use Cases
     private let getSummaryUseCase: GetAnalyticsSummaryUseCaseProtocol
-    private let getTrendsUseCase: GetAnalyticsTrendsUseCaseProtocol
     private let getInsightsUseCase: GetAnalyticsInsightsUseCaseProtocol
+    private let getSubscriptionsUseCase: GetSubscriptionsUseCaseProtocol
     
     var authViewModel: AuthViewModel?
     
@@ -25,13 +34,13 @@ class AnalyticsViewModel: ObservableObject {
     }
     
     init(
-        getSummaryUseCase: GetAnalyticsSummaryUseCaseProtocol = GetAnalyticsSummaryUseCase(),
-        getTrendsUseCase: GetAnalyticsTrendsUseCaseProtocol = GetAnalyticsTrendsUseCase(),
-        getInsightsUseCase: GetAnalyticsInsightsUseCaseProtocol = GetAnalyticsInsightsUseCase()
+        getSummaryUseCase: GetAnalyticsSummaryUseCaseProtocol? = nil,
+        getInsightsUseCase: GetAnalyticsInsightsUseCaseProtocol? = nil,
+        getSubscriptionsUseCase: GetSubscriptionsUseCaseProtocol? = nil
     ) {
-        self.getSummaryUseCase = getSummaryUseCase
-        self.getTrendsUseCase = getTrendsUseCase
-        self.getInsightsUseCase = getInsightsUseCase
+        self.getSummaryUseCase = getSummaryUseCase ?? GetAnalyticsSummaryUseCase()
+        self.getInsightsUseCase = getInsightsUseCase ?? GetAnalyticsInsightsUseCase()
+        self.getSubscriptionsUseCase = getSubscriptionsUseCase ?? GetSubscriptionsUseCase()
     }
     
     func loadAnalytics() {
@@ -40,11 +49,11 @@ class AnalyticsViewModel: ObservableObject {
             error = nil
             
             // We fetch even if not premium to show blurred preview
-            async let summaryResult = getSummaryUseCase.execute()
-            async let trendsResult = getTrendsUseCase.execute()
+            async let summaryResult = getSummaryUseCase.execute(category: selectedCategory)
             async let insightsResult = getInsightsUseCase.execute()
+            async let subsResult = getSubscriptionsUseCase.execute()
             
-            let (summaryRes, trendsRes, insightsRes) = await (summaryResult, trendsResult, insightsResult)
+            let (summaryRes, insightsRes, subsRes) = await (summaryResult, insightsResult, subsResult)
             
             switch summaryRes {
             case .success(let data):
@@ -53,16 +62,17 @@ class AnalyticsViewModel: ObservableObject {
                 self.error = err.localizedDescription
             }
             
-            switch trendsRes {
-            case .success(let data):
-                self.trends = data.monthlyTrends
-            case .failure:
-                break // Trends failure is non-critical for preview
-            }
             
             switch insightsRes {
             case .success(let data):
                 self.insights = data.insights
+            case .failure:
+                break
+            }
+            
+            switch subsRes {
+            case .success(let data):
+                self.allSubscriptions = data
             case .failure:
                 break
             }
