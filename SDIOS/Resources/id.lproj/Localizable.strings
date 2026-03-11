@@ -398,7 +398,7 @@
 "widget_expensive_desc" = "Mencantumkan langganan Anda yang paling mahal.";
 "total" = "Total";
 "no_data" = "Tidak ada data";
-"financial_pulse" = "Denyut Finansial";
+"financial_pulse" = "Indeks Kopi";
 "daily_coffee_comparison" = "Setara dengan sekitar %.1f kopi per hari";
 "analytics_title" = "Analytics";
 "renewal_calendar" = "Renewal Calendar";
@@ -416,3 +416,6 @@
 "premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
 "unlock_with_premium" = "Unlock with Premium";
 "All" = "All";
+"coffee_index_half" = "Setara dengan setengah cangkir kopi per hari";
+"coffee_index_single" = "Setara con 1 kopi per hari";
+"coffee_index_multi" = "Setara dengan %d kopi per hari";

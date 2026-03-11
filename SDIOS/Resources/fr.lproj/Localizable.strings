@@ -399,7 +399,7 @@
 "widget_expensive_desc" = "Liste vos abonnements les plus chers.";
 "total" = "Total";
 "no_data" = "Pas de données";
-"financial_pulse" = "Pouls Financier";
+"financial_pulse" = "Indice de Café";
 "daily_coffee_comparison" = "Équivalent à environ %.1f café(s) par jour";
 "analytics_title" = "Analytics";
 "renewal_calendar" = "Renewal Calendar";
@@ -417,3 +417,6 @@
 "premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
 "unlock_with_premium" = "Unlock with Premium";
 "All" = "All";
+"coffee_index_half" = "Équivalent à une demi-tasse de café par jour";
+"coffee_index_single" = "Équivalent à 1 café par jour";
+"coffee_index_multi" = "Équivalent à %d cafés par jour";

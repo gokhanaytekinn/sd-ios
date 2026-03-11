@@ -400,7 +400,7 @@
 "widget_expensive_desc" = "Iň gymmat abunalyklaryňyzy sanawa alýar.";
 "total" = "Jemi";
 "no_data" = "Maglumat ýok";
-"financial_pulse" = "Maliýe Urgusy";
+"financial_pulse" = "Kofe Indeksi";
 "daily_coffee_comparison" = "Günde takmynan %.1f kofe bahasyna deň";
 "analytics_title" = "Analytics";
 "renewal_calendar" = "Renewal Calendar";
@@ -418,3 +418,6 @@
 "premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
 "unlock_with_premium" = "Unlock with Premium";
 "All" = "All";
+"coffee_index_half" = "Günde takmynan ýarym käse kofe bahasyna deň";
+"coffee_index_single" = "Günde takmynan 1 kofe bahasyna deň";
+"coffee_index_multi" = "Günde takmynan %d kofe bahasyna deň";

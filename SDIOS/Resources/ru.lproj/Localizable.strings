@@ -400,7 +400,7 @@
 "widget_quick_add_desc" = "Добавьте новую подписку одним нажатием.";
 "total" = "Итого";
 "no_data" = "Нет данных";
-"financial_pulse" = "Финансовый Пульс";
+"financial_pulse" = "Индекс Кофе";
 "daily_coffee_comparison" = "Эквивалентно примерно %.1f кофе в день";
 "analytics_title" = "Analytics";
 "renewal_calendar" = "Renewal Calendar";
@@ -418,3 +418,6 @@
 "premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
 "unlock_with_premium" = "Unlock with Premium";
 "All" = "All";
+"coffee_index_half" = "Эквивалентно примерно полчашки кофе в день";
+"coffee_index_single" = "Эквивалентно примерно 1 кофе в день";
+"coffee_index_multi" = "Эквивалентно примерно %d кофе в день";

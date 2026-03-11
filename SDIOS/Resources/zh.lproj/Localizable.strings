@@ -400,7 +400,7 @@
 "widget_expensive_desc" = "列出您最昂贵的订阅。";
 "total" = "总计";
 "no_data" = "无数据";
-"financial_pulse" = "财务脉搏";
+"financial_pulse" = "咖啡指数";
 "daily_coffee_comparison" = "相当于每天 %.1f 杯咖啡";
 "analytics_title" = "Analytics";
 "renewal_calendar" = "Renewal Calendar";
@@ -418,3 +418,6 @@
 "premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
 "unlock_with_premium" = "Unlock with Premium";
 "All" = "All";
+"coffee_index_half" = "相当于每天半杯咖啡";
+"coffee_index_single" = "相当于每天 1 杯咖啡";
+"coffee_index_multi" = "相当于每天 %d 杯咖啡";

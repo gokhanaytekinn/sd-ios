@@ -417,7 +417,7 @@
 "insight_category_dominant" = "%@ kategorisi toplam harcamanızın yarısından fazlasını oluşturuyor.";
 "insight_balanced_spending" = "Harcamalarınız şu an dengeli görünüyor.";
 "daily_average" = "GÜNLÜK ORTALAMA";
-"financial_pulse" = "Finansal Nabız";
+"financial_pulse" = "Kahve Endeksi";
 "upcoming_bills" = "Yaklaşan Ödemeler (30 Gün)";
 "lifetime_value" = "Toplam Yatırım";
 "total_spent_so_far" = "Şu ana kadarki toplam harcama";
@@ -443,3 +443,6 @@
 "Other" = "Diğer";
 "total" = "Toplam";
 "no_data" = "Veri Yok";
+"coffee_index_half" = "Günde yaklaşık yarım bardak kahve tutarında";
+"coffee_index_single" = "Günde yaklaşık 1 kahve tutarında";
+"coffee_index_multi" = "Günde yaklaşık %d kahve tutarında";

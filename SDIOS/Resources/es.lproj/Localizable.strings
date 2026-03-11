@@ -400,7 +400,7 @@
 "widget_expensive_desc" = "Enumera tus suscripciones más caras.";
 "total" = "Total";
 "no_data" = "Sin datos";
-"financial_pulse" = "Pulso Financiero";
+"financial_pulse" = "Índice de Café";
 "daily_coffee_comparison" = "Equivalente a unos %.1f café(s) al día";
 "analytics_title" = "Analytics";
 "renewal_calendar" = "Renewal Calendar";
@@ -418,3 +418,6 @@
 "premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
 "unlock_with_premium" = "Unlock with Premium";
 "All" = "All";
+"coffee_index_half" = "Equivalente a media taza de café al día";
+"coffee_index_single" = "Equivalente a 1 café al día";
+"coffee_index_multi" = "Equivalente a %d cafés al día";

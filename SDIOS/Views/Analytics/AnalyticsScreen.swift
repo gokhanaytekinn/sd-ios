@@ -152,8 +152,10 @@ struct AnalyticsScreen: View {
                                 .font(.sdCaptionBold)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             
-                            let coffeeCount = calculateCoffeeCount(amount: summary.totalMonthlyCost, currency: summary.currency)
-                            Text(String(format: "daily_coffee_comparison".localized(), coffeeCount))
+                            let amount = viewModel.selectedCategory == "All" ? summary.totalMonthlyCost : (summary.categoryBreakdown[viewModel.selectedCategory] ?? 0)
+                            let coffeeCount = calculateCoffeeCount(amount: amount, currency: summary.currency)
+                            
+                            Text(getFormattedCoffeeText(count: coffeeCount))
                                 .font(.sdLabel)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                         }
@@ -177,7 +179,7 @@ struct AnalyticsScreen: View {
     private func calculateCoffeeCount(amount: Double, currency: Int) -> Double {
         let coffeePrice: Double
         switch currency {
-        case 1: coffeePrice = 85.0 // TRY
+        case 1: coffeePrice = 150.0 // TRY Updated to 150
         case 2: coffeePrice = 4.5  // USD
         case 3: coffeePrice = 4.0  // EUR
         case 4: coffeePrice = 4.0  // GBP
@@ -188,8 +190,19 @@ struct AnalyticsScreen: View {
         }
         
         let monthlyCoffeeCount = amount / coffeePrice
-        // The translation says "per day" or "günde", so we divide monthly count by 30
         return monthlyCoffeeCount / 30.0
+    }
+    
+    private func getFormattedCoffeeText(count: Double) -> String {
+        if count < 0.25 {
+            return "no_data".localized() // Or a "Negligible" string if added later
+        } else if count < 0.8 {
+            return "coffee_index_half".localized()
+        } else if count < 1.3 {
+            return "coffee_index_single".localized()
+        } else {
+            return String(format: "coffee_index_multi".localized(), Int(round(count)))
+        }
     }
     
     private var emptyChartPlaceholder: some View {

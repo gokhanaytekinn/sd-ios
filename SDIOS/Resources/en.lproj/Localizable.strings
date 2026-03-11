@@ -416,7 +416,7 @@
 "insight_category_dominant" = "%@ category accounts for more than half of your total spending.";
 "insight_balanced_spending" = "Your spending habits currently look balanced.";
 "daily_average" = "DAILY AVERAGE";
-"financial_pulse" = "Financial Pulse";
+"financial_pulse" = "Coffee Index";
 "upcoming_bills" = "Upcoming Bills (30 Days)";
 "lifetime_value" = "Lifetime Investment";
 "total_spent_so_far" = "Total spent so far";
@@ -442,3 +442,6 @@
 "Other" = "Other";
 "total" = "Total";
 "no_data" = "No Data";
+"coffee_index_half" = "Equivalent to a half cup of coffee per day";
+"coffee_index_single" = "Equivalent to 1 coffee per day";
+"coffee_index_multi" = "Equivalent to %d coffees per day";

@@ -400,7 +400,7 @@
 "widget_expensive_desc" = "Эң кымбат жазылууларыңызды тизмелейт.";
 "total" = "Жалпы";
 "no_data" = "Маалымат жок";
-"financial_pulse" = "Каржылык Пулсь";
+"financial_pulse" = "Кофе Индекси";
 "daily_coffee_comparison" = "Күнүнө болжол менен %.1f кофеге барабар";
 "analytics_title" = "Analytics";
 "renewal_calendar" = "Renewal Calendar";
@@ -418,3 +418,6 @@
 "premium_analytics_desc" = "Upgrade to Premium to see your spending charts and get saving insights.";
 "unlock_with_premium" = "Unlock with Premium";
 "All" = "All";
+"coffee_index_half" = "Күнүнө болжол менен жарым чөйчөк кофеге барабар";
+"coffee_index_single" = "Күнүнө болжол менен 1 кофеге барабар";
+"coffee_index_multi" = "Күнүнө болжол менен %d кофеге барабар";
