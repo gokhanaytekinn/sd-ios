@@ -453,3 +453,8 @@
 "billing_split_yearly" = "Yıllık";
 "category_battle_title" = "Kategori Savaşı";
 "category_battle_desc" = "%1$@ harcaması %2$@ harcamasının %3$.1f katı! ⚔️";
+
+// Free Trial
+"free_trial" = "ھەقسىز سىناق";
+"free_trial_desc" = "سىناق مۇددىتى توشۇشتىن بىر كۈن بۇرۇн سىزگە ئەسكەرتىمىز.";
+"trial_end_date" = "سىناق توشۇش ۋاقتى";

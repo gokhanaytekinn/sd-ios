@@ -428,3 +428,8 @@
 "billing_split_yearly" = "Ýyllyk";
 "category_battle_title" = "Kategoriýa söweşi";
 "category_battle_desc" = "%1$@ çykdajylary %2$@ çykdajylaryndan %3$.1f esse köp! ⚔️";
+
+// Free Trial
+"free_trial" = "Mugt synag möwriti";
+"free_trial_desc" = "Synag möwriti gutarmanka 1 gün öňinden size habar bereris.";
+"trial_end_date" = "Synag möwritiniň gutarýan güni";

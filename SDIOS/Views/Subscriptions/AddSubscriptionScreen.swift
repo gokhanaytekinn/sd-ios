@@ -193,9 +193,10 @@ struct AddSubscriptionScreen: View {
                         
                         // Payment Recurrence Day
                         VStack(alignment: .leading, spacing: 10) {
-                            Text(viewModel.selectedBillingCycle == .monthly ? 
-                                 "payment_recurrence_day".localized() : 
-                                 "payment_recurrence_day_month".localized())
+                            Text(viewModel.isFreeTrial ? "trial_end_date".localized() :
+                                 (viewModel.selectedBillingCycle == .monthly ? 
+                                  "payment_recurrence_day".localized() : 
+                                  "payment_recurrence_day_month".localized()))
                                 .font(.system(size: 14, weight: .bold))
                             
                             ScrollView(.horizontal, showsIndicators: false) {
@@ -258,6 +259,23 @@ struct AddSubscriptionScreen: View {
                                 }
                                 Spacer()
                                 Toggle("", isOn: $viewModel.reminderEnabled)
+                                    .tint(.primaryBlue)
+                                    .labelsHidden()
+                            }
+                        }
+                        
+                        // Free Trial
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("free_trial".localized())
+                                        .font(.system(size: 16, weight: .medium))
+                                    Text("free_trial_desc".localized())
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                }
+                                Spacer()
+                                Toggle("", isOn: $viewModel.isFreeTrial)
                                     .tint(.primaryBlue)
                                     .labelsHidden()
                             }

@@ -452,3 +452,8 @@
 "billing_split_yearly" = "Yearly";
 "category_battle_title" = "Category Battle";
 "category_battle_desc" = "%1$@ spending is %3$.1fx more than %2$@! ⚔️";
+
+// Free Trial
+"free_trial" = "Free Trial";
+"free_trial_desc" = "We will alert you 1 day before the trial ends.";
+"trial_end_date" = "Trial End Date";

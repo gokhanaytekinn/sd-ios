@@ -453,3 +453,8 @@
 "billing_split_yearly" = "Yıllık";
 "category_battle_title" = "Kategori Savaşı";
 "category_battle_desc" = "%1$@ harcaması %2$@ harcamasının %3$.1f katı! ⚔️";
+
+// Free Trial
+"free_trial" = "Тӳлевсĕр тĕрĕслев";
+"free_trial_desc" = "Тĕрĕслев вăхăчĕ тухиччен 1 кун маларах эпир сире пĕлтерĕпĕр.";
+"trial_end_date" = "Тĕрĕслев вĕçленмелли кун";

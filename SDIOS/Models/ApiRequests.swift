@@ -46,6 +46,7 @@ struct SubscriptionRequest: Codable {
     let billingDay: Int
     let billingMonth: Int?
     let reminderEnabled: Bool
+    let isFreeTrial: Bool?
     let jointEmails: [String]?
 }
 
@@ -60,6 +61,7 @@ struct SubscriptionUpdateRequest: Codable {
     let billingDay: Int?
     let billingMonth: Int?
     let reminderEnabled: Bool?
+    let isFreeTrial: Bool?
     let jointEmails: [String]?
 }
 

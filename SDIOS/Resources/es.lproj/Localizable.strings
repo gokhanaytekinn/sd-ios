@@ -428,3 +428,8 @@
 "billing_split_yearly" = "Anual";
 "category_battle_title" = "Batalla de Categorías";
 "category_battle_desc" = "¡El gasto en %1$@ es %3$.1f veces más que en %2$@! ⚔️";
+
+// Free Trial
+"free_trial" = "Prueba gratuita";
+"free_trial_desc" = "Te avisaremos 1 día antes de que termine la prueba.";
+"trial_end_date" = "Fecha de fin de la prueba";

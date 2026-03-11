@@ -427,3 +427,8 @@
 "billing_split_yearly" = "Jährlich";
 "category_battle_title" = "Kategorie-Duell";
 "category_battle_desc" = "%1$@-Ausgaben sind %3$.1f-mal höher als %2$@! ⚔️";
+
+// Free Trial
+"free_trial" = "Kostenlose Testversion";
+"free_trial_desc" = "Wir benachrichtigen Sie 1 Tag vor Ablauf des Testzeitraums.";
+"trial_end_date" = "Ablaufdatum des Testzeitraums";

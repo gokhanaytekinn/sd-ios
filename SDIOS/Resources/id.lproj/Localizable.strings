@@ -426,3 +426,8 @@
 "billing_split_yearly" = "Tahunan";
 "category_battle_title" = "Pertempuran Kategori";
 "category_battle_desc" = "Pengeluaran %1$@ %3$.1f kali lebih banyak daripada %2$@! ⚔️";
+
+// Free Trial
+"free_trial" = "Uji Coba Gratis";
+"free_trial_desc" = "Kami akan memberi tahu Anda 1 hari sebelum uji coba berakhir.";
+"trial_end_date" = "Tanggal Berakhir Uji Coba";

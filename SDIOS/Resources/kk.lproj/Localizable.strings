@@ -428,3 +428,8 @@
 "billing_split_yearly" = "Жыл сайын";
 "category_battle_title" = "Санаттар шайқасы";
 "category_battle_desc" = "%1$@ шығындары %2$@ шығындарынан %3$.1f есе көп! ⚔️";
+
+// Free Trial
+"free_trial" = "Тегін сынақ нұсқасы";
+"free_trial_desc" = "Сынақ мерзімі аяқталуға 1 күн қалғанда хабарлаймыз.";
+"trial_end_date" = "Сынақ мерзімінің аяқталу күні";

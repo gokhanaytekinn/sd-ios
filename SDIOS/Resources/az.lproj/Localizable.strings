@@ -428,3 +428,8 @@
 "billing_split_yearly" = "İllik";
 "category_battle_title" = "Kateqoriya Döyüşü";
 "category_battle_desc" = "%1$@ xərcləri %2$@ xərclərindən %3$.1f dəfə çoxdur! ⚔️";
+
+// Free Trial
+"free_trial" = "Pulsuz Sınaq";
+"free_trial_desc" = "Sınaq müddəti bitməmişдəн 1 gün əvvəl sizə xəbərdarlıq edəcəyik.";
+"trial_end_date" = "Sınaq Müddətinin Bitmə Tarixi";

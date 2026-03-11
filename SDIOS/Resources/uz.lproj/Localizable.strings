@@ -428,3 +428,8 @@
 "billing_split_yearly" = "Yillik";
 "category_battle_title" = "Toifalar jangi";
 "category_battle_desc" = "%1$@ xarajatlari %2$@ xarajatlaridan %3$.1f barobar ko'p! ⚔️";
+
+// Free Trial
+"free_trial" = "Bepul Sinov";
+"free_trial_desc" = "Sinov muddati tugashidan 1 kun oldin sizni ogohlantiramiz.";
+"trial_end_date" = "Sinov Muddati Tugash Sanasi";

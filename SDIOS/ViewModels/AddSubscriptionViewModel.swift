@@ -12,6 +12,7 @@ class AddSubscriptionViewModel: ObservableObject {
     @Published var billingDay: Int = Calendar.current.component(.day, from: Date()) { didSet { clearDateError() } } // Ödeme günü
     @Published var billingMonth: Int? = nil { didSet { clearDateError() } } // Ödeme ayı (Yıllık paketler için)
     @Published var reminderEnabled = true { didSet { clearDateError() } } // Hatırlatıcı aktif mi?
+    @Published var isFreeTrial = false // Ücretsiz deneme mi?
     @Published var jointEmails: [String] = []                  // Paylaşımlı abonelik için eklenen e-postalar
     @Published var participants: [InvitationParticipant] = []  // Mevcut katılımcılar (düzenleme modunda)
     @Published var emailInput: String = ""                     // Yeni e-posta girişi için geçici değişken
@@ -99,6 +100,7 @@ class AddSubscriptionViewModel: ObservableObject {
         billingDay = subscription.billingDay ?? Calendar.current.component(.day, from: Date())
         billingMonth = subscription.billingMonth ?? Calendar.current.component(.month, from: Date())
         reminderEnabled = subscription.reminderEnabled
+        isFreeTrial = subscription.isFreeTrial ?? false
         jointEmails = subscription.jointEmails ?? []
         participants = subscription.participants ?? []
     }
@@ -248,6 +250,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     billingDay: billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
                     reminderEnabled: reminderEnabled,
+                    isFreeTrial: isFreeTrial,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
                 let result = await updateSubscriptionUseCase.execute(id: editId, request: request)
@@ -265,6 +268,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     billingDay: billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
                     reminderEnabled: reminderEnabled,
+                    isFreeTrial: isFreeTrial,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
                 let result = await createSubscriptionUseCase.execute(request: request)
@@ -349,6 +353,7 @@ class AddSubscriptionViewModel: ObservableObject {
         billingDay = Calendar.current.component(.day, from: Date())
         billingMonth = nil
         reminderEnabled = true
+        isFreeTrial = false
         jointEmails = []
         participants = []
         emailInput = ""

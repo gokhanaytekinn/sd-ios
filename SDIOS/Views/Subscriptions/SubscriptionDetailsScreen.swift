@@ -80,6 +80,20 @@ struct SubscriptionDetailsScreen: View {
                             }
                         }
                         
+                        // Free Trial Label
+                        if sub.isFreeTrial == true {
+                            HStack(spacing: 8) {
+                                Image(systemName: "gift.fill")
+                                Text("free_trial".localized())
+                            }
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(Color(hex: "4CAF50"))
+                            .cornerRadius(20)
+                        }
+                        
                         // Reminder Label
                         if sub.reminderEnabled {
                             HStack(spacing: 8) {
@@ -367,6 +381,7 @@ struct SubscriptionDetailsScreen: View {
                 reminderEnabled: !sub.reminderEnabled,
                 jointEmails: sub.jointEmails,
                 isOwner: sub.isOwner,
+                isFreeTrial: sub.isFreeTrial,
                 participants: sub.participants
             )
             
@@ -381,6 +396,7 @@ struct SubscriptionDetailsScreen: View {
                 billingDay: updatedSub.billingDay,
                 billingMonth: updatedSub.billingMonth,
                 reminderEnabled: updatedSub.reminderEnabled,
+                isFreeTrial: updatedSub.isFreeTrial,
                 jointEmails: updatedSub.jointEmails
             )
             

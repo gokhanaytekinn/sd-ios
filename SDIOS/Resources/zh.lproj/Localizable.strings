@@ -428,3 +428,8 @@
 "billing_split_yearly" = "每年";
 "category_battle_title" = "类别之战";
 "category_battle_desc" = "%1$@ 的支出是 %2$@ 的 %3$.1f 倍！⚔️";
+
+// Free Trial
+"free_trial" = "免费试用";
+"free_trial_desc" = "我们将在试用期结束前 1 天提醒您。";
+"trial_end_date" = "试用截止日期";
