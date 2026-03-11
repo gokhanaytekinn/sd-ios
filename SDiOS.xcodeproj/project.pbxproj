@@ -102,6 +102,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				SDWidgets/MonthlyTotalWidget.swift,
 				SDWidgets/MostExpensiveWidget.swift,
 				SDWidgets/QuickAddWidget.swift,
 				SDWidgets/SDWidgets.swift,
@@ -292,6 +293,12 @@
 				de,
 				az,
 				uz,
+				ug,
+				tt,
+				gag,
+				sah,
+				cv,
+				ba,
 			);
 			mainGroup = D94C04642F59F91A0014BB86;
 			minimizedProjectReferenceProxies = 1;

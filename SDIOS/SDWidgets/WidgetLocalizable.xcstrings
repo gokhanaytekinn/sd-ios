@@ -1,1085 +1,1553 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "billing_monthly_label" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aylık"
+  "sourceLanguage": "en",
+  "strings": {
+    "billing_monthly_label": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monatlich"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monatlich"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monthly"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mensual"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensual"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mensuel"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mensuel"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulanan"
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulanan"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ай сайын"
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ай сайын"
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ай сайын"
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ай сайын"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ежемесячно"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежемесячно"
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aýlyk"
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aýlyk"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aylık"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oylik"
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oylik"
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "每月"
-          }
-        }
-      }
-    },
-    "billing_yearly_label" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "İllik"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jährlich"
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yearly"
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anual"
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annuel"
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tahunan"
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жыл сайын"
-          }
-        },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жыл сайын"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ежегодно"
-          }
-        },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yyllyk"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yıllık"
-          }
-        },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yillik"
-          }
-        },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "每年"
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         }
       }
     },
-    "no_subscriptions" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hələ abunəlik yoxdur"
+    "billing_yearly_label": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İllik"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch keine Abonnements"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jährlich"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No subscriptions yet"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yearly"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no hay suscripciones"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anual"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pas encore d'abonnements"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuel"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belum ada langganan"
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tahunan"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жазылымдар әлі жоқ"
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жыл сайын"
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Азырынча жазылуулар жок"
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жыл сайын"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подписок пока нет"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежегодно"
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Häzirki wagtda abunalyk ýok"
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yyllyk"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Henüz abonelik yok"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hozircha obunalar yo’q"
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yillik"
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "暂无订阅"
-          }
-        }
-      }
-    },
-    "no_upcoming_payments" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gələcək ödəniş yoxdur"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每年"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keine anstehenden Zahlungen"
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No upcoming payments"
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay pagos próximos"
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aucun paiement à venir"
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tidak ada pembayaran mendatang"
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Алдағы төлемдер жоқ"
-          }
-        },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жакынкы төлөмдөр жок"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предстоящих платежей нет"
-          }
-        },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gelejekki töleg ýok"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yaklaşan ödeme yok"
-          }
-        },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kelgusi to’lovlar yo’q"
-          }
-        },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "暂无即将到来的付款"
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         }
       }
     },
-    "quick_add_title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tez Əlavə Et"
+    "no_subscriptions": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hələ abunəlik yoxdur"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schnell hinzufügen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Abonnements"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quick Add"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No subscriptions yet"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añadir rápido"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay suscripciones"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajout rapide"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore d'abonnements"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tambah Cepat"
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belum ada langganan"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жылдам қосу"
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жазылымдар әлі жоқ"
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жакынкы кошуу"
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Азырынча жазылуулар жок"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Быстрое добавление"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подписок пока нет"
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Çalt goşmak"
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Häzirki wagtda abunalyk ýok"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hızlı Ekle"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz abonelik yok"
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tezkor qo’shish"
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hozircha obunalar yo’q"
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "快速添加"
-          }
-        }
-      }
-    },
-    "total_monthly" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aylık Yekun"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无订阅"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monatliche Summe"
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz abonelik yok"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monthly Total"
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz abonelik yok"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total mensual"
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz abonelik yok"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total mensuel"
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz abonelik yok"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Bulanan"
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz abonelik yok"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Айлық жиынтық"
-          }
-        },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ай сайынкы жалпы"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ежемесячный итог"
-          }
-        },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aýlyk Jem"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aylık Toplam"
-          }
-        },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oylik jami"
-          }
-        },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "每月总计"
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Henüz abonelik yok"
           }
         }
       }
     },
-    "widget_expensive_desc" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ən yüksək məbləğli abunəliklərinizi sadalayır."
+    "no_upcoming_payments": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gələcək ödəniş yoxdur"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listet Ihre teuersten Abonnements auf."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine anstehenden Zahlungen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lists your most expensive subscriptions."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No upcoming payments"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enumera tus suscripciones más caras."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay pagos próximos"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Liste vos abonnements les plus chers."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun paiement à venir"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mencantumkan langganan Anda yang paling mahal."
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidak ada pembayaran mendatang"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ең қымбат жазылымдарыңызды тізімдейді."
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алдағы төлемдер жоқ"
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Эң кымбат жазылууларыңызды тизмелейт."
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жакынкы төлөмдөр жок"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Список ваших самых дорогих подписок."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Предстоящих платежей нет"
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Iň gymmat abunalyklaryňyzy sanawa alýar."
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelejekki töleg ýok"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En yüksek tutarlı aboneliklerinizi listeler."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan ödeme yok"
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eng qimmat obunalaringiz ro’yxatini ko’rsatadi."
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kelgusi to’lovlar yo’q"
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "列出您最昂贵的订阅。"
-          }
-        }
-      }
-    },
-    "widget_expensive_title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ən Bahalı"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂无即将到来的付款"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Teuerste"
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan ödeme yok"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Most Expensive"
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan ödeme yok"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Más caros"
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan ödeme yok"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plus chers"
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan ödeme yok"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Termahal"
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan ödeme yok"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ең қымбат"
-          }
-        },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Эң кымбат"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Самые дорогие"
-          }
-        },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Iň gymmat"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En Pahalı Ödemeler"
-          }
-        },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eng qimmat"
-          }
-        },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最昂贵"
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan ödeme yok"
           }
         }
       }
     },
-    "widget_monthly_total_desc" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aylık ümumi abunə xərclərinizi göstərir."
+    "quick_add_title": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tez Əlavə Et"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeigt Ihre gesamten monatlichen Abonnementausgaben."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnell hinzufügen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shows your total monthly subscription spending."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Add"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Muestra su gasto total mensual en suscripciones."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir rápido"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Affiche vos dépenses d'abonnement mensuelles totales."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajout rapide"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Menampilkan total pengeluaran langganan bulanan Anda."
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambah Cepat"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ай сайынғы жалпы жазылым шығындарын көрсетеді."
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жылдам қосу"
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ай сайынкы жалпы жазылуу чыгымдарыңызды көрсөтөт."
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жакынкы кошуу"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Показывает ваши общие ежемесячные расходы на подписки."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Быстрое добавление"
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aýlyk umumy abunalyk çykdayjyňyzy görkezýär."
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çalt goşmak"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bu ayki toplam abonelik harcamanızı gösterir."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Ekle"
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oylik umumiy obuna xarajatlaringizni ko'rsatadi."
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tezkor qo’shish"
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示您每月的总订阅支出。"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快速添加"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Ekle"
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Ekle"
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Ekle"
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Ekle"
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Ekle"
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı Ekle"
           }
         }
       }
     },
-    "widget_monthly_total_title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aylık Yekun"
+    "total_monthly": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık Yekun"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monatliche Summe"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monatliche Summe"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monthly Total"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly Total"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total mensual"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total mensual"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total mensuel"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total mensuel"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Bulanan"
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total Bulanan"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Айлық жиынтық"
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Айлық жиынтық"
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ай сайынкы жалпы"
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ай сайынкы жалпы"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ежемесячный итог"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежемесячный итог"
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aýlyk Jem"
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aýlyk Jem"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aylık Toplam"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık Toplam"
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oylik jami"
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oylik jami"
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "每月总计"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月总计"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۇ ئايدىكى ئومۇمىي"
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бу айда барлыгы"
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Был айҙа барыһы"
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ку уйӑхра пӗтӗмпе"
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık Toplam"
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бу ыйга барыта"
           }
         }
       }
     },
-    "widget_quick_add_desc" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tək toxunuşla yeni abunəlik əlavə edin."
+    "widget_expensive_desc": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ən yüksək məbləğli abunəliklərinizi sadalayır."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fügen Sie mit einem Fingertipp ein neues Abonnement hinzu."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listet Ihre teuersten Abonnements auf."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add a new subscription with a single tap."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lists your most expensive subscriptions."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añade una nueva suscripción con un solo toque."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enumera tus suscripciones más caras."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajoutez un nouvel abonnement d'un seul geste."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liste vos abonnements les plus chers."
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tambahkan langganan baru dengan satu ketukan."
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mencantumkan langganan Anda yang paling mahal."
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бір тию арқылы жаңа жазылымды қосыңыз."
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ең қымбат жазылымдарыңызды тізімдейді."
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бир тийүү менен жаңы жазылууну кошуңуз."
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эң кымбат жазылууларыңызды тизмелейт."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавьте новую подписку одним нажатием."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Список ваших самых дорогих подписок."
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bir basmak bilen täze abunalyk goşuň."
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iň gymmat abunalyklaryňyzy sanawa alýar."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tek dokunuşla yeni abonelik ekleyin."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek tutarlı aboneliklerinizi listeler."
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bir marta bosish orqali yangi obunani qo’shing."
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eng qimmat obunalaringiz ro’yxatini ko’rsatadi."
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "只需点击一下即可添加新订阅。"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "列出您最昂贵的订阅。"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek tutarlı aboneliklerinizi listeler."
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek tutarlı aboneliklerinizi listeler."
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek tutarlı aboneliklerinizi listeler."
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek tutarlı aboneliklerinizi listeler."
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek tutarlı aboneliklerinizi listeler."
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek tutarlı aboneliklerinizi listeler."
           }
         }
       }
     },
-    "widget_upcoming_desc" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Növbəti 10 gün üçün ödənişlərinizi göstərir."
+    "widget_expensive_title": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ən Bahalı"
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeigt Ihre in den nächsten 10 Tagen fälligen Zahlungen an."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teuerste"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shows your payments due in the next 10 days."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most Expensive"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Muestra tus pagos vencidos en los próximos 10 días."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más caros"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Affiche vos paiements dus dans les 10 prochains jours."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus chers"
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Menampilkan pembayaran Anda yang jatuh tempo dalam 10 hari ko depan."
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Termahal"
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Алдағы 10 күндегі төлемдеріңізді көрсетеді."
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ең қымбат"
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Алдағы 10 күндөгү төлөмдөрүңүздү көрсөтөт."
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эң кымбат"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Показывает ваши платежи, подлежащие оплате в ближайшие 10 дней."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Самые дорогие"
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Indiki 10 günüň dowamynda töleneriňizi görkezýär."
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iň gymmat"
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Pahalı Ödemeler"
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keyingi 10 kun ichidagi to’lovlarni ko’rsatadi."
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eng qimmat"
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "显示您在接下来的 10 天内到期的付款。"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最昂贵"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Pahalı Ödemeler"
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Pahalı Ödemeler"
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Pahalı Ödemeler"
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Pahalı Ödemeler"
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Pahalı Ödemeler"
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Pahalı Ödemeler"
           }
         }
       }
     },
-    "widget_upcoming_title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "az" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gələcək Ödənişlər"
+    "widget_monthly_total_desc": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık ümumi abunə xərclərinizi göstərir."
           }
         },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anstehende Zahlungen"
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeigt Ihre gesamten monatlichen Abonnementausgaben."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upcoming Payments"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows your total monthly subscription spending."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próximos pagos"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muestra su gasto total mensual en suscripciones."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paiements à venir"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Affiche vos dépenses d'abonnement mensuelles totales."
           }
         },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pembayaran Mendatang"
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menampilkan total pengeluaran langganan bulanan Anda."
           }
         },
-        "kk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жақын арадағы төлемдер"
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ай сайынғы жалпы жазылым шығындарын көрсетеді."
           }
         },
-        "ky" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Жакынкы төлөмдөр"
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ай сайынкы жалпы жазылуу чыгымдарыңызды көрсөтөт."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предстоящие платежи"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показывает ваши общие ежемесячные расходы на подписки."
           }
         },
-        "tk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gelejekki tölegler"
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aýlyk umumy abunalyk çykdayjyňyzy görkezýär."
           }
         },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yaklaşan Ödemeler"
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayki toplam abonelik harcamanızı gösterir."
           }
         },
-        "uz" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kelgusi to’lovlar"
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oylik umumiy obuna xarajatlaringizni ko'rsatadi."
           }
         },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "即将到来"
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示您每月的总订阅支出。"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayki toplam abonelik harcamanızı gösterir."
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayki toplam abonelik harcamanızı gösterir."
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayki toplam abonelik harcamanızı gösterir."
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayki toplam abonelik harcamanızı gösterir."
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayki toplam abonelik harcamanızı gösterir."
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu ayki toplam abonelik harcamanızı gösterir."
+          }
+        }
+      }
+    },
+    "widget_monthly_total_title": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık Yekun"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monatliche Summe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly Total"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total mensual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total mensuel"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total Bulanan"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Айлық жиынтық"
+          }
+        },
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ай сайынкы жалпы"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежемесячный итог"
+          }
+        },
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aýlyk Jem"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık Toplam"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oylik jami"
+          }
+        },
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月总计"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بۇ ئايدىكى ئومۇمىي"
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бу айда барлыгы"
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Был айҙа барыһы"
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ку уйӑхра пӗтӗмпе"
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık Toplam"
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бу ыйга барыта"
+          }
+        }
+      }
+    },
+    "widget_quick_add_desc": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tək toxunuşla yeni abunəlik əlavə edin."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fügen Sie mit einem Fingertipp ein neues Abonnement hinzu."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add a new subscription with a single tap."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade una nueva suscripción con un solo toque."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez un nouvel abonnement d'un seul geste."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tambahkan langganan baru dengan satu ketukan."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бір тию арқылы жаңа жазылымды қосыңыз."
+          }
+        },
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бир тийүү менен жаңы жазылууну кошуңуз."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавьте новую подписку одним нажатием."
+          }
+        },
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir basmak bilen täze abunalyk goşuň."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek dokunuşla yeni abonelik ekleyin."
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir marta bosish orqali yangi obunani qo’shing."
+          }
+        },
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只需点击一下即可添加新订阅。"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek dokunuşla yeni abonelik ekleyin."
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek dokunuşla yeni abonelik ekleyin."
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek dokunuşla yeni abonelik ekleyin."
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek dokunuşla yeni abonelik ekleyin."
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek dokunuşla yeni abonelik ekleyin."
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek dokunuşla yeni abonelik ekleyin."
+          }
+        }
+      }
+    },
+    "widget_upcoming_desc": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Növbəti 10 gün üçün ödənişlərinizi göstərir."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeigt Ihre in den nächsten 10 Tagen fälligen Zahlungen an."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows your payments due in the next 10 days."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muestra tus pagos vencidos en los próximos 10 días."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Affiche vos paiements dus dans les 10 prochains jours."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menampilkan pembayaran Anda yang jatuh tempo dalam 10 hari ko depan."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алдағы 10 күндегі төлемдеріңізді көрсетеді."
+          }
+        },
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алдағы 10 күндөгү төлөмдөрүңүздү көрсөтөт."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показывает ваши платежи, подлежащие оплате в ближайшие 10 дней."
+          }
+        },
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indiki 10 günüň dowamynda töleneriňizi görkezýär."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyingi 10 kun ichidagi to’lovlarni ko’rsatadi."
+          }
+        },
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示您在接下来的 10 天内到期的付款。"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelecek 10 gün içindeki ödemelerinizi gösterir."
+          }
+        }
+      }
+    },
+    "widget_upcoming_title": {
+      "extractionState": "stale",
+      "localizations": {
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gələcək Ödənişlər"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anstehende Zahlungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upcoming Payments"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximos pagos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paiements à venir"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pembayaran Mendatang"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жақын арадағы төлемдер"
+          }
+        },
+        "ky": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жакынкы төлөмдөр"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Предстоящие платежи"
+          }
+        },
+        "tk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gelejekki tölegler"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan Ödemeler"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kelgusi to’lovlar"
+          }
+        },
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即将到来"
+          }
+        },
+        "ug": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan Ödemeler"
+          }
+        },
+        "tt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan Ödemeler"
+          }
+        },
+        "ba": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan Ödemeler"
+          }
+        },
+        "cv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan Ödemeler"
+          }
+        },
+        "gag": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan Ödemeler"
+          }
+        },
+        "sah": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yaklaşan Ödemeler"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

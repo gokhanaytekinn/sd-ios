@@ -1,49 +1,7 @@
 import WidgetKit
 import SwiftUI
 
-#if !WIDGET
-// Provide these only to the main app target (SDIOS) 
-// The widget extension (SDWidgetsExtension) already has them in WidgetViews.swift
-struct WidgetHeader: View {
-    let title: String
-    let icon: String
-    
-    var body: some View {
-        HStack(spacing: 6) {
-            Image(systemName: icon)
-                .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.blue)
-            
-            Text(title)
-                .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.white)
-            
-            Spacer()
-        }
-        .padding(.bottom, 8)
-    }
-}
 
-extension String {
-    func widgetLocalized() -> String {
-        let defaults = UserDefaults(suiteName: "group.com.subtracker.SDiOS")
-        let langCode = defaults?.string(forKey: "selectedLanguage") ?? "en"
-        
-        if let path = Bundle.main.path(forResource: langCode, ofType: "lproj"),
-           let langBundle = Bundle(path: path) {
-            
-            let translated = NSLocalizedString(self, tableName: "WidgetLocalizable", bundle: langBundle, comment: "")
-            if translated != self { return translated }
-            return NSLocalizedString(self, bundle: langBundle, comment: "")
-        }
-        
-        let bundle = Bundle.main
-        let translated = NSLocalizedString(self, tableName: "WidgetLocalizable", bundle: bundle, comment: "")
-        if translated != self { return translated }
-        return NSLocalizedString(self, bundle: bundle, comment: "")
-    }
-}
-#endif
 
 struct MonthlyTotalProvider: TimelineProvider {
     func placeholder(in context: Context) -> MonthlyTotalEntry {
