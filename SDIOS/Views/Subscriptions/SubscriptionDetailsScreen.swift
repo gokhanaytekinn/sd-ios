@@ -92,24 +92,18 @@ struct SubscriptionDetailsScreen: View {
                                 Text("Hatırlatıcı Açık")
                             }
                             .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(Color(hex: "5B37B7"))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
                             .background(Color.clear)
                             .cornerRadius(20)
-                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(hex: "5B37B7"), lineWidth: 1))
+                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.appOutline(for: colorScheme), lineWidth: 1))
                         }
                         
                         // Summary Card
                         VStack(alignment: .leading, spacing: 16) {
                             HStack(spacing: 12) {
-                                ZStack {
-                                    Circle()
-                                        .fill(Color.orange.opacity(0.2))
-                                        .frame(width: 40, height: 40)
-                                    Image(systemName: "sun.max.fill") // Placeholder for category icon
-                                        .foregroundColor(.orange)
-                                }
+                                // Removed redundant category icon
                                 
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(sub.name)
