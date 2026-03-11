@@ -446,7 +446,6 @@ struct AnalyticsScreen: View {
     }
     
     private func handleChartTap(angle: Double, data: [(key: String, value: Double)]) {
-        let totalValue = data.reduce(0) { $0 + $1.value }
         var cumulativeValue: Double = 0
         
         for item in data {

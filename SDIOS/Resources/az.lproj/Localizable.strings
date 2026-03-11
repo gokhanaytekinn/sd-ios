@@ -182,12 +182,12 @@
 "priority_support" = "Prioritetli Dəstək";
 "ad_free" = "Reklamsız Təcrübə";
 "choose_plan" = "Planınızı Seçin";
-"monthly_plan" = "Aylıq Plan";
+"monthly_plan" = "Aylık Plan";
 "yearly_plan" = "İllik Plan";
 "save_percent" = "%d%% Qənaət";
 "per_month" = "/ay";
 "per_year" = "/il";
-"billed_monthly" = "Aylıq hesablanır";
+"billed_monthly" = "Aylık hesablanır";
 "billed_yearly" = "İllik hesablanır";
 "start_trial" = "Pulsuz Sınağı Başlat";
 "restore_purchase" = "Satınalmanı bərpa et";
@@ -293,7 +293,7 @@
 "go_back" = "Geri Qayıt";
 "subscription_id_not_found" = "Abunəlik ID tapılmadı";
 "no_subscriptions_yet" = "Hələ ki abunəlik əlavə olunmayıb";
-"billing_monthly_label" = "Aylıq";
+"billing_monthly_label" = "Aylık";
 "billing_yearly_label" = "İllik";
 "billing_weekly_label" = "Həftəlik";
 "help_center_title" = "Yardım Mərkəzi";
@@ -336,7 +336,7 @@
 "widget_today" = "Bu gun";
 "analytics" = "Analitika";
 "spending_overview" = "Xərc Xülasəsi";
-"monthly_trend" = "Aylıq Trend";
+"monthly_trend" = "Aylık Trend";
 "category_breakdown" = "Kateqoriya Bölgüsü";
 "top_subscriptions" = "Ən çox xərclənən";
 "automatic_tracking" = "Avtomatik Izleme";
@@ -424,7 +424,7 @@
 "peak_spending_day_title" = "Ən Sıx Gün";
 "peak_spending_day_desc" = "Ayın %d-ci günü ən sıx gündür! Cəmi: %@";
 "billing_split_title" = "Ödəniş Dövrü";
-"billing_split_monthly" = "Aylıq";
+"billing_split_monthly" = "Aylık";
 "billing_split_yearly" = "İllik";
 "category_battle_title" = "Kateqoriya Döyüşü";
 "category_battle_desc" = "%1$@ xərcləri %2$@ xərclərindən %3$.1f dəfə çoxdur! ⚔️";

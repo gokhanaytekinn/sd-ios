@@ -40,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D917E5072F614D70002A23DA /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D92551FD2F5F61B700DC8A83 /* SDWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SDWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D92551FF2F5F61B700DC8A83 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D92552012F5F61B700DC8A83 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -147,6 +148,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D917E5092F614D70002A23DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D92551FE2F5F61B700DC8A83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +303,10 @@
 			productRefGroup = D94C046E2F59F91A0014BB86 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = D917E5092F614D70002A23DA /* Products */;
+					ProjectRef = D917E5072F614D70002A23DA /* SDiOS.xcodeproj */;
+				},
 				{
 					ProductGroup = D9ED35E12F60BCCD00665751 /* Products */;
 					ProjectRef = D9ED35DF2F60BCCD00665751 /* SDiOS.xcodeproj */;

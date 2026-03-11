@@ -1,12 +1,22 @@
 import Foundation
 import Combine
+import WidgetKit
 
 class LanguagePreferences: ObservableObject {
     static let shared = LanguagePreferences()
     
+    private let appGroupID = "group.com.subtracker.SDiOS"
+    
+    private var sharedDefaults: UserDefaults? {
+        return UserDefaults(suiteName: appGroupID)
+    }
+    
     @Published var selectedLanguage: String {
         didSet {
             UserDefaults.standard.set(selectedLanguage, forKey: "selectedLanguage")
+            sharedDefaults?.set(selectedLanguage, forKey: "selectedLanguage")
+            sharedDefaults?.synchronize()
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
     
@@ -56,5 +66,8 @@ class LanguagePreferences: ObservableObject {
         
         // Sync to UserDefaults
         UserDefaults.standard.set(self.selectedLanguage, forKey: "selectedLanguage")
+        let sharedDefaults = UserDefaults(suiteName: "group.com.subtracker.SDiOS")
+        sharedDefaults?.set(self.selectedLanguage, forKey: "selectedLanguage")
+        sharedDefaults?.synchronize()
     }
 }

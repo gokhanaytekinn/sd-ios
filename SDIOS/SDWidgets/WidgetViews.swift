@@ -39,7 +39,7 @@ struct SubscriptionWidgetRow: View {
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.white)
                 
-                Text(cycle == .monthly ? LocalizedStringKey("billing_monthly_label") : LocalizedStringKey("billing_yearly_label"), tableName: "WidgetLocalizable", bundle: .main)
+                Text(cycle == .monthly ? "billing_monthly_label".widgetLocalized() : "billing_yearly_label".widgetLocalized())
                     .font(.system(size: 10))
                     .foregroundColor(.gray)
             }
@@ -124,14 +124,22 @@ struct WidgetHeader: View {
 
 extension String {
     func widgetLocalized() -> String {
-        // Try WidgetLocalizable from the current bundle (extension bundle)
-        let bundle = Bundle.main
-        let translated = NSLocalizedString(self, tableName: "WidgetLocalizable", bundle: bundle, comment: "")
-        if translated != self {
-            return translated
+        let defaults = UserDefaults(suiteName: "group.com.subtracker.SDiOS")
+        let langCode = defaults?.string(forKey: "selectedLanguage") ?? "en"
+        
+        // Load from specific language bundle if found
+        if let path = Bundle.main.path(forResource: langCode, ofType: "lproj"),
+           let langBundle = Bundle(path: path) {
+            
+            let translated = NSLocalizedString(self, tableName: "WidgetLocalizable", bundle: langBundle, comment: "")
+            if translated != self { return translated }
+            return NSLocalizedString(self, bundle: langBundle, comment: "")
         }
         
-        // Try default Localizable from main bundle
+        // Fallback to default
+        let bundle = Bundle.main
+        let translated = NSLocalizedString(self, tableName: "WidgetLocalizable", bundle: bundle, comment: "")
+        if translated != self { return translated }
         return NSLocalizedString(self, bundle: bundle, comment: "")
     }
 }

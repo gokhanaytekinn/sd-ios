@@ -46,7 +46,7 @@ struct MostExpensiveWidgetView : View {
             
             if expensiveSubs.isEmpty {
                 Spacer()
-                Text(LocalizedStringKey("no_subscriptions"), tableName: "WidgetLocalizable", bundle: Bundle(for: WidgetDataManager.self))
+                Text("no_subscriptions".widgetLocalized())
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
@@ -58,7 +58,7 @@ struct MostExpensiveWidgetView : View {
                         SubscriptionWidgetRow(
                             name: sub.name,
                             cost: CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency),
-                            date: sub.billingCycle == .monthly ? String(localized: "billing_monthly_label", table: "WidgetLocalizable", bundle: .main) : String(localized: "billing_yearly_label", table: "WidgetLocalizable", bundle: .main),
+                            date: sub.billingCycle == .monthly ? "billing_monthly_label".widgetLocalized() : "billing_yearly_label".widgetLocalized(),
                             icon: sub.icon,
                             cycle: sub.billingCycle
                         )

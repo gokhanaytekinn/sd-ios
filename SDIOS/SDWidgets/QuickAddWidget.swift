@@ -39,7 +39,7 @@ struct QuickAddWidgetView : View {
                         .foregroundColor(.white)
                 }
                 
-                Text(LocalizedStringKey("quick_add_title"), tableName: "WidgetLocalizable", bundle: .main)
+                Text("quick_add_title".widgetLocalized())
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                     .multilineTextAlignment(.center)

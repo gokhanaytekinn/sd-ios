@@ -7,5 +7,6 @@ struct SDWidgets: WidgetBundle {
         UpcomingPaymentsWidget()
         MostExpensiveWidget()
         QuickAddWidget()
+        MonthlyTotalWidget()
     }
 }

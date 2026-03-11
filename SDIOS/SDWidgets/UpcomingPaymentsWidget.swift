@@ -50,7 +50,7 @@ struct UpcomingPaymentsWidgetView : View {
             
             if upcomingSubs.isEmpty {
                 Spacer()
-                Text(LocalizedStringKey("no_upcoming_payments"), tableName: "WidgetLocalizable", bundle: .main)
+                Text("no_upcoming_payments".widgetLocalized())
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
