@@ -102,11 +102,11 @@ struct DashboardScreen: View {
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
                             .padding(20)
-                            .background(Color.primaryBlue.opacity(0.05))
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
                             .cornerRadius(20)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.primaryBlue.opacity(0.1), lineWidth: 1)
+                                    .stroke(Color.primaryBlue.opacity(0.3), lineWidth: 1)
                             )
                         }
                         .padding(.horizontal, 24)

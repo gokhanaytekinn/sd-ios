@@ -110,13 +110,15 @@ struct AppSettingsScreen: View {
                             iconColor: Color(hex: "6366F1")
                         )
                         
-                        SettingsNavigationItem(
-                            icon: "globe",
-                            title: "language".localized(),
-                            subtitle: LanguagePreferences.supportedLanguages.first(where: { $0.code == LanguagePreferences.shared.selectedLanguage })?.name,
-                            iconColor: .primaryBlue,
-                            onTap: { showLanguageDialog = true }
-                        )
+                        if !((Locale.preferredLanguages.first?.hasPrefix("ar") ?? false) || (Bundle.main.preferredLocalizations.first?.hasPrefix("ar") ?? false)) {
+                            SettingsNavigationItem(
+                                icon: "globe",
+                                title: "language".localized(),
+                                subtitle: LanguagePreferences.supportedLanguages.first(where: { $0.code == LanguagePreferences.shared.selectedLanguage })?.name,
+                                iconColor: .primaryBlue,
+                                onTap: { showLanguageDialog = true }
+                            )
+                        }
                     }
                     .padding(.horizontal, 24)
                     

@@ -34,6 +34,27 @@ class LanguagePreferences: ObservableObject {
     ]
     
     private init() {
-        self.selectedLanguage = UserDefaults.standard.string(forKey: "selectedLanguage") ?? "tr"
+        // More robust device language detection
+        let deviceLang = Locale.preferredLanguages.first ?? "en"
+        
+        if deviceLang.hasPrefix("ar") {
+            // ARABIC OVERRIDE: Always force Turkish, no matter what was saved
+            self.selectedLanguage = "tr"
+        } else if let savedLanguage = UserDefaults.standard.string(forKey: "selectedLanguage") {
+            // Normal flow: Use saved preference if not in Arabic mode
+            self.selectedLanguage = savedLanguage
+        } else {
+            // First time launch for non-Arabic devices
+            let langCode = Locale.current.language.languageCode?.identifier ?? "en"
+            
+            if LanguagePreferences.supportedLanguages.contains(where: { $0.code == langCode }) {
+                self.selectedLanguage = langCode
+            } else {
+                self.selectedLanguage = "en"
+            }
+        }
+        
+        // Sync to UserDefaults
+        UserDefaults.standard.set(self.selectedLanguage, forKey: "selectedLanguage")
     }
 }
