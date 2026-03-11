@@ -440,3 +440,5 @@
 "Health" = "Health";
 "Shopping" = "Shopping";
 "Other" = "Other";
+"total" = "Total";
+"no_data" = "No Data";

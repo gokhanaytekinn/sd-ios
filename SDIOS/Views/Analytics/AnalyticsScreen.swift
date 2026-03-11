@@ -41,6 +41,9 @@ struct AnalyticsScreen: View {
                             // 2. Summary Card (Donut Chart & Totals)
                             chartSection
                             
+                            // 2.5 Coffee Index
+                            coffeeIndexCard
+                            
                             // 3. Interactive Calendar
                             calendarSection
                             
@@ -126,6 +129,67 @@ struct AnalyticsScreen: View {
             }
         }
         .padding(.vertical, 8)
+    }
+    
+    // MARK: - Coffee Index Card
+    private var coffeeIndexCard: some View {
+        Group {
+            if let summary = viewModel.summary {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                                .frame(width: 44, height: 44)
+                            
+                            Image(systemName: "cup.and.saucer.fill")
+                                .foregroundColor(.orange)
+                                .font(.system(size: 20))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("financial_pulse".localized())
+                                .font(.sdCaptionBold)
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            let coffeeCount = calculateCoffeeCount(amount: summary.totalMonthlyCost, currency: summary.currency)
+                            Text(String(format: "daily_coffee_comparison".localized(), coffeeCount))
+                                .font(.sdLabel)
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
+                        
+                        Spacer()
+                    }
+                }
+                .padding(20)
+                .background(Color.clear)
+                .cornerRadius(24)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                        .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+                )
+                .padding(.horizontal, 24)
+                .transition(.scale.combined(with: .opacity))
+            }
+        }
+    }
+    
+    private func calculateCoffeeCount(amount: Double, currency: Int) -> Double {
+        let coffeePrice: Double
+        switch currency {
+        case 1: coffeePrice = 85.0 // TRY
+        case 2: coffeePrice = 4.5  // USD
+        case 3: coffeePrice = 4.0  // EUR
+        case 4: coffeePrice = 4.0  // GBP
+        case 5: coffeePrice = 350.0 // RUB
+        case 6: coffeePrice = 6.0  // AZN
+        case 7: coffeePrice = 2000.0 // KZT
+        default: coffeePrice = 5.0
+        }
+        
+        let monthlyCoffeeCount = amount / coffeePrice
+        // The translation says "per day" or "günde", so we divide monthly count by 30
+        return monthlyCoffeeCount / 30.0
     }
     
     private var emptyChartPlaceholder: some View {

@@ -441,3 +441,5 @@
 "Health" = "Sağlık";
 "Shopping" = "Alışveriş";
 "Other" = "Diğer";
+"total" = "Toplam";
+"no_data" = "Veri Yok";
