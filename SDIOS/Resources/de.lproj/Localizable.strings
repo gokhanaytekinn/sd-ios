@@ -420,3 +420,10 @@
 "coffee_index_half" = "Entspricht etwa einer halben Tasse Kaffee pro Tag";
 "coffee_index_single" = "Entspricht etwa 1 Kaffee pro Tag";
 "coffee_index_multi" = "Entspricht etwa %d Kaffees pro Tag";
+"peak_spending_day_title" = "Spitzentag";
+"peak_spending_day_desc" = "Tag %d ist dein geschäftigster! Gesamt: %@";
+"billing_split_title" = "Abrechnungszyklus";
+"billing_split_monthly" = "Monatlich";
+"billing_split_yearly" = "Jährlich";
+"category_battle_title" = "Kategorie-Duell";
+"category_battle_desc" = "%1$@-Ausgaben sind %3$.1f-mal höher als %2$@! ⚔️";

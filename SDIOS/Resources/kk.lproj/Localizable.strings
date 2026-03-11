@@ -421,3 +421,10 @@
 "coffee_index_half" = "Күніне шамамен жарты кесе кофеге тең";
 "coffee_index_single" = "Күніне шамамен 1 кофеге тең";
 "coffee_index_multi" = "Күніне шамамен %d кофеге тең";
+"peak_spending_day_title" = "Ең қарбалас күн";
+"peak_spending_day_desc" = "Айдың %d-күні ең қарбалас! Барлығы: %@";
+"billing_split_title" = "Төлем циклі";
+"billing_split_monthly" = "Ай сайын";
+"billing_split_yearly" = "Жыл сайын";
+"category_battle_title" = "Санаттар шайқасы";
+"category_battle_desc" = "%1$@ шығындары %2$@ шығындарынан %3$.1f есе көп! ⚔️";

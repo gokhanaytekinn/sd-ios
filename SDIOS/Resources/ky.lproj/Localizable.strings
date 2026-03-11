@@ -421,3 +421,10 @@
 "coffee_index_half" = "Күнүнө болжол менен жарым чөйчөк кофеге барабар";
 "coffee_index_single" = "Күнүнө болжол менен 1 кофеге барабар";
 "coffee_index_multi" = "Күнүнө болжол менен %d кофеге барабар";
+"peak_spending_day_title" = "Эң көп чыгымдалган күн";
+"peak_spending_day_desc" = "Айдын %d-күнү эң бош эмес! Жалпы: %@";
+"billing_split_title" = "Төлөм циклы";
+"billing_split_monthly" = "Ай сайын";
+"billing_split_yearly" = "Жыл сайын";
+"category_battle_title" = "Категориялар согушу";
+"category_battle_desc" = "%1$@ чыгымдары %2$@ чыгымдарынан %3$.1f эсе көп! ⚔️";

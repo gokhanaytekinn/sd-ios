@@ -419,3 +419,10 @@
 "coffee_index_half" = "Setara dengan setengah cangkir kopi per hari";
 "coffee_index_single" = "Setara con 1 kopi per hari";
 "coffee_index_multi" = "Setara dengan %d kopi per hari";
+"peak_spending_day_title" = "Hari Pengeluaran Puncak";
+"peak_spending_day_desc" = "Hari ke-%d adalah yang tersibuk! Total: %@";
+"billing_split_title" = "Siklus Penagihan";
+"billing_split_monthly" = "Bulanan";
+"billing_split_yearly" = "Tahunan";
+"category_battle_title" = "Pertempuran Kategori";
+"category_battle_desc" = "Pengeluaran %1$@ %3$.1f kali lebih banyak daripada %2$@! ⚔️";

@@ -41,11 +41,14 @@ struct AnalyticsScreen: View {
                             // 2. Summary Card (Donut Chart & Totals)
                             chartSection
                             
-                            // 2.5 Coffee Index
-                            coffeeIndexCard
-                            
-                            // 3. Interactive Calendar
-                            calendarSection
+                            // 2.5 - 3.0 Analytics Insight Cards & Calendar
+                            VStack(spacing: 12) {
+                                coffeeIndexCard
+                                peakSpendingDayCard
+                                categoryBattleCard
+                                billingSplitCard
+                                calendarSection
+                            }
                             
                             // 5. Insights
                             insightsSection
@@ -172,6 +175,223 @@ struct AnalyticsScreen: View {
                 )
                 .padding(.horizontal, 24)
                 .transition(.scale.combined(with: .opacity))
+            }
+        }
+    }
+    
+    // MARK: - Advanced Analytics Cards
+    
+    private var peakSpendingDayCard: some View {
+        Group {
+            if let summary = viewModel.summary, !summary.calendarEvents.isEmpty {
+                let peakData = calculatePeakSpendingDay(events: summary.calendarEvents)
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .stroke(Color.primaryBlue.opacity(0.3), lineWidth: 1)
+                                .frame(width: 44, height: 44)
+                            
+                            Image(systemName: "calendar.badge.exclamationmark")
+                                .foregroundColor(.primaryBlue)
+                                .font(.system(size: 20))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("peak_spending_day_title".localized())
+                                .font(.sdCaptionBold)
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            let formattedAmount = CurrencyFormatter.formatAmount(peakData.total, currencyCode: summary.currency)
+                            Text(String(format: "peak_spending_day_desc".localized(), peakData.day, formattedAmount))
+                                .font(.sdLabel)
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
+                        
+                        Spacer()
+                    }
+                }
+                .padding(20)
+                .background(Color.clear)
+                .cornerRadius(24)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                        .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+                )
+                .padding(.horizontal, 24)
+            }
+        }
+    }
+    
+    private var billingSplitCard: some View {
+        Group {
+            if !viewModel.allSubscriptions.isEmpty {
+                let (monthly, yearly, total) = calculateBillingSplit()
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                .frame(width: 44, height: 44)
+                            
+                            Image(systemName: "arrow.2.squarepath")
+                                .foregroundColor(.green)
+                                .font(.system(size: 20))
+                        }
+                        
+                        Text("billing_split_title".localized())
+                            .font(.sdCaptionBold)
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        
+                        Spacer()
+                    }
+                    
+                    VStack(spacing: 8) {
+                        GeometryReader { geo in
+                            HStack(spacing: 0) {
+                                Color.primaryBlue.opacity(0.8)
+                                    .frame(width: geo.size.width * CGFloat(Double(monthly) / Double(total)))
+                                Color.green.opacity(0.8)
+                                    .frame(width: geo.size.width * CGFloat(Double(yearly) / Double(total)))
+                            }
+                            .cornerRadius(6)
+                        }
+                        .frame(height: 12)
+                        
+                        HStack {
+                            HStack(spacing: 4) {
+                                Circle().fill(Color.primaryBlue).frame(width: 8, height: 8)
+                                Text("\("billing_split_monthly".localized()): \(monthly)")
+                                    .font(.sdCaption)
+                            }
+                            Spacer()
+                            HStack(spacing: 4) {
+                                Circle().fill(Color.green).frame(width: 8, height: 8)
+                                Text("\("billing_split_yearly".localized()): \(yearly)")
+                                    .font(.sdCaption)
+                            }
+                        }
+                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                    }
+                }
+                .padding(20)
+                .background(Color.clear)
+                .cornerRadius(24)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                        .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+                )
+                .padding(.horizontal, 24)
+            }
+        }
+    }
+    
+    private var categoryBattleCard: some View {
+        Group {
+            if let summary = viewModel.summary {
+                let battleData = calculateCategoryBattle(summary: summary)
+                if let battle = battleData {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(spacing: 12) {
+                            ZStack {
+                                Circle()
+                                    .stroke(Color.purple.opacity(0.3), lineWidth: 1)
+                                    .frame(width: 44, height: 44)
+                                
+                                Image(systemName: "bolt.fill")
+                                    .foregroundColor(.purple)
+                                    .font(.system(size: 20))
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("category_battle_title".localized())
+                                    .font(.sdCaptionBold)
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                
+                                Text(String(format: "category_battle_desc".localized(), battle.cat1.localized(), battle.cat2.localized(), battle.ratio))
+                                    .font(.sdLabel)
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            }
+                            
+                            Spacer()
+                        }
+                    }
+                    .padding(20)
+                    .background(Color.clear)
+                    .cornerRadius(24)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 24)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+                    )
+                    .padding(.horizontal, 24)
+                }
+            }
+        }
+    }
+    
+    private func calculatePeakSpendingDay(events: [CalendarEvent]) -> (day: Int, total: Double) {
+        var dayTotals: [Int: Double] = [:]
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        // Filter events for the currently viewed month
+        let currentMonthComponents = calendar.dateComponents([.year, .month], from: calendarMonth)
+        
+        for event in events {
+            if let date = formatter.date(from: event.paymentDate) {
+                let components = calendar.dateComponents([.year, .month, .day], from: date)
+                if components.year == currentMonthComponents.year && components.month == currentMonthComponents.month {
+                    // Also filter by category if needed
+                    if viewModel.selectedCategory == "All" || viewModel.allSubscriptions.first(where: { $0.id == event.subscriptionId })?.category == viewModel.selectedCategory {
+                        let day = components.day ?? 1
+                        dayTotals[day, default: 0] += event.amount
+                    }
+                }
+            }
+        }
+        
+        if let peakDay = dayTotals.max(by: { $0.value < $1.value }) {
+            return (day: peakDay.key, total: peakDay.value)
+        }
+        return (day: 1, total: 0)
+    }
+    
+    private func calculateBillingSplit() -> (monthly: Int, yearly: Int, total: Int) {
+        let activeSubs = viewModel.allSubscriptions.filter { $0.isActive }
+        let filteredSubs = viewModel.selectedCategory == "All" ? activeSubs : activeSubs.filter { $0.category == viewModel.selectedCategory }
+        
+        let monthly = filteredSubs.filter { $0.billingCycle == .monthly }.count
+        let yearly = filteredSubs.filter { $0.billingCycle == .yearly }.count
+        return (monthly: monthly, yearly: yearly, total: filteredSubs.count > 0 ? filteredSubs.count : 1)
+    }
+    
+    private func calculateCategoryBattle(summary: AnalyticsSummaryResponse) -> (cat1: String, cat2: String, ratio: Double)? {
+        let breakdown = summary.categoryBreakdown.filter { $0.key != "All" }
+        guard !breakdown.isEmpty else { return nil }
+        
+        let sorted = breakdown.sorted { $0.value > $1.value }
+        let topGlobal = sorted[0]
+        
+        if viewModel.selectedCategory == "All" {
+            // Compare top 1 vs top 2
+            guard sorted.count >= 2 else { return nil }
+            let ratio = sorted[0].value / (sorted[1].value > 0 ? sorted[1].value : 1.0)
+            return (cat1: sorted[0].key, cat2: sorted[1].key, ratio: ratio)
+        } else {
+            // Compare selected category vs top global (if they are different)
+            let selectedValue = summary.categoryBreakdown[viewModel.selectedCategory] ?? 0
+            guard selectedValue > 0 else { return nil }
+            
+            if viewModel.selectedCategory == topGlobal.key {
+                // If selected is top global, compare with top 2
+                guard sorted.count >= 2 else { return nil }
+                let ratio = topGlobal.value / (sorted[1].value > 0 ? sorted[1].value : 1.0)
+                return (cat1: topGlobal.key, cat2: sorted[1].key, ratio: ratio)
+            } else {
+                // Compare top global vs selected
+                let ratio = topGlobal.value / (selectedValue > 0 ? selectedValue : 1.0)
+                return (cat1: topGlobal.key, cat2: viewModel.selectedCategory, ratio: ratio)
             }
         }
     }

@@ -445,3 +445,10 @@
 "coffee_index_half" = "Equivalent to a half cup of coffee per day";
 "coffee_index_single" = "Equivalent to 1 coffee per day";
 "coffee_index_multi" = "Equivalent to %d coffees per day";
+"peak_spending_day_title" = "Peak Spending Day";
+"peak_spending_day_desc" = "Day %d is your busiest! Total: %@";
+"billing_split_title" = "Billing Cycle";
+"billing_split_monthly" = "Monthly";
+"billing_split_yearly" = "Yearly";
+"category_battle_title" = "Category Battle";
+"category_battle_desc" = "%1$@ spending is %3$.1fx more than %2$@! ⚔️";

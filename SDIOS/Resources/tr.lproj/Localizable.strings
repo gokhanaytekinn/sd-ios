@@ -446,3 +446,10 @@
 "coffee_index_half" = "Günde yaklaşık yarım bardak kahve tutarında";
 "coffee_index_single" = "Günde yaklaşık 1 kahve tutarında";
 "coffee_index_multi" = "Günde yaklaşık %d kahve tutarında";
+"peak_spending_day_title" = "En Yoğun Gün";
+"peak_spending_day_desc" = "Ayın %d. günü en yoğunu! Toplam: %@";
+"billing_split_title" = "Ödeme Döngüsü";
+"billing_split_monthly" = "Aylık";
+"billing_split_yearly" = "Yıllık";
+"category_battle_title" = "Kategori Savaşı";
+"category_battle_desc" = "%1$@ harcaması %2$@ harcamasının %3$.1f katı! ⚔️";

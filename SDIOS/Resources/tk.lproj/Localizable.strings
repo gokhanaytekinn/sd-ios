@@ -421,3 +421,10 @@
 "coffee_index_half" = "Günde takmynan ýarym käse kofe bahasyna deň";
 "coffee_index_single" = "Günde takmynan 1 kofe bahasyna deň";
 "coffee_index_multi" = "Günde takmynan %d kofe bahasyna deň";
+"peak_spending_day_title" = "Iň köp çykdajyly gün";
+"peak_spending_day_desc" = "Aýyň %d-nji güni iň köp çykdajyly! Jemi: %@";
+"billing_split_title" = "Töleg döwri";
+"billing_split_monthly" = "Aýlyk";
+"billing_split_yearly" = "Ýyllyk";
+"category_battle_title" = "Kategoriýa söweşi";
+"category_battle_desc" = "%1$@ çykdajylary %2$@ çykdajylaryndan %3$.1f esse köp! ⚔️";

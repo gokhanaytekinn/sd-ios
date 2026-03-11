@@ -421,3 +421,10 @@
 "coffee_index_half" = "Gündə təxminən yarım fincan qəhvə dəyərində";
 "coffee_index_single" = "Gündə təxminən 1 qəhvə dəyərində";
 "coffee_index_multi" = "Gündə təxminən %d qəhvə dəyərində";
+"peak_spending_day_title" = "Ən Sıx Gün";
+"peak_spending_day_desc" = "Ayın %d-ci günü ən sıx gündür! Cəmi: %@";
+"billing_split_title" = "Ödəniş Dövrü";
+"billing_split_monthly" = "Aylıq";
+"billing_split_yearly" = "İllik";
+"category_battle_title" = "Kateqoriya Döyüşü";
+"category_battle_desc" = "%1$@ xərcləri %2$@ xərclərindən %3$.1f dəfə çoxdur! ⚔️";

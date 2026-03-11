@@ -421,3 +421,10 @@
 "coffee_index_half" = "相当于每天半杯咖啡";
 "coffee_index_single" = "相当于每天 1 杯咖啡";
 "coffee_index_multi" = "相当于每天 %d 杯咖啡";
+"peak_spending_day_title" = "支出高峰日";
+"peak_spending_day_desc" = "%d 日是你最忙的一天！总计：%@";
+"billing_split_title" = "计费周期";
+"billing_split_monthly" = "每月";
+"billing_split_yearly" = "每年";
+"category_battle_title" = "类别之战";
+"category_battle_desc" = "%1$@ 的支出是 %2$@ 的 %3$.1f 倍！⚔️";

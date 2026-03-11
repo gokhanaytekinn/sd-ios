@@ -421,3 +421,10 @@
 "coffee_index_half" = "Эквивалентно примерно полчашки кофе в день";
 "coffee_index_single" = "Эквивалентно примерно 1 кофе в день";
 "coffee_index_multi" = "Эквивалентно примерно %d кофе в день";
+"peak_spending_day_title" = "Пиковый день расходов";
+"peak_spending_day_desc" = "%d-й день месяца — самый загруженный! Всего: %@";
+"billing_split_title" = "Цикл оплаты";
+"billing_split_monthly" = "Ежемесячно";
+"billing_split_yearly" = "Ежегодно";
+"category_battle_title" = "Битва категорий";
+"category_battle_desc" = "Расходы на %1$@ в %3$.1f раза больше, чем на %2$@! ⚔️";

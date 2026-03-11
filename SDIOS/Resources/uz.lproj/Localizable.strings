@@ -421,3 +421,10 @@
 "coffee_index_half" = "Kuniga taxminan yarim finjon qahva qiymatiga teng";
 "coffee_index_single" = "Kuniga taxminan 1 qahva qiymatiga teng";
 "coffee_index_multi" = "Kuniga taxminan %d qahva qiymatiga teng";
+"peak_spending_day_title" = "Eng ko'p xarajatli kun";
+"peak_spending_day_desc" = "Oyning %d-kuni eng band! Jami: %@";
+"billing_split_title" = "To'lov tsikli";
+"billing_split_monthly" = "Oylik";
+"billing_split_yearly" = "Yillik";
+"category_battle_title" = "Toifalar jangi";
+"category_battle_desc" = "%1$@ xarajatlari %2$@ xarajatlaridan %3$.1f barobar ko'p! ⚔️";

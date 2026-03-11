@@ -421,3 +421,10 @@
 "coffee_index_half" = "Equivalente a media taza de café al día";
 "coffee_index_single" = "Equivalente a 1 café al día";
 "coffee_index_multi" = "Equivalente a %d cafés al día";
+"peak_spending_day_title" = "Día de Mayor Gasto";
+"peak_spending_day_desc" = "¡El día %d es el más ocupado! Total: %@";
+"billing_split_title" = "Ciclo de Facturación";
+"billing_split_monthly" = "Mensual";
+"billing_split_yearly" = "Anual";
+"category_battle_title" = "Batalla de Categorías";
+"category_battle_desc" = "¡El gasto en %1$@ es %3$.1f veces más que en %2$@! ⚔️";
