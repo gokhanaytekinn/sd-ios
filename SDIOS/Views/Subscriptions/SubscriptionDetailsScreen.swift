@@ -51,17 +51,8 @@ struct SubscriptionDetailsScreen: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         // Icon
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(Color.appSurface(for: colorScheme))
-                                .frame(width: 120, height: 120)
-                                .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-                            
-                            Text(sub.name.prefix(1).uppercased())
-                                .font(.system(size: 60, weight: .bold))
-                                .foregroundColor(.primaryBlue)
-                        }
-                        .padding(.top, 20)
+                        brandIconDetailed(name: sub.name)
+                            .padding(.top, 20)
                         
                         // Name & Price
                         VStack(spacing: 8) {
@@ -98,14 +89,15 @@ struct SubscriptionDetailsScreen: View {
                         if sub.reminderEnabled {
                             HStack(spacing: 8) {
                                 Image(systemName: "bell.fill")
-                                Text("reminder".localized())
+                                Text("Hatırlatıcı Açık")
                             }
                             .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(hex: "5B37B7"))
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
-                            .background(Color(hex: "5B37B7"))
+                            .background(Color.clear)
                             .cornerRadius(20)
+                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(hex: "5B37B7"), lineWidth: 1))
                         }
                         
                         // Summary Card
@@ -172,9 +164,9 @@ struct SubscriptionDetailsScreen: View {
                             }
                         }
                         .padding(16)
-                        .background(Color.appSurface(for: colorScheme).opacity(0.5))
+                        .background(Color.clear)
                         .cornerRadius(16)
-                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.appOutline(for: colorScheme), lineWidth: 1))
                         
                         // Info Grid
                         HStack(spacing: 16) {
@@ -248,7 +240,6 @@ struct SubscriptionDetailsScreen: View {
                                     .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
                             )
                         }
-                        .padding(.top, 8)
                         
                         // Participants Section
                         if let participants = sub.participants, !participants.isEmpty {
@@ -486,9 +477,9 @@ struct SubscriptionDetailsScreen: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.appSurface(for: colorScheme).opacity(0.5))
+        .background(Color.clear)
         .cornerRadius(12)
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme), lineWidth: 1))
     }
     
     private func actionButton(icon: String, title: String, color: Color, action: @escaping () -> Void) -> some View {
@@ -530,5 +521,54 @@ struct SubscriptionDetailsScreen: View {
         case .weekly: return "billing_weekly_label".localized()
         case .quarterly: return "period_monthly".localized()
         }
+    }
+    
+    @ViewBuilder
+    private func brandIconDetailed(name: String) -> some View {
+        if let info = getBrandIconInfo(name) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(info.color.opacity(0.5), lineWidth: 1)
+                    .background(Color.clear)
+                    .frame(width: 120, height: 120)
+                BrandIconView(name: info.icon, color: info.color)
+                    .frame(width: 60, height: 60)
+            }
+        } else {
+            let brandColor = getBrandColor(name)
+            ZStack {
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(brandColor.opacity(0.5), lineWidth: 1)
+                    .background(Color.clear)
+                    .frame(width: 120, height: 120)
+                Text(name.prefix(1).uppercased())
+                    .font(.system(size: 60, weight: .bold))
+                    .foregroundColor(brandColor)
+            }
+        }
+    }
+    
+    private func getBrandIconInfo(_ name: String) -> (icon: String, color: Color)? {
+        let map: [String: (String, Color)] = [
+            "netflix":  ("netflix",  Color(hex: "E50914")),
+            "spotify":  ("spotify",  Color(hex: "1DB954")),
+            "youtube":  ("youtube",  Color(hex: "FF0000")),
+            "google":   ("google",   Color(hex: "4285F4")),
+            "amazon":   ("amazon",   Color(hex: "00A8E1")),
+            "hbo max":  ("hbomax",   Color(hex: "5A2E81")),
+            "cursor":   ("cursor",   Color.primary),
+            "claude":   ("claude",   Color(hex: "E56038")),
+        ]
+        return map[name.lowercased()]
+    }
+    
+    private func getBrandColor(_ name: String) -> Color {
+        let lowered = name.lowercased()
+        if lowered.contains("netflix") { return .netflixRed }
+        if lowered.contains("spotify") { return .spotifyGreen }
+        if lowered.contains("adobe")   { return .adobeRed }
+        if lowered.contains("youtube") { return Color(hex: "FF0000") }
+        if lowered.contains("amazon")  { return Color(hex: "00A8E1") }
+        return Color.dynamicColor(from: name)
     }
 }
