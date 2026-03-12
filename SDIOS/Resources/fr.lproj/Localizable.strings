@@ -210,12 +210,10 @@
 "feature_unlimited_tracking_premium_desc" = "Ajoutez-en autant que vous voulez";
 "premium_plan" = "Plan Premium";
 "feature_auto_capture_premium_desc" = "Trouve les paiements cachés instantanément";
-"feature_ad_free_title" = "Sans publicité";
-"feature_ad_free_free_desc" = "Publicités visibles";
 "feature_ad_free_premium_desc" = "Expérience sans pub";
-"feature_analytics_title" = "Analyses avancées";
-"feature_analytics_free_desc" = "Rapports de base";
+"feature_ad_free_desc" = "Profitez de l'application sans publicité";
 "feature_analytics_premium_desc" = "Graphiques et rapports détaillés";
+"feature_advanced_analytics_premium_desc" = "Analyses Complètes";
 "category_streaming" = "Films & TV & Musique";
 "category_gaming" = "Jeux";
 "category_software" = "Logiciel";

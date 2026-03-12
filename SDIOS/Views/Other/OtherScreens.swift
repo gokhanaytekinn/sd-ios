@@ -485,9 +485,9 @@ struct PremiumUpgradeScreen: View {
         case "unlimited":
             return isFree ? NSLocalizedString("feature_unlimited_tracking_free_desc", comment: "") : NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
         case "analytics":
-            return isFree ? NSLocalizedString("feature_analytics_free_desc", comment: "") : NSLocalizedString("feature_analytics_premium_desc", comment: "")
+            return isFree ? NSLocalizedString("feature_analytics_free_desc", comment: "") : NSLocalizedString("feature_advanced_analytics_premium_desc", comment: "")
         case "ad_free":
-            return isFree ? NSLocalizedString("feature_ad_free_free_desc", comment: "") : NSLocalizedString("feature_ad_free_premium_desc", comment: "")
+            return isFree ? NSLocalizedString("feature_ad_free_free_desc", comment: "") : NSLocalizedString("feature_ad_free_desc", comment: "")
         default:
             return ""
         }
