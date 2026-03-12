@@ -213,6 +213,8 @@
 "feature_auto_capture_premium_desc" = "Ödeme hatırlatıcıları";
 "feature_ad_free_premium_desc" = "Tamamen reklamsız deneyim";
 "feature_ad_free_desc" = "Uygulamayı tamamen reklamsız kullanın";
+"feature_analytics_title" = "Gelişmiş Analitik";
+"feature_ad_free_title" = "Reklamsız";
 "feature_analytics_premium_desc" = "Detaylı grafikler ve raporlar";
 "feature_advanced_analytics_premium_desc" = "Tam İçgörüler";
 "category_streaming" = "Dizi & Film & Müzik";

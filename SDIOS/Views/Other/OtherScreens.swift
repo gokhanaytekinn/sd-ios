@@ -162,7 +162,7 @@ struct PremiumUpgradeScreen: View {
                             )
                             
                             premiumFeature(
-                                icon: "megaphone.slash.fill",
+                                icon: "speaker.slash.fill",
                                 title: NSLocalizedString("feature_ad_free_title", comment: ""),
                                 desc: featureDesc(for: "ad_free")
                             )
