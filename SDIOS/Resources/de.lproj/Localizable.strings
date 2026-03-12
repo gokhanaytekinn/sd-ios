@@ -194,6 +194,7 @@
 "premium_hero_title" = "Zu Premium wechseln";
 "premium_hero_subtitle" = "Verwalten Sie Ihre Abonnements automatisch und sparen Sie mehr";
 "plan_free" = "Kostenlos";
+"plan_free_price" = "0 €";
 "plan_monthly_premium" = "Monatlich Premium";
 "plan_yearly_premium" = "Jahrlich Premium";
 "most_popular" = "Am beliebtesten";
@@ -210,6 +211,12 @@
 "feature_unlimited_tracking_premium_desc" = "Fugen Sie beliebig viele Abonnements hinzu";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Findet versteckte Zahlungen sofort";
+"feature_ad_free_title" = "Werbefrei";
+"feature_ad_free_free_desc" = "Bannerwerbung sichtbar";
+"feature_ad_free_premium_desc" = "Vollständig werbefrei";
+"feature_analytics_title" = "Erweiterte Analysen";
+"feature_analytics_free_desc" = "Basisberichte";
+"feature_analytics_premium_desc" = "Detaillierte Grafiken & Berichte";
 "category_streaming" = "Filme & TV & Musik";
 "category_gaming" = "Gaming";
 "category_software" = "Software";

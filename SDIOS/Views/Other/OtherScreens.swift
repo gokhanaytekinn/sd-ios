@@ -144,15 +144,27 @@ struct PremiumUpgradeScreen: View {
                         // Features
                         VStack(spacing: 16) {
                             premiumFeature(
+                                icon: "infinity",
+                                title: NSLocalizedString("feature_unlimited_tracking_title", comment: ""),
+                                desc: featureDesc(for: "unlimited")
+                            )
+                            
+                            premiumFeature(
                                 icon: "bolt.circle.fill",
                                 title: NSLocalizedString("feature_auto_capture_title", comment: ""),
                                 desc: featureDesc(for: "auto_capture")
                             )
                             
                             premiumFeature(
-                                icon: "infinity",
-                                title: NSLocalizedString("feature_unlimited_tracking_title", comment: ""),
-                                desc: featureDesc(for: "unlimited")
+                                icon: "chart.bar.fill",
+                                title: NSLocalizedString("feature_analytics_title", comment: ""),
+                                desc: featureDesc(for: "analytics")
+                            )
+                            
+                            premiumFeature(
+                                icon: "megaphone.slash.fill",
+                                title: NSLocalizedString("feature_ad_free_title", comment: ""),
+                                desc: featureDesc(for: "ad_free")
                             )
                         }
                         .padding(.vertical, 20)
@@ -162,7 +174,7 @@ struct PremiumUpgradeScreen: View {
                             planCard(
                                 id: 0,
                                 title: NSLocalizedString("plan_free", comment: ""),
-                                price: "₺0",
+                                price: NSLocalizedString("plan_free_price", comment: ""),
                                 period: ""
                             )
                             
@@ -466,10 +478,18 @@ struct PremiumUpgradeScreen: View {
     }
     
     private func featureDesc(for type: String) -> String {
-        if type == "auto_capture" {
-            return selectedPlan == 0 ? NSLocalizedString("feature_auto_capture_free_desc", comment: "") : NSLocalizedString("feature_auto_capture_premium_desc", comment: "")
-        } else {
-            return selectedPlan == 0 ? NSLocalizedString("feature_unlimited_tracking_free_desc", comment: "") : NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
+        let isFree = selectedPlan == 0
+        switch type {
+        case "auto_capture":
+            return isFree ? NSLocalizedString("feature_auto_capture_free_desc", comment: "") : NSLocalizedString("feature_auto_capture_premium_desc", comment: "")
+        case "unlimited":
+            return isFree ? NSLocalizedString("feature_unlimited_tracking_free_desc", comment: "") : NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
+        case "analytics":
+            return isFree ? NSLocalizedString("feature_analytics_free_desc", comment: "") : NSLocalizedString("feature_analytics_premium_desc", comment: "")
+        case "ad_free":
+            return isFree ? NSLocalizedString("feature_ad_free_free_desc", comment: "") : NSLocalizedString("feature_ad_free_premium_desc", comment: "")
+        default:
+            return ""
         }
     }
     

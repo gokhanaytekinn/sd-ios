@@ -194,6 +194,7 @@
 "premium_hero_title" = "Premiumga otuu";
 "premium_hero_subtitle" = "Jazylmalarynyzdy avtomattyk bashkarynyz";
 "plan_free" = "Beker";
+"plan_free_price" = "0 сом";
 "plan_monthly_premium" = "Aylyk Premium";
 "plan_yearly_premium" = "Zhyldyk Premium";
 "most_popular" = "En popularduu";
@@ -210,6 +211,7 @@
 "feature_unlimited_tracking_premium_desc" = "Каалаганыңызча кошуңуз";
 "premium_plan" = "Premium план";
 "feature_auto_capture_premium_desc" = "Жашыруун төлөмдөрдү дароо табат";
+"feature_ad_free_desc" = "Тиркемени эч кандай жарнамасыз колдонуңуз";
 "category_streaming" = "Кино & ТВ & Музыка";
 "category_gaming" = "Ойындар";
 "category_software" = "Программалык камсыздоо";

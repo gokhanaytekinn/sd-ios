@@ -194,6 +194,7 @@
 "premium_hero_title" = "Aboneliklerini\nAkıllıca Yönet";
 "premium_hero_subtitle" = "Size en uygun planı seçerek hemen başlayın.";
 "plan_free" = "Ücretsiz";
+"plan_free_price" = "0 ₺";
 "plan_monthly_premium" = "Aylık Premium";
 "plan_yearly_premium" = "Yıllık Premium";
 "most_popular" = "En Popüler";
@@ -210,6 +211,7 @@
 "feature_unlimited_tracking_premium_desc" = "Istedigin kadar abonelik ekle";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Odeme hatırlatıcıları";
+"feature_ad_free_desc" = "Reklamsız kullanmak için";
 "category_streaming" = "Dizi & Film & Müzik";
 "category_gaming" = "Oyun";
 "category_software" = "Yazılım";

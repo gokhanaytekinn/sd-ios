@@ -194,6 +194,7 @@
 "premium_hero_title" = "Manage Your Subscriptions\nSmartly";
 "premium_hero_subtitle" = "Start immediately by choosing the plan that best suits you.";
 "plan_free" = "Free";
+"plan_free_price" = "$0";
 "plan_monthly_premium" = "Monthly Premium";
 "plan_yearly_premium" = "Yearly Premium";
 "most_popular" = "Most Popular";
@@ -210,6 +211,12 @@
 "feature_unlimited_tracking_premium_desc" = "Add as many as you want";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Payment reminders";
+"feature_ad_free_title" = "Ad Free";
+"feature_ad_free_free_desc" = "Banner ads visible";
+"feature_ad_free_premium_desc" = "Completely ad-free";
+"feature_analytics_title" = "Advanced Analytics";
+"feature_analytics_free_desc" = "Basic statistics";
+"feature_analytics_premium_desc" = "Detailed charts & insights";
 "category_streaming" = "Movie & TV & Music";
 "category_gaming" = "Gaming";
 "category_software" = "Software";

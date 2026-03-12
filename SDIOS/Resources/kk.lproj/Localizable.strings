@@ -194,6 +194,7 @@
 "premium_hero_title" = "Premiumga otu";
 "premium_hero_subtitle" = "Jazylymdarynyzdy avtomatti baskaryp, tiiimdi bolunyz";
 "plan_free" = "Tegin";
+"plan_free_price" = "0 ₸";
 "plan_monthly_premium" = "Aisy Premium";
 "plan_yearly_premium" = "Zhyldyq Premium";
 "most_popular" = "En taniimal";
@@ -210,6 +211,7 @@
 "feature_unlimited_tracking_premium_desc" = "Қалағаныңызша қосыңыз";
 "premium_plan" = "Premium жоспар";
 "feature_auto_capture_premium_desc" = "Жасырын төлемдерді бірден табады";
+"feature_ad_free_desc" = "Қосымшаны жарнамасыз пайдаланыңыз";
 "category_streaming" = "Кино & ТВ & Музыка";
 "category_gaming" = "Ойындар";
 "category_software" = "Бағдарламалық қамтамасыз ету";
