@@ -18,7 +18,7 @@ struct SubscriptionsListScreen: View {
             
             StatefulView(
                 isLoading: viewModel.isLoading,
-                isEmpty: currentTabSubscriptions.isEmpty && (selectedTab != 1 || viewModel.invitations.isEmpty),
+                isEmpty: false,
                 emptyMessage: emptyStateText,
                 emptyIcon: "tray.fill",
                 skeleton: { SubscriptionListSkeleton() }

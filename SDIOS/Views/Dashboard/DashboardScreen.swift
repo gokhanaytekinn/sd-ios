@@ -18,7 +18,7 @@ struct DashboardScreen: View {
             
             StatefulView(
                 isLoading: viewModel.isLoading,
-                isEmpty: viewModel.subscriptions.isEmpty,
+                isEmpty: false,
                 emptyMessage: "dashboard_empty_text".localized(),
                 emptyIcon: "plus.circle.fill",
                 skeleton: { DashboardSkeleton() }
