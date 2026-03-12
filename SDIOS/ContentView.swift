@@ -196,6 +196,7 @@ struct ContentView: View {
                 // Bottom area container
                 VStack(spacing: 0) {
                     bottomNavBar
+                        .id(selectedTab) // Force re-render on tab change to update labels correctly
                     
                     // Banner Ad for non-premium users
                     if authViewModel.tier == 1 {
@@ -362,23 +363,29 @@ struct ContentView: View {
     
     @ViewBuilder
     private func tabButton(_ tab: MainTab) -> some View {
+        let isSelected = selectedTab == tab
+        
         Button(action: {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 selectedTab = tab
                 navigationPath = []
             }
         }) {
-            VStack(spacing: 2) {
-                Image(systemName: selectedTab == tab ? tab.icon : tab.icon.replacingOccurrences(of: ".fill", with: ""))
-                    .font(.system(size: 18))
-                    .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
+            VStack(spacing: isSelected ? 2 : 0) {
+                Image(systemName: isSelected ? tab.icon : tab.icon.replacingOccurrences(of: ".fill", with: ""))
+                    .font(.system(size: isSelected ? 20 : 22)) // Slightly bigger icon when NOT selected for balance
+                    .foregroundColor(isSelected ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
                 
-                Text(tab.title)
-                    .font(selectedTab == tab ? .sdLabelSmall : .sdLabel)
-                    .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
+                if isSelected {
+                    Text(tab.title)
+                        .font(.sdLabelSmall)
+                        .foregroundColor(.primaryBlue)
+                        .transition(.opacity.combined(with: .scale))
+                        .lineLimit(1)
+                }
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 6)
+            .padding(.vertical, isSelected ? 8 : 12)
         }
         .buttonStyle(.plain)
     }

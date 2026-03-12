@@ -59,7 +59,7 @@
 "recent_searches" = "RECENT SEARCHES";
 "popular_subscriptions" = "Popular Subscriptions";
 "results_found" = "RESULTS FOUND (%d)";
-"subscriptions" = "Subscriptions";
+"subscriptions" = "Subs";
 "transactions" = "Transactions";
 "looking_for_else" = "Looking for something else?";
 "search_tip" = "Try searching by merchant name or specific transaction amounts.";
