@@ -17,7 +17,11 @@ struct GoogleAuthRequest: Codable {
     let idToken: String
 }
 
-
+struct AppleAuthRequest: Codable {
+    let identityToken: String
+    let firstName: String?
+    let lastName: String?
+}
 
 struct ForgotPasswordRequest: Codable {
     let email: String

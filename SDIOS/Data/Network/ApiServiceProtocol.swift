@@ -7,6 +7,7 @@ protocol ApiServiceProtocol {
     func login(_ request: LoginRequest) async throws -> ApiAuthResponse
     func register(_ request: RegisterRequest) async throws -> ApiAuthResponse
     func loginWithGoogle(_ request: GoogleAuthRequest) async throws -> ApiAuthResponse
+    func loginWithApple(_ request: AppleAuthRequest) async throws -> ApiAuthResponse
     func getCurrentUser() async throws -> UserResponse
     func deleteAccount() async throws
     func forgotPassword(_ request: ForgotPasswordRequest) async throws

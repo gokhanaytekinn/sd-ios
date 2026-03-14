@@ -6,6 +6,7 @@ protocol AuthRepositoryProtocol {
     func login(email: String, password: String) async -> Result<ApiAuthResponse, Error>
     func register(email: String, password: String, name: String?, language: String?) async -> Result<ApiAuthResponse, Error>
     func loginWithGoogle(idToken: String) async -> Result<ApiAuthResponse, Error>
+    func loginWithApple(identityToken: String, firstName: String?, lastName: String?) async -> Result<ApiAuthResponse, Error>
     func getCurrentUser() async -> Result<UserResponse, Error>
     func logout()
     func forgotPassword(email: String) async -> Result<Void, Error>

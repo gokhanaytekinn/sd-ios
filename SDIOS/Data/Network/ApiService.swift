@@ -61,6 +61,10 @@ class ApiService: ApiServiceProtocol {
         return try await client.execute(AuthEndpoint.loginWithGoogle(request))
     }
     
+    func loginWithApple(_ request: AppleAuthRequest) async throws -> ApiAuthResponse {
+        return try await client.execute(AuthEndpoint.loginWithApple(request))
+    }
+    
     func getCurrentUser() async throws -> UserResponse {
         return try await client.execute(AuthEndpoint.getCurrentUser)
     }

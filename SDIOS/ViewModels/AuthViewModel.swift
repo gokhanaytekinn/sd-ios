@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 import StoreKit
 import GoogleSignIn
+import AuthenticationServices
 
 @MainActor
 class AuthViewModel: ObservableObject {
@@ -260,6 +261,59 @@ class AuthViewModel: ObservableObject {
                 }
 
                 self.loginWithGoogle(idToken: idToken, onSuccess: onSuccess)
+            }
+        }
+    }
+
+    func signInWithApple(onSuccess: @escaping () -> Void) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        
+        // We need a delegate to handle the result. 
+        // Using a nested coordinator class or a separate helper to handle delegates.
+        // For simplicity, I'll implement a delegate helper.
+        
+        let handler = AppleSignInHandler(viewModel: self, onSuccess: onSuccess)
+        authorizationController.delegate = handler
+        authorizationController.presentationContextProvider = handler
+        
+        // Retain the handler
+        self.appleSignInHandler = handler
+        
+        authorizationController.performRequests()
+    }
+
+    private var appleSignInHandler: AppleSignInHandler?
+
+    func loginWithApple(identityToken: String, firstName: String?, lastName: String?, onSuccess: @escaping () -> Void) {
+        Task {
+            isLoading = true
+            error = nil
+            
+            let result = await repository.loginWithApple(identityToken: identityToken, firstName: firstName, lastName: lastName)
+            
+            switch result {
+            case .success(let response):
+                isLoading = false
+                isAuthenticated = true
+                userName = response.user?.name
+                userEmail = response.user?.email
+                notificationsEnabled = response.user?.notificationsEnabled ?? true
+                language = response.user?.language ?? "tr"
+                tier = response.user?.tier ?? 1
+                premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
+                syncLanguageIfNeeded()
+                
+                if let token = lastDeviceToken {
+                    updatePushToken(token: token)
+                }
+                onSuccess()
+            case .failure(let err):
+                isLoading = false
+                error = err.localizedDescription
             }
         }
     }

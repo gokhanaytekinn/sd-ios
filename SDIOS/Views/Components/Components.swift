@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 
 // MARK: - Skeleton Tools
 struct SkeletonModifier: ViewModifier {
@@ -532,6 +533,24 @@ struct GoogleSignInButton: View {
                     .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
             )
 }
+    }
+}
+
+// MARK: - Apple Sign In Button
+struct AppleSignInButton: View {
+    let action: () -> Void
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        SignInWithAppleButton(.signIn) { request in
+            action()
+        } onCompletion: { result in
+            // Logic handled in ViewModel via coordinator
+        }
+        .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+        .frame(maxWidth: .infinity)
+        .frame(height: 45)
+        .cornerRadius(12)
     }
 }
 

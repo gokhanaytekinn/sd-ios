@@ -70,6 +70,22 @@ class AuthRepository: AuthRepositoryProtocol {
         }
     }
     
+    /// Apple Identity Token ile oturum açma işlemini yönetir.
+    func loginWithApple(identityToken: String, firstName: String?, lastName: String?) async -> Result<ApiAuthResponse, Error> {
+        do {
+            let response = try await api.loginWithApple(AppleAuthRequest(identityToken: identityToken, firstName: firstName, lastName: lastName))
+            if let token = response.token {
+                tokenManager.saveToken(token)
+            }
+            if let email = response.user?.email {
+                tokenManager.saveUserEmail(email)
+            }
+            return .success(response)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
 
     
     /// Mevcut kullanıcının profil bilgilerini getirir.
