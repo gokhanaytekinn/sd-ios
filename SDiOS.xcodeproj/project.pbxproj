@@ -47,6 +47,7 @@
 		D92552342F5F627900DC8A83 /* SDWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWidgetsExtension.entitlements; sourceTree = "<group>"; };
 		D94C046D2F59F91A0014BB86 /* SDIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95390C12F63E8B200EF9433 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D9E6959B2F65D876009B06CB /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9E89D4C2F5FF88400C6D2F0 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9E89F892F5FFE4C00C6D2F0 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9ED35DF2F60BCCD00665751 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 				Managers/AdMobManager.swift,
 				Managers/StoreKitManager.swift,
 				SDiOSApp.swift,
+				Services/AppleSignInHandler.swift,
 				Theme/Colors.swift,
 				Theme/Theme.swift,
 				Theme/Typography.swift,
@@ -186,6 +188,13 @@
 			sourceTree = "<group>";
 		};
 		D95390C32F63E8B200EF9433 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D9E6959D2F65D876009B06CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -333,6 +342,10 @@
 				{
 					ProductGroup = D95390C32F63E8B200EF9433 /* Products */;
 					ProjectRef = D95390C12F63E8B200EF9433 /* SDiOS.xcodeproj */;
+				},
+				{
+					ProductGroup = D9E6959D2F65D876009B06CB /* Products */;
+					ProjectRef = D9E6959B2F65D876009B06CB /* SDiOS.xcodeproj */;
 				},
 				{
 					ProductGroup = D9E89F8B2F5FFE4C00C6D2F0 /* Products */;

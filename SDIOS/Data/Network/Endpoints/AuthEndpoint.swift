@@ -20,7 +20,7 @@ enum AuthEndpoint: APIEndpoint {
         case .loginWithGoogle: return "/api/auth/google"
         case .loginWithApple: return "/api/auth/apple"
         case .getCurrentUser: return "/api/auth/me"
-        case .deleteAccount: return "/api/auth/delete"
+        case .deleteAccount: return "/api/auth/me"
         case .forgotPassword: return "/api/auth/forgot-password"
         case .verifyCode: return "/api/auth/verify-code"
         case .resetPassword: return "/api/auth/reset-password"

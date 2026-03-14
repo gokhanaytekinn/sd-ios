@@ -1,7 +1,6 @@
+#if !WIDGET
 import AuthenticationServices
 import SwiftUI
-
-#if !WIDGET
 class AppleSignInHandler: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     private let viewModel: AuthViewModel
     private let onSuccess: () -> Void
