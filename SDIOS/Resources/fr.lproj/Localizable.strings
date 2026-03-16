@@ -124,10 +124,10 @@
 "and" = " et ";
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Vous avez déjà un compte ? ";
-"terms_of_use_title" = "Conditions d'utilisation";
-"terms_of_use_content" = "1. Acceptation\nEn utilisant Suivi d'Abonnement, vous acceptez ces conditions.\n\n2. Portée du service\nL'application est un outil pour vous aider à suivre vos abonnements. Ce n'est pas un conseil financier.\n\n3. Responsabilité de l'utilisateur\nVous êtes responsable de la sécurité des informations de votre compte et de l'exactitude des données que vous ajoutez.\n\n4. Changements\nNous nous réservons le droit de modifier les fonctionnalités de l'application et ces conditions à tout moment.\n\n5. Résiliation\nNous pouvons mettre fin à votre accès au service en cas de violation des conditions.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Compris";
-"privacy_dialog_content" = "Dernière mise à jour : 20 février 2026\n\n1. Introduction\nNous accordons de l'importance à la confidentialité de vos données.\n\n2. Données collectées\nLes informations d'abonnement, les préférences d'utilisation et les informations de base sur l'appareil sont traitées.\n\n3. Utilisation des données\nVos données sont uniquement utilisées pour envoyer des rappels et améliorer les performances de l'application.\n\n4. Sécurité des données\nVos données sont protégées par des méthodes de chiffrement standard de l'industrie.\n\n5. Contact\nPour des questions : gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Entrez votre adresse email enregistrée pour réinitialiser votre mot de passe. Nous vous enverrons un code de vérification.";
 "email_address_label" = "Adresse email";
 "send_code" = "Envoyer le code";
@@ -437,3 +437,4 @@
 "free_trial" = "Essai gratuit";
 "free_trial_desc" = "Nous vous préviendrons 1 jour avant la fin de l'essai.";
 "trial_end_date" = "Date de fin de l'essai";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

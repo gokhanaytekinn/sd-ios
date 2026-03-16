@@ -124,10 +124,10 @@
 "and" = " and ";
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Already have an account? ";
-"terms_of_use_title" = "Terms of Use";
-"terms_of_use_content" = "1. Acceptance\nBy using Sub Tracker, you agree to these terms.\n\n2. Service Scope\nThe application is a tool to help you track your subscriptions. It is not financial advice.\n\n3. User Responsibility\nYou are responsible for the security of your account information and the accuracy of the data you add.\n\n4. Changes\nWe reserve the right to change app features and these terms at any time.\n\n5. Termination\nWe may terminate your access to the service in case of violation of the terms.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Understood";
-"privacy_dialog_content" = "Last Updated: February 20, 2026\n\n1. Introduction\nWe value the privacy of your data.\n\n2. Collected Data\nSubscription information, usage preferences, and basic device information are processed.\n\n3. Data Use\nYour data is only used to send reminders and improve app performance.\n\n4. Data Security\nYour data is protected with industry-standard encryption methods.\n\n5. Contact\nFor questions: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Enter your registered email address to reset your password. We will send you a verification code.";
 "email_address_label" = "Email Address";
 "send_code" = "Send Code";
@@ -464,3 +464,4 @@
 "free_trial" = "Free Trial";
 "free_trial_desc" = "We will alert you 1 day before the trial ends.";
 "trial_end_date" = "Trial End Date";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

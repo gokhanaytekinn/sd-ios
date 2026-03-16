@@ -124,10 +124,10 @@
 "and" = " va ";
 "accept_terms_post" = "ga roziman.";
 "already_have_account_prompt" = "Hisobingiz bormi? ";
-"terms_of_use_title" = "Foydalanish shartlari";
-"terms_of_use_content" = "1. Qabul qilish\nSub Tracker ilovasidan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz.\n\n2. Xizmat doirasi\nIlova obunalaringizni kuzatishga yordam beradigan vositadir. Moliyaviy maslahat bermaydi.\n\n3. Foydalanuvchi masʼuliyati\nSiz oʻz hisobingiz xavfsizligi va kiritilgan maʼlumotlar toʻgʻriligi uchun javobgarsiz.\n\n4. Oʻzgarishlar\nBiz istalgan vaqtda ilova imkoniyatlariga va ushbu shartlarga oʻzgartirish kiritish huquqini oʻzimizda qoldiramiz.\n\n5. Toʻxtatish\nShartlar buzilsa, xizmatdan foydalanishingizni toʻxtatishimiz mumkin.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Tushundim";
-"privacy_dialog_content" = "Oxirgi yangilanish: 20-fevral, 2026-yil\n\n1. Kirish\nBiz sizning maʼlumotlaringiz maxfiyligiga jiddiy eʼtibor beramiz.\n\n2. Toʻplanadigan maʼlumotlar\nObunalar maʼlumotlari, foydalanish tanlovlari va asosiy qurilma maʼlumotlari qayta ishlanadi.\n\n3. Maʼlumotlardan foydalanish\nMaʼlumotlaringiz faqat eslatmalar yuborish va ilova ishlashini yaxshilash uchun foydalaniladi.\n\n4. Maʼlumotlar xavfsizligi\nMaʼlumotlaringiz standart shifrlash usullari bilan himoyalangan.\n\n5. Aloqa\nSavollar boʻyicha: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Parolni tiklash uchun roʻyxatdan oʻtgan emailingizni kiriting. Biz sizga tasdiqlash kodini yuboramiz.";
 "email_address_label" = "Email manzili";
 "send_code" = "Kod yuborish";
@@ -435,3 +435,4 @@
 "free_trial" = "Bepul Sinov";
 "free_trial_desc" = "Sinov muddati tugashidan 1 kun oldin sizni ogohlantiramiz.";
 "trial_end_date" = "Sinov Muddati Tugash Sanasi";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

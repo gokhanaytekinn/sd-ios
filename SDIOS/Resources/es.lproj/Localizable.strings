@@ -124,10 +124,10 @@
 "and" = " y la ";
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "¿Ya tienes una cuenta? ";
-"terms_of_use_title" = "Términos de Uso";
-"terms_of_use_content" = "1. Aceptación\nAl usar Sub Tracker, aceptas estos términos.\n\n2. Alcance del Servicio\nLa aplicación es una herramienta para ayudarte a rastrear tus suscripciones. No es un consejo financiero.\n\n3. Responsabilidad del Usuario\nEres responsable de la seguridad de la información de tu cuenta y de la exactitud de los datos que agregas.\n\n4. Cambios\nNos reservamos el derecho de cambiar las características de la aplicación y estos términos en cualquier momento.\n\n5. Terminación\nPodemos terminar tu acceso al servicio en caso de violación de los términos.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Entendido";
-"privacy_dialog_content" = "Última actualización: 20 de febrero de 2026\n\n1. Introducción\nValoramos la privacidad de tus datos.\n\n2. Datos Recopilados\nSe procesan la información de suscripción, las preferencias de uso y la información básica del dispositivo.\n\n3. Uso de Datos\nTus datos solo se usan para enviar recordatorios y mejorar el rendimiento de la aplicación.\n\n4. Seguridad de Datos\nTus datos están protegidos con métodos de cifrado estándar de la industria.\n\n5. Contacto\nPara preguntas: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Introduce tu correo electrónico registrado para restablecer tu contraseña. Te enviaremos un código de verificación.";
 "email_address_label" = "Correo Electrónico";
 "send_code" = "Enviar Código";
@@ -438,3 +438,4 @@
 "free_trial" = "Prueba gratuita";
 "free_trial_desc" = "Te avisaremos 1 día antes de que termine la prueba.";
 "trial_end_date" = "Fecha de fin de la prueba";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

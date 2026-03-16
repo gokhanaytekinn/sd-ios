@@ -123,10 +123,10 @@
 "and" = " ve ";
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Sudah punya akun? ";
-"terms_of_use_title" = "Syarat Penggunaan";
-"terms_of_use_content" = "1. Penerimaan\nBy using Sub Tracker, you agree to these terms.\n\n2. Service Scope\nAplikasi bu adalah alat untuk membantu Anda melacak langganan. Ini bukan saran finansial.\n\n3. User Responsibility\nAnda bertanggung jawab atas keamanan akun Anda ve keakuratan data yang dimasukkan.\n\n4. Changes\nKami berhak untuk mengubah fitur aplikasi ve syarat-syarat ini kapan saja.\n\n5. Termination\nKami dapat menghentikan akses Anda ke layanan jika syarat-syarat dilanggar.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Dimengerti";
-"privacy_dialog_content" = "Pembaruan Terakhir: 21 Februari 2026\n\n1. Pendahuluan\nKami sangat memperhatikan privasi data Anda.\n\n2. Collected Data\nInformasi langganan, preferensi penggunaan, ve data dasar perangkat diproses.\n\n3. Data Use\nData Anda hanya digunakan untuk mengirim pengingat ve meningkatkan performa aplikasi.\n\n4. Data Security\nData Anda dilindungi dengan metode enkripsi standar.\n\n5. Contact\nUntuk pertanyaan: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Masukkan email terdaftar Anda untuk mengatur ulang kata sandi. Kami akan mengirimkan kode verifikasi.";
 "email_address_label" = "Alamat Email";
 "send_code" = "Kirim Kode";
@@ -433,3 +433,4 @@
 "free_trial" = "Uji Coba Gratis";
 "free_trial_desc" = "Kami akan memberi tahu Anda 1 hari sebelum uji coba berakhir.";
 "trial_end_date" = "Tanggal Berakhir Uji Coba";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

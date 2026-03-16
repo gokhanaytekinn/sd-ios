@@ -124,10 +124,10 @@
 "and" = " und die ";
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Haben Sie bereits ein Konto? ";
-"terms_of_use_title" = "Nutzungsbedingungen";
-"terms_of_use_content" = "1. Annahme\nDurch die Nutzung von Sub Tracker erkennen Sie diese Bedingungen an.\n\n2. Dienstleistungsumfang\nDie App ist ein Werkzeug zur Verfolgung Ihrer Abonnements.\n\n3. Nutzerverantwortung\nSie sind fur die Sicherheit Ihrer Kontodaten verantwortlich.\n\n4. Anderungen\nWir behalten uns das Recht vor, die App-Funktionen und diese Bedingungen zu andern.\n\n5. Kundigung\nWir konnen Ihren Zugriff bei Verletzung der Bedingungen beenden.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Verstanden";
-"privacy_dialog_content" = "Letzte Aktualisierung: 20 Februar 2026\n\n1. Einfuhrung\nWir schatzen Ihre Datenprivatsphare.\n\n2. Erhobene Daten\nAbonnementinformationen, Nutzungspraferenzen werden verarbeitet.\n\n3. Datennutzung\nIhre Daten werden nur fur Erinnerungen und zur Verbesserung der App verwendet.\n\n4. Datensicherheit\nIhre Daten sind durch Industriestandard-Verschlusselung geschutzt.\n\n5. Kontakt\nFur Fragen: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Geben Sie Ihre registrierte E-Mail-Adresse ein, um Ihr Passwort zuruckzusetzen.";
 "email_address_label" = "E-Mail-Adresse";
 "send_code" = "Code senden";
@@ -437,3 +437,4 @@
 "free_trial" = "Kostenlose Testversion";
 "free_trial_desc" = "Wir benachrichtigen Sie 1 Tag vor Ablauf des Testzeitraums.";
 "trial_end_date" = "Ablaufdatum des Testzeitraums";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

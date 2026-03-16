@@ -225,18 +225,35 @@ struct PremiumUpgradeScreen: View {
                             )
                             .disabled(isCurrentPlanSelected || authViewModel.isLoading || (selectedPlan != 0 && authViewModel.iapProducts.isEmpty))
                             
-                            HStack(spacing: 20) {
+                            // Apple Requirement: Auto-Renewable Disclaimer
+                            Text("auto_renewable_disclaimer".localized())
+                                .font(.system(size: 10))
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme).opacity(0.8))
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 4)
+                            
+                            HStack(spacing: 16) {
                                 Button("restore_purchase".localized()) { authViewModel.restorePurchases() }
-                                Button("terms_of_use_title".localized()) { showTermsDialog = true }
-                                Button("privacy_policy_title".localized()) { showPrivacyDialog = true }
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                
+                                Button(action: { showTermsDialog = true }) {
+                                    Text("terms_of_use_title".localized())
+                                        .underline()
+                                        .foregroundColor(.primaryBlue)
+                                }
+                                
+                                Button(action: { showPrivacyDialog = true }) {
+                                    Text("privacy_policy_title".localized())
+                                        .underline()
+                                        .foregroundColor(.primaryBlue)
+                                }
                             }
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .font(.system(size: 11, weight: .medium))
                         }
                         .padding(.top, 24)
                     }
                     .padding(.horizontal, 24)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 30)
                 }
             }
             

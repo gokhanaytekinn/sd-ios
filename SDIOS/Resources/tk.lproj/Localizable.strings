@@ -124,10 +124,10 @@
 "and" = " we ";
 "accept_terms_post" = "-ny kabul edýärin.";
 "already_have_account_prompt" = "Eýýäm hasabyňyz barmy? ";
-"terms_of_use_title" = "Ulanyş Şertleri";
-"terms_of_use_content" = "1. Kabul etmek\nSub Tracker-y ulanmak bilen bu şertleri kabul edýärsiňiz.\n\n2. Hyzmat Görnüşi\nProgramma abunalyklaryňyzy yzarlamaga kömek edýän guraldyr. Maliýe maslahaty däldir.\n\n3. Ulanyjy Jogapkärçiligi\nHasap maglumatlaryňyzyň ygtybarlylygy we goşan maglumatlaryňyzyň dogrulygy üçin siz jogapkärdiris.\n\n4. Üýtgeşmeler\nProgramma aýratynlyklarynda we bu şertlerde islendik wagt üýtgeşme girizmek hukugymyz bardyr.\n\n5. Bes Etmek\nŞertler bozulsa, hyzmaty ulanmagyňyzy bes edip bileris.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Düşündim";
-"privacy_dialog_content" = "Soňky Täzelenme: 20 Fewral 2026\n\n1. Giriş\nMaglumatlaryňyzyň gizlinligine uly ähmiýet berýäris.\n\n2. Toplanýan Maglumatlar\nAbunalyk maglumatlary, ulanyş saýlawlary we esasy enjam maglumatlary işlenilýär.\n\n3. Maglumatlaryň Ulanylyşy\nMaglumatlaryňyz diňe ýatlatmalar ibermek we programmanyň işleýşini gowulandyrmak üçin ulanylýar.\n\n4. Maglumat Ygtybarlylygy\nMaglumatlaryňyz pudaklaýyn standartly şifreleme usullary bilen goralýar.\n\n5. Aragatnaşyk\nSoraglaryňyz üçin: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Parolyňyzy täzelemek üçin hasap açan e-poçta salgyňyzy giriziň. Size tassyklama koduny ibereris.";
 "email_address_label" = "E-poçta Salgysy";
 "send_code" = "Kody iber";
@@ -435,3 +435,4 @@
 "free_trial" = "Mugt synag möwriti";
 "free_trial_desc" = "Synag möwriti gutarmanka 1 gün öňinden size habar bereris.";
 "trial_end_date" = "Synag möwritiniň gutarýan güni";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

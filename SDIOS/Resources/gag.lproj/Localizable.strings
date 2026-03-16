@@ -124,10 +124,10 @@
 "and" = " ve ";
 "accept_terms_post" = "'nı kabul ediyorum.";
 "already_have_account_prompt" = "Zaten bir hesabın var mı? ";
-"terms_of_use_title" = "Kullanım Koşulları";
-"terms_of_use_content" = "1. Kabul\nSub Tracker'ı kullanarak bu koşulları kabul etmiş sayılırsınız.\n\n2. Hizmet Kapsamı\nUygulama, aboneliklerinizi takip etmenize yardımcı olan bir araçtır. Finansal tavsiye niteliği taşımaz.\n\n3. Kullanıcı Sorumluluğu\nHesap bilgilerinizin güvenliğinden ve eklediğiniz verilerin doğruluğundan siz sorumlusunuz.\n\n4. Değişiklikler\nUygulama özelliklerinde ve bu koşullarda dilediğimiz zaman değişiklik yapma hakkımız saklıdır.\n\n5. Sonlandırma\nKoşulların ihlali durumunda hizmete erişiminizi sonlandırabiliriz.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Anladım";
-"privacy_dialog_content" = "Son Güncelleme: 20 Şubat 2026\n\n1. Giriş\nVerilerinizin gizliliğine önem veriyoruz.\n\n2. Toplanan Veriler\nAbonelik bilgileri, kullanım tercihleri ve temel cihaz bilgileri işlenmektedir.\n\n3. Veri Kullanımı\nVerileriniz yalnızca hatırlatıcılar göndermek ve uygulama performansını artırmak için kullanılır.\n\n4. Veri Güvenliği\nVerileriniz endüstri standardı şifreleme yöntemleri ile korunmaktadır.\n\n5. İletişim\nSorularınız için: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Şifrenizi sıfırlamak için kayıtlı e-posta adresinizi girin. Size bir doğrulama kodu göndereceğiz.";
 "email_address_label" = "E-posta Adresi";
 "send_code" = "Kod Gönder";
@@ -460,3 +460,4 @@
 "free_trial" = "Bedava Denemää";
 "free_trial_desc" = "Denemää vakıdı bitmäänä 1 gün kala sizi hiybetleyeceez.";
 "trial_end_date" = "Denemää Bitki Günü";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

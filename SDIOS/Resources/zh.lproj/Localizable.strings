@@ -124,10 +124,10 @@
 "and" = " 和 ";
 "accept_terms_post" = "。";
 "already_have_account_prompt" = "已有账号？ ";
-"terms_of_use_title" = "使用条款";
-"terms_of_use_content" = "1. 接受\n通过使用订阅追踪器，您同意这些条款。\n\n2. 服务范围\n该应用程序是帮助您追踪订阅的工具。它不是财务建议。\n\n3. 用户责任\n您对账户信息的安全性以及您添加的数据的准确性负责。\n\n4. 更改\n我们保留随时更改应用功能和这些条款的权利。\n\n5. 终止\n如果违反条款，我们可能会终止您对服务的访问。";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "明白";
-"privacy_dialog_content" = "最后更新日期：2026年2月20日\n\n1. 简介\n我们重视您的数据隐私。\n\n2. 收集的数据\n处理订阅信息、使用偏好和基本设备信息。\n\n3. 数据使用\n您的数据仅用于发送提醒并改进应用性能。\n\n4. 数据安全\n您的数据受行业标准加密方法的保护。\n\n5. 联系方式\n如有疑问：gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "输入您的注册电子邮件地址以重置密码。我们将向您发送一个验证码。";
 "email_address_label" = "电子邮件地址";
 "send_code" = "发送代码";
@@ -438,3 +438,4 @@
 "free_trial" = "免费试用";
 "free_trial_desc" = "我们将在试用期结束前 1 天提醒您。";
 "trial_end_date" = "试用截止日期";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

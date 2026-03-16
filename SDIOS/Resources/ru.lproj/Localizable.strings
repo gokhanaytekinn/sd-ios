@@ -124,10 +124,10 @@
 "and" = " и ";
 "accept_terms_post" = ".";
 "already_have_account_prompt" = "Уже есть аккаунт? ";
-"terms_of_use_title" = "Условия использования";
-"terms_of_use_content" = "1. Принятие\nИспользуя Sub Tracker, вы соглашаетесь с этими условиями.\n\n2. Объем услуг\nПриложение является инструментом для отслеживания ваших подписок. Оно не является финансовой рекомендацией.\n\n3. Ответственность пользователя\nВы несете ответственность за безопасность данных вашего аккаунта и точность добавляемой информации.\n\n4. Изменения\nМы оставляем за собой право изменять функции приложения и эти условия в любое время.\n\n5. Прекращение\nМы можем прекратить ваш доступ к сервису в случае нарушения условий.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Понятно";
-"privacy_dialog_content" = "Последнее обновление: 20 февраля 2026 г.\n\n1. Введение\nМы ценим конфиденциальность ваших данных.\n\n2. Собираемые данные\nОбрабатывается информация о подписках, предпочтениях использования и основные данные об устройстве.\n\n3. Использование данных\nВаши данные используются только для отправки напоминаний и улучшения работы приложения.\n\n4. Безопасность данных\nВаши данные защищены с использованием стандартных методов шифрования.\n\n5. Контакт\nПо вопросам: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Введите ваш зарегистрированный адрес электронной почты, чтобы сбросить пароль. Мы отправим вам код подтверждения.";
 "email_address_label" = "Электронная почта";
 "send_code" = "Отправить код";
@@ -439,3 +439,4 @@
 "free_trial" = "Бесплатная пробная версия";
 "free_trial_desc" = "Мы сообщим вам за 1 день до окончания пробного периода.";
 "trial_end_date" = "Дата окончания пробного периода";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";

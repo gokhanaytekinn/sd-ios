@@ -124,10 +124,10 @@
 "and" = " және ";
 "accept_terms_post" = " келісемін.";
 "already_have_account_prompt" = "Тіркелгіңіз бар ма? ";
-"terms_of_use_title" = "Пайдалану шарттары";
-"terms_of_use_content" = "1. Қабылдау\nSub Tracker қосымшасын пайдалану арқылы сіз осы шарттармен келісесіз.\n\n2. Қызмет аясы\nҚосымша жазылымдарыңызды бақылауға көмектесетін құрал болып табылады. Қаржылық кеңес бермейді.\n\n3. Пайдаланушы жауапкершілігі\nСіз өз тіркелгіңіздің қауіпсіздігіне және енгізілген деректердің дәлдігіне жауаптысыз.\n\n4. Өзгерістер\nБіз кез келген уақытта қосымша мүмкіндіктеріне және осы шарттарға өзгерістер енгізу құқығын өзімізде қалдырамыз.\n\n5. Тоқтату\nШарттар бұзылған жағдайда қызметке қолжетімділікті тоқтата аламыз.";
+"terms_of_use_title" = "Terms of Use (EULA)";
+"terms_of_use_content" = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 "understood" = "Түсіндім";
-"privacy_dialog_content" = "Соңғы жаңарту: 20 ақпан 2026 ж.\n\n1. Кіріспе\nБіз сіздің деректеріңіздің құпиялылығына мән береміз.\n\n2. Жиналатын деректер\nЖазылым туралы ақпарат, пайдалану таңдаулары және негізгі құрылғы ақпараты өңделеді.\n\n3. Деректерді пайдалану\nДеректеріңіз тек ескертулер жіберу және қосымша жұмысын жақсарту үшін пайдаланылады.\n\n4. Деректер қауіпсіздігі\nДеректеріңіз стандартты шифрлау әдістерімен қорғалған.\n\n5. Байланыс\nСұрақтар бойынша: gokhanaytekinn@yandex.com";
+"privacy_dialog_content" = "https://sites.google.com/view/sd-yardim/gizlilik-politikasi";
 "forgot_password_desc" = "Құпия сөзді қайта орнату үшін тіркелген электрондық поштаңызды енгізіңіз. Біз сізге растау кодын жібереміз.";
 "email_address_label" = "Электрондық пошта мекенжайы";
 "send_code" = "Кодты жіберу";
@@ -435,3 +435,4 @@
 "free_trial" = "Тегін сынақ нұсқасы";
 "free_trial_desc" = "Сынақ мерзімі аяқталуға 1 күн қалғанда хабарлаймыз.";
 "trial_end_date" = "Сынақ мерзімінің аяқталу күні";
+"auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
