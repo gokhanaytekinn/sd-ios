@@ -45,6 +45,7 @@
 		D92551FF2F5F61B700DC8A83 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D92552012F5F61B700DC8A83 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D92552342F5F627900DC8A83 /* SDWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		D936C3212F6871CF0019FAD4 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D94C046D2F59F91A0014BB86 /* SDIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95390C12F63E8B200EF9433 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9E6959B2F65D876009B06CB /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
@@ -166,6 +167,13 @@
 				D92552012F5F61B700DC8A83 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D936C3232F6871CF0019FAD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D94C04642F59F91A0014BB86 = {
@@ -330,6 +338,10 @@
 				{
 					ProductGroup = D917E5092F614D70002A23DA /* Products */;
 					ProjectRef = D917E5072F614D70002A23DA /* SDiOS.xcodeproj */;
+				},
+				{
+					ProductGroup = D936C3232F6871CF0019FAD4 /* Products */;
+					ProjectRef = D936C3212F6871CF0019FAD4 /* SDiOS.xcodeproj */;
 				},
 				{
 					ProductGroup = D9ED35E12F60BCCD00665751 /* Products */;
@@ -611,7 +623,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -651,7 +663,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
