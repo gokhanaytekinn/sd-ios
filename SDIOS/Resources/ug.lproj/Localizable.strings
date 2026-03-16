@@ -461,3 +461,8 @@
 "free_trial_desc" = "سىناق مۇددىتى توشۇشتىن بىر كۈن بۇرۇн سىزگە ئەسكەرتىمىز.";
 "trial_end_date" = "سىناق توشۇش ۋاقتى";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"insight_saving_potential" = "خامچوتىڭىزدا تېجەش يوشۇرۇن كۈچىنى تاپتۇق.";
+"insight_cycle_suggestion" = "چىقىمىڭىزنى ھەر ئايدا ئەمەس ، ھەر يىلى پىلانلاپ ئۇزۇن مۇددەت تېجەڭ.";
+"reminder_on" = "ئەسكەرتىش";

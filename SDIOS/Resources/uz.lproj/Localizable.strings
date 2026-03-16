@@ -436,3 +436,12 @@
 "free_trial_desc" = "Sinov muddati tugashidan 1 kun oldin sizni ogohlantiramiz.";
 "trial_end_date" = "Sinov Muddati Tugash Sanasi";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"analytics_entry_title" = "Xarajatlar tahlili";
+"analytics_entry_desc" = "Xarajatlaringizni batafsil tahlil qiling";
+"insight_yearly_optimization" = "Ba'zi oylik rejalarni yillikga almashtirish orqali siz yiliga 15-20% tejashingiz mumkin.";
+"insight_category_dominant" = "%@ toifasi umumiy xarajatlaringizning yarmidan koʻpini tashkil qiladi.";
+"insight_saving_potential" = "Byudjetingizda tejash imkoniyatini topdik.";
+"insight_cycle_suggestion" = "Xarajatlaringizni oylik emas, balki har yili rejalashtirish orqali uzoq muddatda tejang.";
+"reminder_on" = "Eslatma yoqilgan";

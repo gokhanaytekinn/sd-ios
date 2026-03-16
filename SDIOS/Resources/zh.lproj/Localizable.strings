@@ -439,3 +439,12 @@
 "free_trial_desc" = "我们将在试用期结束前 1 天提醒您。";
 "trial_end_date" = "试用截止日期";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"analytics_entry_title" = "费用分析";
+"analytics_entry_desc" = "详细分析您的开支";
+"insight_yearly_optimization" = "通过将某些月度计划改为年度计划，您每年可以节省 15-20%。";
+"insight_category_dominant" = "%@类别占您总支出的一半以上。";
+"insight_saving_potential" = "我们发现您的预算有节省的潜力。";
+"insight_cycle_suggestion" = "从长远来看，每年而不是每月计划您的开支，可以节省开支。";
+"reminder_on" = "提醒开启";

@@ -436,3 +436,12 @@
 "free_trial_desc" = "Synag möwriti gutarmanka 1 gün öňinden size habar bereris.";
 "trial_end_date" = "Synag möwritiniň gutarýan güni";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"analytics_entry_title" = "Çykdajylaryň seljerişi";
+"analytics_entry_desc" = "Çykdajylaryňyzy jikme-jik derňäň";
+"insight_yearly_optimization" = "Käbir aýlyk meýilnamalary ýyllyklara geçirip, ýylda 15-20% tygşytlap bilersiňiz.";
+"insight_category_dominant" = "%@ kategoriýa umumy çykdajylaryňyzyň ýarysyndan gowragyny düzýär.";
+"insight_saving_potential" = "Býudjetiňizde tygşytlamak mümkinçiligini tapdyk.";
+"insight_cycle_suggestion" = "Aýlyk däl-de, her ýyl çykdajylaryňyzy meýilleşdirip, uzak möhletde tygşytlaň.";
+"reminder_on" = "Inderatlatma";

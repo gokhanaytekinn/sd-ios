@@ -465,3 +465,8 @@
 "free_trial_desc" = "We will alert you 1 day before the trial ends.";
 "trial_end_date" = "Trial End Date";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"insight_saving_potential" = "We found saving potential in your budget.";
+"insight_cycle_suggestion" = "Save in the long term by planning your expenses annually instead of monthly.";
+"reminder_on" = "Reminder On";

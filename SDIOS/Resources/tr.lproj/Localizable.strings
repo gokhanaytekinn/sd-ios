@@ -466,3 +466,8 @@
 "free_trial_desc" = "Deneme süresi bitmeden 1 gün önce sizi uyarırız.";
 "trial_end_date" = "Deneme Bitiş Tarihi";
 "auto_renewable_disclaimer" = "Abonelikler, mevcut dönemin bitiminden en az 24 saat önce iptal edilmediği sürece otomatik olarak yenilenir. Hesabınızdan ödeme alınacaktır. Aboneliklerinizi App Store hesap ayarlarından yönetebilirsiniz.";
+
+// Smart Insights & Calendar
+"insight_saving_potential" = "Bütçenizde tasarruf potansiyeli bulduk.";
+"insight_cycle_suggestion" = "Harcamalarınızı aylık yerine yıllık planlayarak uzun vadede tasarruf edin.";
+"reminder_on" = "Hatırlatıcı Açık";

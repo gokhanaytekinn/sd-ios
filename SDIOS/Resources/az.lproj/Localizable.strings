@@ -439,3 +439,12 @@
 "free_trial_desc" = "Sınaq müddəti bitməmişдəн 1 gün əvvəl sizə xəbərdarlıq edəcəyik.";
 "trial_end_date" = "Sınaq Müddətinin Bitmə Tarixi";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"analytics_entry_title" = "Xərclərin analitikası";
+"analytics_entry_desc" = "Xərclərinizi ətraflı təhlil edin";
+"insight_yearly_optimization" = "Bəzi aylıq planları illik plana keçirərək, illik 15-20% qənaət edə bilərsiniz.";
+"insight_category_dominant" = "%@ kateqoriyası ümumi xərclərinizin yarısından çoxunu təşkil edir.";
+"insight_saving_potential" = "Büdcənizdə qənaət potensialı tapdıq.";
+"insight_cycle_suggestion" = "Xərclərinizi aylıq deyil, illik planlaşdıraraq uzunmüddətli perspektivdə qənaət edin.";
+"reminder_on" = "Xatırlatma Aktivdir";

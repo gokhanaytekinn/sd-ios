@@ -436,3 +436,12 @@
 "free_trial_desc" = "Сынақ мерзімі аяқталуға 1 күн қалғанда хабарлаймыз.";
 "trial_end_date" = "Сынақ мерзімінің аяқталу күні";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"analytics_entry_title" = "Шығындарды талдау";
+"analytics_entry_desc" = "Шығындарыңызды егжей-тегжейлі талдаңыз";
+"insight_yearly_optimization" = "Кейбір айлық жоспарларды жылдық жоспарға ауыстыру арқылы сіз жыл сайын 15-20% үнемдей аласыз.";
+"insight_category_dominant" = "%@ санаты жалпы шығындарыңыздың жартысынан көбін құрайды.";
+"insight_saving_potential" = "Біз сіздің бюджетіңізден үнемдеу мүмкіндігін таптық.";
+"insight_cycle_suggestion" = "Шығындарыңызды ай сайын емес, жыл сайын жоспарлау арқылы ұзақ мерзімді перспективада үнемдеңіз.";
+"reminder_on" = "Еске салғыш қосулы";

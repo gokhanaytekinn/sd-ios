@@ -89,7 +89,7 @@ struct SubscriptionDetailsScreen: View {
                         if sub.reminderEnabled {
                             HStack(spacing: 8) {
                                 Image(systemName: "bell.fill")
-                                Text("Hatırlatıcı Açık")
+                                Text("reminder_on".localized())
                             }
                             .font(.system(size: 14, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))

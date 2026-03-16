@@ -461,3 +461,8 @@
 "free_trial_desc" = "Боруобалааһын бүтүөн 1 күн иннинэ эйиэхэ биллэриэхпит.";
 "trial_end_date" = "Боруобалааһын бүтэр күнэ";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"insight_saving_potential" = "Мы нашли потенциал экономии в вашем бюджете.";
+"insight_cycle_suggestion" = "Экономьте в долгосрочной перспективе, планируя свои расходы ежегодно, а не ежемесячно.";
+"reminder_on" = "Напоминание включено";

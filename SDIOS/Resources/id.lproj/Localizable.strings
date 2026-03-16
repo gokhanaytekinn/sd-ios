@@ -434,3 +434,12 @@
 "free_trial_desc" = "Kami akan memberi tahu Anda 1 hari sebelum uji coba berakhir.";
 "trial_end_date" = "Tanggal Berakhir Uji Coba";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"analytics_entry_title" = "Analisis Biaya";
+"analytics_entry_desc" = "Analisis pengeluaran Anda secara detail";
+"insight_yearly_optimization" = "Anda dapat menghemat 15-20% per tahun dengan mengalihkan beberapa paket bulanan ke tahunan.";
+"insight_category_dominant" = "Kategori %@ menghasilkan lebih dari separuh total pembelanjaan Anda.";
+"insight_saving_potential" = "Kami menemukan potensi penghematan dalam anggaran Anda.";
+"insight_cycle_suggestion" = "Hemat dalam jangka panjang dengan merencanakan pengeluaran Anda setiap tahun, bukan bulanan.";
+"reminder_on" = "Pengingat Aktif";

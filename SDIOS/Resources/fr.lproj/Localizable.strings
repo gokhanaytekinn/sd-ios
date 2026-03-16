@@ -438,3 +438,12 @@
 "free_trial_desc" = "Nous vous préviendrons 1 jour avant la fin de l'essai.";
 "trial_end_date" = "Date de fin de l'essai";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
+
+// Smart Insights & Calendar
+"analytics_entry_title" = "Analyse des dépenses";
+"analytics_entry_desc" = "Analysez vos dépenses en détail";
+"insight_yearly_optimization" = "Vous pourriez économiser 15 à 20 % par an en passant de certains forfaits mensuels à des forfaits annuels.";
+"insight_category_dominant" = "La catégorie %@ représente plus de la moitié de vos dépenses totales.";
+"insight_saving_potential" = "Nous avons trouvé un potentiel d'économie dans votre budget.";
+"insight_cycle_suggestion" = "Économisez à long terme en planifiant vos dépenses annuellement plutôt que mensuellement.";
+"reminder_on" = "Rappel activé";
