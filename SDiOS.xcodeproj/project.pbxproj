@@ -49,6 +49,7 @@
 		D94C046D2F59F91A0014BB86 /* SDIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95390C12F63E8B200EF9433 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D967C5A52F6932F1002D8123 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D9B2937A2F6AD58500DEE607 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9E6959B2F65D876009B06CB /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9E89D4C2F5FF88400C6D2F0 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9E89F892F5FFE4C00C6D2F0 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
@@ -210,6 +211,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D9B2937C2F6AD58500DEE607 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D9E6959D2F65D876009B06CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +360,14 @@
 					ProjectRef = D936C3212F6871CF0019FAD4 /* SDiOS.xcodeproj */;
 				},
 				{
+					ProductGroup = D9E89D4E2F5FF88400C6D2F0 /* Products */;
+					ProjectRef = D9E89D4C2F5FF88400C6D2F0 /* SDiOS.xcodeproj */;
+				},
+				{
+					ProductGroup = D9B2937C2F6AD58500DEE607 /* Products */;
+					ProjectRef = D9B2937A2F6AD58500DEE607 /* SDiOS.xcodeproj */;
+				},
+				{
 					ProductGroup = D9ED35E12F60BCCD00665751 /* Products */;
 					ProjectRef = D9ED35DF2F60BCCD00665751 /* SDiOS.xcodeproj */;
 				},
@@ -360,16 +376,12 @@
 					ProjectRef = D967C5A52F6932F1002D8123 /* SDiOS.xcodeproj */;
 				},
 				{
-					ProductGroup = D9E89D4E2F5FF88400C6D2F0 /* Products */;
-					ProjectRef = D9E89D4C2F5FF88400C6D2F0 /* SDiOS.xcodeproj */;
+					ProductGroup = D9E6959D2F65D876009B06CB /* Products */;
+					ProjectRef = D9E6959B2F65D876009B06CB /* SDiOS.xcodeproj */;
 				},
 				{
 					ProductGroup = D95390C32F63E8B200EF9433 /* Products */;
 					ProjectRef = D95390C12F63E8B200EF9433 /* SDiOS.xcodeproj */;
-				},
-				{
-					ProductGroup = D9E6959D2F65D876009B06CB /* Products */;
-					ProjectRef = D9E6959B2F65D876009B06CB /* SDiOS.xcodeproj */;
 				},
 				{
 					ProductGroup = D9E89F8B2F5FFE4C00C6D2F0 /* Products */;
@@ -617,7 +629,7 @@
 				CODE_SIGN_ENTITLEMENTS = SDIOS/SDIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U5R64N99GG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -635,7 +647,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -657,7 +669,7 @@
 				CODE_SIGN_ENTITLEMENTS = SDIOS/SDIOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U5R64N99GG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -675,7 +687,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
