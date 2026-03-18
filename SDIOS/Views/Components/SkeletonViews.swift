@@ -51,51 +51,101 @@ struct DashboardSkeleton: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack(spacing: 24) {
-            // Özet Kartı Skeleton
-            RoundedRectangle(cornerRadius: 24)
-                .baseSkeleton(colorScheme: colorScheme)
-                .frame(height: 180)
-            
-            VStack(alignment: .leading, spacing: 16) {
-                // Başlık
-                RoundedRectangle(cornerRadius: 4)
-                    .baseSkeleton(colorScheme: colorScheme)
-                    .frame(width: 150, height: 20)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 0) {
+                // Header (hello + title)
+                VStack(alignment: .leading, spacing: 10) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 160, height: 12)
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 120, height: 22)
+                }
+                .padding(.horizontal, 24)
+                .padding(.top, 16)
                 
-                // Yaklaşan Abonelikler Listesi
-                ForEach(0..<3) { _ in
-                    HStack(spacing: 16) {
-                        Circle()
+                Spacer().frame(height: 20)
+                
+                // Summary card
+                VStack(alignment: .leading, spacing: 12) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 110, height: 12)
+                    
+                    HStack {
+                        RoundedRectangle(cornerRadius: 4)
                             .baseSkeleton(colorScheme: colorScheme)
-                            .frame(width: 40, height: 40)
-                        
-                        VStack(alignment: .leading, spacing: 8) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .baseSkeleton(colorScheme: colorScheme)
-                                .frame(width: 100, height: 14)
-                            RoundedRectangle(cornerRadius: 4)
-                                .baseSkeleton(colorScheme: colorScheme)
-                                .frame(width: 60, height: 10)
-                        }
+                            .frame(width: 160, height: 28)
                         
                         Spacer()
                         
-                        RoundedRectangle(cornerRadius: 4)
+                        Capsule()
                             .baseSkeleton(colorScheme: colorScheme)
-                            .frame(width: 50, height: 14)
+                            .frame(width: 80, height: 24)
                     }
-                    .padding(16)
-                    .background(Color.appSurface(for: colorScheme))
-                    .cornerRadius(16)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
-                    )
                 }
+                .padding(24)
+                .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                .cornerRadius(24)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                        .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+                )
+                .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 16)
+                
+                // Analytics entry card
+                RoundedRectangle(cornerRadius: 20)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 72)
+                    .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 28)
+                
+                // Upcoming section title
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 150, height: 16)
+                    .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 12)
+                
+                VStack(spacing: 8) {
+                    ForEach(0..<3, id: \.self) { _ in
+                        SubscriptionRowSkeleton()
+                    }
+                }
+                .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 28)
+                
+                // Most expensive title
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 180, height: 16)
+                    .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 12)
+                
+                VStack(spacing: 8) {
+                    ForEach(0..<3, id: \.self) { _ in
+                        SubscriptionRowSkeleton()
+                    }
+                }
+                .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 24)
+                
+                // Bottom outlined button
+                OutlinedButtonSkeleton()
+                    .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 32)
             }
+            .padding(.bottom, 24)
         }
-        .padding(24)
     }
 }
 
@@ -104,45 +154,86 @@ struct SubscriptionListSkeleton: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 12) {
-                ForEach(0..<6) { _ in
-                    HStack(spacing: 16) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .baseSkeleton(colorScheme: colorScheme)
-                            .frame(width: 36, height: 36)
-                        
-                        VStack(alignment: .leading, spacing: 6) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .baseSkeleton(colorScheme: colorScheme)
-                                .frame(width: 120, height: 16)
-                            RoundedRectangle(cornerRadius: 4)
-                                .baseSkeleton(colorScheme: colorScheme)
-                                .frame(width: 80, height: 12)
-                        }
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .trailing, spacing: 6) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .baseSkeleton(colorScheme: colorScheme)
-                                .frame(width: 60, height: 16)
-                            RoundedRectangle(cornerRadius: 4)
-                                .baseSkeleton(colorScheme: colorScheme)
-                                .frame(width: 40, height: 12)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-                    .background(Color.appSurface(for: colorScheme))
-                    .cornerRadius(12)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
-                    )
+        VStack(spacing: 0) {
+            // Title
+            RoundedRectangle(cornerRadius: 4)
+                .baseSkeleton(colorScheme: colorScheme)
+                .frame(width: 140, height: 22)
+                .padding(.horizontal, 24)
+                .padding(.top, 16)
+            
+            Spacer().frame(height: 16)
+            
+            // Summary card
+            VStack(alignment: .leading, spacing: 10) {
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 110, height: 12)
+                
+                HStack {
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 160, height: 28)
+                    
+                    Spacer()
+                    
+                    Capsule()
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 90, height: 24)
                 }
             }
-            .padding(20)
+            .padding(16)
+            .background(Color.clear)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+            )
+            .cornerRadius(12)
+            .padding(.horizontal, 24)
+            
+            Spacer().frame(height: 20)
+            
+            // Tabs
+            HStack(spacing: 0) {
+                RoundedRectangle(cornerRadius: 8)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 40)
+                RoundedRectangle(cornerRadius: 8)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 40)
+                RoundedRectangle(cornerRadius: 8)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 40)
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+            )
+            .padding(.horizontal, 24)
+            
+            Spacer().frame(height: 16)
+            
+            // Search bar
+            RoundedRectangle(cornerRadius: 12)
+                .baseSkeleton(colorScheme: colorScheme)
+                .frame(height: 48)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+                )
+                .padding(.horizontal, 24)
+            
+            Spacer().frame(height: 12)
+            
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 8) {
+                    ForEach(0..<8, id: \.self) { _ in
+                        SubscriptionRowSkeleton()
+                    }
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 20)
+            }
         }
     }
 }
@@ -232,6 +323,169 @@ struct PremiumButtonSkeleton: View {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
             )
+    }
+}
+
+// MARK: - Subscription Row Skeleton (matches SubscriptionCard layout)
+struct SubscriptionRowSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            RoundedRectangle(cornerRadius: 10)
+                .baseSkeleton(colorScheme: colorScheme)
+                .frame(width: 36, height: 36)
+            
+            VStack(alignment: .leading, spacing: 6) {
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 140, height: 16)
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 90, height: 12)
+            }
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 6) {
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 72, height: 16)
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 50, height: 12)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+        .cornerRadius(12)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+        )
+    }
+}
+
+// MARK: - Outlined Button Skeleton (matches PremiumButton usage on Dashboard)
+struct OutlinedButtonSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 16)
+            .baseSkeleton(colorScheme: colorScheme)
+            .frame(height: 52)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+            )
+    }
+}
+
+// MARK: - Subscription Details Skeleton
+struct SubscriptionDetailsSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 20) {
+                // Icon
+                Circle()
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 120, height: 120)
+                    .padding(.top, 20)
+                
+                // Name
+                RoundedRectangle(cornerRadius: 8)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 220, height: 32)
+                
+                // Price row
+                RoundedRectangle(cornerRadius: 8)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 180, height: 40)
+                
+                // Summary card
+                RoundedRectangle(cornerRadius: 16)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 140)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                    )
+                
+                // Grid blocks
+                HStack(spacing: 16) {
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 80)
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 80)
+                }
+                
+                // Action buttons row
+                HStack(spacing: 12) {
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 52)
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 52)
+                }
+                
+                // Primary CTA
+                RoundedRectangle(cornerRadius: 12)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 45)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                    )
+                
+                Spacer().frame(height: 20)
+            }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 24)
+        }
+    }
+}
+
+// MARK: - Splash Skeleton (used during auth bootstrap)
+struct SplashSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack(spacing: 24) {
+            Spacer()
+            
+            Circle()
+                .baseSkeleton(colorScheme: colorScheme)
+                .frame(width: 88, height: 88)
+            
+            VStack(spacing: 12) {
+                RoundedRectangle(cornerRadius: 6)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 180, height: 18)
+                
+                RoundedRectangle(cornerRadius: 6)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 240, height: 14)
+            }
+            
+            VStack(spacing: 12) {
+                RoundedRectangle(cornerRadius: 16)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 72)
+                RoundedRectangle(cornerRadius: 16)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(height: 72)
+            }
+            .padding(.horizontal, 24)
+            
+            Spacer()
+        }
+        .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
     }
 }
 

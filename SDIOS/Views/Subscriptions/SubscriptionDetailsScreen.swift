@@ -30,23 +30,7 @@ struct SubscriptionDetailsScreen: View {
             .padding(16)
             
             if isLoading {
-                VStack(spacing: 20) {
-                    Circle().fill(Color.gray.opacity(0.3)).frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 200, height: 32)
-                    RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 150, height: 40)
-                    
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(height: 120)
-                        
-                    HStack(spacing: 16) {
-                        RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.3)).frame(height: 80)
-                        RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.3)).frame(height: 80)
-                    }
-                    Spacer()
-                }
-                .padding(24)
-                .skeleton()
+                SubscriptionDetailsSkeleton()
             } else if let sub = subscription {
                 ScrollView {
                     VStack(spacing: 20) {

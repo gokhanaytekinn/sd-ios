@@ -235,7 +235,7 @@ struct UpcomingSubscriptionsScreen: View {
                     ScrollView {
                         VStack(spacing: 8) {
                             ForEach(0..<6, id: \.self) { _ in
-                                SkeletonCard()
+                                SubscriptionRowSkeleton()
                             }
                         }
                         .padding(.horizontal, 24)

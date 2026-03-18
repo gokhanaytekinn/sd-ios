@@ -63,7 +63,7 @@ struct ContentView: View {
         Group {
             if authViewModel.isLoading && !authViewModel.isAuthenticated {
                 // Splash / Loading
-                DashboardSkeleton()
+                SplashSkeleton()
             } else if !authViewModel.isAuthenticated {
                 // Auth Flow
                 NavigationStack(path: $navigationPath) {
