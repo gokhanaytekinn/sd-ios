@@ -211,7 +211,11 @@
 "feature_unlimited_tracking_premium_desc" = "Каалаганыңызча кошуңуз";
 "premium_plan" = "Premium план";
 "feature_auto_capture_premium_desc" = "Жашыруун төлөмдөрдү дароо табат";
+"feature_ad_free_free_desc" = "Жарнамалар көрсөтүлөт";
 "feature_ad_free_desc" = "Тиркемени эч кандай жарнамасыз колдонуңуз";
+"feature_analytics_title" = "Өркүндөтүлгөн аналитика";
+"feature_analytics_free_desc" = "Негизги отчеттор";
+"feature_ad_free_title" = "Жарнамасыз";
 "category_streaming" = "Кино & ТВ & Музыка";
 "category_gaming" = "Ойындар";
 "category_software" = "Программалык камсыздоо";

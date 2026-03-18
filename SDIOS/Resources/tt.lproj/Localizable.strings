@@ -211,6 +211,7 @@
 "feature_unlimited_tracking_premium_desc" = "Istedigin kadar abonelik ekle";
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Odeme hatırlatıcıları";
+"feature_ad_free_free_desc" = "Reklam gösterilir";
 "feature_ad_free_desc" = "Кушымтаны бернинди рекламасыз кулланыгыз";
 "category_streaming" = "Dizi & Film & Müzik";
 "category_gaming" = "Oyun";
@@ -360,6 +361,9 @@
 "feature_advanced_analytics_title" = "Gelişmiş Analitik";
 "feature_advanced_analytics_free_desc" = "Temel Analizler";
 "feature_advanced_analytics_premium_desc" = "Tam İçgörüler";
+"feature_analytics_title" = "Gelişmiş Analitik";
+"feature_ad_free_title" = "Reklamsız";
+"feature_analytics_free_desc" = "Temel Analizler";
 
 "subscription_price" = "Abonelik Ücreti";
 "renewal_cycle" = "Yenilenme Döngüsü";

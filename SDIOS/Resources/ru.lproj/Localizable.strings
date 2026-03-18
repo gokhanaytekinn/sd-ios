@@ -211,7 +211,9 @@
 "feature_unlimited_tracking_premium_desc" = "Добавляйте сколько угодно";
 "premium_plan" = "Премиум план";
 "feature_auto_capture_premium_desc" = "Мгновенно находит скрытые платежи";
+"feature_ad_free_title" = "Без рекламы";
 "feature_ad_free_desc" = "Пользуйтесь приложением без рекламы";
+"feature_ad_free_free_desc" = "Показывает рекламу";
 "feature_advanced_analytics_premium_desc" = "Подробные отчеты о расходах";
 "feature_analytics_title" = "Продвинутая аналитика";
 "feature_analytics_free_desc" = "Базовые отчеты";

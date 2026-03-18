@@ -212,9 +212,11 @@
 "premium_plan" = "Premium Plan";
 "feature_auto_capture_premium_desc" = "Payment reminders";
 "feature_ad_free_premium_desc" = "Completely ad-free";
+"feature_ad_free_free_desc" = "Shows ads";
 "feature_ad_free_desc" = "Enjoy the app without any advertisements";
 "feature_analytics_title" = "Advanced Analytics";
 "feature_ad_free_title" = "Ad-free Experience";
+"feature_analytics_free_desc" = "Basic insights";
 "feature_analytics_premium_desc" = "Detailed charts & insights";
 "feature_advanced_analytics_premium_desc" = "Full Insights";
 "category_streaming" = "Movie & TV & Music";

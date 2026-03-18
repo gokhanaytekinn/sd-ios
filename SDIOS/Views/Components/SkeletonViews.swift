@@ -220,6 +220,21 @@ struct PlanCardSkeleton: View {
     }
 }
 
+// MARK: - Premium Action Button Skeleton
+struct PremiumButtonSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 12)
+            .baseSkeleton(colorScheme: colorScheme)
+            .frame(height: 45)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+            )
+    }
+}
+
 // MARK: - Search List Skeleton
 struct SearchListSkeleton: View {
     @Environment(\.colorScheme) var colorScheme

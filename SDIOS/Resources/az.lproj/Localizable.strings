@@ -215,6 +215,10 @@
 "feature_ad_free_desc" = "Tətbiqi heç bir reklam olmadan istifadə edin";
 "feature_analytics_premium_desc" = "Detallı qrafiklər və hesabatlar";
 "feature_advanced_analytics_premium_desc" = "Tam Analitika";
+"feature_analytics_title" = "Təkmil Analitika";
+"feature_ad_free_title" = "Reklamsız";
+"feature_analytics_free_desc" = "Əsas icmal";
+"feature_ad_free_free_desc" = "Reklamlar göstərilir";
 "category_streaming" = "Kino & TV & Musiqi";
 "category_gaming" = "Oyunlar";
 "category_software" = "Proqram təminatı";

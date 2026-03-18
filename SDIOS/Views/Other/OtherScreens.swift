@@ -196,34 +196,40 @@ struct PremiumUpgradeScreen: View {
                         
                         // Bottom Section (Moved inside ScrollView)
                         VStack(spacing: 16) {
-                            Button(action: { 
-                                // Uygun ürünü bul
-                                let productToPurchase = authViewModel.iapProducts.first { product in
-                                    if selectedPlan == 1 {
-                                        return product.id.contains("monthly")
-                                    } else if selectedPlan == 2 {
-                                        return product.id.contains("yearly")
+                            if authViewModel.isLoading {
+                                PremiumButtonSkeleton()
+                                    .frame(maxWidth: .infinity)
+                                    .allowsHitTesting(false)
+                            } else {
+                                Button(action: {
+                                    // Uygun ürünü bul
+                                    let productToPurchase = authViewModel.iapProducts.first { product in
+                                        if selectedPlan == 1 {
+                                            return product.id.contains("monthly")
+                                        } else if selectedPlan == 2 {
+                                            return product.id.contains("yearly")
+                                        }
+                                        return false
                                     }
-                                    return false
+                                    
+                                    if let product = productToPurchase {
+                                        authViewModel.purchase(product: product)
+                                    }
+                                }) {
+                                    Text(upgradeButtonText)
+                                        .font(.sdBodyBold)
                                 }
-                                
-                                if let product = productToPurchase {
-                                    authViewModel.purchase(product: product)
-                                }
-                            }) {
-                                Text(authViewModel.isLoading ? "loading".localized() : upgradeButtonText)
-                                    .font(.sdBodyBold)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .foregroundColor(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
+                                .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                )
+                                .disabled(isCurrentPlanSelected || (selectedPlan != 0 && authViewModel.iapProducts.isEmpty))
                             }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 45)
-                            .foregroundColor(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
-                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                            .cornerRadius(12)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                            )
-                            .disabled(isCurrentPlanSelected || authViewModel.isLoading || (selectedPlan != 0 && authViewModel.iapProducts.isEmpty))
                             
                             // Apple Requirement: Auto-Renewable Disclaimer
                             Text("auto_renewable_disclaimer".localized())
@@ -257,15 +263,7 @@ struct PremiumUpgradeScreen: View {
                 }
             }
             
-            if authViewModel.isLoading {
-                Color.appBackground(for: colorScheme).opacity(0.6).ignoresSafeArea()
-                VStack(spacing: 12) {
-                    PlanCardSkeleton()
-                    PlanCardSkeleton()
-                }
-                .padding(24)
-                .transition(.opacity)
-            }
+            // Loading state is represented by button skeleton above.
         }
         .alert("error".localized(), isPresented: Binding(
             get: { authViewModel.error != nil },

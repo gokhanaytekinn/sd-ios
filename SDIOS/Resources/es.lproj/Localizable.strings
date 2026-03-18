@@ -215,6 +215,10 @@
 "feature_ad_free_desc" = "Disfruta de la aplicación sin anuncios";
 "feature_analytics_premium_desc" = "Gráficos y reportes detallados";
 "feature_advanced_analytics_premium_desc" = "Análisis Completo";
+"feature_analytics_title" = "Analítica avanzada";
+"feature_ad_free_title" = "Sin anuncios";
+"feature_ad_free_free_desc" = "Muestra anuncios";
+"feature_analytics_free_desc" = "Información básica";
 "category_streaming" = "Cine & TV & Música";
 "category_gaming" = "Juegos";
 "category_software" = "Software";

@@ -215,6 +215,10 @@
 "feature_ad_free_desc" = "享受完全无广告的应用体验";
 "feature_analytics_premium_desc" = "详细图表与洞察";
 "feature_advanced_analytics_premium_desc" = "全面洞察";
+"feature_analytics_title" = "高级分析";
+"feature_ad_free_title" = "无广告";
+"feature_ad_free_free_desc" = "包含广告";
+"feature_analytics_free_desc" = "基础洞察";
 "category_streaming" = "电影 & 电视 & 音乐";
 "category_gaming" = "游戏";
 "category_software" = "软件";
