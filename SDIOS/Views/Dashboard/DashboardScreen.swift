@@ -113,6 +113,36 @@ struct DashboardScreen: View {
                         
                         Spacer().frame(height: 28)
                         
+                        // Ücretsiz Denemeler (Carousel) - Yaklaşan Ödemeler'den önce
+                        if !viewModel.freeTrialSubscriptions.isEmpty {
+                            HStack {
+                                Text("free_trials_section_title".localized())
+                                    .font(.sdSubheadlineSemibold)
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                Spacer()
+                            }
+                            .padding(.horizontal, 24)
+                            
+                            Spacer().frame(height: 12)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 12) {
+                                    ForEach(viewModel.freeTrialSubscriptions) { sub in
+                                        DashboardCarouselCard(
+                                            subscription: sub,
+                                            currency: currency,
+                                            variant: .freeTrial
+                                        ) {
+                                            onNavigateToSubscriptionDetail(sub.id)
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal, 24)
+                            }
+                            
+                            Spacer().frame(height: 28)
+                        }
+                        
                         // Yaklaşan Ödemeler Bölümü
                         HStack {
                             Text("upcoming_payments".localized())
@@ -131,17 +161,20 @@ struct DashboardScreen: View {
                                 .padding(.horizontal, 24)
                                 .padding(.vertical, 12)
                         } else {
-                            VStack(spacing: 8) {
-                                ForEach(viewModel.upcomingSubscriptions) { sub in
-                                    SubscriptionCard(
-                                        subscription: sub,
-                                        currency: currency,
-                                        showCountdown: true,
-                                        onTap: { onNavigateToSubscriptionDetail(sub.id) }
-                                    )
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 12) {
+                                    ForEach(viewModel.upcomingSubscriptions) { sub in
+                                        DashboardCarouselCard(
+                                            subscription: sub,
+                                            currency: currency,
+                                            variant: .upcoming
+                                        ) {
+                                            onNavigateToSubscriptionDetail(sub.id)
+                                        }
+                                    }
                                 }
+                                .padding(.horizontal, 24)
                             }
-                            .padding(.horizontal, 24)
                         }
                         
                         Spacer().frame(height: 28)
@@ -157,17 +190,20 @@ struct DashboardScreen: View {
                         
                         Spacer().frame(height: 12)
                         
-                        VStack(spacing: 8) {
-                            ForEach(Array(viewModel.subscriptions.prefix(3))) { sub in
-                                SubscriptionCard(
-                                    subscription: sub,
-                                    currency: currency,
-                                    showDate: true,
-                                    onTap: { onNavigateToSubscriptionDetail(sub.id) }
-                                )
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(Array(viewModel.subscriptions.prefix(3))) { sub in
+                                    DashboardCarouselCard(
+                                        subscription: sub,
+                                        currency: currency,
+                                        variant: .mostExpensive
+                                    ) {
+                                        onNavigateToSubscriptionDetail(sub.id)
+                                    }
+                                }
                             }
+                            .padding(.horizontal, 24)
                         }
-                        .padding(.horizontal, 24)
                         
                         Spacer().frame(height: 24)
                         
@@ -196,5 +232,141 @@ struct DashboardScreen: View {
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RefreshData"))) { _ in
             viewModel.loadDashboard()
         }
+    }
+}
+
+private struct DashboardCarouselCard: View {
+    let subscription: Subscription
+    let currency: Int
+    let variant: Variant
+    let onTap: () -> Void
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    enum Variant {
+        case freeTrial
+        case upcoming
+        case mostExpensive
+    }
+    
+    var body: some View {
+        Button(action: onTap) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 10) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.dynamicColor(from: subscription.name).opacity(0.15))
+                            .frame(width: 36, height: 36)
+                        
+                        Image(systemName: leadingIcon)
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(Color.dynamicColor(from: subscription.name))
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(subscription.name)
+                            .font(.sdLabelSemibold)
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            .lineLimit(1)
+                        
+                        Text(subtitle)
+                            .font(.sdCaption)
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                    }
+                    
+                    Spacer(minLength: 0)
+                }
+                
+                if let endDate = subscription.getNextRenewalDate() {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(line1(nextRenewalDate: endDate))
+                            .font(.sdCaption)
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .lineLimit(1)
+                        
+                        Text(daysLeftText(until: endDate))
+                            .font(.sdSmallMedium)
+                            .foregroundColor(.primaryBlue)
+                    }
+                } else {
+                    Text(CurrencyFormatter.formatAmount(subscription.cost, currencyCode: currency))
+                        .font(.sdSmallMedium)
+                        .foregroundColor(.primaryBlue)
+                        .lineLimit(1)
+                }
+            }
+            .padding(16)
+            .frame(width: 260, alignment: .leading)
+            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+            .cornerRadius(16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+            )
+        }
+        .buttonStyle(.plain)
+    }
+    
+    private var leadingIcon: String {
+        switch variant {
+        case .freeTrial: return "gift.fill"
+        case .upcoming: return "clock.fill"
+        case .mostExpensive: return "creditcard.fill"
+        }
+    }
+    
+    private var subtitle: String {
+        switch variant {
+        case .freeTrial:
+            return "free_trial".localized()
+        case .upcoming:
+            return CurrencyFormatter.formatAmount(subscription.cost, currencyCode: currency)
+        case .mostExpensive:
+            return CurrencyFormatter.formatAmount(subscription.cost, currencyCode: currency)
+        }
+    }
+    
+    private func line1(nextRenewalDate: Date) -> String {
+        switch variant {
+        case .freeTrial:
+            return String(format: "trial_ends".localized(), formattedDate(nextRenewalDate))
+        case .upcoming:
+            return billingDateText(nextRenewalDate: nextRenewalDate)
+        case .mostExpensive:
+            return billingDateText(nextRenewalDate: nextRenewalDate)
+        }
+    }
+    
+    private func billingDateText(nextRenewalDate: Date) -> String {
+        if subscription.billingCycle == .monthly,
+           let billingDay = subscription.billingDay {
+            return DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage)
+        }
+        
+        if subscription.billingCycle == .yearly,
+           let billingDay = subscription.billingDay,
+           let billingMonth = subscription.billingMonth {
+            return DateUtils.formatYearlyRenewal(day: billingDay, month: billingMonth, language: LanguagePreferences.shared.selectedLanguage)
+        }
+        
+        return DateUtils.formatDate(nextRenewalDate)
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: LanguagePreferences.shared.selectedLanguage)
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+    
+    private func daysLeftText(until date: Date) -> String {
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: Date())
+        let end = calendar.startOfDay(for: date)
+        let days = calendar.dateComponents([.day], from: start, to: end).day ?? 0
+        if days <= 0 { return "today".localized() }
+        if days == 1 { return "tomorrow".localized() }
+        return "\(days) \("days_left".localized())"
     }
 }

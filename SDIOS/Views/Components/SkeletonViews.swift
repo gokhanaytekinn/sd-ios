@@ -104,7 +104,7 @@ struct DashboardSkeleton: View {
                 
                 Spacer().frame(height: 28)
                 
-                // Upcoming section title
+                // Free trials section title
                 RoundedRectangle(cornerRadius: 4)
                     .baseSkeleton(colorScheme: colorScheme)
                     .frame(width: 150, height: 16)
@@ -112,12 +112,45 @@ struct DashboardSkeleton: View {
                 
                 Spacer().frame(height: 12)
                 
-                VStack(spacing: 8) {
-                    ForEach(0..<3, id: \.self) { _ in
-                        SubscriptionRowSkeleton()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(0..<2, id: \.self) { _ in
+                            RoundedRectangle(cornerRadius: 16)
+                                .baseSkeleton(colorScheme: colorScheme)
+                                .frame(width: 260, height: 92)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+                                )
+                        }
                     }
+                    .padding(.horizontal, 24)
                 }
-                .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 28)
+                
+                // Upcoming section title
+                RoundedRectangle(cornerRadius: 4)
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 150, height: 16)
+                    .padding(.horizontal, 24)
+                
+                Spacer().frame(height: 12)
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(0..<2, id: \.self) { _ in
+                            RoundedRectangle(cornerRadius: 16)
+                                .baseSkeleton(colorScheme: colorScheme)
+                                .frame(width: 260, height: 92)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+                                )
+                        }
+                    }
+                    .padding(.horizontal, 24)
+                }
                 
                 Spacer().frame(height: 28)
                 
@@ -128,13 +161,21 @@ struct DashboardSkeleton: View {
                     .padding(.horizontal, 24)
                 
                 Spacer().frame(height: 12)
-                
-                VStack(spacing: 8) {
-                    ForEach(0..<3, id: \.self) { _ in
-                        SubscriptionRowSkeleton()
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(0..<2, id: \.self) { _ in
+                            RoundedRectangle(cornerRadius: 16)
+                                .baseSkeleton(colorScheme: colorScheme)
+                                .frame(width: 260, height: 92)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
+                                )
+                        }
                     }
+                    .padding(.horizontal, 24)
                 }
-                .padding(.horizontal, 24)
                 
                 Spacer().frame(height: 24)
                 

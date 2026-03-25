@@ -466,6 +466,8 @@
 "free_trial" = "Free Trial";
 "free_trial_desc" = "We will alert you 1 day before the trial ends.";
 "trial_end_date" = "Trial End Date";
+"free_trials_section_title" = "Free Trials";
+"trial_ends" = "Trial ends: %@";
 "auto_renewable_disclaimer" = "Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. Your account will be charged for renewal. You can manage and cancel your subscriptions in your App Store account settings.";
 
 // Smart Insights & Calendar
