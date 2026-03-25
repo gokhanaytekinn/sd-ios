@@ -225,7 +225,6 @@ struct AppSettingsScreen: View {
                     showLanguageDialog = false
                 }) {
                     HStack {
-                        Text(lang.flag)
                         Text(lang.name)
                             .foregroundColor(.primary)
                         Spacer()
