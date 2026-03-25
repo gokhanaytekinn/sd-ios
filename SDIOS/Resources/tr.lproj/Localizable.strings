@@ -473,3 +473,10 @@
 "insight_saving_potential" = "Bütçenizde tasarruf potansiyeli bulduk.";
 "insight_cycle_suggestion" = "Harcamalarınızı aylık yerine yıllık planlayarak uzun vadede tasarruf edin.";
 "reminder_on" = "Hatırlatıcı Açık";
+
+"support_ticket_section_title" = "Bize Ulaşın";
+"support_subject" = "Konu";
+"support_message" = "Mesaj";
+"support_send" = "Gönder";
+"support_sent_success" = "Talebin alındı. En kısa sürede dönüş yapacağız.";
+"support_ticket_error" = "Gönderim başarısız. Lütfen tekrar deneyin.";

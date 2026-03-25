@@ -194,6 +194,11 @@ class ApiService: ApiServiceProtocol {
     func verifyPurchase(_ request: PurchaseRequest) async throws -> UserResponse {
         return try await client.execute(MiscEndpoint.verifyPurchase(request))
     }
+
+    // MARK: - Support Tickets
+    func submitSupportTicket(_ request: SupportTicketRequest) async throws {
+        try await client.executeVoid(MiscEndpoint.submitSupportTicket(request))
+    }
 }
 
 /// Basit veya tek seferlik istekler için kullanılan esnek endpoint yapısı.

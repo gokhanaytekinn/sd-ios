@@ -112,3 +112,9 @@ struct NotificationSettingsRequest: Codable {
     let enabled: Bool
     let language: String?
 }
+
+// MARK: - Support Tickets
+struct SupportTicketRequest: Codable {
+    let subject: String
+    let message: String
+}

@@ -51,4 +51,7 @@ protocol ApiServiceProtocol {
     
     // Purchase
     func verifyPurchase(_ request: PurchaseRequest) async throws -> UserResponse
+
+    // Support Tickets
+    func submitSupportTicket(_ request: SupportTicketRequest) async throws
 }

@@ -489,6 +489,221 @@ struct SplashSkeleton: View {
     }
 }
 
+// MARK: - Auth / Password Reset Skeletons
+struct ForgotPasswordSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Top bar
+            HStack {
+                Circle()
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 28, height: 28)
+                Spacer()
+            }
+            .padding(16)
+            
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Spacer().frame(height: 24)
+                    
+                    // Title
+                    RoundedRectangle(cornerRadius: 6)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 220, height: 34)
+                    
+                    Spacer().frame(height: 12)
+                    
+                    // Description (2 lines)
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 280, height: 14)
+                    Spacer().frame(height: 8)
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 230, height: 14)
+                    
+                    Spacer().frame(height: 32)
+                    
+                    // Email field
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 56)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                    
+                    Spacer().frame(height: 32)
+                    
+                    // Primary button
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 45)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                    
+                    Spacer().frame(height: 20)
+                    
+                    // Back to login link
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 120, height: 14)
+                    
+                    Spacer().frame(height: 16)
+                }
+                .padding(.horizontal, 24)
+            }
+        }
+        .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
+    }
+}
+
+struct VerificationCodeSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Circle()
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 28, height: 28)
+                Spacer()
+            }
+            .padding(16)
+            
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Spacer().frame(height: 24)
+                    
+                    RoundedRectangle(cornerRadius: 6)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 240, height: 34)
+                    
+                    Spacer().frame(height: 12)
+                    
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 300, height: 14)
+                    Spacer().frame(height: 8)
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 180, height: 14)
+                    
+                    Spacer().frame(height: 32)
+                    
+                    // Label
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 90, height: 12)
+                    
+                    Spacer().frame(height: 10)
+                    
+                    // Code field
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 45)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                    
+                    Spacer().frame(height: 32)
+                    
+                    // Button
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 45)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                    
+                    Spacer().frame(height: 16)
+                }
+                .padding(.horizontal, 24)
+            }
+        }
+        .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
+    }
+}
+
+struct ResetPasswordSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Circle()
+                    .baseSkeleton(colorScheme: colorScheme)
+                    .frame(width: 28, height: 28)
+                Spacer()
+            }
+            .padding(16)
+            
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Spacer().frame(height: 24)
+                    
+                    RoundedRectangle(cornerRadius: 6)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 240, height: 34)
+                    
+                    Spacer().frame(height: 12)
+                    
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 300, height: 14)
+                    Spacer().frame(height: 8)
+                    RoundedRectangle(cornerRadius: 4)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(width: 260, height: 14)
+                    
+                    Spacer().frame(height: 32)
+                    
+                    // New password field
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 56)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                    
+                    Spacer().frame(height: 20)
+                    
+                    // Confirm password field
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 56)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                    
+                    Spacer().frame(height: 32)
+                    
+                    // Primary button
+                    RoundedRectangle(cornerRadius: 12)
+                        .baseSkeleton(colorScheme: colorScheme)
+                        .frame(height: 45)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                    
+                    Spacer().frame(height: 16)
+                }
+                .padding(.horizontal, 24)
+            }
+        }
+        .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
+    }
+}
+
 // MARK: - Search List Skeleton
 struct SearchListSkeleton: View {
     @Environment(\.colorScheme) var colorScheme

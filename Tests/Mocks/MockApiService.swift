@@ -74,4 +74,6 @@ class MockApiService: ApiServiceProtocol {
     func rejectInvitation(id: String) async throws {}
     func removeParticipant(subscriptionId: String, email: String) async throws {}
     func verifyPurchase(_ request: PurchaseRequest) async throws -> UserResponse { return userResponse! }
+    
+    func submitSupportTicket(_ request: SupportTicketRequest) async throws {}
 }

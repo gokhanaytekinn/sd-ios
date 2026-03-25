@@ -449,3 +449,10 @@
 "insight_saving_potential" = "Бюджетиңизден үнөмдөө мүмкүнчүлүгүн таптык.";
 "insight_cycle_suggestion" = "Чыгымдарыңызды ай сайын эмес, жыл сайын пландап, узак мөөнөттүү үнөмдөңүз.";
 "reminder_on" = "Эстеткич күйүк";
+
+"support_ticket_section_title" = "Contact Support";
+"support_subject" = "Subject";
+"support_message" = "Message";
+"support_send" = "Send";
+"support_sent_success" = "Thanks! We received your request and will get back to you soon.";
+"support_ticket_error" = "Could not send. Please try again.";
