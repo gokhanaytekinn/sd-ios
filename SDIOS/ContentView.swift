@@ -56,6 +56,7 @@ struct ContentView: View {
     @State private var selectedTab: MainTab = .dashboard
     @State private var showingLimitAlert = false
     @State private var isBannerLoaded = true
+    @State private var showFirstAuthPaywall = false
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -82,7 +83,7 @@ struct ContentView: View {
                     } else {
                         LoginScreen(
                             onLoginSuccess: {
-                                // Auth state change will automatically switch to main
+                                maybeShowFirstAuthPaywall()
                             },
                             onNavigateToRegister: {
                                 navigationPath.append(.register)
@@ -109,6 +110,9 @@ struct ContentView: View {
                 navigationPath = []
             }
         }
+        .fullScreenCover(isPresented: $showFirstAuthPaywall) {
+            PremiumUpgradeScreen(onBack: { showFirstAuthPaywall = false })
+        }
     }
     
     // MARK: - Auth Destination
@@ -117,13 +121,13 @@ struct ContentView: View {
         switch route {
         case .login:
             LoginScreen(
-                onLoginSuccess: {},
+                onLoginSuccess: { maybeShowFirstAuthPaywall() },
                 onNavigateToRegister: { navigationPath.append(.register) },
                 onNavigateToForgotPassword: { navigationPath.append(.forgotPassword) }
             )
         case .register:
             RegisterScreen(
-                onRegisterSuccess: {},
+                onRegisterSuccess: { maybeShowFirstAuthPaywall() },
                 onNavigateToLogin: { navigationPath.removeLast() }
             )
         case .forgotPassword:
@@ -145,6 +149,13 @@ struct ContentView: View {
         default:
             EmptyView()
         }
+    }
+
+    private func maybeShowFirstAuthPaywall() {
+        guard authViewModel.tier < 2 else { return }
+        guard PremiumPreferences.shared.hasShownFirstAuthPaywall == false else { return }
+        PremiumPreferences.shared.hasShownFirstAuthPaywall = true
+        showFirstAuthPaywall = true
     }
     
     // MARK: - Main Tab View
