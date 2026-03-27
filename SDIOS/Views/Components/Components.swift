@@ -193,19 +193,32 @@ struct SubscriptionCard: View {
     
     private var categoryText: String {
         let localizedCategory = (subscription.category ?? "category_other").localized()
-        let cycleText: String
-        switch subscription.billingCycle {
-        case .monthly: cycleText = "billing_monthly_label".localized()
-        case .yearly: cycleText = "billing_yearly_label".localized()
-        case .weekly: cycleText = "billing_weekly_label".localized()
-        case .quarterly: cycleText = "period_monthly".localized()
-        }
+        let cycleText = billingCycleDescription(for: subscription)
         
         let category = subscription.category ?? "category_other"
         if category == "Other" || category == "Diğer" || category == "category_other" {
             return cycleText
         }
         return "\(localizedCategory) • \(cycleText)"
+    }
+
+    private func billingCycleDescription(for sub: Subscription) -> String {
+        let isTurkish = LanguagePreferences.shared.selectedLanguage.lowercased().hasPrefix("tr")
+        switch sub.billingCycle {
+        case .daily:
+            return isTurkish ? "Her gün" : "Every day"
+        case .weekly:
+            if let day = sub.billingDay {
+                return isTurkish ? "Haftanın \(day).günü" : "Day \(day) of week"
+            }
+            return "billing_weekly_label".localized()
+        case .monthly:
+            return "billing_monthly_label".localized()
+        case .yearly:
+            return "billing_yearly_label".localized()
+        case .quarterly:
+            return "period_monthly".localized()
+        }
     }
     
     private func daysText(_ days: Int) -> String {

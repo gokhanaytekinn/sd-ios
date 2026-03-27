@@ -8,7 +8,16 @@ class AddSubscriptionViewModel: ObservableObject {
     @Published var amount = ""                                 // Kullanıcının girdiği formatlı tutar
     @Published var icon: String? = nil                         // Seçilen ikon (string key)
     @Published var selectedCategory: String = "" { didSet { categoryError = nil } } // Kategori
-    @Published var selectedBillingCycle: BillingCycle = .monthly { didSet { clearDateError() } } // Ödeme periyodu
+    @Published var selectedBillingCycle: BillingCycle = .monthly {
+        didSet {
+            if selectedBillingCycle == .weekly {
+                billingDay = min(max(billingDay, 1), 7)
+            } else if selectedBillingCycle == .daily {
+                billingMonth = nil
+            }
+            clearDateError()
+        }
+    } // Ödeme periyodu
     @Published var billingDay: Int = Calendar.current.component(.day, from: Date()) { didSet { clearDateError() } } // Ödeme günü
     @Published var billingMonth: Int? = nil { didSet { clearDateError() } } // Ödeme ayı (Yıllık paketler için)
     @Published var reminderEnabled = true { didSet { clearDateError() } } // Hatırlatıcı aktif mi?
@@ -118,6 +127,9 @@ class AddSubscriptionViewModel: ObservableObject {
         selectedCategory = subscription.category ?? "category_other"
         selectedBillingCycle = subscription.billingCycle
         billingDay = subscription.billingDay ?? Calendar.current.component(.day, from: Date())
+        if selectedBillingCycle == .weekly {
+            billingDay = min(max(billingDay, 1), 7)
+        }
         billingMonth = subscription.billingMonth ?? Calendar.current.component(.month, from: Date())
         reminderEnabled = subscription.reminderEnabled
         isFreeTrial = subscription.isFreeTrial ?? false
@@ -267,7 +279,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     amount: costValue,
                     currency: currency,
                     billingCycle: selectedBillingCycle.rawValue,
-                    billingDay: billingDay,
+                    billingDay: selectedBillingCycle == .daily ? nil : billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
                     reminderEnabled: reminderEnabled,
                     isFreeTrial: isFreeTrial,
@@ -285,7 +297,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     amount: costValue,
                     currency: currency,
                     billingCycle: selectedBillingCycle.rawValue,
-                    billingDay: billingDay,
+                    billingDay: selectedBillingCycle == .daily ? nil : billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
                     reminderEnabled: reminderEnabled,
                     isFreeTrial: isFreeTrial,

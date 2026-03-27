@@ -264,12 +264,14 @@ struct AddSubscriptionScreen: View {
                             .frame(width: 140)
                         }
                         
-                        // Period (MONTHLY / YEARLY)
+                        // Period (DAILY / WEEKLY / MONTHLY / YEARLY)
                         VStack(alignment: .leading, spacing: 10) {
                             Text("period".localized())
                                 .font(.system(size: 14, weight: .bold))
                             
                             HStack(spacing: 0) {
+                                periodButton(title: dailyCycleLabel, cycle: .daily)
+                                periodButton(title: "billing_weekly_label".localized(), cycle: .weekly)
                                 periodButton(title: "billing_monthly_label".localized(), cycle: .monthly)
                                 periodButton(title: "billing_yearly_label".localized(), cycle: .yearly)
                             }
@@ -281,31 +283,33 @@ struct AddSubscriptionScreen: View {
                             )
                         }
                         
-                        // Payment Recurrence Day
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(viewModel.isFreeTrial ? "trial_end_date".localized() :
-                                 (viewModel.selectedBillingCycle == .monthly ? 
-                                  "payment_recurrence_day".localized() : 
-                                  "payment_recurrence_day_month".localized()))
-                                .font(.system(size: 14, weight: .bold))
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 12) {
-                                    ForEach(1...31, id: \.self) { day in
-                                        Button(action: { viewModel.billingDay = day }) {
-                                            Text("\(day)")
-                                                .font(.system(size: 14, weight: .bold))
-                                                .padding(.horizontal, 16)
-                                                .frame(height: 44)
-                                                .background(viewModel.billingDay == day ? Color.primaryBlue : Color.appSurface(for: colorScheme))
-                                                .foregroundColor(viewModel.billingDay == day ? .white : Color.appOnBackground(for: colorScheme))
-                                                .cornerRadius(22)
-                                                .overlay(RoundedRectangle(cornerRadius: 22).stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: viewModel.billingDay == day ? 0 : 1))
+                        // Payment recurrence selections are hidden for daily cycles.
+                        if viewModel.selectedBillingCycle != .daily {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text(viewModel.isFreeTrial ? "trial_end_date".localized() :
+                                        (viewModel.selectedBillingCycle == .yearly
+                                         ? "payment_recurrence_day_month".localized()
+                                         : "payment_recurrence_day".localized()))
+                                    .font(.system(size: 14, weight: .bold))
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: 12) {
+                                        ForEach(1...maxBillingDayForSelectedCycle, id: \.self) { day in
+                                            Button(action: { viewModel.billingDay = day }) {
+                                                Text("\(day)")
+                                                    .font(.system(size: 14, weight: .bold))
+                                                    .padding(.horizontal, 16)
+                                                    .frame(height: 44)
+                                                    .background(viewModel.billingDay == day ? Color.primaryBlue : Color.appSurface(for: colorScheme))
+                                                    .foregroundColor(viewModel.billingDay == day ? .white : Color.appOnBackground(for: colorScheme))
+                                                    .cornerRadius(22)
+                                                    .overlay(RoundedRectangle(cornerRadius: 22).stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: viewModel.billingDay == day ? 0 : 1))
+                                            }
+                                            .buttonStyle(.plain)
                                         }
-                                        .buttonStyle(.plain)
                                     }
+                                    .padding(.vertical, 4)
                                 }
-                                .padding(.vertical, 4)
                             }
                         }
 
@@ -507,6 +511,14 @@ struct AddSubscriptionScreen: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+    }
+
+    private var maxBillingDayForSelectedCycle: Int {
+        viewModel.selectedBillingCycle == .weekly ? 7 : 31
+    }
+    
+    private var dailyCycleLabel: String {
+        Locale.current.languageCode == "tr" ? "Günlük" : "Daily"
     }
     
     struct StatusIcon: View {

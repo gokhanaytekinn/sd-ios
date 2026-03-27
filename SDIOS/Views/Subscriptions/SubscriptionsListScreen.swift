@@ -339,6 +339,7 @@ struct SubscriptionsListScreen: View {
         case 1: return "billing_monthly_label".localized()
         case 2: return "billing_yearly_label".localized()
         case 3: return "billing_weekly_label".localized()
+        case 5: return Locale.current.languageCode == "tr" ? "Günlük" : "Daily"
         default: return "billing_monthly_label".localized()
         }
     }

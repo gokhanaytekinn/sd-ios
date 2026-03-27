@@ -49,7 +49,7 @@ struct SubscriptionDetailsScreen: View {
                                     .font(.system(size: 32, weight: .black))
                                     .foregroundColor(.primaryBlue)
                                 
-                                Text("/ \(billingCycleText(sub.billingCycle))")
+                                Text("/ \(billingCycleText(for: sub))")
                                     .font(.system(size: 16))
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             }
@@ -92,7 +92,7 @@ struct SubscriptionDetailsScreen: View {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(sub.name)
                                         .font(.system(size: 16, weight: .bold))
-                                    Text("\((sub.category ?? "category_other").localized()) • \(billingCycleText(sub.billingCycle))")
+                                    Text("\((sub.category ?? "category_other").localized()) • \(billingCycleText(for: sub))")
                                         .font(.system(size: 12))
                                         .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 }
@@ -108,6 +108,15 @@ struct SubscriptionDetailsScreen: View {
                                             Text(DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage))
                                                 .font(.system(size: 12))
                                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                        } else if sub.billingCycle == .weekly,
+                                                  let billingDay = sub.billingDay {
+                                            Text(weeklyDayText(day: billingDay))
+                                                .font(.system(size: 12))
+                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                        } else if sub.billingCycle == .daily {
+                                            Text(dailyText())
+                                                .font(.system(size: 12))
+                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                         } else {
                                             Text(nextDate, format: .dateTime.day().month().year())
                                                 .font(.system(size: 12))
@@ -119,7 +128,13 @@ struct SubscriptionDetailsScreen: View {
                             
                             if let nextDate = sub.getNextRenewalDate() {
                                 let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? 0
-                                let totalDays = sub.billingCycle == .monthly ? 30.0 : 365.0
+                                let totalDays: Double
+                                switch sub.billingCycle {
+                                case .daily: totalDays = 1.0
+                                case .weekly: totalDays = 7.0
+                                case .monthly, .quarterly: totalDays = 30.0
+                                case .yearly: totalDays = 365.0
+                                }
                                 let progress = max(0.0, min(1.0, 1.0 - (Double(days) / totalDays)))
                                 
                                 VStack(alignment: .leading, spacing: 8) {
@@ -480,6 +495,12 @@ struct SubscriptionDetailsScreen: View {
     }
     
     private func nextRenewalDayMonth(_ sub: Subscription) -> String {
+        if sub.billingCycle == .daily {
+            return dailyText()
+        }
+        if sub.billingCycle == .weekly, let billingDay = sub.billingDay {
+            return weeklyDayText(day: billingDay)
+        }
         if sub.billingCycle == .monthly,
            let billingDay = sub.billingDay {
             return DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage)
@@ -492,13 +513,33 @@ struct SubscriptionDetailsScreen: View {
         return formatter.string(from: nextDate)
     }
     
-    private func billingCycleText(_ cycle: BillingCycle) -> String {
-        switch cycle {
-        case .monthly: return "billing_monthly_label".localized()
-        case .yearly: return "billing_yearly_label".localized()
-        case .weekly: return "billing_weekly_label".localized()
-        case .quarterly: return "period_monthly".localized()
+    private func billingCycleText(for sub: Subscription) -> String {
+        switch sub.billingCycle {
+        case .daily:
+            return dailyText()
+        case .weekly:
+            if let day = sub.billingDay {
+                return weeklyDayText(day: day)
+            }
+            return "billing_weekly_label".localized()
+        case .monthly:
+            return "billing_monthly_label".localized()
+        case .yearly:
+            return "billing_yearly_label".localized()
+        case .quarterly:
+            return "period_monthly".localized()
         }
+    }
+    
+    private func dailyText() -> String {
+        LanguagePreferences.shared.selectedLanguage.lowercased().hasPrefix("tr") ? "Her gün" : "Every day"
+    }
+    
+    private func weeklyDayText(day: Int) -> String {
+        if LanguagePreferences.shared.selectedLanguage.lowercased().hasPrefix("tr") {
+            return "Haftanın \(day).günü"
+        }
+        return "Day \(day) of week"
     }
     
     @ViewBuilder
