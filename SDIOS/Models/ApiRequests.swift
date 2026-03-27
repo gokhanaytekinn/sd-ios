@@ -47,7 +47,7 @@ struct SubscriptionRequest: Codable {
     let amount: Double
     let currency: Int
     let billingCycle: Int
-    let billingDay: Int
+    let billingDay: Int?
     let billingMonth: Int?
     let reminderEnabled: Bool
     let isFreeTrial: Bool?

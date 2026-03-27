@@ -295,6 +295,8 @@
 "billing_monthly_label" = "Oylik";
 "billing_yearly_label" = "Yillik";
 "billing_weekly_label" = "Haftalik";
+"billing_daily_label" = "Kunlik";
+"billing_weekly_label_day" = "Haftaning %d-kuni";
 "help_center_title" = "Yordam markazi";
 "help_search_placeholder" = "Sizga qanday yordam bera olamiz?";
 "popular_questions" = "Mashhur savollar";

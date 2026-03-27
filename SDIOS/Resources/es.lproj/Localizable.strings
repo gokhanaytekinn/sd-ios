@@ -301,6 +301,8 @@
 "billing_monthly_label" = "Mensual";
 "billing_yearly_label" = "Anual";
 "billing_weekly_label" = "Semanal";
+"billing_daily_label" = "Diario";
+"billing_weekly_label_day" = "Día %d de la semana";
 "help_center_title" = "Centro de Ayuda";
 "help_search_placeholder" = "¿Cómo podemos ayudarte?";
 "popular_questions" = "Preguntas Populares";

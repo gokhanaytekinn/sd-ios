@@ -298,6 +298,8 @@
 "billing_monthly_label" = "Айына";
 "billing_yearly_label" = "Жылына";
 "billing_weekly_label" = "Аптасына";
+"billing_daily_label" = "Күн сайын";
+"billing_weekly_label_day" = "Жуманын %d-күні";
 "help_center_title" = "Жардам борбору";
 "help_search_placeholder" = "Сизге кантип жардам бере алабыз?";
 "popular_questions" = "Көп берилүүчү суроолор";

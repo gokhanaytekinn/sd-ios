@@ -300,6 +300,8 @@
 "billing_monthly_label" = "Ежемесячно";
 "billing_yearly_label" = "Ежегодно";
 "billing_weekly_label" = "Еженедельно";
+"billing_daily_label" = "Ежедневно";
+"billing_weekly_label_day" = "День %d недели";
 "help_center_title" = "Центр помощи";
 "help_search_placeholder" = "Чем мы можем вам помочь?";
 "popular_questions" = "Популярные вопросы";

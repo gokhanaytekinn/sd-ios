@@ -301,6 +301,8 @@
 "billing_monthly_label" = "每月";
 "billing_yearly_label" = "每年";
 "billing_weekly_label" = "每周";
+"billing_daily_label" = "每天";
+"billing_weekly_label_day" = "每周第 %d 天";
 "help_center_title" = "帮助中心";
 "help_search_placeholder" = "我们能帮您什么？";
 "popular_questions" = "热门问题";

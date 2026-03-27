@@ -295,6 +295,8 @@
 "billing_monthly_label" = "Aýlyk";
 "billing_yearly_label" = "Ýyllyk";
 "billing_weekly_label" = "Hepdelik";
+"billing_daily_label" = "Günlük";
+"billing_weekly_label_day" = "Hepdelik %d-njy gün";
 "help_center_title" = "Kömek Merkezi";
 "help_search_placeholder" = "Size nadip kömek edip bileris?";
 "popular_questions" = "Meşhur Soraglar";

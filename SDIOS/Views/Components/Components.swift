@@ -126,6 +126,10 @@ struct SubscriptionCard: View {
                                 Text(DateUtils.formatYearlyRenewal(day: billingDay, month: billingMonth, language: LanguagePreferences.shared.selectedLanguage))
                                     .font(.sdSmall)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            } else if subscription.billingCycle == .daily {
+                                Text("billing_daily_label".localized())
+                                    .font(.sdSmall)
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             } else if let nextDate = subscription.getNextRenewalDate() {
                                 Text(DateUtils.formatDate(nextDate))
                                     .font(.sdSmall)
@@ -133,9 +137,15 @@ struct SubscriptionCard: View {
                             }
                         } else if showCountdown, let nextDate = subscription.getNextRenewalDate() {
                             let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? -1
-                            Text(daysText(days))
-                                .font(.sdSmallMedium)
-                                .foregroundColor(days <= 3 && days >= 0 ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
+                            if subscription.billingCycle == .daily {
+                                Text("billing_daily_label".localized())
+                                    .font(.sdSmallMedium)
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            } else {
+                                Text(daysText(days))
+                                    .font(.sdSmallMedium)
+                                    .foregroundColor(days <= 3 && days >= 0 ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
+                            }
                         }
                     }
                 }
@@ -203,13 +213,12 @@ struct SubscriptionCard: View {
     }
 
     private func billingCycleDescription(for sub: Subscription) -> String {
-        let isTurkish = LanguagePreferences.shared.selectedLanguage.lowercased().hasPrefix("tr")
         switch sub.billingCycle {
         case .daily:
-            return isTurkish ? "Her gün" : "Every day"
+            return "billing_daily_label".localized()
         case .weekly:
             if let day = sub.billingDay {
-                return isTurkish ? "Haftanın \(day).günü" : "Day \(day) of week"
+                return String(format: "billing_weekly_label_day".localized(), day)
             }
             return "billing_weekly_label".localized()
         case .monthly:

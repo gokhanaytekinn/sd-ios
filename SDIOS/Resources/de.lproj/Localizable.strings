@@ -304,6 +304,8 @@
 "billing_monthly_label" = "Monatlich";
 "billing_yearly_label" = "Jährlich";
 "billing_weekly_label" = "Wöchentlich";
+"billing_daily_label" = "Täglich";
+"billing_weekly_label_day" = "Tag %d der Woche";
 "help_center_title" = "Hilfecenter";
 "help_search_placeholder" = "Wie konnen wir helfen?";
 "popular_questions" = "Haufige Fragen";

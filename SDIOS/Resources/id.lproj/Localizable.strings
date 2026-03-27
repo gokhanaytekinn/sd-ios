@@ -302,6 +302,8 @@
 "billing_monthly_label" = "Bulanan";
 "billing_yearly_label" = "Tahunan";
 "billing_weekly_label" = "Mingguan";
+"billing_daily_label" = "Harian";
+"billing_weekly_label_day" = "Hari ke-%d dalam minggu";
 "help_center_title" = "Pusat Bantuan";
 "help_search_placeholder" = "Bagaimana kami bisa membantu Anda?";
 "popular_questions" = "Pertanyaan Populer";

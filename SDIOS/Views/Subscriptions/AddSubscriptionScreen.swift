@@ -518,7 +518,7 @@ struct AddSubscriptionScreen: View {
     }
     
     private var dailyCycleLabel: String {
-        Locale.current.languageCode == "tr" ? "Günlük" : "Daily"
+        "billing_daily_label".localized()
     }
     
     struct StatusIcon: View {

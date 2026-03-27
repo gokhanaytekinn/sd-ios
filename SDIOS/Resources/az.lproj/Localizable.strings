@@ -305,6 +305,8 @@
 "billing_monthly_label" = "Aylık";
 "billing_yearly_label" = "İllik";
 "billing_weekly_label" = "Həftəlik";
+"billing_daily_label" = "Gündəlik";
+"billing_weekly_label_day" = "Həftənin %d-cü günü";
 "help_center_title" = "Yardım Mərkəzi";
 "help_search_placeholder" = "Sizə necə kömək edə bilərik?";
 "popular_questions" = "Məşhur Suallar";

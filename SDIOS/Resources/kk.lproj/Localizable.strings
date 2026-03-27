@@ -295,6 +295,8 @@
 "billing_monthly_label" = "Айына";
 "billing_yearly_label" = "Жылына";
 "billing_weekly_label" = "Аптасына";
+"billing_daily_label" = "Күнделікті";
+"billing_weekly_label_day" = "Аптаның %d-күні";
 "help_center_title" = "Анықтама орталығы";
 "help_search_placeholder" = "Сізге қалай көмектесе аламыз?";
 "popular_questions" = "Жиі қойылатын сұрақтар";
