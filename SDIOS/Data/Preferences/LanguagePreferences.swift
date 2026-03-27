@@ -51,6 +51,17 @@ class LanguagePreferences: ObservableObject {
         Language(id: "ru", code: "ru", name: "Русский"),
         Language(id: "de", code: "de", name: "Deutsch"),
         Language(id: "id", code: "id", name: "Bahasa Indonesia"),
+        
+        // 4. Newly added
+        Language(id: "it", code: "it", name: "Italiano"),
+        Language(id: "nl", code: "nl", name: "Nederlands"),
+        Language(id: "sv", code: "sv", name: "Svenska"),
+        Language(id: "pl", code: "pl", name: "Polski"),
+        Language(id: "cs", code: "cs", name: "Čeština"),
+        Language(id: "el", code: "el", name: "Ελληνικά"),
+        Language(id: "uk", code: "uk", name: "Українська"),
+        Language(id: "ja", code: "ja", name: "日本語"),
+        Language(id: "ko", code: "ko", name: "한국어"),
     ]
     
     private init() {

@@ -356,6 +356,15 @@
 				sah,
 				cv,
 				ba,
+				ko,
+				nl,
+				ja,
+				pl,
+				cs,
+				it,
+				sv,
+				uk,
+				el,
 			);
 			mainGroup = D94C04642F59F91A0014BB86;
 			minimizedProjectReferenceProxies = 1;
