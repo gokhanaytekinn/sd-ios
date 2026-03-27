@@ -47,11 +47,39 @@ class AddSubscriptionViewModel: ObservableObject {
     
     static let shortcuts: [QuickShortcut] = [
         QuickShortcut(name: "Google", icon: "google", category: "category_software", defaultCost: nil, color: Color(hex: "4285F4")),
+        QuickShortcut(name: "Microsoft 365", icon: "microsoft365", category: "category_software", defaultCost: nil, color: Color(hex: "AB7FE4")),
+        QuickShortcut(name: "Notion", icon: "notion", category: "category_software", defaultCost: nil, color: Color(hex: "000000")),
+        QuickShortcut(name: "Canva", icon: "canva", category: "category_software", defaultCost: nil, color: Color(hex: "2E7BE1")),
+        QuickShortcut(name: "Figma", icon: "figma", category: "category_software", defaultCost: nil, color: Color(hex: "FF671B")),
+        QuickShortcut(name: "GitHub", icon: "github", category: "category_software", defaultCost: nil, color: Color(hex: "181717")),
+        QuickShortcut(name: "JetBrains", icon: "jetbrains", category: "category_software", defaultCost: nil, color: Color(hex: "000000")),
+        QuickShortcut(name: "ChatGPT", icon: "chatgpt", category: "category_software", defaultCost: nil, color: Color(hex: "10A37F")),
         QuickShortcut(name: "YouTube", icon: "youtube", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF0000")),
         QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
         QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
-        QuickShortcut(name: "Amazon", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "FF9900")),
+        QuickShortcut(name: "Amazon Prime", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "FF9900")),
+        QuickShortcut(name: "Trendyol", icon: "trendyol", category: "category_shopping", defaultCost: nil, color: Color(hex: "F27A1A")),
+        QuickShortcut(name: "Hepsiburada", icon: "hepsiburada", category: "category_shopping", defaultCost: nil, color: Color(hex: "FF6000")),
         QuickShortcut(name: "HBO Max", icon: "hbomax", category: "category_streaming", defaultCost: nil, color: Color(hex: "000000")),
+        
+        // Dizi & Film & Müzik
+        QuickShortcut(name: "Disney+", icon: "disneyplus", category: "category_streaming", defaultCost: nil, color: Color(hex: "11AAB4")),
+        QuickShortcut(name: "Apple TV+", icon: "appletvplus", category: "category_streaming", defaultCost: nil, color: Color(hex: "F4F4F4")),
+        QuickShortcut(name: "Apple Music", icon: "applemusic", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF1943")),
+
+        QuickShortcut(name: "Xbox Game Pass", icon: "xboxgamepass", category: "category_gaming", defaultCost: nil, color: Color(hex: "0F7C11")),
+        QuickShortcut(name: "PlayStation Plus", icon: "playstationplus", category: "category_gaming", defaultCost: nil, color: Color(hex: "02429C")),
+        QuickShortcut(name: "Ubisoft+", icon: "ubisoftplus", category: "category_gaming", defaultCost: nil, color: Color(hex: "455A64")),
+        QuickShortcut(name: "GeForce NOW", icon: "geforcenow", category: "category_gaming", defaultCost: nil, color: Color(hex: "89C049")),
+        QuickShortcut(name: "Discord Nitro", icon: "discordnitro", category: "category_gaming", defaultCost: nil, color: Color(hex: "5165F6")),
+        
+        // Eğitim
+        QuickShortcut(name: "Udemy", icon: "udemy", category: "category_education", defaultCost: nil, color: Color(hex: "A435F0")),
+        QuickShortcut(name: "Coursera Plus", icon: "courseraplus", category: "category_education", defaultCost: nil, color: Color(hex: "0056D2")),
+        QuickShortcut(name: "Duolingo Super", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "58CC02")),
+        QuickShortcut(name: "LinkedIn Learning", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "0A66C2")),
+        QuickShortcut(name: "Cambly", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "22B8CF")),
+        QuickShortcut(name: "Skillshare", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "00FF84")),
     ]
     
     static let categories: [(key: String, label: String)] = [
@@ -59,16 +87,8 @@ class AddSubscriptionViewModel: ObservableObject {
         ("category_gaming", "category_gaming"),
         ("category_software", "category_software"),
         ("category_shopping", "category_shopping"),
-        ("category_entertainment", "category_entertainment"),
-        ("category_music", "category_music"),
-        ("category_sports", "category_sports"),
         ("category_education", "category_education"),
-        ("category_cloud", "category_cloud"),
-        ("category_ecommerce", "category_ecommerce"),
-        ("category_news", "category_news"),
         ("category_transport", "category_transport"),
-        ("category_finance", "category_finance"),
-        ("category_technology", "category_technology"),
         ("category_other", "category_other"),
     ]
     

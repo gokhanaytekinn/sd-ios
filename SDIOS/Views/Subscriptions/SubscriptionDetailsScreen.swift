@@ -527,17 +527,18 @@ struct SubscriptionDetailsScreen: View {
     }
     
     private func getBrandIconInfo(_ name: String) -> (icon: String, color: Color)? {
-        let map: [String: (String, Color)] = [
-            "netflix":  ("netflix",  Color(hex: "E50914")),
-            "spotify":  ("spotify",  Color(hex: "1DB954")),
-            "youtube":  ("youtube",  Color(hex: "FF0000")),
-            "google":   ("google",   Color(hex: "4285F4")),
-            "amazon":   ("amazon",   Color(hex: "00A8E1")),
-            "hbo max":  ("hbomax",   Color(hex: "5A2E81")),
-            "cursor":   ("cursor",   Color.primary),
-            "claude":   ("claude",   Color(hex: "E56038")),
+        let lowered = name.lowercased()
+        let orderedBrandMap: [(key: String, info: (String, Color))] = [
+            ("hbo max", ("hbomax", Color(hex: "5A2E81"))),
+            ("netflix", ("netflix", Color(hex: "E50914"))),
+            ("spotify", ("spotify", Color(hex: "1DB954"))),
+            ("youtube", ("youtube", Color(hex: "FF0000"))),
+            ("google", ("google", Color(hex: "4285F4"))),
+            ("amazon", ("amazon", Color(hex: "00A8E1"))),
+            ("cursor", ("cursor", Color.primary)),
+            ("claude", ("claude", Color(hex: "E56038"))),
         ]
-        return map[name.lowercased()]
+        return orderedBrandMap.first(where: { lowered.contains($0.key) })?.info
     }
     
     private func getBrandColor(_ name: String) -> Color {
