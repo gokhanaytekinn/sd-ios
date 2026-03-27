@@ -161,7 +161,7 @@
 "add_subscription" = "Abonelik Ekle";
 "service_name_placeholder" = "örn. Netflix";
 "subscription_details" = "Abonelik Detayları";
-"next_payment" = "Ödeme Başlangıç Tarihi";
+"next_payment" = "Sıradaki: %@";
 "billing_cycle" = "Fatura Döngüsü";
 "category" = "Kategori";
 "start_date" = "Başlangıç Tarihi";
@@ -368,7 +368,6 @@
 "storage_permission_rationale" = "Belgeleri tarayabilmek için depolama iznine izin vermelisin.";
 "feature_advanced_analytics_title" = "Gelişmiş Analitik";
 "feature_advanced_analytics_free_desc" = "Temel Analizler";
-"feature_advanced_analytics_premium_desc" = "Tam İçgörüler";
 
 "subscription_price" = "Abonelik Ücreti";
 "renewal_cycle" = "Yenilenme Döngüsü";
@@ -433,7 +432,6 @@
 "lifetime_value" = "Toplam Yatırım";
 "total_spent_so_far" = "Şu ana kadarki toplam harcama";
 "daily_coffee_comparison" = "Günde yaklaşık %.1f kahve tutarında";
-"next_payment" = "Sıradaki: %@";
 "monthly_total_for" = "%@ İÇİN AYLIK TOPLAM";
 "renewal_calendar" = "Yenilenme Takvimi";
 "renewals" = "yenileme";

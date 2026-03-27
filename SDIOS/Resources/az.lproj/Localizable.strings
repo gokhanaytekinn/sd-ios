@@ -161,7 +161,7 @@
 "add_subscription" = "Abunəlik Əlavə et";
 "service_name_placeholder" = "məs. Netflix";
 "subscription_details" = "Abunəlik Detalları";
-"next_payment" = "Ödəniş başlanğıc tarixi";
+"next_payment" = "Next: %@";
 "billing_cycle" = "Faktura Döngüsü";
 "category" = "Kateqoriya";
 "start_date" = "Baslanqic tarixi";
@@ -214,7 +214,7 @@
 "feature_ad_free_premium_desc" = "Tamamilə reklamsız təcrübə";
 "feature_ad_free_desc" = "Tətbiqi heç bir reklam olmadan istifadə edin";
 "feature_analytics_premium_desc" = "Detallı qrafiklər və hesabatlar";
-"feature_advanced_analytics_premium_desc" = "Tam Analitika";
+"feature_advanced_analytics_premium_desc" = "Ətraflı xərc hesabatları";
 "feature_analytics_title" = "Təkmil Analitika";
 "feature_ad_free_title" = "Reklamsız";
 "feature_analytics_free_desc" = "Əsas icmal";
@@ -291,7 +291,6 @@
 "turn_off_reminder" = "Xatırlatıcını Söndür";
 "set_reminder" = "Xatırladıcı Qur";
 "edit_plan" = "Planı Düzəlt";
-"reactivate_subscription" = "Abunəliyi Yenidən Aktiv et";
 "reactivate_subscription" = "Abunəliyi yenidən aktivləşdir";
 "cancel_subscription_btn" = "Abunəliyi ləğv et";
 "subscription_price" = "Abunəlik qiyməti";
@@ -351,28 +350,27 @@
 "category_breakdown" = "Kateqoriya Bölgüsü";
 "top_subscriptions" = "Ən çox xərclənən";
 "automatic_tracking" = "Avtomatik Izleme";
-"detected_subs_found" = "%d abunəlik tapıldı";
+"detected_subs_found" = "Subscriptions Found";
 "detected_subs_title" = "Aşkar edilmiş abunəliklər";
-"detected_count" = "Aşkar edilənlər (%d)";
+"detected_count" = "Detected Count";
 "detected_sub_add" = "Əlavə et";
 "detected_sub_reject" = "Rədd et";
 "detected_subs_close" = "Bağla";
-"marked_count" = "İşarələnənlər (%d)";
+"marked_count" = "Marked";
 "menu_scan" = "Skan et";
 "scan" = "Skan et";
 "scan_dialog_completed" = "Tarama tamamlandı";
-"scan_dialog_detected_count" = "%d abunəlik aşkar edildi";
-"scan_dialog_file_count" = "Fayl: %d fayl tarandı";
+"scan_dialog_detected_count" = "Detected count: %%.0f";
+"scan_dialog_file_count" = "Files scanned: %%.0f";
 "scan_dialog_ok" = "Tamam";
 "scan_dialog_scanning" = "Cihaz taranır...";
-"scan_dialog_sms_count" = "SMS: %d mesaj tarandı";
+"scan_dialog_sms_count" = "SMS scanned: %%.0f";
 "permission_denied_message" = "İcazə verilmədən cihaz skanı edilə bilməz.\nİstəsəniz abunəliklərinizi əllə əlavə edə bilərsiniz.";
 "permission_permanently_denied_message" = "İcazə verilmədi. Zəhmət olmasa proqram ayarlarından icazələri aktivləşdirin.";
 "sms_permission_rationale" = "SMS icazəsi, cihazınızdakı abunəlik bildirişlərini avtomatik aşkar etmək üçün lazımdır.\nBu sayədə abunəliklərinizi əllə daxil etmək məcburiyyətində qalmazsınız.";
 "storage_permission_rationale" = "Yaddaş icazəsi, cihazınızdakı faktura və abunəlik sənədlərini skan etmək üçün lazımdır.\nBu sayədə PDF və digər fayllardan abunəlik məlumatı avtomatik aşkar edilə bilər.";
 "feature_advanced_analytics_title" = "Təkmil Analitika";
 "feature_advanced_analytics_free_desc" = "Əsas hesabatlar";
-"feature_advanced_analytics_premium_desc" = "Ətraflı xərc hesabatları";
 
 /* Phase 3 additions */
 "notify_1_day_before" = "Ödənişdən 1 gün əvvəl bildir";
@@ -461,3 +459,24 @@
 "support_send" = "Send";
 "support_sent_success" = "Thanks! We received your request and will get back to you soon.";
 "support_ticket_error" = "Could not send. Please try again.";
+
+/* Auto-filled missing keys from en */
+"monthly_total" = "TOTAL MONTHLY SPENDING";
+"yearly_estimated" = "YEARLY ESTIMATED:";
+"category_distribution" = "Category Distribution";
+"spending_trends" = "Spending Trends";
+"no_data_available" = "No data available yet";
+"insight_balanced_spending" = "Your spending habits currently look balanced.";
+"daily_average" = "DAILY AVERAGE";
+"upcoming_bills" = "Upcoming Bills (30 Days)";
+"lifetime_value" = "Lifetime Investment";
+"total_spent_so_far" = "Total spent so far";
+"monthly_total_for" = "MONTHLY TOTAL FOR %@";
+"Entertainment" = "Entertainment";
+"Productivity" = "Productivity";
+"Finance" = "Finance";
+"Health" = "Health";
+"Shopping" = "Shopping";
+"Other" = "Other";
+"free_trials_section_title" = "Free Trials";
+"trial_ends" = "Trial ends: %@";

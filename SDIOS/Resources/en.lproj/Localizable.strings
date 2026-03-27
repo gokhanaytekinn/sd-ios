@@ -161,7 +161,7 @@
 "add_subscription" = "Add Subscription";
 "service_name_placeholder" = "e.g. Netflix";
 "subscription_details" = "Subscription Details";
-"next_payment" = "Payment Start Date";
+"next_payment" = "Next: %@";
 "billing_cycle" = "Billing Cycle";
 "category" = "Category";
 "start_date" = "Start Date";
@@ -368,7 +368,6 @@
 "storage_permission_rationale" = "Need Storage permission for scanning documents.";
 "feature_advanced_analytics_title" = "Advanced Analytics";
 "feature_advanced_analytics_free_desc" = "Basic Analysis";
-"feature_advanced_analytics_premium_desc" = "Full Insights";
 
 "subscription_price" = "Subscription Price";
 "renewal_cycle" = "Renewal Cycle";
@@ -432,7 +431,6 @@
 "lifetime_value" = "Lifetime Investment";
 "total_spent_so_far" = "Total spent so far";
 "daily_coffee_comparison" = "Equivalent to %.1f coffee(s) per day";
-"next_payment" = "Next: %@";
 "monthly_total_for" = "MONTHLY TOTAL FOR %@";
 "renewal_calendar" = "Renewal Calendar";
 "renewals" = "renewals";

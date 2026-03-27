@@ -161,7 +161,7 @@
 "add_subscription" = "Abonement Ekle";
 "service_name_placeholder" = "örn. Netflix";
 "subscription_details" = "Abonelik Detayları";
-"next_payment" = "Ödeme Başlangıç Tarihi";
+"next_payment" = "Sıradaki: %@";
 "billing_cycle" = "Fatura Döngüsü";
 "category" = "Kategori";
 "start_date" = "Başlangıç Tarihi";
@@ -430,7 +430,6 @@
 "lifetime_value" = "Toplam Yatırım";
 "total_spent_so_far" = "Şu ana kadarki toplam harcama";
 "daily_coffee_comparison" = "Günde yaklaşık %.1f kahve tutarında";
-"next_payment" = "Sıradaki: %@";
 "monthly_total_for" = "%@ İÇİN AYLIK TOPLAM";
 "renewal_calendar" = "Yenilenme Takvimi";
 "renewals" = "yenileme";
@@ -479,3 +478,9 @@
 "support_send" = "Send";
 "support_sent_success" = "Thanks! We received your request and will get back to you soon.";
 "support_ticket_error" = "Could not send. Please try again.";
+
+/* Auto-filled missing keys from en */
+"feature_ad_free_premium_desc" = "Completely ad-free";
+"feature_analytics_premium_desc" = "Detailed charts & insights";
+"free_trials_section_title" = "Free Trials";
+"trial_ends" = "Trial ends: %@";
