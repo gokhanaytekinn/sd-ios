@@ -58,7 +58,7 @@ struct MostExpensiveWidgetView : View {
                         SubscriptionWidgetRow(
                             name: sub.name,
                             cost: CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency),
-                            date: sub.billingCycle == .monthly ? "billing_monthly_label".widgetLocalized() : "billing_yearly_label".widgetLocalized(),
+                            date: nil,
                             icon: sub.icon,
                             cycle: sub.billingCycle
                         )

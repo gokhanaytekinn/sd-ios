@@ -39,7 +39,7 @@ struct SubscriptionWidgetRow: View {
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.white)
                 
-                Text(cycle == .monthly ? "billing_monthly_label".widgetLocalized() : "billing_yearly_label".widgetLocalized())
+                Text(cycleLabel)
                     .font(.system(size: 10))
                     .foregroundColor(.gray)
             }
@@ -99,6 +99,21 @@ struct SubscriptionWidgetRow: View {
         let colors: [Color] = [.blue, .purple, .orange, .pink, .teal, .indigo]
         let index = abs(hash) % colors.count
         return colors[index]
+    }
+    
+    private var cycleLabel: String {
+        switch cycle {
+        case .daily:
+            return "billing_daily_label".widgetLocalized()
+        case .weekly:
+            return "billing_weekly_label".widgetLocalized()
+        case .monthly:
+            return "billing_monthly_label".widgetLocalized()
+        case .yearly:
+            return "billing_yearly_label".widgetLocalized()
+        case .quarterly:
+            return "period_monthly".widgetLocalized()
+        }
     }
 }
 
