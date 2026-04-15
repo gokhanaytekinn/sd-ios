@@ -372,6 +372,8 @@ struct AddSubscriptionScreen: View {
                                 Toggle("", isOn: $viewModel.isFreeTrial)
                                     .tint(.primaryBlue)
                                     .labelsHidden()
+                                    .disabled(viewModel.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == "kira" ||
+                                              viewModel.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == "aidat")
                             }
                         }
                         

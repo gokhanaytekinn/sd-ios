@@ -89,6 +89,10 @@ class AddSubscriptionViewModel: ObservableObject {
         QuickShortcut(name: "LinkedIn Learning", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "0A66C2")),
         QuickShortcut(name: "Cambly", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "22B8CF")),
         QuickShortcut(name: "Skillshare", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "00FF84")),
+
+        // Ev
+        QuickShortcut(name: "Kira", icon: nil, category: "category_other", defaultCost: nil, color: Color(hex: "4F46E5")),
+        QuickShortcut(name: "Aidat", icon: nil, category: "category_other", defaultCost: nil, color: Color(hex: "0EA5E9")),
     ]
     
     static let categories: [(key: String, label: String)] = [
@@ -175,9 +179,17 @@ class AddSubscriptionViewModel: ObservableObject {
         name = shortcut.name
         icon = shortcut.icon
         selectedCategory = shortcut.category
+        if isRentOrDuesShortcutName(shortcut.name) {
+            isFreeTrial = false
+        }
         if let cost = shortcut.defaultCost {
             amount = CurrencyFormatter.formatAmountWithoutSymbol(cost)
         }
+    }
+
+    private func isRentOrDuesShortcutName(_ name: String) -> Bool {
+        let normalized = name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        return normalized == "kira" || normalized == "aidat"
     }
     
     // MARK: - Banking Amount Formatting (Canlı Tutar Formatlama)
