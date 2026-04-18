@@ -372,8 +372,7 @@ struct AddSubscriptionScreen: View {
                                 Toggle("", isOn: $viewModel.isFreeTrial)
                                     .tint(.primaryBlue)
                                     .labelsHidden()
-                                    .disabled(viewModel.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == "kira" ||
-                                              viewModel.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == "aidat")
+                                    .disabled(viewModel.isRestrictedShortcutName)
                             }
                         }
                         
@@ -502,7 +501,11 @@ struct AddSubscriptionScreen: View {
     }
     
     private func periodButton(title: String, cycle: BillingCycle) -> some View {
-        Button(action: { viewModel.selectedBillingCycle = cycle }) {
+        let periodDisabledForRestrictedName = viewModel.isRestrictedShortcutName && (cycle == .daily || cycle == .weekly)
+        return Button(action: {
+            guard !periodDisabledForRestrictedName else { return }
+            viewModel.selectedBillingCycle = cycle
+        }) {
             Text(title)
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(viewModel.selectedBillingCycle == cycle ? .white : Color.appOnSurfaceVariant(for: colorScheme))
@@ -513,6 +516,8 @@ struct AddSubscriptionScreen: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .disabled(periodDisabledForRestrictedName)
+        .opacity(periodDisabledForRestrictedName ? 0.4 : 1)
     }
 
     private var maxBillingDayForSelectedCycle: Int {

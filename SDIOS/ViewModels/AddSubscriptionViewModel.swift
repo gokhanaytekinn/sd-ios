@@ -4,7 +4,7 @@ import Combine
 @MainActor
 class AddSubscriptionViewModel: ObservableObject {
     // MARK: - Published Properties (UI State)
-    @Published var name = "" { didSet { nameError = nil } }    // Abonelik adı
+    @Published var name = "" { didSet { nameError = nil; applyRestrictedShortcutFieldRules() } }    // Abonelik adı
     @Published var amount = ""                                 // Kullanıcının girdiği formatlı tutar
     @Published var icon: String? = nil                         // Seçilen ikon (string key)
     @Published var selectedCategory: String = "" { didSet { categoryError = nil } } // Kategori
@@ -91,8 +91,9 @@ class AddSubscriptionViewModel: ObservableObject {
         QuickShortcut(name: "Skillshare", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "00FF84")),
 
         // Ev
-        QuickShortcut(name: "Kira", icon: nil, category: "category_other", defaultCost: nil, color: Color(hex: "4F46E5")),
+        QuickShortcut(name: "Kira", icon: "house", category: "category_other", defaultCost: nil, color: Color(hex: "4F46E5")),
         QuickShortcut(name: "Aidat", icon: nil, category: "category_other", defaultCost: nil, color: Color(hex: "0EA5E9")),
+        QuickShortcut(name: "Sigorta", icon: "invoice", category: "category_other", defaultCost: nil, color: Color(hex: "6366F1")),
     ]
     
     static let categories: [(key: String, label: String)] = [
@@ -119,6 +120,14 @@ class AddSubscriptionViewModel: ObservableObject {
         editingSubscriptionId != nil
     }
     
+    /// Kira, Aidat, Sigorta: ücretsiz deneme ve günlük/haftalık periyot kapalı.
+    var isRestrictedShortcutName: Bool {
+        let normalized = name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        return Self.restrictedShortcutNormalizedNames.contains(normalized)
+    }
+    
+    private static let restrictedShortcutNormalizedNames: Set<String> = ["kira", "aidat", "sigorta"]
+    
     // MARK: - Setup Logic (Veri Hazırlama)
     
     /// Mevcut bir aboneliği düzenleme ekranı için verileri doldurur.
@@ -139,6 +148,7 @@ class AddSubscriptionViewModel: ObservableObject {
         isFreeTrial = subscription.isFreeTrial ?? false
         jointEmails = subscription.jointEmails ?? []
         participants = subscription.participants ?? []
+        applyRestrictedShortcutFieldRules()
     }
     
     // MARK: - Joint Email Logic (Ortak Üyelik Yönetimi)
@@ -179,17 +189,17 @@ class AddSubscriptionViewModel: ObservableObject {
         name = shortcut.name
         icon = shortcut.icon
         selectedCategory = shortcut.category
-        if isRentOrDuesShortcutName(shortcut.name) {
-            isFreeTrial = false
-        }
         if let cost = shortcut.defaultCost {
             amount = CurrencyFormatter.formatAmountWithoutSymbol(cost)
         }
     }
-
-    private func isRentOrDuesShortcutName(_ name: String) -> Bool {
-        let normalized = name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        return normalized == "kira" || normalized == "aidat"
+    
+    private func applyRestrictedShortcutFieldRules() {
+        guard isRestrictedShortcutName else { return }
+        isFreeTrial = false
+        if selectedBillingCycle == .daily || selectedBillingCycle == .weekly {
+            selectedBillingCycle = .monthly
+        }
     }
     
     // MARK: - Banking Amount Formatting (Canlı Tutar Formatlama)

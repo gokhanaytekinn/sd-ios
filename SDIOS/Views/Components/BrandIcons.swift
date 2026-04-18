@@ -932,19 +932,39 @@ struct BrandIconView: View {
     let name: String
     let color: Color?
     
+    /// Yerel kısayollar (ev, fatura) için SF Symbols.
+    private var systemImageName: String? {
+        switch name.lowercased() {
+        case "house", "ev":
+            return "house.fill"
+        case "invoice", "fatura":
+            return "doc.text.fill"
+        default:
+            return nil
+        }
+    }
+    
     var body: some View {
-        let (path, viewport) = BrandIcons.path(for: name)
-        
-        if viewport.width > 0 && viewport.height > 0 {
-            ScaledPathShape(path: path, originalSize: viewport)
-                .fill(color ?? .primaryBlue, style: FillStyle(eoFill: true))
-                .aspectRatio(1, contentMode: .fit)
-        } else {
-            // Fallback for empty path
-            Image(systemName: "app.fill")
+        if let sys = systemImageName {
+            Image(systemName: sys)
                 .resizable()
                 .scaledToFit()
+                .symbolRenderingMode(.monochrome)
                 .foregroundColor(color ?? .primaryBlue)
+        } else {
+            let (path, viewport) = BrandIcons.path(for: name)
+            
+            if viewport.width > 0 && viewport.height > 0 {
+                ScaledPathShape(path: path, originalSize: viewport)
+                    .fill(color ?? .primaryBlue, style: FillStyle(eoFill: true))
+                    .aspectRatio(1, contentMode: .fit)
+            } else {
+                // Fallback for empty path
+                Image(systemName: "app.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(color ?? .primaryBlue)
+            }
         }
     }
 }

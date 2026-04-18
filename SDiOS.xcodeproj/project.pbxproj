@@ -56,6 +56,7 @@
 		D9E89D4C2F5FF88400C6D2F0 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9E89F892F5FFE4C00C6D2F0 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D9ED35DF2F60BCCD00665751 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
+		D9F09A702F93B2D900872485 /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -262,6 +263,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D9F09A722F93B2D900872485 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,6 +387,10 @@
 				{
 					ProductGroup = D917E5092F614D70002A23DA /* Products */;
 					ProjectRef = D917E5072F614D70002A23DA /* SDiOS.xcodeproj */;
+				},
+				{
+					ProductGroup = D9F09A722F93B2D900872485 /* Products */;
+					ProjectRef = D9F09A702F93B2D900872485 /* SDiOS.xcodeproj */;
 				},
 				{
 					ProductGroup = D936C3232F6871CF0019FAD4 /* Products */;
@@ -680,7 +692,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -720,7 +732,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nexus.sd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
