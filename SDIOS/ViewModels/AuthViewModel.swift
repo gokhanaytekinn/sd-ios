@@ -326,7 +326,7 @@ class AuthViewModel: ObservableObject {
     func forgotPassword(email: String, onSuccess: @escaping () -> Void) {
         // E-posta boş olamaz kontrolü
         guard !email.isEmpty else {
-            emailError = NSLocalizedString("error_email_required", comment: "")
+            emailError = "error_email_required".localized()
             return
         }
         
@@ -526,12 +526,12 @@ class AuthViewModel: ObservableObject {
         var isValid = true
         
         if email.trimmingCharacters(in: .whitespaces).isEmpty {
-            emailError = NSLocalizedString("error_email_required", comment: "")
+            emailError = "error_email_required".localized()
             isValid = false
         }
         
         if password.isEmpty {
-            passwordError = NSLocalizedString("error_password_required", comment: "")
+            passwordError = "error_password_required".localized()
             isValid = false
         }
         
@@ -543,31 +543,31 @@ class AuthViewModel: ObservableObject {
         var isValid = true
         
         if name.trimmingCharacters(in: .whitespaces).isEmpty {
-            nameError = NSLocalizedString("error_name_required", comment: "")
+            nameError = "error_name_required".localized()
             isValid = false
         }
         
         if email.trimmingCharacters(in: .whitespaces).isEmpty {
-            emailError = NSLocalizedString("error_email_required", comment: "")
+            emailError = "error_email_required".localized()
             isValid = false
         } else if !isValidEmail(email) {
-            emailError = NSLocalizedString("error_email_invalid", comment: "")
+            emailError = "error_email_invalid".localized()
             isValid = false
         }
         
         if password.isEmpty {
-            passwordError = NSLocalizedString("error_password_required", comment: "")
+            passwordError = "error_password_required".localized()
             isValid = false
         } else if password.count < 6 {
-            passwordError = NSLocalizedString("error_password_short", comment: "")
+            passwordError = "error_password_short".localized()
             isValid = false
         }
         
         if confirmPassword.isEmpty {
-            confirmPasswordError = NSLocalizedString("error_password_required", comment: "")
+            confirmPasswordError = "error_password_required".localized()
             isValid = false
         } else if password != confirmPassword {
-            confirmPasswordError = NSLocalizedString("error_passwords_do_not_match", comment: "")
+            confirmPasswordError = "error_passwords_do_not_match".localized()
             isValid = false
         }
         

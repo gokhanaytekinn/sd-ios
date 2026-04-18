@@ -29,7 +29,7 @@ struct SearchScreen: View {
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                 }
                 Spacer()
-                Text(NSLocalizedString("search", comment: ""))
+                Text("search".localized())
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
@@ -43,7 +43,7 @@ struct SearchScreen: View {
                     .font(.system(size: 20))
                     .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
                 
-                TextField(NSLocalizedString("search_placeholder", comment: ""), text: $searchText)
+                TextField("search_placeholder".localized(), text: $searchText)
                     .font(.system(size: 16))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                     .autocapitalization(.none)
@@ -77,7 +77,7 @@ struct SearchScreen: View {
                 ScrollView {
                     VStack(spacing: 8) {
                         if !searchText.isEmpty {
-                            Text(String(format: NSLocalizedString("results_found", comment: ""), filteredSubscriptions.count))
+                            Text(String(format: "results_found".localized(), filteredSubscriptions.count))
                                 .font(.sdCaptionMedium)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -128,13 +128,13 @@ struct PremiumUpgradeScreen: View {
                     VStack(spacing: 24) {
                         // Hero Title
                         VStack(spacing: 12) {
-                            Text(NSLocalizedString("premium_hero_title", comment: ""))
+                            Text("premium_hero_title".localized())
                                 .font(.system(size: 36, weight: .bold))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                                 .padding(.top, 20)
                             
-                            Text(NSLocalizedString("premium_hero_subtitle", comment: ""))
+                            Text("premium_hero_subtitle".localized())
                                 .font(.system(size: 16))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
@@ -145,25 +145,25 @@ struct PremiumUpgradeScreen: View {
                         VStack(spacing: 16) {
                             premiumFeature(
                                 icon: "infinity",
-                                title: NSLocalizedString("feature_unlimited_tracking_title", comment: ""),
+                                title: "feature_unlimited_tracking_title".localized(),
                                 desc: featureDesc(for: "unlimited")
                             )
                             
                             premiumFeature(
                                 icon: "bolt.circle.fill",
-                                title: NSLocalizedString("feature_auto_capture_title", comment: ""),
+                                title: "feature_auto_capture_title".localized(),
                                 desc: featureDesc(for: "auto_capture")
                             )
                             
                             premiumFeature(
                                 icon: "chart.bar.fill",
-                                title: NSLocalizedString("feature_analytics_title", comment: ""),
+                                title: "feature_analytics_title".localized(),
                                 desc: featureDesc(for: "analytics")
                             )
                             
                             premiumFeature(
                                 icon: "speaker.slash.fill",
-                                title: NSLocalizedString("feature_ad_free_title", comment: ""),
+                                title: "feature_ad_free_title".localized(),
                                 desc: featureDesc(for: "ad_free")
                             )
                         }
@@ -173,8 +173,8 @@ struct PremiumUpgradeScreen: View {
                         VStack(spacing: 12) {
                             planCard(
                                 id: 0,
-                                title: NSLocalizedString("plan_free", comment: ""),
-                                price: NSLocalizedString("plan_free_price", comment: ""),
+                                title: "plan_free".localized(),
+                                price: "plan_free_price".localized(),
                                 period: ""
                             )
                             
@@ -187,7 +187,7 @@ struct PremiumUpgradeScreen: View {
                                         id: isYearly ? 2 : 1,
                                         title: product.displayName,
                                         price: product.displayPrice,
-                                        period: isYearly ? "/ \(NSLocalizedString("period_yearly", comment: ""))" : "/ \(NSLocalizedString("period_monthly", comment: ""))",
+                                        period: isYearly ? "/ \("period_yearly".localized())" : "/ \("period_monthly".localized())",
                                         isPopular: isYearly
                                     )
                                 }
@@ -346,7 +346,7 @@ struct PremiumUpgradeScreen: View {
             
             Spacer()
             
-            Text(NSLocalizedString("plans_header", comment: ""))
+            Text("plans_header".localized())
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.primaryBlue)
                 .tracking(1)
@@ -409,7 +409,7 @@ struct PremiumUpgradeScreen: View {
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                     Spacer()
                     if isPopular {
-                        Text(NSLocalizedString("most_popular", comment: ""))
+                        Text("most_popular".localized())
                             .font(.system(size: 10, weight: .bold))
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
@@ -472,37 +472,37 @@ struct PremiumUpgradeScreen: View {
     
     private var upgradeButtonText: String {
         if isCurrentPlanSelected {
-            return NSLocalizedString("current_plan", comment: "")
+            return "current_plan".localized()
         }
         
         let currentTier = authViewModel.tier // 1: Free, 2: Monthly, 3: Yearly
         
         if currentTier == 1 {
-            return NSLocalizedString("upgrade_to_premium_btn", comment: "") // "Premium'a Geç"
+            return "upgrade_to_premium_btn".localized() // "Premium'a Geç"
         } else if currentTier == 2 {
             if selectedPlan == 2 {
-                return NSLocalizedString("upgrade_plan", comment: "") // "Premium'u Yükselt"
+                return "upgrade_plan".localized() // "Premium'u Yükselt"
             }
         } else if currentTier == 3 {
             if selectedPlan == 1 {
-                return NSLocalizedString("downgrade_plan", comment: "") // "Premium'u Düşür"
+                return "downgrade_plan".localized() // "Premium'u Düşür"
             }
         }
         
-        return NSLocalizedString("upgrade_to_premium_btn", comment: "")
+        return "upgrade_to_premium_btn".localized()
     }
     
     private func featureDesc(for type: String) -> String {
         let isFree = selectedPlan == 0
         switch type {
         case "auto_capture":
-            return isFree ? NSLocalizedString("feature_auto_capture_free_desc", comment: "") : NSLocalizedString("feature_auto_capture_premium_desc", comment: "")
+            return isFree ? "feature_auto_capture_free_desc".localized() : "feature_auto_capture_premium_desc".localized()
         case "unlimited":
-            return isFree ? NSLocalizedString("feature_unlimited_tracking_free_desc", comment: "") : NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
+            return isFree ? "feature_unlimited_tracking_free_desc".localized() : "feature_unlimited_tracking_premium_desc".localized()
         case "analytics":
-            return isFree ? NSLocalizedString("feature_analytics_free_desc", comment: "") : NSLocalizedString("feature_advanced_analytics_premium_desc", comment: "")
+            return isFree ? "feature_analytics_free_desc".localized() : "feature_advanced_analytics_premium_desc".localized()
         case "ad_free":
-            return isFree ? NSLocalizedString("feature_ad_free_free_desc", comment: "") : NSLocalizedString("feature_ad_free_desc", comment: "")
+            return isFree ? "feature_ad_free_free_desc".localized() : "feature_ad_free_desc".localized()
         default:
             return ""
         }
@@ -531,7 +531,7 @@ struct TransactionHistoryScreen: View {
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                 }
                 Spacer()
-                Text(NSLocalizedString("transaction_history", comment: ""))
+                Text("transaction_history".localized())
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
@@ -554,7 +554,7 @@ struct TransactionHistoryScreen: View {
                         ForEach(viewModel.transactions) { tx in
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text(tx.description ?? NSLocalizedString("transaction", comment: ""))
+                                    Text(tx.description ?? "transaction".localized())
                                         .font(.sdBodyMedium)
                                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                                     

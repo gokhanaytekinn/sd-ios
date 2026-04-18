@@ -28,13 +28,13 @@ struct ForgotPasswordScreen: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Spacer().frame(height: 24)
                         
-                        Text(NSLocalizedString("forgot_password", comment: ""))
+                        Text("forgot_password".localized())
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
                         Spacer().frame(height: 8)
                         
-                        Text(NSLocalizedString("forgot_password_desc", comment: ""))
+                        Text("forgot_password_desc".localized())
                             .font(.system(size: 16))
                             .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                             .lineSpacing(4)
@@ -42,8 +42,8 @@ struct ForgotPasswordScreen: View {
                         Spacer().frame(height: 32)
                         
                         SDOutlinedTextField(
-                            title: NSLocalizedString("email_address_label", comment: ""),
-                            placeholder: NSLocalizedString("email_placeholder", comment: ""),
+                            title: "email_address_label".localized(),
+                            placeholder: "email_placeholder".localized(),
                             text: $email,
                             errorMessage: authViewModel.emailError,
                             keyboardType: .emailAddress,
@@ -57,7 +57,7 @@ struct ForgotPasswordScreen: View {
                         
                         VStack(spacing: 20) {
                             SDButton(
-                                title: NSLocalizedString("send_code", comment: ""),
+                                title: "send_code".localized(),
                                 isLoading: authViewModel.isLoading,
                                 isEnabled: !email.isEmpty
                             ) {
@@ -65,7 +65,7 @@ struct ForgotPasswordScreen: View {
                             }
                             
                             Button(action: onBackToLogin) {
-                                Text(NSLocalizedString("back_to_login", comment: ""))
+                                Text("back_to_login".localized())
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.primaryBlue)
                             }
@@ -129,13 +129,13 @@ struct VerificationCodeScreen: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Spacer().frame(height: 24)
                         
-                        Text(NSLocalizedString("verify_code_title", comment: ""))
+                        Text("verify_code_title".localized())
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
                         Spacer().frame(height: 8)
                         
-                        Text(String(format: NSLocalizedString("verify_code_desc", comment: ""), authViewModel.resetEmail ?? ""))
+                        Text(String(format: "verify_code_desc".localized(), authViewModel.resetEmail ?? ""))
                             .font(.system(size: 16))
                             .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                             .lineSpacing(4)
@@ -144,7 +144,7 @@ struct VerificationCodeScreen: View {
                         
                         // Code input - 6 digit
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(NSLocalizedString("verify_code_title", comment: ""))
+                            Text("verify_code_title".localized())
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                             
@@ -173,7 +173,7 @@ struct VerificationCodeScreen: View {
                         
                         VStack(spacing: 20) {
                             SDButton(
-                                title: NSLocalizedString("verify_and_continue", comment: ""),
+                                title: "verify_and_continue".localized(),
                                 isLoading: authViewModel.isLoading,
                                 isEnabled: code.count == 6
                             ) {
@@ -233,13 +233,13 @@ struct ResetPasswordScreen: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Spacer().frame(height: 24)
                         
-                        Text(NSLocalizedString("reset_password_title", comment: ""))
+                        Text("reset_password_title".localized())
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         
                         Spacer().frame(height: 8)
                         
-                        Text(NSLocalizedString("reset_password_desc", comment: ""))
+                        Text("reset_password_desc".localized())
                             .font(.system(size: 16))
                             .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
                             .lineSpacing(4)
@@ -247,8 +247,8 @@ struct ResetPasswordScreen: View {
                         Spacer().frame(height: 32)
                         
                         SDOutlinedTextField(
-                            title: NSLocalizedString("new_password_label", comment: ""),
-                            placeholder: NSLocalizedString("password_placeholder", comment: ""),
+                            title: "new_password_label".localized(),
+                            placeholder: "password_placeholder".localized(),
                             text: $newPassword,
                             errorMessage: authViewModel.passwordError,
                             isSecure: true,
@@ -260,7 +260,7 @@ struct ResetPasswordScreen: View {
                         
                         if newPassword.count < 6 {
                             Spacer().frame(height: 8)
-                            Text(NSLocalizedString("min_6_chars", comment: ""))
+                            Text("min_6_chars".localized())
                                 .font(.system(size: 12))
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                         }
@@ -268,8 +268,8 @@ struct ResetPasswordScreen: View {
                         Spacer().frame(height: 20)
                         
                         SDOutlinedTextField(
-                            title: NSLocalizedString("confirm_password_label", comment: ""),
-                            placeholder: NSLocalizedString("password_placeholder", comment: ""),
+                            title: "confirm_password_label".localized(),
+                            placeholder: "password_placeholder".localized(),
                             text: $confirmPassword,
                             errorMessage: authViewModel.confirmPasswordError,
                             isSecure: true,
@@ -281,7 +281,7 @@ struct ResetPasswordScreen: View {
                         
                         if !confirmPassword.isEmpty {
                             Spacer().frame(height: 8)
-                            Text(NSLocalizedString("passwords_match", comment: ""))
+                            Text("passwords_match".localized())
                                 .font(.system(size: 12))
                                 .foregroundColor(passwordsMatch ? .successColor : .errorColor)
                         }
@@ -290,7 +290,7 @@ struct ResetPasswordScreen: View {
                         
                         VStack(spacing: 20) {
                             SDButton(
-                                title: NSLocalizedString("update_password", comment: ""),
+                                title: "update_password".localized(),
                                 isLoading: authViewModel.isLoading,
                                 isEnabled: newPassword.count >= 6 && passwordsMatch
                             ) {

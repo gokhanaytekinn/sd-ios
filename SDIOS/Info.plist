@@ -4,17 +4,34 @@
 <dict>
 	<key>CFBundleLocalizations</key>
 	<array>
-		<string>en</string>
 		<string>tr</string>
-		<string>cs</string>
-		<string>nl</string>
-		<string>el</string>
+		<string>az</string>
+		<string>tk</string>
+		<string>kk</string>
+		<string>ky</string>
+		<string>uz</string>
+		<string>ug</string>
+		<string>tt</string>
+		<string>ba</string>
+		<string>cv</string>
+		<string>gag</string>
+		<string>sah</string>
+		<string>en</string>
+		<string>zh</string>
+		<string>es</string>
+		<string>fr</string>
+		<string>ru</string>
+		<string>de</string>
+		<string>id</string>
 		<string>it</string>
+		<string>nl</string>
+		<string>sv</string>
+		<string>pl</string>
+		<string>cs</string>
+		<string>el</string>
+		<string>uk</string>
 		<string>ja</string>
 		<string>ko</string>
-		<string>pl</string>
-		<string>uk</string>
-		<string>sv</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

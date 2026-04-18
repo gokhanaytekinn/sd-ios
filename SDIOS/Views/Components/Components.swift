@@ -589,9 +589,9 @@ struct SDErrorDialog: ViewModifier {
                 set: { if !$0 { onDismiss() } }
             )) {
                 Alert(
-                    title: Text(NSLocalizedString("error", comment: "")),
+                    title: Text("error".localized()),
                     message: Text(errorMessage ?? ""),
-                    dismissButton: .default(Text(NSLocalizedString("ok", comment: ""))) {
+                    dismissButton: .default(Text("ok".localized())) {
                         onDismiss()
                     }
                 )
