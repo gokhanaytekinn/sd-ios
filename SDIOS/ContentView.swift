@@ -467,7 +467,7 @@ struct EditSubscriptionWrapper: View {
             }
             .onAppear { loadSubscription() }
         } else if let sub = subscription {
-            AddSubscriptionScreen(
+            AddSubscriptionStepperScreen(
                 editSubscription: sub,
                 onSaved: onSaved,
                 onBack: onBack

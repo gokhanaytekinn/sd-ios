@@ -3,6 +3,7 @@ import SwiftUI
 struct AddSubscriptionStepperScreen: View {
     @StateObject private var viewModel = AddSubscriptionViewModel()
 
+    var editSubscription: Subscription? = nil
     let onSaved: () -> Void
     let onBack: () -> Void
 
@@ -99,6 +100,11 @@ struct AddSubscriptionStepperScreen: View {
             }
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
+        .onAppear {
+            if let sub = editSubscription {
+                viewModel.setupForEdit(subscription: sub)
+            }
+        }
         .withErrorDialog(errorMessage: $viewModel.error) {
             viewModel.clearGeneralError()
         }
@@ -127,7 +133,7 @@ struct AddSubscriptionStepperScreen: View {
 
             Spacer()
 
-            Text("add_subscription".localized())
+            Text(viewModel.isEditing ? "edit_subscription".localized() : "add_subscription".localized())
                 .font(.system(size: 18, weight: .bold))
                 .foregroundColor(Color.appOnBackground(for: colorScheme))
 
@@ -199,11 +205,48 @@ struct AddSubscriptionStepperScreen: View {
                 }
             }
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
-                    ForEach(previewShortcuts) { shortcut in
-                        let isSelected = viewModel.icon == shortcut.icon && viewModel.name == shortcut.name
-                        Button(action: { viewModel.applyShortcut(shortcut) }) {
+            if !viewModel.isEditing {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(previewShortcuts) { shortcut in
+                            let isSelected = viewModel.icon == shortcut.icon && viewModel.name == shortcut.name
+                            Button(action: { viewModel.applyShortcut(shortcut) }) {
+                                VStack(spacing: 8) {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .fill(Color.clear)
+                                            .frame(width: 56, height: 56)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 12)
+                                                    .stroke(
+                                                        shortcutBorderColor(shortcut).opacity(
+                                                            hasFixedContrastBorder(shortcut) ? 1 : (isSelected ? 1 : 0.3)
+                                                        ),
+                                                        lineWidth: isSelected ? 2 : 1
+                                                    )
+                                            )
+
+                                        if let iconName = shortcut.icon {
+                                            BrandIconView(name: iconName, color: shortcutIconColor(shortcut))
+                                                .frame(width: 24, height: 24)
+                                        } else {
+                                            Text(shortcut.name.prefix(1).uppercased())
+                                                .font(.system(size: 24, weight: .bold))
+                                                .foregroundColor(shortcut.color)
+                                        }
+                                    }
+                                    .scaleEffect(isSelected ? 1.08 : 1.0)
+                                    .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isSelected)
+
+                                    Text(shortcut.name)
+                                        .font(.system(size: 11, weight: isSelected ? .bold : .regular))
+                                        .foregroundColor(isSelected ? shortcut.color : Color.appOnSurfaceVariant(for: colorScheme))
+                                }
+                            }
+                            .buttonStyle(.plain)
+                        }
+
+                        Button(action: { showAllShortcutsSheet = true }) {
                             VStack(spacing: 8) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
@@ -211,59 +254,24 @@ struct AddSubscriptionStepperScreen: View {
                                         .frame(width: 56, height: 56)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 12)
-                                                .stroke(
-                                                    shortcutBorderColor(shortcut).opacity(
-                                                        hasFixedContrastBorder(shortcut) ? 1 : (isSelected ? 1 : 0.3)
-                                                    ),
-                                                    lineWidth: isSelected ? 2 : 1
-                                                )
+                                                .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
                                         )
 
-                                    if let iconName = shortcut.icon {
-                                        BrandIconView(name: iconName, color: shortcutIconColor(shortcut))
-                                            .frame(width: 24, height: 24)
-                                    } else {
-                                        Text(shortcut.name.prefix(1).uppercased())
-                                            .font(.system(size: 24, weight: .bold))
-                                            .foregroundColor(shortcut.color)
-                                    }
+                                    Image(systemName: "ellipsis")
+                                        .font(.system(size: 18, weight: .bold))
+                                        .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.7))
+                                        .frame(width: 56, height: 56, alignment: .center)
                                 }
-                                .scaleEffect(isSelected ? 1.08 : 1.0)
-                                .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isSelected)
 
-                                Text(shortcut.name)
-                                    .font(.system(size: 11, weight: isSelected ? .bold : .regular))
-                                    .foregroundColor(isSelected ? shortcut.color : Color.appOnSurfaceVariant(for: colorScheme))
+                                Text(" ")
+                                    .font(.system(size: 11))
                             }
                         }
                         .buttonStyle(.plain)
                     }
-
-                    Button(action: { showAllShortcutsSheet = true }) {
-                        VStack(spacing: 8) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color.clear)
-                                    .frame(width: 56, height: 56)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
-                                    )
-
-                                Image(systemName: "ellipsis")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.7))
-                                    .frame(width: 56, height: 56, alignment: .center)
-                            }
-
-                            Text(" ")
-                                .font(.system(size: 11))
-                        }
-                    }
-                    .buttonStyle(.plain)
+                    .padding(.horizontal, 4)
+                    .padding(.vertical, 6)
                 }
-                .padding(.horizontal, 4)
-                .padding(.vertical, 6)
             }
         }
     }
@@ -564,7 +572,9 @@ struct AddSubscriptionStepperScreen: View {
                     if viewModel.isLoading && step == .sharing {
                         Text("loading".localized())
                     } else {
-                        Text(step == .sharing ? "finish".localized() : "continue_btn".localized())
+                        Text(step == .sharing
+                             ? (viewModel.isEditing ? "update".localized() : "finish".localized())
+                             : "continue_btn".localized())
                     }
                 }
                 .font(.sdBodyBold)
