@@ -375,6 +375,48 @@ struct AddSubscriptionScreen: View {
                                     .disabled(viewModel.isRestrictedShortcutName)
                             }
                         }
+
+                        // Subscription End Date (Optional)
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("subscription_end_date".localized())
+                                        .font(.system(size: 16, weight: .medium))
+                                    Text("optional".localized())
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                }
+                                Spacer()
+                                Toggle(
+                                    "",
+                                    isOn: Binding(
+                                        get: { viewModel.endDate != nil },
+                                        set: { enabled in
+                                            if enabled {
+                                                viewModel.endDate = viewModel.endDate ?? Calendar.current.startOfDay(for: Date())
+                                            } else {
+                                                viewModel.endDate = nil
+                                            }
+                                        }
+                                    )
+                                )
+                                .tint(.primaryBlue)
+                                .labelsHidden()
+                            }
+
+                            if let date = viewModel.endDate {
+                                DatePicker(
+                                    "",
+                                    selection: Binding(
+                                        get: { date },
+                                        set: { viewModel.endDate = $0 }
+                                    ),
+                                    in: Calendar.current.startOfDay(for: Date())...,
+                                    displayedComponents: [.date]
+                                )
+                                .datePickerStyle(.compact)
+                            }
+                        }
                         
                         // Joint Users
                         SDOutlinedTextField(

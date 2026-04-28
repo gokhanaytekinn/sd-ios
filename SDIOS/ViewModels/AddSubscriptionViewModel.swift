@@ -20,6 +20,7 @@ class AddSubscriptionViewModel: ObservableObject {
     } // Ödeme periyodu
     @Published var billingDay: Int = Calendar.current.component(.day, from: Date()) { didSet { clearDateError() } } // Ödeme günü
     @Published var billingMonth: Int? = nil { didSet { clearDateError() } } // Ödeme ayı (Yıllık paketler için)
+    @Published var endDate: Date? = nil // Opsiyonel abonelik bitiş tarihi (yyyy-MM-dd)
     @Published var reminderEnabled = true { didSet { clearDateError() } } // Hatırlatıcı aktif mi?
     @Published var isFreeTrial = false // Ücretsiz deneme mi?
     @Published var jointEmails: [String] = []                  // Paylaşımlı abonelik için eklenen e-postalar
@@ -144,6 +145,7 @@ class AddSubscriptionViewModel: ObservableObject {
             billingDay = min(max(billingDay, 1), 7)
         }
         billingMonth = subscription.billingMonth ?? Calendar.current.component(.month, from: Date())
+        endDate = Self.parseEndDate(subscription.endDate)
         reminderEnabled = subscription.reminderEnabled
         isFreeTrial = subscription.isFreeTrial ?? false
         jointEmails = subscription.jointEmails ?? []
@@ -290,6 +292,8 @@ class AddSubscriptionViewModel: ObservableObject {
         Task {
             isLoading = true
             error = nil
+
+            let endDateString = Self.toYMDString(endDate)
             
             if let editId = editingSubscriptionId {
                 // GÜNCELLEME MODU
@@ -303,6 +307,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     billingCycle: selectedBillingCycle.rawValue,
                     billingDay: selectedBillingCycle == .daily ? nil : billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
+                    endDate: endDateString,
                     reminderEnabled: reminderEnabled,
                     isFreeTrial: isFreeTrial,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
@@ -321,6 +326,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     billingCycle: selectedBillingCycle.rawValue,
                     billingDay: selectedBillingCycle == .daily ? nil : billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
+                    endDate: endDateString,
                     reminderEnabled: reminderEnabled,
                     isFreeTrial: isFreeTrial,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
@@ -385,6 +391,53 @@ class AddSubscriptionViewModel: ObservableObject {
         
         return isValid
     }
+
+    // MARK: - Step Validation (Wizard)
+    /// Step-1: Service name + category
+    func validateBasicsStep() -> Bool {
+        nameError = nil
+        categoryError = nil
+
+        var isValid = true
+
+        if name.trimmingCharacters(in: .whitespaces).isEmpty {
+            nameError = "error_name_required".localized()
+            isValid = false
+        }
+
+        if selectedCategory.isEmpty {
+            categoryError = "error_category_required".localized()
+            isValid = false
+        }
+
+        return isValid
+    }
+
+    /// Step-2: Amount + billing selections (yearly month requirement)
+    func validateBillingStep() -> Bool {
+        amountError = nil
+        dateError = nil
+
+        var isValid = true
+
+        if amount.trimmingCharacters(in: .whitespaces).isEmpty {
+            amountError = "error_amount_required".localized()
+            isValid = false
+        } else {
+            let value = CurrencyFormatter.parseBankingAmount(amount)
+            if value <= 0 {
+                amountError = "error_amount_invalid".localized()
+                isValid = false
+            }
+        }
+
+        if selectedBillingCycle == .yearly && billingMonth == nil {
+            dateError = "error_date_required".localized()
+            isValid = false
+        }
+
+        return isValid
+    }
     
     // MARK: - Utility (Yardımcılar)
     
@@ -406,6 +459,7 @@ class AddSubscriptionViewModel: ObservableObject {
         selectedBillingCycle = .monthly
         billingDay = Calendar.current.component(.day, from: Date())
         billingMonth = nil
+        endDate = nil
         reminderEnabled = true
         isFreeTrial = false
         jointEmails = []
@@ -416,5 +470,29 @@ class AddSubscriptionViewModel: ObservableObject {
         nameError = nil
         amountError = nil
         categoryError = nil
+    }
+
+    // MARK: - End Date Helpers
+    private static func toYMDString(_ date: Date?) -> String? {
+        guard let date else { return nil }
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+
+    private static func parseEndDate(_ dateString: String?) -> Date? {
+        guard let dateString, !dateString.isEmpty else { return nil }
+
+        let iso = ISO8601DateFormatter()
+        iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let d = iso.date(from: dateString) { return d }
+
+        let ymd = DateFormatter()
+        ymd.locale = Locale(identifier: "en_US_POSIX")
+        ymd.timeZone = TimeZone(secondsFromGMT: 0)
+        ymd.dateFormat = "yyyy-MM-dd"
+        return ymd.date(from: dateString)
     }
 }

@@ -102,6 +102,7 @@
 				Views/Settings/AppSettingsScreen.swift,
 				Views/Settings/InfoScreens.swift,
 				Views/Subscriptions/AddSubscriptionScreen.swift,
+				Views/Subscriptions/AddSubscriptionStepperScreen.swift,
 				Views/Subscriptions/SubscriptionDetailsScreen.swift,
 				Views/Subscriptions/SubscriptionsListScreen.swift,
 			);

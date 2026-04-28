@@ -274,7 +274,7 @@ struct ContentView: View {
                 }
             )
         case .addSubscription:
-            AddSubscriptionScreen(
+            AddSubscriptionStepperScreen(
                 onSaved: {
                     navigationPath.removeLast()
                     

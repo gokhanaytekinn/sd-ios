@@ -375,6 +375,7 @@ struct SubscriptionDetailsScreen: View {
                 billingCycle: updatedSub.billingCycle.rawValue,
                 billingDay: updatedSub.billingDay,
                 billingMonth: updatedSub.billingMonth,
+                endDate: nil,
                 reminderEnabled: updatedSub.reminderEnabled,
                 isFreeTrial: updatedSub.isFreeTrial,
                 jointEmails: updatedSub.jointEmails
