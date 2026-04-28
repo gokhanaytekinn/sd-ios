@@ -250,6 +250,8 @@
 "next" = "Keyingi";
 "previous" = "Oldingi";
 "finish" = "Tugatish";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Yuklanmoqda…";
 "error" = "Xatolik";
 "success" = "Muvaffaqiyatli";

@@ -252,6 +252,8 @@
 "next" = "Berikutnya";
 "previous" = "Sebelumnya";
 "finish" = "Selesai";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Memuat…";
 "error" = "Kesalahan";
 "success" = "Berhasil";

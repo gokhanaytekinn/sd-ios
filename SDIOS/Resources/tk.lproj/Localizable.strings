@@ -250,6 +250,8 @@
 "next" = "Indiki";
 "previous" = "Öňki";
 "finish" = "Gutar";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Ýüklenýär…";
 "error" = "Säwlik";
 "success" = "Şowly";

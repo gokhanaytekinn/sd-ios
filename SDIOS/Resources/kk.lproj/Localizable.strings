@@ -250,6 +250,8 @@
 "next" = "Келесі";
 "previous" = "Алдыңғы";
 "finish" = "Аяқтау";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Жүктелуде…";
 "error" = "Қате";
 "success" = "Сәтті";

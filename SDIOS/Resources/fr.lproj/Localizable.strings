@@ -255,6 +255,8 @@
 "next" = "Suivant";
 "previous" = "Précédent";
 "finish" = "Terminer";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Chargement…";
 "error" = "Erreur";
 "success" = "Succès";

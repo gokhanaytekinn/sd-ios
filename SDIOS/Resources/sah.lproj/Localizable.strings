@@ -250,6 +250,8 @@
 "next" = "İleri";
 "previous" = "Geri";
 "finish" = "Bitir";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Yükleniyor…";
 "error" = "Hata";
 "success" = "Başarılı";

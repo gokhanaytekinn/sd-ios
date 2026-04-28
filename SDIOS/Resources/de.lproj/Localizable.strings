@@ -256,6 +256,8 @@
 "next" = "Weiter";
 "previous" = "Zuruck";
 "finish" = "Beenden";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Laden...";
 "error" = "Fehler";
 "success" = "Erfolg";

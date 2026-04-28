@@ -253,6 +253,8 @@
 "next" = "Кийинки";
 "previous" = "Мурунку";
 "finish" = "Аяктоо";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Жүктөлүүдө…";
 "error" = "Ката";
 "success" = "Ийгиликтүү";

@@ -255,6 +255,8 @@
 "next" = "Далее";
 "previous" = "Назад";
 "finish" = "Завершить";
+"optional" = "Optional";
+"subscription_end_date" = "Subscription end date";
 "loading" = "Загрузка…";
 "error" = "Ошибка";
 "success" = "Успех";
