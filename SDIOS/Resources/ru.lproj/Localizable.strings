@@ -48,6 +48,7 @@
 "language" = "Язык";
 "help_center" = "Центр Помощи";
 "privacy_policy" = "Политика Конфиденциальности";
+"rate_us" = "Rate Us";
 "logout" = "Выйти";
 "version_info" = "Версия %1$@ (Сборка %2$d)";
 "version" = "Versiya %@";

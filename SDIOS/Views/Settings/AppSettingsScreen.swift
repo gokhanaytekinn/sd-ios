@@ -1,8 +1,10 @@
 import SwiftUI
+import StoreKit
 
 struct AppSettingsScreen: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var themeManager: ThemeManager
+    @Environment(\.requestReview) private var requestReview
     
     let onNavigateToHelpCenter: () -> Void
     let onNavigateToPrivacyPolicy: () -> Void
@@ -140,6 +142,13 @@ struct AppSettingsScreen: View {
                             title: "privacy_policy".localized(),
                             iconColor: .successColor,
                             onTap: onNavigateToPrivacyPolicy
+                        )
+
+                        SettingsNavigationItem(
+                            icon: "star.bubble.fill",
+                            title: "rate_us".localized(),
+                            iconColor: .warningColor,
+                            onTap: { requestReview() }
                         )
                     }
                     .padding(.horizontal, 24)

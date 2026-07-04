@@ -48,6 +48,7 @@
 "language" = "Dil";
 "help_center" = "Kömek Merkezi";
 "privacy_policy" = "Gizlinlik Syýasaty";
+"rate_us" = "Rate Us";
 "logout" = "Hasapdan çyk";
 "version_info" = "Wersiýa %1$@ (Build %2$d)";
 "version" = "Wersiya %@";

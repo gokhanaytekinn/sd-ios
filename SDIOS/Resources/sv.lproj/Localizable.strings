@@ -48,6 +48,7 @@
 "language" = "Language";
 "help_center" = "Help Center";
 "privacy_policy" = "Privacy Policy";
+"rate_us" = "Rate Us";
 "logout" = "Logout";
 "version_info" = "Version %1$@ (Build %2$d)";
 "version" = "Version %@";

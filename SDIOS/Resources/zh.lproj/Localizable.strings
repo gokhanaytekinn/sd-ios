@@ -48,6 +48,7 @@
 "language" = "语言";
 "help_center" = "帮助中心";
 "privacy_policy" = "隐私政策";
+"rate_us" = "Rate Us";
 "logout" = "退出登录";
 "version_info" = "版本 %1$@ (Build %2$d)";
 "version" = "版本 %@";

@@ -48,6 +48,7 @@
 "language" = "Til";
 "help_center" = "Yordam markazi";
 "privacy_policy" = "Maxfiylik siyosati";
+"rate_us" = "Rate Us";
 "logout" = "Chiqish";
 "version_info" = "Versiya %1$@ (Build %2$d)";
 "version" = "Versiya %@";

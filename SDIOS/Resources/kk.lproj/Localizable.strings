@@ -48,6 +48,7 @@
 "language" = "Тіл";
 "help_center" = "Анықтама орталығы";
 "privacy_policy" = "Құпиялылық саясаты";
+"rate_us" = "Rate Us";
 "logout" = "Шығу";
 "version_info" = "Нұсқасы %1$@ (Build %2$d)";
 "version" = "Nusqa %@";

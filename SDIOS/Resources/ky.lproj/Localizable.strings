@@ -48,6 +48,7 @@
 "language" = "Тил";
 "help_center" = "Жардам борбору";
 "privacy_policy" = "Купуялык саясаты";
+"rate_us" = "Rate Us";
 "logout" = "Чыгуу";
 "version_info" = "Версиясы %1$@ (Build %2$d)";
 "version" = "Versiya %@";
