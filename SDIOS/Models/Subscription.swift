@@ -54,6 +54,7 @@ struct Subscription: Codable, Identifiable {
     let isSuspicious: Bool
     let tier: Int?
     let reminderEnabled: Bool
+    let cardInfo: String?
     let jointEmails: [String]?
     let isOwner: Bool
     let isFreeTrial: Bool?
@@ -63,7 +64,7 @@ struct Subscription: Codable, Identifiable {
         status == 1 || status == 4
     }
     
-    init(id: String, suspiciousReason: String? = nil, responseMessage: String? = nil, name: String, cost: Double, currency: Int, billingCycle: BillingCycle, billingDay: Int? = nil, billingMonth: Int? = nil, endDate: String? = nil, category: String? = nil, icon: String? = nil, status: Int = 1, isSuspicious: Bool = false, tier: Int? = nil, reminderEnabled: Bool = false, jointEmails: [String]? = nil, isOwner: Bool = true, isFreeTrial: Bool? = nil, participants: [InvitationParticipant]? = nil) {
+    init(id: String, suspiciousReason: String? = nil, responseMessage: String? = nil, name: String, cost: Double, currency: Int, billingCycle: BillingCycle, billingDay: Int? = nil, billingMonth: Int? = nil, endDate: String? = nil, category: String? = nil, icon: String? = nil, status: Int = 1, isSuspicious: Bool = false, tier: Int? = nil, reminderEnabled: Bool = false, cardInfo: String? = nil, jointEmails: [String]? = nil, isOwner: Bool = true, isFreeTrial: Bool? = nil, participants: [InvitationParticipant]? = nil) {
         self.id = id
         self.suspiciousReason = suspiciousReason
         self.responseMessage = responseMessage
@@ -80,6 +81,7 @@ struct Subscription: Codable, Identifiable {
         self.isSuspicious = isSuspicious
         self.tier = tier
         self.reminderEnabled = reminderEnabled
+        self.cardInfo = cardInfo
         self.jointEmails = jointEmails
         self.isOwner = isOwner
         self.isFreeTrial = isFreeTrial

@@ -200,6 +200,10 @@ struct SubscriptionDetailsScreen: View {
                     gridBlock(title: "renewal_cycle".localized(), value: nextRenewalDayMonth(sub))
                 }
                 
+                if let cardInfo = sub.cardInfo, !cardInfo.isEmpty {
+                    gridBlock(title: "card_info".localized(), value: cardInfo)
+                }
+                
                 HStack(spacing: 12) {
                     actionButton(
                         icon: sub.reminderEnabled ? "bell.slash" : "bell",
@@ -359,6 +363,7 @@ struct SubscriptionDetailsScreen: View {
                 isSuspicious: sub.isSuspicious,
                 tier: sub.tier,
                 reminderEnabled: !sub.reminderEnabled,
+                cardInfo: sub.cardInfo,
                 jointEmails: sub.jointEmails,
                 isOwner: sub.isOwner,
                 isFreeTrial: sub.isFreeTrial,
@@ -378,6 +383,7 @@ struct SubscriptionDetailsScreen: View {
                 endDate: nil,
                 reminderEnabled: updatedSub.reminderEnabled,
                 isFreeTrial: updatedSub.isFreeTrial,
+                cardInfo: updatedSub.cardInfo,
                 jointEmails: updatedSub.jointEmails
             )
             

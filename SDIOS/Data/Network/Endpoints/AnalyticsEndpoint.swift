@@ -2,12 +2,10 @@ import Foundation
 
 enum AnalyticsEndpoint: APIEndpoint {
     case getSummary
-    case getInsights
     
     var path: String {
         switch self {
         case .getSummary: return "/api/user-analytics/summary"
-        case .getInsights: return "/api/user-analytics/insights"
         }
     }
     

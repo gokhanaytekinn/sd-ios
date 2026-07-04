@@ -246,6 +246,17 @@
 "sort_by" = "Sırala";
 "date" = "Tarih";
 "amount" = "Tutar";
+"card_info" = "Kart Bilgisi";
+"card_info_placeholder" = "örn. İş Bankası Kredi Kartı";
+"card_info_hint" = "Gerçek kart bilgisi değildir. Ödemenin hangi karttan yapıldığını hatırlamanız için bir not alanıdır.";
+"card_spending_title" = "Kartlara Göre Harcama";
+"top_card_title" = "En Çok Kullanılan Kart";
+"top_card_desc" = "%@ kartı toplam harcamanızın %d'sini oluşturuyor";
+"card_count_title" = "Kart Özeti";
+"card_count_desc" = "%d farklı kart · %d abonelik eşleşmiş";
+"missing_card_info_title" = "Eksik Kart Bilgisi";
+"missing_card_info_desc" = "%d aboneliğinizde kart bilgisi girilmemiş";
+"peak_spending_card_line" = "%@: %@";
 "merchant" = "Satıcı";
 "nav_all_subscriptions" = "Tüm Abonelikler";
 "add" = "Ekle";

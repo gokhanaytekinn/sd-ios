@@ -34,9 +34,3 @@ struct UpcomingPayment: Codable, Identifiable {
     let paymentDate: String // ISO date string
     let icon: String?
 }
-
-
-// MARK: - Analytics Insight Response
-struct AnalyticsInsightResponse: Codable {
-    let insights: [String]
-}

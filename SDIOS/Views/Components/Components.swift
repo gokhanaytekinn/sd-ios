@@ -73,6 +73,7 @@ struct SubscriptionCard: View {
     var currency: Int = 1
     var showDate: Bool = false
     var showCountdown: Bool = false
+    var showCardInfo: Bool = false
     var isJoint: Bool = false
     var onTap: () -> Void = {}
     
@@ -104,6 +105,19 @@ struct SubscriptionCard: View {
                         Text(categoryText)
                             .font(.sdSmall)
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        
+                        if showCardInfo,
+                           let cardInfo = subscription.cardInfo?.trimmingCharacters(in: .whitespacesAndNewlines),
+                           !cardInfo.isEmpty {
+                            HStack(spacing: 4) {
+                                Image(systemName: "creditcard")
+                                    .font(.system(size: 10))
+                                Text(cardInfo)
+                                    .font(.sdSmall)
+                                    .lineLimit(1)
+                            }
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
                     }
                     
                     Spacer()
@@ -326,6 +340,7 @@ struct SDOutlinedTextField: View {
     var keyboardType: UIKeyboardType = .default
     var trailingIcon: String? = nil
     var leadingIcon: String? = nil
+    var infoMessage: String? = nil
     var onTrailingIconTap: (() -> Void)? = nil
     
     // Focus management
@@ -333,6 +348,7 @@ struct SDOutlinedTextField: View {
     var focusValue: String? = nil
     
     @State private var showPassword = false
+    @State private var showInfoAlert = false
     @FocusState private var internalFocus: String?
     
     @Environment(\.colorScheme) var colorScheme
@@ -346,9 +362,27 @@ struct SDOutlinedTextField: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.sdCaptionMedium)
-                .foregroundColor(Color.appOnBackground(for: colorScheme))
+            HStack(alignment: .center, spacing: 8) {
+                Text(title)
+                    .font(.sdCaptionMedium)
+                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                
+                Spacer()
+                
+                if let infoMessage = infoMessage {
+                    Button(action: { showInfoAlert = true }) {
+                        Image(systemName: "info.circle")
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                    }
+                    .buttonStyle(.plain)
+                    .alert(title, isPresented: $showInfoAlert) {
+                        Button("ok".localized(), role: .cancel) {}
+                    } message: {
+                        Text(infoMessage)
+                    }
+                }
+            }
             
             HStack(spacing: 12) {
                 if let icon = leadingIcon {

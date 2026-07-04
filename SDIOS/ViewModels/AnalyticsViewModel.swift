@@ -6,7 +6,6 @@ import Combine
 class AnalyticsViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var summary: AnalyticsSummaryResponse?
-    @Published var insights: [String] = []
     @Published var selectedCategory: String = "All"
     
     static func colorForCategory(_ category: String) -> Color {
@@ -29,7 +28,6 @@ class AnalyticsViewModel: ObservableObject {
     
     // MARK: - Use Cases
     private let getSummaryUseCase: GetAnalyticsSummaryUseCaseProtocol
-    private let getInsightsUseCase: GetAnalyticsInsightsUseCaseProtocol
     private let getSubscriptionsUseCase: GetSubscriptionsUseCaseProtocol
     
     var authViewModel: AuthViewModel?
@@ -42,11 +40,9 @@ class AnalyticsViewModel: ObservableObject {
     
     init(
         getSummaryUseCase: GetAnalyticsSummaryUseCaseProtocol? = nil,
-        getInsightsUseCase: GetAnalyticsInsightsUseCaseProtocol? = nil,
         getSubscriptionsUseCase: GetSubscriptionsUseCaseProtocol? = nil
     ) {
         self.getSummaryUseCase = getSummaryUseCase ?? GetAnalyticsSummaryUseCase()
-        self.getInsightsUseCase = getInsightsUseCase ?? GetAnalyticsInsightsUseCase()
         self.getSubscriptionsUseCase = getSubscriptionsUseCase ?? GetSubscriptionsUseCase()
     }
     
@@ -57,24 +53,15 @@ class AnalyticsViewModel: ObservableObject {
             
             // We fetch even if not premium to show blurred preview
             async let summaryResult = getSummaryUseCase.execute(category: selectedCategory)
-            async let insightsResult = getInsightsUseCase.execute()
             async let subsResult = getSubscriptionsUseCase.execute()
             
-            let (summaryRes, insightsRes, subsRes) = await (summaryResult, insightsResult, subsResult)
+            let (summaryRes, subsRes) = await (summaryResult, subsResult)
             
             switch summaryRes {
             case .success(let data):
                 self.summary = data
             case .failure(let err):
                 self.error = err.localizedDescription
-            }
-            
-            
-            switch insightsRes {
-            case .success(let data):
-                self.insights = data.insights
-            case .failure:
-                break
             }
             
             switch subsRes {
