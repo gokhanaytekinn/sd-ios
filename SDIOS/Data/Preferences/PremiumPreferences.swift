@@ -12,6 +12,11 @@ class PremiumPreferences {
         get { UserDefaults.standard.bool(forKey: "hasSeenOnboarding") }
         set { UserDefaults.standard.set(newValue, forKey: "hasSeenOnboarding") }
     }
+
+    var hasShownFirstAuthPaywall: Bool {
+        get { UserDefaults.standard.bool(forKey: "hasShownFirstAuthPaywall") }
+        set { UserDefaults.standard.set(newValue, forKey: "hasShownFirstAuthPaywall") }
+    }
     
     private init() {}
 }

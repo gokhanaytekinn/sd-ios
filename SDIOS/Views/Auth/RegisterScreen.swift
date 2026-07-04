@@ -129,6 +129,23 @@ struct RegisterScreen: View {
                             performRegister()
                         }
                         
+                        HStack {
+                            VStack { Divider().background(Color.appOutline(for: colorScheme)) }
+                            Text("or".localized())
+                                .font(.system(size: 14))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.6))
+                                .padding(.horizontal, 8)
+                            VStack { Divider().background(Color.appOutline(for: colorScheme)) }
+                        }
+                        
+                        AppleSignInButton {
+                            authViewModel.signInWithApple(onSuccess: onRegisterSuccess)
+                        }
+                        
+                        GoogleSignInButton {
+                            authViewModel.signInWithGoogle(onSuccess: onRegisterSuccess)
+                        }
+                        
                         HStack(spacing: 0) {
                             Text("already_have_account_prompt".localized())
                                 .font(.system(size: 14))

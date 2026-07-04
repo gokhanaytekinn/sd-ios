@@ -8,13 +8,13 @@ class AuthRepository: AuthRepositoryProtocol {
     
     /// API isteklerini yöneten servis bağımlılığı.
     private let api: ApiServiceProtocol
-    /// Token ve oturum bilgilerini yerel diskte (Keychain/UserDefaults) yönetir.
-    private let tokenManager = TokenManager.shared
+    private let tokenManager: TokenManagerProtocol
     
     /// Bağımlılık Enjeksiyonu (Dependency Injection) destekli başlatıcı.
-    /// Testlerde sahte (mock) API servisleri enjekte edilebilir.
-    init(api: ApiServiceProtocol = ApiService.shared) {
+    /// Testlerde sahte (mock) API servisleri ve TokenManager enjekte edilebilir.
+    init(api: ApiServiceProtocol = ApiService.shared, tokenManager: TokenManagerProtocol = TokenManager.shared) {
         self.api = api
+        self.tokenManager = tokenManager
     }
     
     /// Kullanıcı giriş işlemini API üzerinden gerçekleştirir.
@@ -58,6 +58,22 @@ class AuthRepository: AuthRepositoryProtocol {
         do {
             let response = try await api.loginWithGoogle(GoogleAuthRequest(idToken: idToken))
             // Sosyal login sonrası token yönetimini gerçekleştir
+            if let token = response.token {
+                tokenManager.saveToken(token)
+            }
+            if let email = response.user?.email {
+                tokenManager.saveUserEmail(email)
+            }
+            return .success(response)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    /// Apple Identity Token ile oturum açma işlemini yönetir.
+    func loginWithApple(identityToken: String, firstName: String?, lastName: String?) async -> Result<ApiAuthResponse, Error> {
+        do {
+            let response = try await api.loginWithApple(AppleAuthRequest(identityToken: identityToken, firstName: firstName, lastName: lastName))
             if let token = response.token {
                 tokenManager.saveToken(token)
             }

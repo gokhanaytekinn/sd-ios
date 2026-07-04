@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 
 // MARK: - Skeleton Tools
 struct SkeletonModifier: ViewModifier {
@@ -125,6 +126,10 @@ struct SubscriptionCard: View {
                                 Text(DateUtils.formatYearlyRenewal(day: billingDay, month: billingMonth, language: LanguagePreferences.shared.selectedLanguage))
                                     .font(.sdSmall)
                                     .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            } else if subscription.billingCycle == .daily {
+                                Text("billing_daily_label".localized())
+                                    .font(.sdSmall)
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                             } else if let nextDate = subscription.getNextRenewalDate() {
                                 Text(DateUtils.formatDate(nextDate))
                                     .font(.sdSmall)
@@ -132,9 +137,15 @@ struct SubscriptionCard: View {
                             }
                         } else if showCountdown, let nextDate = subscription.getNextRenewalDate() {
                             let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? -1
-                            Text(daysText(days))
-                                .font(.sdSmallMedium)
-                                .foregroundColor(days <= 3 && days >= 0 ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
+                            if subscription.billingCycle == .daily {
+                                Text("billing_daily_label".localized())
+                                    .font(.sdSmallMedium)
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            } else {
+                                Text(daysText(days))
+                                    .font(.sdSmallMedium)
+                                    .foregroundColor(days <= 3 && days >= 0 ? .errorColor : Color.appOnSurfaceVariant(for: colorScheme))
+                            }
                         }
                     }
                 }
@@ -176,34 +187,47 @@ struct SubscriptionCard: View {
     }
     
     private func getBrandIconInfo(_ name: String) -> (icon: String, color: Color)? {
-        let map: [String: (String, Color)] = [
-            "netflix":  ("netflix",  Color(hex: "E50914")),
-            "spotify":  ("spotify",  Color(hex: "1DB954")),
-            "youtube":  ("youtube",  Color(hex: "FF0000")),
-            "google":   ("google",   Color(hex: "4285F4")),
-            "amazon":   ("amazon",   Color(hex: "00A8E1")),
-            "hbo max":  ("hbomax",   Color(hex: "5A2E81")),
-            "cursor":   ("cursor",   Color.primary),
-            "claude":   ("claude",   Color(hex: "E56038")),
+        let lowered = name.lowercased()
+        let orderedBrandMap: [(key: String, info: (String, Color))] = [
+            ("hbo max", ("hbomax", Color(hex: "5A2E81"))),
+            ("netflix", ("netflix", Color(hex: "E50914"))),
+            ("spotify", ("spotify", Color(hex: "1DB954"))),
+            ("youtube", ("youtube", Color(hex: "FF0000"))),
+            ("google", ("google", Color(hex: "4285F4"))),
+            ("amazon", ("amazon", Color(hex: "00A8E1"))),
+            ("cursor", ("cursor", Color.primary)),
+            ("claude", ("claude", Color(hex: "E56038"))),
         ]
-        return map[name.lowercased()]
+        return orderedBrandMap.first(where: { lowered.contains($0.key) })?.info
     }
     
     private var categoryText: String {
         let localizedCategory = (subscription.category ?? "category_other").localized()
-        let cycleText: String
-        switch subscription.billingCycle {
-        case .monthly: cycleText = "billing_monthly_label".localized()
-        case .yearly: cycleText = "billing_yearly_label".localized()
-        case .weekly: cycleText = "billing_weekly_label".localized()
-        case .quarterly: cycleText = "period_monthly".localized()
-        }
+        let cycleText = billingCycleDescription(for: subscription)
         
         let category = subscription.category ?? "category_other"
         if category == "Other" || category == "Diğer" || category == "category_other" {
             return cycleText
         }
         return "\(localizedCategory) • \(cycleText)"
+    }
+
+    private func billingCycleDescription(for sub: Subscription) -> String {
+        switch sub.billingCycle {
+        case .daily:
+            return "billing_daily_label".localized()
+        case .weekly:
+            if let day = sub.billingDay {
+                return String(format: "billing_weekly_label_day".localized(), day)
+            }
+            return "billing_weekly_label".localized()
+        case .monthly:
+            return "billing_monthly_label".localized()
+        case .yearly:
+            return "billing_yearly_label".localized()
+        case .quarterly:
+            return "period_monthly".localized()
+        }
     }
     
     private func daysText(_ days: Int) -> String {
@@ -535,6 +559,24 @@ struct GoogleSignInButton: View {
     }
 }
 
+// MARK: - Apple Sign In Button
+struct AppleSignInButton: View {
+    let action: () -> Void
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        SignInWithAppleButton(.signIn) { request in
+            action()
+        } onCompletion: { result in
+            // Logic handled in ViewModel via coordinator
+        }
+        .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+        .frame(maxWidth: .infinity)
+        .frame(height: 45)
+        .cornerRadius(12)
+    }
+}
+
 // MARK: - SDErrorDialog
 struct SDErrorDialog: ViewModifier {
     @Binding var errorMessage: String?
@@ -547,9 +589,9 @@ struct SDErrorDialog: ViewModifier {
                 set: { if !$0 { onDismiss() } }
             )) {
                 Alert(
-                    title: Text(NSLocalizedString("error", comment: "")),
+                    title: Text("error".localized()),
                     message: Text(errorMessage ?? ""),
-                    dismissButton: .default(Text(NSLocalizedString("ok", comment: ""))) {
+                    dismissButton: .default(Text("ok".localized())) {
                         onDismiss()
                     }
                 )
@@ -657,3 +699,5 @@ struct PremiumButton: View {
         )
     }
 }
+
+// MARK: - Dashboard Skeleton

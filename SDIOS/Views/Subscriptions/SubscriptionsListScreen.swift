@@ -18,7 +18,7 @@ struct SubscriptionsListScreen: View {
             
             StatefulView(
                 isLoading: viewModel.isLoading,
-                isEmpty: currentTabSubscriptions.isEmpty && (selectedTab != 1 || viewModel.invitations.isEmpty),
+                isEmpty: false,
                 emptyMessage: emptyStateText,
                 emptyIcon: "tray.fill",
                 skeleton: { SubscriptionListSkeleton() }
@@ -339,6 +339,8 @@ struct SubscriptionsListScreen: View {
         case 1: return "billing_monthly_label".localized()
         case 2: return "billing_yearly_label".localized()
         case 3: return "billing_weekly_label".localized()
+        case 5:
+            return "billing_daily_label".localized()
         default: return "billing_monthly_label".localized()
         }
     }

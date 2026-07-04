@@ -6,6 +6,7 @@ enum AuthEndpoint: APIEndpoint {
     case login(LoginRequest)
     case register(RegisterRequest)
     case loginWithGoogle(GoogleAuthRequest)
+    case loginWithApple(AppleAuthRequest)
     case getCurrentUser
     case deleteAccount
     case forgotPassword(ForgotPasswordRequest)
@@ -17,8 +18,9 @@ enum AuthEndpoint: APIEndpoint {
         case .login: return "/api/auth/login"
         case .register: return "/api/auth/register"
         case .loginWithGoogle: return "/api/auth/google"
+        case .loginWithApple: return "/api/auth/apple"
         case .getCurrentUser: return "/api/auth/me"
-        case .deleteAccount: return "/api/auth/delete"
+        case .deleteAccount: return "/api/auth/me"
         case .forgotPassword: return "/api/auth/forgot-password"
         case .verifyCode: return "/api/auth/verify-code"
         case .resetPassword: return "/api/auth/reset-password"
@@ -27,7 +29,7 @@ enum AuthEndpoint: APIEndpoint {
     
     var method: HTTPMethod {
         switch self {
-        case .login, .register, .loginWithGoogle, .forgotPassword, .verifyCode, .resetPassword:
+        case .login, .register, .loginWithGoogle, .loginWithApple, .forgotPassword, .verifyCode, .resetPassword:
             return .post
         case .getCurrentUser:
             return .get
@@ -42,6 +44,7 @@ enum AuthEndpoint: APIEndpoint {
         case .login(let req): return try? encoder.encode(req)
         case .register(let req): return try? encoder.encode(req)
         case .loginWithGoogle(let req): return try? encoder.encode(req)
+        case .loginWithApple(let req): return try? encoder.encode(req)
         case .forgotPassword(let req): return try? encoder.encode(req)
         case .verifyCode(let req): return try? encoder.encode(req)
         case .resetPassword(let req): return try? encoder.encode(req)
@@ -51,7 +54,7 @@ enum AuthEndpoint: APIEndpoint {
     
     var requiresAuth: Bool {
         switch self {
-        case .login, .register, .loginWithGoogle, .forgotPassword, .verifyCode, .resetPassword:
+        case .login, .register, .loginWithGoogle, .loginWithApple, .forgotPassword, .verifyCode, .resetPassword:
             return false
         default:
             return true

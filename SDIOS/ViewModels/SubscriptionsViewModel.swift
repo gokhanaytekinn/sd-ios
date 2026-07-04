@@ -79,6 +79,9 @@ class SubscriptionsViewModel: ObservableObject {
                 stats = SubscriptionStats.calculate(from: list)
                 // Global abonelik sayısını güncelle
                 authViewModel?.subscriptionCount = list.count
+                
+                // Widget verilerini güncelle
+                WidgetDataManager.shared.saveSnapshot(list)
             case .failure(let err):
                 error = err.localizedDescription
             }

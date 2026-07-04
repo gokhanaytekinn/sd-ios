@@ -29,7 +29,7 @@ struct SearchScreen: View {
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                 }
                 Spacer()
-                Text(NSLocalizedString("search", comment: ""))
+                Text("search".localized())
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
@@ -43,7 +43,7 @@ struct SearchScreen: View {
                     .font(.system(size: 20))
                     .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
                 
-                TextField(NSLocalizedString("search_placeholder", comment: ""), text: $searchText)
+                TextField("search_placeholder".localized(), text: $searchText)
                     .font(.system(size: 16))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                     .autocapitalization(.none)
@@ -77,7 +77,7 @@ struct SearchScreen: View {
                 ScrollView {
                     VStack(spacing: 8) {
                         if !searchText.isEmpty {
-                            Text(String(format: NSLocalizedString("results_found", comment: ""), filteredSubscriptions.count))
+                            Text(String(format: "results_found".localized(), filteredSubscriptions.count))
                                 .font(.sdCaptionMedium)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -128,13 +128,13 @@ struct PremiumUpgradeScreen: View {
                     VStack(spacing: 24) {
                         // Hero Title
                         VStack(spacing: 12) {
-                            Text(NSLocalizedString("premium_hero_title", comment: ""))
+                            Text("premium_hero_title".localized())
                                 .font(.system(size: 36, weight: .bold))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(Color.appOnBackground(for: colorScheme))
                                 .padding(.top, 20)
                             
-                            Text(NSLocalizedString("premium_hero_subtitle", comment: ""))
+                            Text("premium_hero_subtitle".localized())
                                 .font(.system(size: 16))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
@@ -144,15 +144,27 @@ struct PremiumUpgradeScreen: View {
                         // Features
                         VStack(spacing: 16) {
                             premiumFeature(
+                                icon: "infinity",
+                                title: "feature_unlimited_tracking_title".localized(),
+                                desc: featureDesc(for: "unlimited")
+                            )
+                            
+                            premiumFeature(
                                 icon: "bolt.circle.fill",
-                                title: NSLocalizedString("feature_auto_capture_title", comment: ""),
+                                title: "feature_auto_capture_title".localized(),
                                 desc: featureDesc(for: "auto_capture")
                             )
                             
                             premiumFeature(
-                                icon: "infinity",
-                                title: NSLocalizedString("feature_unlimited_tracking_title", comment: ""),
-                                desc: featureDesc(for: "unlimited")
+                                icon: "chart.bar.fill",
+                                title: "feature_analytics_title".localized(),
+                                desc: featureDesc(for: "analytics")
+                            )
+                            
+                            premiumFeature(
+                                icon: "speaker.slash.fill",
+                                title: "feature_ad_free_title".localized(),
+                                desc: featureDesc(for: "ad_free")
                             )
                         }
                         .padding(.vertical, 20)
@@ -161,8 +173,8 @@ struct PremiumUpgradeScreen: View {
                         VStack(spacing: 12) {
                             planCard(
                                 id: 0,
-                                title: NSLocalizedString("plan_free", comment: ""),
-                                price: "₺0",
+                                title: "plan_free".localized(),
+                                price: "plan_free_price".localized(),
                                 period: ""
                             )
                             
@@ -175,7 +187,7 @@ struct PremiumUpgradeScreen: View {
                                         id: isYearly ? 2 : 1,
                                         title: product.displayName,
                                         price: product.displayPrice,
-                                        period: isYearly ? "/ \(NSLocalizedString("period_yearly", comment: ""))" : "/ \(NSLocalizedString("period_monthly", comment: ""))",
+                                        period: isYearly ? "/ \("period_yearly".localized())" : "/ \("period_monthly".localized())",
                                         isPopular: isYearly
                                     )
                                 }
@@ -184,60 +196,74 @@ struct PremiumUpgradeScreen: View {
                         
                         // Bottom Section (Moved inside ScrollView)
                         VStack(spacing: 16) {
-                            Button(action: { 
-                                // Uygun ürünü bul
-                                let productToPurchase = authViewModel.iapProducts.first { product in
-                                    if selectedPlan == 1 {
-                                        return product.id.contains("monthly")
-                                    } else if selectedPlan == 2 {
-                                        return product.id.contains("yearly")
+                            if authViewModel.isLoading {
+                                PremiumButtonSkeleton()
+                                    .frame(maxWidth: .infinity)
+                                    .allowsHitTesting(false)
+                            } else {
+                                Button(action: {
+                                    // Uygun ürünü bul
+                                    let productToPurchase = authViewModel.iapProducts.first { product in
+                                        if selectedPlan == 1 {
+                                            return product.id.contains("monthly")
+                                        } else if selectedPlan == 2 {
+                                            return product.id.contains("yearly")
+                                        }
+                                        return false
                                     }
-                                    return false
+                                    
+                                    if let product = productToPurchase {
+                                        authViewModel.purchase(product: product)
+                                    }
+                                }) {
+                                    Text(upgradeButtonText)
+                                        .font(.sdBodyBold)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                                .foregroundColor(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
+                                .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                                )
+                                .disabled(isCurrentPlanSelected || (selectedPlan != 0 && authViewModel.iapProducts.isEmpty))
+                            }
+                            
+                            // Apple Requirement: Auto-Renewable Disclaimer
+                            Text("auto_renewable_disclaimer".localized())
+                                .font(.system(size: 10))
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme).opacity(0.8))
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 4)
+                            
+                            HStack(spacing: 16) {
+                                Button("restore_purchase".localized()) { authViewModel.restorePurchases() }
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                
+                                Button(action: { showTermsDialog = true }) {
+                                    Text("terms_of_use_title".localized())
+                                        .underline()
+                                        .foregroundColor(.primaryBlue)
                                 }
                                 
-                                if let product = productToPurchase {
-                                    authViewModel.purchase(product: product)
+                                Button(action: { showPrivacyDialog = true }) {
+                                    Text("privacy_policy_title".localized())
+                                        .underline()
+                                        .foregroundColor(.primaryBlue)
                                 }
-                            }) {
-                                Text(authViewModel.isLoading ? "loading".localized() : upgradeButtonText)
-                                    .font(.sdBodyBold)
                             }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 45)
-                            .foregroundColor(isCurrentPlanSelected ? Color.secondary : Color.primaryBlue)
-                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                            .cornerRadius(12)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(isCurrentPlanSelected ? Color.appOutline(for: colorScheme).opacity(0.5) : Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                            )
-                            .disabled(isCurrentPlanSelected || authViewModel.isLoading || (selectedPlan != 0 && authViewModel.iapProducts.isEmpty))
-                            
-                            HStack(spacing: 20) {
-                                Button("restore_purchase".localized()) { authViewModel.restorePurchases() }
-                                Button("terms_of_use_title".localized()) { showTermsDialog = true }
-                                Button("privacy_policy_title".localized()) { showPrivacyDialog = true }
-                            }
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .font(.system(size: 11, weight: .medium))
                         }
                         .padding(.top, 24)
                     }
                     .padding(.horizontal, 24)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 30)
                 }
             }
             
-            if authViewModel.isLoading {
-                Color.appBackground(for: colorScheme).opacity(0.8).ignoresSafeArea()
-                VStack(spacing: 16) {
-                    PlanCardSkeleton()
-                    Text("loading".localized())
-                        .font(.sdBodyBold)
-                        .foregroundColor(.primaryBlue)
-                }
-                .transition(.opacity)
-            }
+            // Loading state is represented by button skeleton above.
         }
         .alert("error".localized(), isPresented: Binding(
             get: { authViewModel.error != nil },
@@ -320,7 +346,7 @@ struct PremiumUpgradeScreen: View {
             
             Spacer()
             
-            Text(NSLocalizedString("plans_header", comment: ""))
+            Text("plans_header".localized())
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.primaryBlue)
                 .tracking(1)
@@ -383,7 +409,7 @@ struct PremiumUpgradeScreen: View {
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                     Spacer()
                     if isPopular {
-                        Text(NSLocalizedString("most_popular", comment: ""))
+                        Text("most_popular".localized())
                             .font(.system(size: 10, weight: .bold))
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
@@ -446,31 +472,39 @@ struct PremiumUpgradeScreen: View {
     
     private var upgradeButtonText: String {
         if isCurrentPlanSelected {
-            return NSLocalizedString("current_plan", comment: "")
+            return "current_plan".localized()
         }
         
         let currentTier = authViewModel.tier // 1: Free, 2: Monthly, 3: Yearly
         
         if currentTier == 1 {
-            return NSLocalizedString("upgrade_to_premium_btn", comment: "") // "Premium'a Geç"
+            return "upgrade_to_premium_btn".localized() // "Premium'a Geç"
         } else if currentTier == 2 {
             if selectedPlan == 2 {
-                return NSLocalizedString("upgrade_plan", comment: "") // "Premium'u Yükselt"
+                return "upgrade_plan".localized() // "Premium'u Yükselt"
             }
         } else if currentTier == 3 {
             if selectedPlan == 1 {
-                return NSLocalizedString("downgrade_plan", comment: "") // "Premium'u Düşür"
+                return "downgrade_plan".localized() // "Premium'u Düşür"
             }
         }
         
-        return NSLocalizedString("upgrade_to_premium_btn", comment: "")
+        return "upgrade_to_premium_btn".localized()
     }
     
     private func featureDesc(for type: String) -> String {
-        if type == "auto_capture" {
-            return selectedPlan == 0 ? NSLocalizedString("feature_auto_capture_free_desc", comment: "") : NSLocalizedString("feature_auto_capture_premium_desc", comment: "")
-        } else {
-            return selectedPlan == 0 ? NSLocalizedString("feature_unlimited_tracking_free_desc", comment: "") : NSLocalizedString("feature_unlimited_tracking_premium_desc", comment: "")
+        let isFree = selectedPlan == 0
+        switch type {
+        case "auto_capture":
+            return isFree ? "feature_auto_capture_free_desc".localized() : "feature_auto_capture_premium_desc".localized()
+        case "unlimited":
+            return isFree ? "feature_unlimited_tracking_free_desc".localized() : "feature_unlimited_tracking_premium_desc".localized()
+        case "analytics":
+            return isFree ? "feature_analytics_free_desc".localized() : "feature_advanced_analytics_premium_desc".localized()
+        case "ad_free":
+            return isFree ? "feature_ad_free_free_desc".localized() : "feature_ad_free_desc".localized()
+        default:
+            return ""
         }
     }
     
@@ -497,7 +531,7 @@ struct TransactionHistoryScreen: View {
                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                 }
                 Spacer()
-                Text(NSLocalizedString("transaction_history", comment: ""))
+                Text("transaction_history".localized())
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                 Spacer()
@@ -520,7 +554,7 @@ struct TransactionHistoryScreen: View {
                         ForEach(viewModel.transactions) { tx in
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text(tx.description ?? NSLocalizedString("transaction", comment: ""))
+                                    Text(tx.description ?? "transaction".localized())
                                         .font(.sdBodyMedium)
                                         .foregroundColor(Color.appOnBackground(for: colorScheme))
                                     

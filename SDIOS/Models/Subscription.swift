@@ -14,6 +14,7 @@ enum BillingCycle: Int, Codable, CaseIterable {
     case yearly = 2
     case weekly = 3
     case quarterly = 4
+    case daily = 5
     
     static func fromString(_ value: String) -> BillingCycle {
         switch value.uppercased() {
@@ -21,6 +22,7 @@ enum BillingCycle: Int, Codable, CaseIterable {
         case "YEARLY": return .yearly
         case "WEEKLY": return .weekly
         case "QUARTERLY": return .quarterly
+        case "DAILY": return .daily
         default: return .monthly
         }
     }
@@ -54,13 +56,14 @@ struct Subscription: Codable, Identifiable {
     let reminderEnabled: Bool
     let jointEmails: [String]?
     let isOwner: Bool
+    let isFreeTrial: Bool?
     let participants: [InvitationParticipant]?
     
     var isActive: Bool {
         status == 1 || status == 4
     }
     
-    init(id: String, suspiciousReason: String? = nil, responseMessage: String? = nil, name: String, cost: Double, currency: Int, billingCycle: BillingCycle, billingDay: Int? = nil, billingMonth: Int? = nil, endDate: String? = nil, category: String? = nil, icon: String? = nil, status: Int = 1, isSuspicious: Bool = false, tier: Int? = nil, reminderEnabled: Bool = false, jointEmails: [String]? = nil, isOwner: Bool = true, participants: [InvitationParticipant]? = nil) {
+    init(id: String, suspiciousReason: String? = nil, responseMessage: String? = nil, name: String, cost: Double, currency: Int, billingCycle: BillingCycle, billingDay: Int? = nil, billingMonth: Int? = nil, endDate: String? = nil, category: String? = nil, icon: String? = nil, status: Int = 1, isSuspicious: Bool = false, tier: Int? = nil, reminderEnabled: Bool = false, jointEmails: [String]? = nil, isOwner: Bool = true, isFreeTrial: Bool? = nil, participants: [InvitationParticipant]? = nil) {
         self.id = id
         self.suspiciousReason = suspiciousReason
         self.responseMessage = responseMessage
@@ -79,15 +82,26 @@ struct Subscription: Codable, Identifiable {
         self.reminderEnabled = reminderEnabled
         self.jointEmails = jointEmails
         self.isOwner = isOwner
+        self.isFreeTrial = isFreeTrial
         self.participants = participants
     }
     
     func getNextRenewalDate() -> Date? {
-        guard let billingDay = billingDay else { return nil }
         let calendar = Calendar.current
         let now = Date()
         
-        if billingCycle == .yearly, let billingMonth = billingMonth {
+        switch billingCycle {
+        case .daily:
+            return now
+        case .weekly:
+            guard let billingDay else { return nil }
+            // billingDay: 1...7 (Mon...Sun)
+            let weekdayNow = ((calendar.component(.weekday, from: now) + 5) % 7) + 1
+            var daysUntil = billingDay - weekdayNow
+            if daysUntil < 0 { daysUntil += 7 }
+            return calendar.date(byAdding: .day, value: daysUntil, to: now)
+        case .yearly:
+            guard let billingDay, let billingMonth else { return nil }
             var components = calendar.dateComponents([.year], from: now)
             components.month = billingMonth
             let daysInMonth = calendar.range(of: .day, in: .month, for: calendar.date(from: components) ?? now)?.count ?? 28
@@ -98,7 +112,8 @@ struct Subscription: Codable, Identifiable {
             }
             components.year = (components.year ?? 0) + 1
             return calendar.date(from: components)
-        } else {
+        case .monthly, .quarterly:
+            guard let billingDay else { return nil }
             var components = calendar.dateComponents([.year, .month], from: now)
             let daysInMonth = calendar.range(of: .day, in: .month, for: now)?.count ?? 28
             components.day = min(billingDay, daysInMonth)
@@ -106,7 +121,8 @@ struct Subscription: Codable, Identifiable {
             if let target = calendar.date(from: components), target >= now {
                 return target
             }
-            if let nextMonth = calendar.date(byAdding: .month, value: 1, to: now) {
+            let monthStep = billingCycle == .quarterly ? 3 : 1
+            if let nextMonth = calendar.date(byAdding: .month, value: monthStep, to: now) {
                 var nextComponents = calendar.dateComponents([.year, .month], from: nextMonth)
                 let nextDaysInMonth = calendar.range(of: .day, in: .month, for: nextMonth)?.count ?? 28
                 nextComponents.day = min(billingDay, nextDaysInMonth)
@@ -144,6 +160,8 @@ struct SubscriptionStats: Codable {
                 return total + (convertedCost * 4.0)
             case .quarterly:
                 return total + (convertedCost / 3.0)
+            case .daily:
+                return total + (convertedCost * 30.0)
             }
         }
         

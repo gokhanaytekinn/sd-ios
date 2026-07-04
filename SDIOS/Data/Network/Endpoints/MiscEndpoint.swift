@@ -10,6 +10,7 @@ enum MiscEndpoint: APIEndpoint {
     case rejectInvitation(id: String)
     case removeParticipant(subscriptionId: String, email: String)
     case verifyPurchase(PurchaseRequest)
+    case submitSupportTicket(SupportTicketRequest)
     
     var path: String {
         switch self {
@@ -21,6 +22,7 @@ enum MiscEndpoint: APIEndpoint {
         case .rejectInvitation(let id): return "/api/invitations/\(id)/reject"
         case .removeParticipant(let subId, let email): return "/api/subscriptions/\(subId)/participants/\(email)"
         case .verifyPurchase: return "/api/purchases/verify"
+        case .submitSupportTicket: return "/api/support/tickets"
         }
     }
     
@@ -32,6 +34,8 @@ enum MiscEndpoint: APIEndpoint {
             return .post
         case .removeParticipant:
             return .delete
+        case .submitSupportTicket:
+            return .post
         }
     }
     
@@ -40,6 +44,7 @@ enum MiscEndpoint: APIEndpoint {
         switch self {
         case .getConvertedAmount(let req): return try? encoder.encode(req)
         case .verifyPurchase(let req): return try? encoder.encode(req)
+        case .submitSupportTicket(let req): return try? encoder.encode(req)
         default: return nil
         }
     }

@@ -7,6 +7,7 @@ protocol ApiServiceProtocol {
     func login(_ request: LoginRequest) async throws -> ApiAuthResponse
     func register(_ request: RegisterRequest) async throws -> ApiAuthResponse
     func loginWithGoogle(_ request: GoogleAuthRequest) async throws -> ApiAuthResponse
+    func loginWithApple(_ request: AppleAuthRequest) async throws -> ApiAuthResponse
     func getCurrentUser() async throws -> UserResponse
     func deleteAccount() async throws
     func forgotPassword(_ request: ForgotPasswordRequest) async throws
@@ -35,6 +36,11 @@ protocol ApiServiceProtocol {
     func getReminders() async throws -> [ReminderResponse]
     
     // Analytics
+    #if !WIDGET
+    func getAnalyticsSummary(category: String?) async throws -> AnalyticsSummaryResponse
+
+    func getAnalyticsInsights() async throws -> AnalyticsInsightResponse
+    #endif
     func getConvertedAmount(_ request: ConversionRequest) async throws -> Double
     
     // Invitations
@@ -45,4 +51,7 @@ protocol ApiServiceProtocol {
     
     // Purchase
     func verifyPurchase(_ request: PurchaseRequest) async throws -> UserResponse
+
+    // Support Tickets
+    func submitSupportTicket(_ request: SupportTicketRequest) async throws
 }
