@@ -47,11 +47,12 @@ struct AnalyticsScreen: View {
                                 peakSpendingDayCard
                                 categoryBattleCard
                                 billingSplitCard
+                                cardSpendingBreakdownCard
+                                topCardInsightCard
+                                cardCountSummaryCard
+                                missingCardInfoCard
                                 calendarSection
                             }
-                            
-                            // 5. Insights
-                            insightsSection
                             
                             Spacer().frame(height: 100)
                         }
@@ -181,44 +182,80 @@ struct AnalyticsScreen: View {
     
     // MARK: - Advanced Analytics Cards
     
+    private var cardAnalytics: CardAnalyticsSummary {
+        let currency = viewModel.summary?.currency ?? 1
+        return CardAnalyticsCalculator.calculate(
+            from: viewModel.allSubscriptions,
+            category: viewModel.selectedCategory,
+            targetCurrency: currency
+        )
+    }
+    
+    private func analyticsCardContainer<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        content()
+            .padding(20)
+            .background(Color.clear)
+            .cornerRadius(24)
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+            )
+            .padding(.horizontal, 24)
+    }
+    
     private var peakSpendingDayCard: some View {
         Group {
             if let summary = viewModel.summary, !summary.calendarEvents.isEmpty {
                 let peakData = calculatePeakSpendingDay(events: summary.calendarEvents)
-                VStack(alignment: .leading, spacing: 12) {
-                    HStack(spacing: 12) {
-                        ZStack {
-                            Circle()
-                                .stroke(Color.primaryBlue.opacity(0.3), lineWidth: 1)
-                                .frame(width: 44, height: 44)
+                let cardBreakdown = CardAnalyticsCalculator.peakDayCardBreakdown(
+                    events: summary.calendarEvents,
+                    subscriptions: viewModel.allSubscriptions,
+                    peakDay: peakData.day,
+                    calendarMonth: calendarMonth,
+                    category: viewModel.selectedCategory
+                )
+                
+                analyticsCardContainer {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(spacing: 12) {
+                            ZStack {
+                                Circle()
+                                    .stroke(Color.primaryBlue.opacity(0.3), lineWidth: 1)
+                                    .frame(width: 44, height: 44)
+                                
+                                Image(systemName: "calendar.badge.exclamationmark")
+                                    .foregroundColor(.primaryBlue)
+                                    .font(.system(size: 20))
+                            }
                             
-                            Image(systemName: "calendar.badge.exclamationmark")
-                                .foregroundColor(.primaryBlue)
-                                .font(.system(size: 20))
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("peak_spending_day_title".localized())
+                                    .font(.sdCaptionBold)
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                
+                                let formattedAmount = CurrencyFormatter.formatAmount(peakData.total, currencyCode: summary.currency)
+                                Text(String(format: "peak_spending_day_desc".localized(), peakData.day, formattedAmount))
+                                    .font(.sdLabel)
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            }
+                            
+                            Spacer()
                         }
                         
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("peak_spending_day_title".localized())
-                                .font(.sdCaptionBold)
-                                .foregroundColor(Color.appOnBackground(for: colorScheme))
-                            
-                            let formattedAmount = CurrencyFormatter.formatAmount(peakData.total, currencyCode: summary.currency)
-                            Text(String(format: "peak_spending_day_desc".localized(), peakData.day, formattedAmount))
-                                .font(.sdLabel)
-                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        if !cardBreakdown.isEmpty {
+                            Text(cardBreakdown.map { item in
+                                String(
+                                    format: "peak_spending_card_line".localized(),
+                                    item.displayName,
+                                    CurrencyFormatter.formatAmount(item.amount, currencyCode: summary.currency)
+                                )
+                            }.joined(separator: " · "))
+                            .font(.sdCaption)
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .fixedSize(horizontal: false, vertical: true)
                         }
-                        
-                        Spacer()
                     }
                 }
-                .padding(20)
-                .background(Color.clear)
-                .cornerRadius(24)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 24)
-                        .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
-                )
-                .padding(.horizontal, 24)
             }
         }
     }
@@ -282,6 +319,168 @@ struct AnalyticsScreen: View {
                         .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
                 )
                 .padding(.horizontal, 24)
+            }
+        }
+    }
+    
+    private var cardSpendingBreakdownCard: some View {
+        Group {
+            if !cardAnalytics.groups.isEmpty, let summary = viewModel.summary {
+                let total = max(cardAnalytics.totalLabeledMonthlyAmount, 0.01)
+                analyticsCardContainer {
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(spacing: 12) {
+                            ZStack {
+                                Circle()
+                                    .stroke(Color.primaryBlue.opacity(0.3), lineWidth: 1)
+                                    .frame(width: 44, height: 44)
+                                
+                                Image(systemName: "creditcard.fill")
+                                    .foregroundColor(.primaryBlue)
+                                    .font(.system(size: 20))
+                            }
+                            
+                            Text("card_spending_title".localized())
+                                .font(.sdCaptionBold)
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            Spacer()
+                        }
+                        
+                        VStack(spacing: 12) {
+                            ForEach(cardAnalytics.groups) { group in
+                                VStack(alignment: .leading, spacing: 6) {
+                                    HStack {
+                                        Text(group.displayName)
+                                            .font(.sdLabel)
+                                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                            .lineLimit(1)
+                                        Spacer()
+                                        Text(CurrencyFormatter.formatAmount(group.monthlyAmount, currencyCode: summary.currency))
+                                            .font(.sdCaptionBold)
+                                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                    }
+                                    
+                                    GeometryReader { geo in
+                                        RoundedRectangle(cornerRadius: 4)
+                                            .fill(Color.primaryBlue.opacity(0.75))
+                                            .frame(width: geo.size.width * CGFloat(group.monthlyAmount / total))
+                                    }
+                                    .frame(height: 8)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private var topCardInsightCard: some View {
+        Group {
+            if let topCard = cardAnalytics.topCard,
+               cardAnalytics.topCardSharePercent > 0 {
+                analyticsCardContainer {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .stroke(Color.indigo.opacity(0.3), lineWidth: 1)
+                                .frame(width: 44, height: 44)
+                            
+                            Image(systemName: "creditcard.fill")
+                                .foregroundColor(.indigo)
+                                .font(.system(size: 20))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("top_card_title".localized())
+                                .font(.sdCaptionBold)
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            Text(String(
+                                format: "top_card_desc".localized(),
+                                topCard.displayName,
+                                Int(round(cardAnalytics.topCardSharePercent))
+                            ))
+                            .font(.sdLabel)
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            .fixedSize(horizontal: false, vertical: true)
+                        }
+                        
+                        Spacer()
+                    }
+                }
+            }
+        }
+    }
+    
+    private var cardCountSummaryCard: some View {
+        Group {
+            if cardAnalytics.uniqueCardCount > 0 {
+                analyticsCardContainer {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .stroke(Color.teal.opacity(0.3), lineWidth: 1)
+                                .frame(width: 44, height: 44)
+                            
+                            Image(systemName: "rectangle.stack.fill")
+                                .foregroundColor(.teal)
+                                .font(.system(size: 20))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("card_count_title".localized())
+                                .font(.sdCaptionBold)
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            Text(String(
+                                format: "card_count_desc".localized(),
+                                cardAnalytics.uniqueCardCount,
+                                cardAnalytics.labeledSubscriptionCount
+                            ))
+                            .font(.sdLabel)
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
+                        
+                        Spacer()
+                    }
+                }
+            }
+        }
+    }
+    
+    private var missingCardInfoCard: some View {
+        Group {
+            if cardAnalytics.missingCardInfoCount > 0 {
+                analyticsCardContainer {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                                .frame(width: 44, height: 44)
+                            
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundColor(.orange)
+                                .font(.system(size: 20))
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("missing_card_info_title".localized())
+                                .font(.sdCaptionBold)
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            Text(String(
+                                format: "missing_card_info_desc".localized(),
+                                cardAnalytics.missingCardInfoCount
+                            ))
+                            .font(.sdLabel)
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
+                        
+                        Spacer()
+                    }
+                }
             }
         }
     }
@@ -655,6 +854,7 @@ struct AnalyticsScreen: View {
                                 SubscriptionCard(
                                     subscription: subscription,
                                     showDate: false,
+                                    showCardInfo: true,
                                     onTap: { popoverDay = nil }
                                 )
                             } else {
@@ -677,10 +877,24 @@ struct AnalyticsScreen: View {
     }
     
     private func registrationRow(for event: CalendarEvent) -> some View {
-        HStack {
+        HStack(alignment: .top) {
             Text(event.icon ?? "📦")
-            Text(event.subscriptionName)
-                .font(.sdLabelSemibold)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(event.subscriptionName)
+                    .font(.sdLabelSemibold)
+                if let cardInfo = getSubscription(for: event.subscriptionId)?.cardInfo?
+                    .trimmingCharacters(in: .whitespacesAndNewlines),
+                   !cardInfo.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "creditcard")
+                            .font(.system(size: 10))
+                        Text(cardInfo)
+                            .font(.sdSmall)
+                            .lineLimit(1)
+                    }
+                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                }
+            }
             Spacer()
             if let summary = viewModel.summary {
                 Text(CurrencyFormatter.formatAmount(event.amount, currencyCode: summary.currency))
@@ -692,45 +906,6 @@ struct AnalyticsScreen: View {
         .cornerRadius(12)
     }
 
-    
-    // MARK: - Insights Section
-    private var insightsSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                Image(systemName: "lightbulb.fill")
-                    .foregroundColor(.yellow)
-                Text("smart_insights".localized())
-                    .font(.sdSubheadlineSemibold)
-                    .foregroundColor(Color.appOnBackground(for: colorScheme))
-            }
-            
-            VStack(alignment: .leading, spacing: 12) {
-                ForEach(viewModel.insights, id: \.self) { insightKey in
-                    HStack(alignment: .top, spacing: 8) {
-                        Circle()
-                            .fill(Color.primaryBlue)
-                            .frame(width: 6, height: 6)
-                            .padding(.top, 6)
-                        
-                        Text(getLocalizedInsight(insightKey))
-                            .font(.sdLabel)
-                            .foregroundColor(Color.appOnBackground(for: colorScheme))
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    if insightKey != viewModel.insights.last {
-                        Divider()
-                    }
-                }
-            }
-        }
-        .padding(24)
-        .background(Color.clear)
-        .overlay(
-            RoundedRectangle(cornerRadius: 24)
-                .stroke(Color.appOutline(for: colorScheme), lineWidth: 1)
-        )
-        .padding(.horizontal, 24)
-    }
     
     // MARK: - Helper Functions
     
@@ -777,18 +952,6 @@ struct AnalyticsScreen: View {
         return days
     }
 
-    private func getLocalizedInsight(_ key: String) -> String {
-        if key.contains(":") {
-            let parts = key.split(separator: ":")
-            if parts.count == 2 {
-                let baseKey = String(parts[0])
-                let param = String(parts[1])
-                return String(format: baseKey.localized(), param.localized())
-            }
-        }
-        return key.localized()
-    }
-    
     // MARK: - Premium Lock Overlay
     private var premiumLockOverlay: some View {
         VStack(spacing: 20) {

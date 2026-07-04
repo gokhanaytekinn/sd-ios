@@ -248,6 +248,14 @@
 "card_info" = "Card Info";
 "card_info_placeholder" = "e.g. Chase Credit Card";
 "card_info_hint" = "This is not real card information. It is a note to help you remember which card is used for payment.";
+"card_spending_title" = "Spending by Card";
+"top_card_title" = "Top Payment Card";
+"top_card_desc" = "%@ accounts for %d%% of your total spending";
+"card_count_title" = "Card Summary";
+"card_count_desc" = "%d different cards · %d subscriptions matched";
+"missing_card_info_title" = "Missing Card Info";
+"missing_card_info_desc" = "%d subscriptions have no card info";
+"peak_spending_card_line" = "%@: %@";
 "merchant" = "Marchand";
 "nav_all_subscriptions" = "Tous les abonnements";
 "add" = "Ajouter";

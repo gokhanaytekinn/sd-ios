@@ -73,6 +73,7 @@ struct SubscriptionCard: View {
     var currency: Int = 1
     var showDate: Bool = false
     var showCountdown: Bool = false
+    var showCardInfo: Bool = false
     var isJoint: Bool = false
     var onTap: () -> Void = {}
     
@@ -104,6 +105,19 @@ struct SubscriptionCard: View {
                         Text(categoryText)
                             .font(.sdSmall)
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        
+                        if showCardInfo,
+                           let cardInfo = subscription.cardInfo?.trimmingCharacters(in: .whitespacesAndNewlines),
+                           !cardInfo.isEmpty {
+                            HStack(spacing: 4) {
+                                Image(systemName: "creditcard")
+                                    .font(.system(size: 10))
+                                Text(cardInfo)
+                                    .font(.sdSmall)
+                                    .lineLimit(1)
+                            }
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
                     }
                     
                     Spacer()

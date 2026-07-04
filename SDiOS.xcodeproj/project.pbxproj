@@ -40,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D9145BD02FF8FD0800FAF0AF /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D917E5072F614D70002A23DA /* SDiOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDiOS.xcodeproj; sourceTree = "<group>"; };
 		D92551FD2F5F61B700DC8A83 /* SDWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SDWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D92551FF2F5F61B700DC8A83 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -159,6 +160,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D9145BD22FF8FD0800FAF0AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		D917E5092F614D70002A23DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,7 +349,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D94C04682F59F91A0014BB86 /* Build configuration list for PBXProject "SDIOS" */;
+			buildConfigurationList = D94C04682F59F91A0014BB86 /* Build configuration list for PBXProject "SDiOS" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -400,6 +408,10 @@
 				{
 					ProductGroup = D94E817D2F766D46008F2DAF /* Products */;
 					ProjectRef = D94E817B2F766D46008F2DAF /* SDiOS.xcodeproj */;
+				},
+				{
+					ProductGroup = D9145BD22FF8FD0800FAF0AF /* Products */;
+					ProjectRef = D9145BD02FF8FD0800FAF0AF /* SDiOS.xcodeproj */;
 				},
 				{
 					ProductGroup = D9E89D4E2F5FF88400C6D2F0 /* Products */;
@@ -759,7 +771,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D94C04682F59F91A0014BB86 /* Build configuration list for PBXProject "SDIOS" */ = {
+		D94C04682F59F91A0014BB86 /* Build configuration list for PBXProject "SDiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D94C04762F59F91B0014BB86 /* Debug */,

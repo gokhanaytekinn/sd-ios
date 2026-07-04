@@ -17,14 +17,4 @@ class AnalyticsRepository: AnalyticsRepositoryProtocol {
             return .failure(error)
         }
     }
-    
-    
-    func getInsights() async -> Result<AnalyticsInsightResponse, Error> {
-        do {
-            let response = try await api.getAnalyticsInsights()
-            return .success(response)
-        } catch {
-            return .failure(error)
-        }
-    }
 }

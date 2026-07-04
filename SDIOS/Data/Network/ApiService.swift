@@ -164,11 +164,6 @@ class ApiService: ApiServiceProtocol {
         let endpoint = GenericEndpoint(path: path, method: .get)
         return try await client.execute(endpoint)
     }
-    
-    
-    func getAnalyticsInsights() async throws -> AnalyticsInsightResponse {
-        return try await client.execute(AnalyticsEndpoint.getInsights)
-    }
     #endif
     
     func getConvertedAmount(_ request: ConversionRequest) async throws -> Double {
