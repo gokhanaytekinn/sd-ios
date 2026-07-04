@@ -377,24 +377,14 @@ struct FormFieldLabelWithInfo: View {
 
 struct SettingToggleRow: View {
     let title: String
-    var subtitle: String? = nil
     var infoMessage: String? = nil
     @Binding var isOn: Bool
     var isDisabled: Bool = false
 
-    @Environment(\.colorScheme) var colorScheme
-
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.system(size: 16, weight: .medium))
-                if let subtitle = subtitle {
-                    Text(subtitle)
-                        .font(.system(size: 12))
-                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                }
-            }
+            Text(title)
+                .font(.system(size: 16, weight: .medium))
 
             Spacer()
 

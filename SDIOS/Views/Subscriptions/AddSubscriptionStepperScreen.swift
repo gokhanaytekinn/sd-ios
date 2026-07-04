@@ -445,7 +445,6 @@ struct AddSubscriptionStepperScreen: View {
             VStack(alignment: .leading, spacing: 12) {
                 SettingToggleRow(
                     title: "reminder".localized(),
-                    subtitle: "notify_1_day_before".localized(),
                     infoMessage: "reminder_hint".localized(),
                     isOn: $viewModel.reminderEnabled
                 )
@@ -454,7 +453,6 @@ struct AddSubscriptionStepperScreen: View {
             VStack(alignment: .leading, spacing: 12) {
                 SettingToggleRow(
                     title: "free_trial".localized(),
-                    subtitle: "free_trial_desc".localized(),
                     infoMessage: "free_trial_hint".localized(),
                     isOn: $viewModel.isFreeTrial,
                     isDisabled: viewModel.isRestrictedShortcutName
@@ -463,13 +461,8 @@ struct AddSubscriptionStepperScreen: View {
 
             VStack(alignment: .leading, spacing: 12) {
                 HStack(alignment: .center, spacing: 8) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("subscription_end_date".localized())
-                            .font(.system(size: 16, weight: .medium))
-                        Text("optional".localized())
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                    }
+                    Text("subscription_end_date".localized())
+                        .font(.system(size: 16, weight: .medium))
 
                     Spacer()
 
