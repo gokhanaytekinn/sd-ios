@@ -178,14 +178,17 @@ struct AddSubscriptionStepperScreen: View {
                 text: $viewModel.name,
                 errorMessage: viewModel.nameError,
                 leadingIcon: "pencil",
+                infoMessage: "service_name_hint".localized(),
                 focusBinding: $focusedField,
                 focusValue: "serviceName"
             )
 
             VStack(alignment: .leading, spacing: 10) {
-                Text("category".localized())
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                FormFieldLabelWithInfo(
+                    title: "category".localized(),
+                    infoMessage: "category_hint".localized(),
+                    titleFont: .system(size: 14, weight: .bold)
+                )
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
@@ -289,14 +292,18 @@ struct AddSubscriptionStepperScreen: View {
                     errorMessage: viewModel.amountError,
                     keyboardType: .decimalPad,
                     leadingIcon: "banknote",
+                    infoMessage: "amount_hint".localized(),
                     focusBinding: $focusedField,
                     focusValue: "amount"
                 )
                 .frame(maxWidth: .infinity)
 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("currency".localized())
-                        .font(.system(size: 14, weight: .bold))
+                    FormFieldLabelWithInfo(
+                        title: "currency".localized(),
+                        infoMessage: "currency_hint".localized(),
+                        titleFont: .system(size: 14, weight: .bold)
+                    )
 
                     Menu {
                         ForEach(CurrencyPreferences.currencies, id: \.id) { cur in
@@ -344,8 +351,11 @@ struct AddSubscriptionStepperScreen: View {
             )
 
             VStack(alignment: .leading, spacing: 10) {
-                Text("period".localized())
-                    .font(.system(size: 14, weight: .bold))
+                FormFieldLabelWithInfo(
+                    title: "period".localized(),
+                    infoMessage: "period_hint".localized(),
+                    titleFont: .system(size: 14, weight: .bold)
+                )
 
                 HStack(spacing: 0) {
                     periodButton(title: "billing_daily_label".localized(), cycle: .daily)
@@ -363,11 +373,16 @@ struct AddSubscriptionStepperScreen: View {
 
             if viewModel.selectedBillingCycle != .daily {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(viewModel.isFreeTrial ? "trial_end_date".localized() :
+                    FormFieldLabelWithInfo(
+                        title: viewModel.isFreeTrial ? "trial_end_date".localized() :
                             (viewModel.selectedBillingCycle == .yearly
                              ? "payment_recurrence_day_month".localized()
-                             : "payment_recurrence_day".localized()))
-                        .font(.system(size: 14, weight: .bold))
+                             : "payment_recurrence_day".localized()),
+                        infoMessage: viewModel.isFreeTrial
+                            ? "trial_end_date_hint".localized()
+                            : "payment_recurrence_day_hint".localized(),
+                        titleFont: .system(size: 14, weight: .bold)
+                    )
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
@@ -392,6 +407,12 @@ struct AddSubscriptionStepperScreen: View {
 
             if viewModel.selectedBillingCycle == .yearly {
                 VStack(alignment: .leading, spacing: 10) {
+                    FormFieldLabelWithInfo(
+                        title: "payment_recurrence_month".localized(),
+                        infoMessage: "payment_recurrence_month_hint".localized(),
+                        titleFont: .system(size: 14, weight: .bold)
+                    )
+
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(1...12, id: \.self) { month in
@@ -422,40 +443,26 @@ struct AddSubscriptionStepperScreen: View {
     private var preferencesStep: some View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("reminder".localized())
-                            .font(.system(size: 16, weight: .medium))
-                        Text("notify_1_day_before".localized())
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                    }
-                    Spacer()
-                    Toggle("", isOn: $viewModel.reminderEnabled)
-                        .tint(.primaryBlue)
-                        .labelsHidden()
-                }
+                SettingToggleRow(
+                    title: "reminder".localized(),
+                    subtitle: "notify_1_day_before".localized(),
+                    infoMessage: "reminder_hint".localized(),
+                    isOn: $viewModel.reminderEnabled
+                )
             }
 
             VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("free_trial".localized())
-                            .font(.system(size: 16, weight: .medium))
-                        Text("free_trial_desc".localized())
-                            .font(.system(size: 12))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                    }
-                    Spacer()
-                    Toggle("", isOn: $viewModel.isFreeTrial)
-                        .tint(.primaryBlue)
-                        .labelsHidden()
-                        .disabled(viewModel.isRestrictedShortcutName)
-                }
+                SettingToggleRow(
+                    title: "free_trial".localized(),
+                    subtitle: "free_trial_desc".localized(),
+                    infoMessage: "free_trial_hint".localized(),
+                    isOn: $viewModel.isFreeTrial,
+                    isDisabled: viewModel.isRestrictedShortcutName
+                )
             }
 
             VStack(alignment: .leading, spacing: 12) {
-                HStack {
+                HStack(alignment: .center, spacing: 8) {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("subscription_end_date".localized())
                             .font(.system(size: 16, weight: .medium))
@@ -463,7 +470,14 @@ struct AddSubscriptionStepperScreen: View {
                             .font(.system(size: 12))
                             .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
                     }
+
                     Spacer()
+
+                    InfoIconButton(
+                        title: "subscription_end_date".localized(),
+                        message: "subscription_end_date_hint".localized()
+                    )
+
                     Toggle(
                         "",
                         isOn: Binding(
@@ -512,6 +526,7 @@ struct AddSubscriptionStepperScreen: View {
                 keyboardType: .emailAddress,
                 trailingIcon: "plus",
                 leadingIcon: "envelope",
+                infoMessage: "joint_users_hint".localized(),
                 onTrailingIconTap: { viewModel.addJointEmail() },
                 focusBinding: $focusedField,
                 focusValue: "emailInput"
