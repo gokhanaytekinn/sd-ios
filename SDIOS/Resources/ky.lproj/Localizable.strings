@@ -243,6 +243,9 @@
 "sort_by" = "Иреттөө";
 "date" = "Күнү";
 "amount" = "Суммасы";
+"card_info" = "Card Info";
+"card_info_placeholder" = "e.g. Chase Credit Card";
+"card_info_hint" = "This is not real card information. It is a note to help you remember which card is used for payment.";
 "merchant" = "Сатуучу";
 "nav_all_subscriptions" = "Бардык жазылуулар";
 "add" = "Кошуу";

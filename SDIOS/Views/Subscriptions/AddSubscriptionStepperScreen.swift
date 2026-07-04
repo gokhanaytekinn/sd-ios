@@ -333,6 +333,16 @@ struct AddSubscriptionStepperScreen: View {
                 .frame(width: 140)
             }
 
+            SDOutlinedTextField(
+                title: "card_info".localized(),
+                placeholder: "card_info_placeholder".localized(),
+                text: $viewModel.cardInfo,
+                leadingIcon: "creditcard",
+                infoMessage: "card_info_hint".localized(),
+                focusBinding: $focusedField,
+                focusValue: "cardInfo"
+            )
+
             VStack(alignment: .leading, spacing: 10) {
                 Text("period".localized())
                     .font(.system(size: 14, weight: .bold))

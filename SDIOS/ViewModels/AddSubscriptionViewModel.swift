@@ -23,6 +23,7 @@ class AddSubscriptionViewModel: ObservableObject {
     @Published var endDate: Date? = nil // Opsiyonel abonelik bitiş tarihi (yyyy-MM-dd)
     @Published var reminderEnabled = true { didSet { clearDateError() } } // Hatırlatıcı aktif mi?
     @Published var isFreeTrial = false // Ücretsiz deneme mi?
+    @Published var cardInfo = ""                                 // Ödeme kartı notu
     @Published var jointEmails: [String] = []                  // Paylaşımlı abonelik için eklenen e-postalar
     @Published var participants: [InvitationParticipant] = []  // Mevcut katılımcılar (düzenleme modunda)
     @Published var emailInput: String = ""                     // Yeni e-posta girişi için geçici değişken
@@ -148,6 +149,7 @@ class AddSubscriptionViewModel: ObservableObject {
         endDate = Self.parseEndDate(subscription.endDate)
         reminderEnabled = subscription.reminderEnabled
         isFreeTrial = subscription.isFreeTrial ?? false
+        cardInfo = subscription.cardInfo ?? ""
         jointEmails = subscription.jointEmails ?? []
         participants = subscription.participants ?? []
         applyRestrictedShortcutFieldRules()
@@ -310,6 +312,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     endDate: endDateString,
                     reminderEnabled: reminderEnabled,
                     isFreeTrial: isFreeTrial,
+                    cardInfo: cardInfo.isEmpty ? "" : cardInfo,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
                 let result = await updateSubscriptionUseCase.execute(id: editId, request: request)
@@ -329,6 +332,7 @@ class AddSubscriptionViewModel: ObservableObject {
                     endDate: endDateString,
                     reminderEnabled: reminderEnabled,
                     isFreeTrial: isFreeTrial,
+                    cardInfo: cardInfo.isEmpty ? nil : cardInfo,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
                 let result = await createSubscriptionUseCase.execute(request: request)
@@ -462,6 +466,7 @@ class AddSubscriptionViewModel: ObservableObject {
         endDate = nil
         reminderEnabled = true
         isFreeTrial = false
+        cardInfo = ""
         jointEmails = []
         participants = []
         emailInput = ""

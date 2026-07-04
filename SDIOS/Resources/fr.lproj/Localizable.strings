@@ -245,6 +245,9 @@
 "sort_by" = "Trier par";
 "date" = "Date";
 "amount" = "Montant";
+"card_info" = "Card Info";
+"card_info_placeholder" = "e.g. Chase Credit Card";
+"card_info_hint" = "This is not real card information. It is a note to help you remember which card is used for payment.";
 "merchant" = "Marchand";
 "nav_all_subscriptions" = "Tous les abonnements";
 "add" = "Ajouter";

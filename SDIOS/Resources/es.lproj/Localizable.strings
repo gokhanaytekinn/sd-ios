@@ -246,6 +246,9 @@
 "sort_by" = "Ordenar por";
 "date" = "Fecha";
 "amount" = "Importe";
+"card_info" = "Card Info";
+"card_info_placeholder" = "e.g. Chase Credit Card";
+"card_info_hint" = "This is not real card information. It is a note to help you remember which card is used for payment.";
 "merchant" = "Comerciante";
 "nav_all_subscriptions" = "Todas las suscripciones";
 "add" = "Añadir";

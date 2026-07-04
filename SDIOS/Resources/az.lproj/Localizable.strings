@@ -246,6 +246,9 @@
 "sort_by" = "Sırala";
 "date" = "Tarix";
 "amount" = "Məbləğ";
+"card_info" = "Card Info";
+"card_info_placeholder" = "e.g. Chase Credit Card";
+"card_info_hint" = "This is not real card information. It is a note to help you remember which card is used for payment.";
 "merchant" = "Satıcı";
 "nav_all_subscriptions" = "Bütün Abunəliklər";
 "add" = "Əlavə et";

@@ -242,6 +242,9 @@
 "sort_by" = "Urutkan Berdasarkan";
 "date" = "Tanggal";
 "amount" = "Jumlah";
+"card_info" = "Card Info";
+"card_info_placeholder" = "e.g. Chase Credit Card";
+"card_info_hint" = "This is not real card information. It is a note to help you remember which card is used for payment.";
 "merchant" = "Pedagang";
 "nav_all_subscriptions" = "Semua Langganan";
 "add" = "Tambah";
