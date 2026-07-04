@@ -48,6 +48,7 @@
 "language" = "تىل";
 "help_center" = "Yardım Merkezi";
 "privacy_policy" = "Gizlilik Politikası";
+"rate_us" = "Rate Us";
 "logout" = "چېكىنىش";
 "version_info" = "Versiyon %1$@ (Build %2$d)";
 "version" = "Versiyon %@";
@@ -243,6 +244,19 @@
 "card_info" = "Card Info";
 "card_info_placeholder" = "e.g. Chase Credit Card";
 "card_info_hint" = "This is not real card information. It is a note to help you remember which card is used for payment.";
+"service_name_hint" = "Enter the name of the subscription, e.g. Netflix or Spotify.";
+"category_hint" = "Choose a category to classify this subscription.";
+"amount_hint" = "Enter the amount you pay each billing period.";
+"currency_hint" = "Select the currency used for payment.";
+"period_hint" = "Choose how often the subscription renews: daily, weekly, monthly, or yearly.";
+"payment_recurrence_day_hint" = "Select which day of the period the payment is charged.";
+"payment_recurrence_month" = "Payment Recurrence Month";
+"payment_recurrence_month_hint" = "For yearly subscriptions, select which month the payment is charged.";
+"trial_end_date_hint" = "Select when the free trial ends. Regular billing starts after this date.";
+"reminder_hint" = "You will receive a notification one day before the payment date.";
+"free_trial_hint" = "We will remind you one day before the free trial ends.";
+"subscription_end_date_hint" = "Set when the subscription ends. Leave empty for an ongoing subscription.";
+"joint_users_hint" = "Add email addresses of people you want to share this subscription with.";
 "card_spending_title" = "Spending by Card";
 "top_card_title" = "Top Payment Card";
 "top_card_desc" = "%@ accounts for %d%% of your total spending";

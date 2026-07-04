@@ -330,6 +330,76 @@ struct SDButton: View {
     }
 }
 
+// MARK: - Form Field Info
+struct InfoIconButton: View {
+    let title: String
+    let message: String
+
+    @State private var showInfoAlert = false
+    @Environment(\.colorScheme) var colorScheme
+
+    var body: some View {
+        Button(action: { showInfoAlert = true }) {
+            Image(systemName: "info.circle")
+                .font(.system(size: 16))
+                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+        }
+        .buttonStyle(.plain)
+        .alert(title, isPresented: $showInfoAlert) {
+            Button("ok".localized(), role: .cancel) {}
+        } message: {
+            Text(message)
+        }
+    }
+}
+
+struct FormFieldLabelWithInfo: View {
+    let title: String
+    var infoMessage: String? = nil
+    var titleFont: Font = .sdCaptionMedium
+
+    @Environment(\.colorScheme) var colorScheme
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 8) {
+            Text(title)
+                .font(titleFont)
+                .foregroundColor(Color.appOnBackground(for: colorScheme))
+
+            Spacer()
+
+            if let infoMessage = infoMessage {
+                InfoIconButton(title: title, message: infoMessage)
+            }
+        }
+    }
+}
+
+struct SettingToggleRow: View {
+    let title: String
+    var infoMessage: String? = nil
+    @Binding var isOn: Bool
+    var isDisabled: Bool = false
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 8) {
+            Text(title)
+                .font(.system(size: 16, weight: .medium))
+
+            Spacer()
+
+            if let infoMessage = infoMessage {
+                InfoIconButton(title: title, message: infoMessage)
+            }
+
+            Toggle("", isOn: $isOn)
+                .tint(.primaryBlue)
+                .labelsHidden()
+                .disabled(isDisabled)
+        }
+    }
+}
+
 // MARK: - SD Outlined TextField
 struct SDOutlinedTextField: View {
     let title: String
@@ -348,7 +418,6 @@ struct SDOutlinedTextField: View {
     var focusValue: String? = nil
     
     @State private var showPassword = false
-    @State private var showInfoAlert = false
     @FocusState private var internalFocus: String?
     
     @Environment(\.colorScheme) var colorScheme
@@ -362,27 +431,7 @@ struct SDOutlinedTextField: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .center, spacing: 8) {
-                Text(title)
-                    .font(.sdCaptionMedium)
-                    .foregroundColor(Color.appOnBackground(for: colorScheme))
-                
-                Spacer()
-                
-                if let infoMessage = infoMessage {
-                    Button(action: { showInfoAlert = true }) {
-                        Image(systemName: "info.circle")
-                            .font(.system(size: 16))
-                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                    }
-                    .buttonStyle(.plain)
-                    .alert(title, isPresented: $showInfoAlert) {
-                        Button("ok".localized(), role: .cancel) {}
-                    } message: {
-                        Text(infoMessage)
-                    }
-                }
-            }
+            FormFieldLabelWithInfo(title: title, infoMessage: infoMessage)
             
             HStack(spacing: 12) {
                 if let icon = leadingIcon {

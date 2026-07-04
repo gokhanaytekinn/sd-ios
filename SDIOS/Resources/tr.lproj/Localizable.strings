@@ -48,6 +48,7 @@
 "language" = "Dil";
 "help_center" = "Yardım Merkezi";
 "privacy_policy" = "Gizlilik Politikası";
+"rate_us" = "Bizi Değerlendirin";
 "logout" = "Çıkış Yap";
 "version_info" = "Versiyon %1$@ (Build %2$d)";
 "version" = "Versiyon %@";
@@ -249,6 +250,19 @@
 "card_info" = "Kart Bilgisi";
 "card_info_placeholder" = "örn. İş Bankası Kredi Kartı";
 "card_info_hint" = "Gerçek kart bilgisi değildir. Ödemenin hangi karttan yapıldığını hatırlamanız için bir not alanıdır.";
+"service_name_hint" = "Aboneliğin adını girin. Örneğin Netflix, Spotify.";
+"category_hint" = "Aboneliği sınıflandırmak için bir kategori seçin. Analitik ve filtreleme için kullanılır.";
+"amount_hint" = "Her fatura döneminde ödeyeceğiniz tutarı girin.";
+"currency_hint" = "Ödemenin yapıldığı para birimini seçin.";
+"period_hint" = "Aboneliğin ne sıklıkla yenilendiğini seçin: günlük, haftalık, aylık veya yıllık.";
+"payment_recurrence_day_hint" = "Ödemenin her dönemde hangi gün yapıldığını seçin.";
+"payment_recurrence_month" = "Ödeme Tekrar Ayı";
+"payment_recurrence_month_hint" = "Yıllık aboneliklerde ödemenin hangi ayda yapıldığını seçin.";
+"trial_end_date_hint" = "Ücretsiz denemenin biteceği tarihi seçin. Bu tarihten sonra normal ödemeler başlar.";
+"reminder_hint" = "Ödeme gününden bir gün önce bildirim alırsınız.";
+"free_trial_hint" = "Ücretsiz deneme süresi bitmeden bir gün önce sizi uyarırız.";
+"subscription_end_date_hint" = "Aboneliğin ne zaman sona ereceğini belirleyin. Boş bırakılırsa süresiz kabul edilir.";
+"joint_users_hint" = "Bu aboneliği paylaşmak istediğiniz kişilerin e-posta adreslerini ekleyin.";
 "card_spending_title" = "Kartlara Göre Harcama";
 "top_card_title" = "En Çok Kullanılan Kart";
 "top_card_desc" = "%@ kartı toplam harcamanızın %d'sini oluşturuyor";
