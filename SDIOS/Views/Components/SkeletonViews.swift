@@ -352,6 +352,48 @@ struct PlanCardSkeleton: View {
     }
 }
 
+// MARK: - Notification List Skeleton
+struct NotificationListSkeleton: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 8) {
+                ForEach(0..<6) { _ in
+                    HStack(alignment: .top, spacing: 12) {
+                        Circle()
+                            .baseSkeleton(colorScheme: colorScheme)
+                            .frame(width: 40, height: 40)
+                        
+                        VStack(alignment: .leading, spacing: 6) {
+                            RoundedRectangle(cornerRadius: 4)
+                                .baseSkeleton(colorScheme: colorScheme)
+                                .frame(width: 160, height: 14)
+                            RoundedRectangle(cornerRadius: 4)
+                                .baseSkeleton(colorScheme: colorScheme)
+                                .frame(width: 200, height: 12)
+                            RoundedRectangle(cornerRadius: 4)
+                                .baseSkeleton(colorScheme: colorScheme)
+                                .frame(width: 70, height: 10)
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(16)
+                    .background(Color.appSurface(for: colorScheme))
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(0.5), lineWidth: 1)
+                    )
+                }
+            }
+            .padding(.horizontal, 24)
+            .padding(.top, 8)
+        }
+    }
+}
+
 // MARK: - Premium Action Button Skeleton
 struct PremiumButtonSkeleton: View {
     @Environment(\.colorScheme) var colorScheme

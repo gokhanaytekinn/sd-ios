@@ -43,6 +43,8 @@
 "membership_type" = "会员类型";
 "free_plan" = "免费计划";
 "notifications" = "通知";
+"no_notifications" = "暂无通知";
+"mark_all_read" = "全部标为已读";
 "currency" = "货币";
 "dark_mode" = "暗夜模式";
 "language" = "语言";

@@ -115,6 +115,21 @@ struct ReminderResponse: Codable, Identifiable {
     let updatedAt: String?
 }
 
+// MARK: - In-App Notification Response
+struct InAppNotificationResponse: Codable, Identifiable {
+    let id: String
+    let title: String?
+    let body: String?
+    let data: [String: String]?
+    let isRead: Bool
+    let createdAt: String
+}
+
+// MARK: - Unread Notification Count Response
+struct UnreadNotificationCountResponse: Codable {
+    let count: Int
+}
+
 // MARK: - Error Response
 struct ErrorResponse: Codable {
     let status: Int?

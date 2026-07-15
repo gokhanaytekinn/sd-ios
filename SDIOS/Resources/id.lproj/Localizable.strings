@@ -43,6 +43,8 @@
 "membership_type" = "Tipe Keanggotaan";
 "free_plan" = "Paket Gratis";
 "notifications" = "Notifikasi";
+"no_notifications" = "Belum ada notifikasi";
+"mark_all_read" = "Tandai semua sudah dibaca";
 "currency" = "Mata Uang";
 "dark_mode" = "Mode Gelap";
 "language" = "Bahasa";

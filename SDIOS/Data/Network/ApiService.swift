@@ -154,6 +154,28 @@ class ApiService: ApiServiceProtocol {
         return try await client.execute(MiscEndpoint.getReminders)
     }
     
+    // MARK: - Bildirimler
+    
+    func getNotifications(isRead: Bool? = nil) async throws -> [InAppNotificationResponse] {
+        return try await client.execute(MiscEndpoint.getNotifications(isRead: isRead))
+    }
+    
+    func getUnreadNotificationCount() async throws -> Int {
+        let response: UnreadNotificationCountResponse = try await client.execute(MiscEndpoint.getUnreadNotificationCount)
+        return response.count
+    }
+    
+    func markNotificationRead(id: String) async throws {
+        try await client.executeVoid(MiscEndpoint.markNotificationRead(id: id))
+    }
+    
+    func markAllNotificationsRead() async throws {
+        try await client.executeVoid(MiscEndpoint.markAllNotificationsRead)
+    }
+    
+    func deleteNotification(id: String) async throws {
+        try await client.executeVoid(MiscEndpoint.deleteNotification(id: id))
+    }
     // MARK: - Analytics
     #if !WIDGET
     func getAnalyticsSummary(category: String?) async throws -> AnalyticsSummaryResponse {

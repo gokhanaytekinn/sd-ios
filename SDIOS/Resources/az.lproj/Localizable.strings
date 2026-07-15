@@ -43,6 +43,8 @@
 "membership_type" = "Üzvlük Növü";
 "free_plan" = "Pulsuz Plan";
 "notifications" = "Bildirişlər";
+"no_notifications" = "Hələ bildiriş yoxdur";
+"mark_all_read" = "Hamısını oxunmuş kimi işarələ";
 "currency" = "Valyuta";
 "dark_mode" = "Qaranlıq Rejim";
 "language" = "Dil";

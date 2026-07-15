@@ -35,6 +35,13 @@ protocol ApiServiceProtocol {
     // Reminders
     func getReminders() async throws -> [ReminderResponse]
     
+    // Notifications
+    func getNotifications(isRead: Bool?) async throws -> [InAppNotificationResponse]
+    func getUnreadNotificationCount() async throws -> Int
+    func markNotificationRead(id: String) async throws
+    func markAllNotificationsRead() async throws
+    func deleteNotification(id: String) async throws
+    
     // Analytics
     #if !WIDGET
     func getAnalyticsSummary(category: String?) async throws -> AnalyticsSummaryResponse

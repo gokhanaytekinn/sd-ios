@@ -4,11 +4,13 @@ import StoreKit
 struct AppSettingsScreen: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var notificationsViewModel: NotificationsViewModel
     @Environment(\.requestReview) private var requestReview
     
     let onNavigateToHelpCenter: () -> Void
     let onNavigateToPrivacyPolicy: () -> Void
     let onNavigateToPremium: () -> Void
+    let onNavigateToNotifications: () -> Void
     let onLogout: () -> Void
     
     @AppStorage("selectedCurrency") private var selectedCurrency: Int = 1
@@ -26,11 +28,18 @@ struct AppSettingsScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     // Header
-                    Text("settings".localized())
-                        .font(.sdHeadline)
-                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                        .padding(.horizontal, 24)
-                        .padding(.top, 16)
+                    HStack {
+                        Text("settings".localized())
+                            .font(.sdHeadline)
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        Spacer()
+                        NotificationBellButton(
+                            unreadCount: notificationsViewModel.unreadCount,
+                            onTap: onNavigateToNotifications
+                        )
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 16)
                     
                     Spacer().frame(height: 24)
                     

@@ -43,6 +43,8 @@
 "membership_type" = "Aʼzolik turi";
 "free_plan" = "Bepul reja";
 "notifications" = "Bildirishnomalar";
+"no_notifications" = "Hozircha bildirishnoma yo'q";
+"mark_all_read" = "Barchasini o'qilgan deb belgilash";
 "currency" = "Valyuta";
 "dark_mode" = "Tungi rejim";
 "language" = "Til";

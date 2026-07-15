@@ -313,23 +313,31 @@ struct PrivacyPolicyScreen: View {
 // MARK: - Upcoming Subscriptions
 struct UpcomingSubscriptionsScreen: View {
     @StateObject private var viewModel = SubscriptionsViewModel()
+    @EnvironmentObject var notificationsViewModel: NotificationsViewModel
     
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @Environment(\.colorScheme) var colorScheme
     
     let onNavigateToSubscriptionDetail: (String) -> Void
+    let onNavigateToNotifications: () -> Void
     
     var body: some View {
         ZStack {
             Color.appBackground(for: colorScheme).ignoresSafeArea()
             
             VStack(spacing: 0) {
-                Text("upcoming_payments".localized())
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color.appOnBackground(for: colorScheme))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 24)
-                    .padding(.top, 16)
+                HStack {
+                    Text("upcoming_payments".localized())
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                    Spacer()
+                    NotificationBellButton(
+                        unreadCount: notificationsViewModel.unreadCount,
+                        onTap: onNavigateToNotifications
+                    )
+                }
+                .padding(.horizontal, 24)
+                .padding(.top, 16)
                 
                 Spacer().frame(height: 16)
                 
