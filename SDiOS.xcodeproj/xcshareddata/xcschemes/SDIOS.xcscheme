@@ -18,7 +18,7 @@
                BlueprintIdentifier = "D94C046C2F59F91A0014BB86"
                BuildableName = "SDIOS.app"
                BlueprintName = "SDIOS"
-               ReferencedContainer = "container:SDIOS.xcodeproj">
+               ReferencedContainer = "container:SDiOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "D94C046C2F59F91A0014BB86"
             BuildableName = "SDIOS.app"
             BlueprintName = "SDIOS"
-            ReferencedContainer = "container:SDIOS.xcodeproj">
+            ReferencedContainer = "container:SDiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "D94C046C2F59F91A0014BB86"
             BuildableName = "SDIOS.app"
             BlueprintName = "SDIOS"
-            ReferencedContainer = "container:SDIOS.xcodeproj">
+            ReferencedContainer = "container:SDiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

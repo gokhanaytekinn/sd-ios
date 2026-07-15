@@ -4,14 +4,26 @@ import Combine
 @MainActor
 class AddSubscriptionViewModel: ObservableObject {
     // MARK: - Published Properties (UI State)
-    @Published var name = "" { didSet { nameError = nil } }    // Abonelik adı
+    @Published var name = "" { didSet { nameError = nil; applyRestrictedShortcutFieldRules() } }    // Abonelik adı
     @Published var amount = ""                                 // Kullanıcının girdiği formatlı tutar
     @Published var icon: String? = nil                         // Seçilen ikon (string key)
     @Published var selectedCategory: String = "" { didSet { categoryError = nil } } // Kategori
-    @Published var selectedBillingCycle: BillingCycle = .monthly { didSet { clearDateError() } } // Ödeme periyodu
+    @Published var selectedBillingCycle: BillingCycle = .monthly {
+        didSet {
+            if selectedBillingCycle == .weekly {
+                billingDay = min(max(billingDay, 1), 7)
+            } else if selectedBillingCycle == .daily {
+                billingMonth = nil
+            }
+            clearDateError()
+        }
+    } // Ödeme periyodu
     @Published var billingDay: Int = Calendar.current.component(.day, from: Date()) { didSet { clearDateError() } } // Ödeme günü
     @Published var billingMonth: Int? = nil { didSet { clearDateError() } } // Ödeme ayı (Yıllık paketler için)
+    @Published var endDate: Date? = nil // Opsiyonel abonelik bitiş tarihi (yyyy-MM-dd)
     @Published var reminderEnabled = true { didSet { clearDateError() } } // Hatırlatıcı aktif mi?
+    @Published var isFreeTrial = false // Ücretsiz deneme mi?
+    @Published var cardInfo = ""                                 // Ödeme kartı notu
     @Published var jointEmails: [String] = []                  // Paylaşımlı abonelik için eklenen e-postalar
     @Published var participants: [InvitationParticipant] = []  // Mevcut katılımcılar (düzenleme modunda)
     @Published var emailInput: String = ""                     // Yeni e-posta girişi için geçici değişken
@@ -46,11 +58,44 @@ class AddSubscriptionViewModel: ObservableObject {
     
     static let shortcuts: [QuickShortcut] = [
         QuickShortcut(name: "Google", icon: "google", category: "category_software", defaultCost: nil, color: Color(hex: "4285F4")),
+        QuickShortcut(name: "Microsoft 365", icon: "microsoft365", category: "category_software", defaultCost: nil, color: Color(hex: "AB7FE4")),
+        QuickShortcut(name: "Notion", icon: "notion", category: "category_software", defaultCost: nil, color: Color(hex: "000000")),
+        QuickShortcut(name: "Canva", icon: "canva", category: "category_software", defaultCost: nil, color: Color(hex: "2E7BE1")),
+        QuickShortcut(name: "Figma", icon: "figma", category: "category_software", defaultCost: nil, color: Color(hex: "FF671B")),
+        QuickShortcut(name: "GitHub", icon: "github", category: "category_software", defaultCost: nil, color: Color(hex: "181717")),
+        QuickShortcut(name: "JetBrains", icon: "jetbrains", category: "category_software", defaultCost: nil, color: Color(hex: "000000")),
+        QuickShortcut(name: "ChatGPT", icon: "chatgpt", category: "category_software", defaultCost: nil, color: Color(hex: "10A37F")),
         QuickShortcut(name: "YouTube", icon: "youtube", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF0000")),
         QuickShortcut(name: "Spotify", icon: "spotify", category: "category_streaming", defaultCost: nil, color: Color(hex: "1DB954")),
         QuickShortcut(name: "Netflix", icon: "netflix", category: "category_streaming", defaultCost: nil, color: Color(hex: "E50914")),
-        QuickShortcut(name: "Amazon", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "FF9900")),
+        QuickShortcut(name: "Amazon Prime", icon: "amazon", category: "category_shopping", defaultCost: nil, color: Color(hex: "FF9900")),
+        QuickShortcut(name: "Trendyol", icon: "trendyol", category: "category_shopping", defaultCost: nil, color: Color(hex: "F27A1A")),
+        QuickShortcut(name: "Hepsiburada", icon: "hepsiburada", category: "category_shopping", defaultCost: nil, color: Color(hex: "FF6000")),
         QuickShortcut(name: "HBO Max", icon: "hbomax", category: "category_streaming", defaultCost: nil, color: Color(hex: "000000")),
+        
+        // Dizi & Film & Müzik
+        QuickShortcut(name: "Disney+", icon: "disneyplus", category: "category_streaming", defaultCost: nil, color: Color(hex: "11AAB4")),
+        QuickShortcut(name: "Apple TV+", icon: "appletvplus", category: "category_streaming", defaultCost: nil, color: Color(hex: "F4F4F4")),
+        QuickShortcut(name: "Apple Music", icon: "applemusic", category: "category_streaming", defaultCost: nil, color: Color(hex: "FF1943")),
+
+        QuickShortcut(name: "Xbox Game Pass", icon: "xboxgamepass", category: "category_gaming", defaultCost: nil, color: Color(hex: "0F7C11")),
+        QuickShortcut(name: "PlayStation Plus", icon: "playstationplus", category: "category_gaming", defaultCost: nil, color: Color(hex: "02429C")),
+        QuickShortcut(name: "Ubisoft+", icon: "ubisoftplus", category: "category_gaming", defaultCost: nil, color: Color(hex: "455A64")),
+        QuickShortcut(name: "GeForce NOW", icon: "geforcenow", category: "category_gaming", defaultCost: nil, color: Color(hex: "89C049")),
+        QuickShortcut(name: "Discord Nitro", icon: "discordnitro", category: "category_gaming", defaultCost: nil, color: Color(hex: "5165F6")),
+        
+        // Eğitim
+        QuickShortcut(name: "Udemy", icon: "udemy", category: "category_education", defaultCost: nil, color: Color(hex: "A435F0")),
+        QuickShortcut(name: "Coursera Plus", icon: "courseraplus", category: "category_education", defaultCost: nil, color: Color(hex: "0056D2")),
+        QuickShortcut(name: "Duolingo Super", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "58CC02")),
+        QuickShortcut(name: "LinkedIn Learning", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "0A66C2")),
+        QuickShortcut(name: "Cambly", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "22B8CF")),
+        QuickShortcut(name: "Skillshare", icon: nil, category: "category_education", defaultCost: nil, color: Color(hex: "00FF84")),
+
+        // Ev
+        QuickShortcut(name: "Kira", icon: "house", category: "category_other", defaultCost: nil, color: Color(hex: "4F46E5")),
+        QuickShortcut(name: "Aidat", icon: nil, category: "category_other", defaultCost: nil, color: Color(hex: "0EA5E9")),
+        QuickShortcut(name: "Sigorta", icon: "invoice", category: "category_other", defaultCost: nil, color: Color(hex: "6366F1")),
     ]
     
     static let categories: [(key: String, label: String)] = [
@@ -58,16 +103,8 @@ class AddSubscriptionViewModel: ObservableObject {
         ("category_gaming", "category_gaming"),
         ("category_software", "category_software"),
         ("category_shopping", "category_shopping"),
-        ("category_entertainment", "category_entertainment"),
-        ("category_music", "category_music"),
-        ("category_sports", "category_sports"),
         ("category_education", "category_education"),
-        ("category_cloud", "category_cloud"),
-        ("category_ecommerce", "category_ecommerce"),
-        ("category_news", "category_news"),
         ("category_transport", "category_transport"),
-        ("category_finance", "category_finance"),
-        ("category_technology", "category_technology"),
         ("category_other", "category_other"),
     ]
     
@@ -85,6 +122,14 @@ class AddSubscriptionViewModel: ObservableObject {
         editingSubscriptionId != nil
     }
     
+    /// Kira, Aidat, Sigorta: ücretsiz deneme ve günlük/haftalık periyot kapalı.
+    var isRestrictedShortcutName: Bool {
+        let normalized = name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        return Self.restrictedShortcutNormalizedNames.contains(normalized)
+    }
+    
+    private static let restrictedShortcutNormalizedNames: Set<String> = ["kira", "aidat", "sigorta"]
+    
     // MARK: - Setup Logic (Veri Hazırlama)
     
     /// Mevcut bir aboneliği düzenleme ekranı için verileri doldurur.
@@ -97,10 +142,17 @@ class AddSubscriptionViewModel: ObservableObject {
         selectedCategory = subscription.category ?? "category_other"
         selectedBillingCycle = subscription.billingCycle
         billingDay = subscription.billingDay ?? Calendar.current.component(.day, from: Date())
+        if selectedBillingCycle == .weekly {
+            billingDay = min(max(billingDay, 1), 7)
+        }
         billingMonth = subscription.billingMonth ?? Calendar.current.component(.month, from: Date())
+        endDate = Self.parseEndDate(subscription.endDate)
         reminderEnabled = subscription.reminderEnabled
+        isFreeTrial = subscription.isFreeTrial ?? false
+        cardInfo = subscription.cardInfo ?? ""
         jointEmails = subscription.jointEmails ?? []
         participants = subscription.participants ?? []
+        applyRestrictedShortcutFieldRules()
     }
     
     // MARK: - Joint Email Logic (Ortak Üyelik Yönetimi)
@@ -143,6 +195,14 @@ class AddSubscriptionViewModel: ObservableObject {
         selectedCategory = shortcut.category
         if let cost = shortcut.defaultCost {
             amount = CurrencyFormatter.formatAmountWithoutSymbol(cost)
+        }
+    }
+    
+    private func applyRestrictedShortcutFieldRules() {
+        guard isRestrictedShortcutName else { return }
+        isFreeTrial = false
+        if selectedBillingCycle == .daily || selectedBillingCycle == .weekly {
+            selectedBillingCycle = .monthly
         }
     }
     
@@ -234,6 +294,8 @@ class AddSubscriptionViewModel: ObservableObject {
         Task {
             isLoading = true
             error = nil
+
+            let endDateString = Self.toYMDString(endDate)
             
             if let editId = editingSubscriptionId {
                 // GÜNCELLEME MODU
@@ -245,9 +307,12 @@ class AddSubscriptionViewModel: ObservableObject {
                     amount: costValue,
                     currency: currency,
                     billingCycle: selectedBillingCycle.rawValue,
-                    billingDay: billingDay,
+                    billingDay: selectedBillingCycle == .daily ? nil : billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
+                    endDate: endDateString,
                     reminderEnabled: reminderEnabled,
+                    isFreeTrial: isFreeTrial,
+                    cardInfo: cardInfo.isEmpty ? "" : cardInfo,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
                 let result = await updateSubscriptionUseCase.execute(id: editId, request: request)
@@ -262,9 +327,12 @@ class AddSubscriptionViewModel: ObservableObject {
                     amount: costValue,
                     currency: currency,
                     billingCycle: selectedBillingCycle.rawValue,
-                    billingDay: billingDay,
+                    billingDay: selectedBillingCycle == .daily ? nil : billingDay,
                     billingMonth: selectedBillingCycle == .yearly ? billingMonth : nil,
+                    endDate: endDateString,
                     reminderEnabled: reminderEnabled,
+                    isFreeTrial: isFreeTrial,
+                    cardInfo: cardInfo.isEmpty ? nil : cardInfo,
                     jointEmails: jointEmails.isEmpty ? nil : jointEmails
                 )
                 let result = await createSubscriptionUseCase.execute(request: request)
@@ -327,6 +395,53 @@ class AddSubscriptionViewModel: ObservableObject {
         
         return isValid
     }
+
+    // MARK: - Step Validation (Wizard)
+    /// Step-1: Service name + category
+    func validateBasicsStep() -> Bool {
+        nameError = nil
+        categoryError = nil
+
+        var isValid = true
+
+        if name.trimmingCharacters(in: .whitespaces).isEmpty {
+            nameError = "error_name_required".localized()
+            isValid = false
+        }
+
+        if selectedCategory.isEmpty {
+            categoryError = "error_category_required".localized()
+            isValid = false
+        }
+
+        return isValid
+    }
+
+    /// Step-2: Amount + billing selections (yearly month requirement)
+    func validateBillingStep() -> Bool {
+        amountError = nil
+        dateError = nil
+
+        var isValid = true
+
+        if amount.trimmingCharacters(in: .whitespaces).isEmpty {
+            amountError = "error_amount_required".localized()
+            isValid = false
+        } else {
+            let value = CurrencyFormatter.parseBankingAmount(amount)
+            if value <= 0 {
+                amountError = "error_amount_invalid".localized()
+                isValid = false
+            }
+        }
+
+        if selectedBillingCycle == .yearly && billingMonth == nil {
+            dateError = "error_date_required".localized()
+            isValid = false
+        }
+
+        return isValid
+    }
     
     // MARK: - Utility (Yardımcılar)
     
@@ -348,7 +463,10 @@ class AddSubscriptionViewModel: ObservableObject {
         selectedBillingCycle = .monthly
         billingDay = Calendar.current.component(.day, from: Date())
         billingMonth = nil
+        endDate = nil
         reminderEnabled = true
+        isFreeTrial = false
+        cardInfo = ""
         jointEmails = []
         participants = []
         emailInput = ""
@@ -357,5 +475,29 @@ class AddSubscriptionViewModel: ObservableObject {
         nameError = nil
         amountError = nil
         categoryError = nil
+    }
+
+    // MARK: - End Date Helpers
+    private static func toYMDString(_ date: Date?) -> String? {
+        guard let date else { return nil }
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+
+    private static func parseEndDate(_ dateString: String?) -> Date? {
+        guard let dateString, !dateString.isEmpty else { return nil }
+
+        let iso = ISO8601DateFormatter()
+        iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let d = iso.date(from: dateString) { return d }
+
+        let ymd = DateFormatter()
+        ymd.locale = Locale(identifier: "en_US_POSIX")
+        ymd.timeZone = TimeZone(secondsFromGMT: 0)
+        ymd.dateFormat = "yyyy-MM-dd"
+        return ymd.date(from: dateString)
     }
 }

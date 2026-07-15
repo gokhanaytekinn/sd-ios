@@ -17,7 +17,11 @@ struct GoogleAuthRequest: Codable {
     let idToken: String
 }
 
-
+struct AppleAuthRequest: Codable {
+    let identityToken: String
+    let firstName: String?
+    let lastName: String?
+}
 
 struct ForgotPasswordRequest: Codable {
     let email: String
@@ -43,9 +47,12 @@ struct SubscriptionRequest: Codable {
     let amount: Double
     let currency: Int
     let billingCycle: Int
-    let billingDay: Int
+    let billingDay: Int?
     let billingMonth: Int?
+    let endDate: String?
     let reminderEnabled: Bool
+    let isFreeTrial: Bool?
+    let cardInfo: String?
     let jointEmails: [String]?
 }
 
@@ -59,7 +66,10 @@ struct SubscriptionUpdateRequest: Codable {
     let billingCycle: Int?
     let billingDay: Int?
     let billingMonth: Int?
+    let endDate: String?
     let reminderEnabled: Bool?
+    let isFreeTrial: Bool?
+    let cardInfo: String?
     let jointEmails: [String]?
 }
 
@@ -105,4 +115,10 @@ struct FcmTokenRequest: Codable {
 struct NotificationSettingsRequest: Codable {
     let enabled: Bool
     let language: String?
+}
+
+// MARK: - Support Tickets
+struct SupportTicketRequest: Codable {
+    let subject: String
+    let message: String
 }

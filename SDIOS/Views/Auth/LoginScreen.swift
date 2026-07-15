@@ -102,6 +102,10 @@ struct LoginScreen: View {
                                 authViewModel.signInWithGoogle(onSuccess: onLoginSuccess)
                             }
                             
+                            AppleSignInButton {
+                                authViewModel.signInWithApple(onSuccess: onLoginSuccess)
+                            }
+                            
                             // Register Link
                             HStack(spacing: 0) {
                                 Text("no_account_prompt".localized())

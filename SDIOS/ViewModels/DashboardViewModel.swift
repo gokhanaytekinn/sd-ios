@@ -10,6 +10,16 @@ class DashboardViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var error: String?
     
+    var freeTrialSubscriptions: [Subscription] {
+        subscriptions
+            .filter { $0.isFreeTrial == true }
+            .sorted {
+                let d1 = $0.getNextRenewalDate() ?? .distantFuture
+                let d2 = $1.getNextRenewalDate() ?? .distantFuture
+                return d1 < d2
+            }
+    }
+    
     // MARK: - Use Cases (İş Mantığı Katmanları)
     // ViewModel artık repository ile değil, özelleşmiş iş mantığı sınıflarıyla konuşur.
     private let getSubscriptionsUseCase: GetSubscriptionsUseCaseProtocol
@@ -57,6 +67,9 @@ class DashboardViewModel: ObservableObject {
                 
                 // Toplam abonelik sayısını AuthViewModel (global state) ile senkronize et
                 authViewModel?.subscriptionCount = list.count
+                
+                // Widget verilerini güncelle
+                WidgetDataManager.shared.saveSnapshot(list)
                 
             case .failure(let err):
                 // Hata oluşursa kullanıcıya göstermek üzere 'error' değişkenine aktar

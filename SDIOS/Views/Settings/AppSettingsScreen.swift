@@ -1,9 +1,11 @@
 import SwiftUI
+import StoreKit
 
 struct AppSettingsScreen: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var notificationsViewModel: NotificationsViewModel
+    @Environment(\.requestReview) private var requestReview
     
     let onNavigateToHelpCenter: () -> Void
     let onNavigateToPrivacyPolicy: () -> Void
@@ -119,13 +121,15 @@ struct AppSettingsScreen: View {
                             iconColor: Color(hex: "6366F1")
                         )
                         
-                        SettingsNavigationItem(
-                            icon: "globe",
-                            title: "language".localized(),
-                            subtitle: LanguagePreferences.supportedLanguages.first(where: { $0.code == LanguagePreferences.shared.selectedLanguage })?.name,
-                            iconColor: .primaryBlue,
-                            onTap: { showLanguageDialog = true }
-                        )
+                        if !((Locale.preferredLanguages.first?.hasPrefix("ar") ?? false) || (Bundle.main.preferredLocalizations.first?.hasPrefix("ar") ?? false)) {
+                            SettingsNavigationItem(
+                                icon: "globe",
+                                title: "language".localized(),
+                                subtitle: LanguagePreferences.supportedLanguages.first(where: { $0.code == LanguagePreferences.shared.selectedLanguage })?.name,
+                                iconColor: .primaryBlue,
+                                onTap: { showLanguageDialog = true }
+                            )
+                        }
                     }
                     .padding(.horizontal, 24)
                     
@@ -147,6 +151,13 @@ struct AppSettingsScreen: View {
                             title: "privacy_policy".localized(),
                             iconColor: .successColor,
                             onTap: onNavigateToPrivacyPolicy
+                        )
+
+                        SettingsNavigationItem(
+                            icon: "star.bubble.fill",
+                            title: "rate_us".localized(),
+                            iconColor: .warningColor,
+                            onTap: { requestReview() }
                         )
                     }
                     .padding(.horizontal, 24)
@@ -232,7 +243,6 @@ struct AppSettingsScreen: View {
                     showLanguageDialog = false
                 }) {
                     HStack {
-                        Text(lang.flag)
                         Text(lang.name)
                             .foregroundColor(.primary)
                         Spacer()

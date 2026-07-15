@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 import StoreKit
 import GoogleSignIn
+import AuthenticationServices
 
 @MainActor
 class AuthViewModel: ObservableObject {
@@ -264,6 +265,59 @@ class AuthViewModel: ObservableObject {
         }
     }
 
+    func signInWithApple(onSuccess: @escaping () -> Void) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        
+        // We need a delegate to handle the result. 
+        // Using a nested coordinator class or a separate helper to handle delegates.
+        // For simplicity, I'll implement a delegate helper.
+        
+        let handler = AppleSignInHandler(viewModel: self, onSuccess: onSuccess)
+        authorizationController.delegate = handler
+        authorizationController.presentationContextProvider = handler
+        
+        // Retain the handler
+        self.appleSignInHandler = handler
+        
+        authorizationController.performRequests()
+    }
+
+    private var appleSignInHandler: AppleSignInHandler?
+
+    func loginWithApple(identityToken: String, firstName: String?, lastName: String?, onSuccess: @escaping () -> Void) {
+        Task {
+            isLoading = true
+            error = nil
+            
+            let result = await repository.loginWithApple(identityToken: identityToken, firstName: firstName, lastName: lastName)
+            
+            switch result {
+            case .success(let response):
+                isLoading = false
+                isAuthenticated = true
+                userName = response.user?.name
+                userEmail = response.user?.email
+                notificationsEnabled = response.user?.notificationsEnabled ?? true
+                language = response.user?.language ?? "tr"
+                tier = response.user?.tier ?? 1
+                premiumPreferences.isPremium = (response.user?.tier ?? 1) >= 2
+                syncLanguageIfNeeded()
+                
+                if let token = lastDeviceToken {
+                    updatePushToken(token: token)
+                }
+                onSuccess()
+            case .failure(let err):
+                isLoading = false
+                error = err.localizedDescription
+            }
+        }
+    }
+
     
     /// Şifre sıfırlama talebi gönderir
     /// - Parameters:
@@ -272,7 +326,7 @@ class AuthViewModel: ObservableObject {
     func forgotPassword(email: String, onSuccess: @escaping () -> Void) {
         // E-posta boş olamaz kontrolü
         guard !email.isEmpty else {
-            emailError = NSLocalizedString("error_email_required", comment: "")
+            emailError = "error_email_required".localized()
             return
         }
         
@@ -472,12 +526,12 @@ class AuthViewModel: ObservableObject {
         var isValid = true
         
         if email.trimmingCharacters(in: .whitespaces).isEmpty {
-            emailError = NSLocalizedString("error_email_required", comment: "")
+            emailError = "error_email_required".localized()
             isValid = false
         }
         
         if password.isEmpty {
-            passwordError = NSLocalizedString("error_password_required", comment: "")
+            passwordError = "error_password_required".localized()
             isValid = false
         }
         
@@ -489,31 +543,31 @@ class AuthViewModel: ObservableObject {
         var isValid = true
         
         if name.trimmingCharacters(in: .whitespaces).isEmpty {
-            nameError = NSLocalizedString("error_name_required", comment: "")
+            nameError = "error_name_required".localized()
             isValid = false
         }
         
         if email.trimmingCharacters(in: .whitespaces).isEmpty {
-            emailError = NSLocalizedString("error_email_required", comment: "")
+            emailError = "error_email_required".localized()
             isValid = false
         } else if !isValidEmail(email) {
-            emailError = NSLocalizedString("error_email_invalid", comment: "")
+            emailError = "error_email_invalid".localized()
             isValid = false
         }
         
         if password.isEmpty {
-            passwordError = NSLocalizedString("error_password_required", comment: "")
+            passwordError = "error_password_required".localized()
             isValid = false
         } else if password.count < 6 {
-            passwordError = NSLocalizedString("error_password_short", comment: "")
+            passwordError = "error_password_short".localized()
             isValid = false
         }
         
         if confirmPassword.isEmpty {
-            confirmPasswordError = NSLocalizedString("error_password_required", comment: "")
+            confirmPasswordError = "error_password_required".localized()
             isValid = false
         } else if password != confirmPassword {
-            confirmPasswordError = NSLocalizedString("error_passwords_do_not_match", comment: "")
+            confirmPasswordError = "error_passwords_do_not_match".localized()
             isValid = false
         }
         

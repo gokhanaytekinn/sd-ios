@@ -7,9 +7,71 @@ struct AddSubscriptionScreen: View {
     let onBack: () -> Void
     
     @FocusState private var focusedField: String?
+    @State private var showAllShortcutsSheet = false
+    @State private var allShortcutsQuery = ""
     
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @Environment(\.colorScheme) var colorScheme
+    
+    private var sortedShortcuts: [AddSubscriptionViewModel.QuickShortcut] {
+        AddSubscriptionViewModel.shortcuts.sorted {
+            $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+        }
+    }
+    
+    private func normalizedShortcutName(_ name: String) -> String {
+        name.lowercased().replacingOccurrences(of: " ", with: "")
+    }
+    
+    private var previewShortcuts: [AddSubscriptionViewModel.QuickShortcut] {
+        let preferredOrder = ["youtube", "netflix", "spotify", "chatgpt", "amazonprime", "cambly"]
+        var result: [AddSubscriptionViewModel.QuickShortcut] = []
+        
+        // Keep requested order first.
+        for key in preferredOrder {
+            if let shortcut = AddSubscriptionViewModel.shortcuts.first(where: {
+                normalizedShortcutName($0.name) == key
+            }) {
+                result.append(shortcut)
+            }
+        }
+        
+        // Complete to 6 with remaining shortcuts.
+        if result.count < 6 {
+            let existing = Set(result.map(\.name))
+            let remaining = sortedShortcuts.filter { !existing.contains($0.name) }
+            result.append(contentsOf: remaining.prefix(6 - result.count))
+        }
+        
+        // If user selected outside top 6, show it as 7th.
+        if let selected = AddSubscriptionViewModel.shortcuts.first(where: {
+            viewModel.icon == $0.icon && viewModel.name == $0.name
+        }), !result.contains(where: { $0.name == selected.name && $0.icon == selected.icon }) {
+            result.append(selected)
+        }
+        
+        return result
+    }
+    
+    private func shortcutIconColor(_ shortcut: AddSubscriptionViewModel.QuickShortcut) -> Color {
+        guard let icon = shortcut.icon?.lowercased() else { return shortcut.color }
+        if icon == "github" || icon == "notion" || icon == "hbomax" || icon == "jetbrains" {
+            return colorScheme == .dark ? .white : shortcut.color
+        }
+        return shortcut.color
+    }
+    
+    private func hasFixedContrastBorder(_ shortcut: AddSubscriptionViewModel.QuickShortcut) -> Bool {
+        guard let icon = shortcut.icon?.lowercased() else { return false }
+        return icon == "github" || icon == "hbomax"
+    }
+    
+    private func shortcutBorderColor(_ shortcut: AddSubscriptionViewModel.QuickShortcut) -> Color {
+        if hasFixedContrastBorder(shortcut) {
+            return colorScheme == .dark ? .white : .black
+        }
+        return shortcut.color
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -48,15 +110,18 @@ struct AddSubscriptionScreen: View {
                             text: $viewModel.name,
                             errorMessage: viewModel.nameError,
                             leadingIcon: "pencil",
+                            infoMessage: "service_name_hint".localized(),
                             focusBinding: $focusedField,
                             focusValue: "serviceName"
                         )
                         
                         // Category
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("category".localized())
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            FormFieldLabelWithInfo(
+                                title: "category".localized(),
+                                infoMessage: "category_hint".localized(),
+                                titleFont: .system(size: 14, weight: .bold)
+                            )
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 8) {
@@ -80,7 +145,7 @@ struct AddSubscriptionScreen: View {
                         if !viewModel.isEditing {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 16) {
-                                    ForEach(AddSubscriptionViewModel.shortcuts) { shortcut in
+                                    ForEach(previewShortcuts) { shortcut in
                                         let isSelected = viewModel.icon == shortcut.icon && viewModel.name == shortcut.name
                                         Button(action: { viewModel.applyShortcut(shortcut) }) {
                                             VStack(spacing: 8) {
@@ -90,11 +155,16 @@ struct AddSubscriptionScreen: View {
                                                         .frame(width: 56, height: 56)
                                                         .overlay(
                                                             RoundedRectangle(cornerRadius: 12)
-                                                                .stroke(isSelected ? shortcut.color : shortcut.color.opacity(0.3), lineWidth: isSelected ? 2 : 1)
+                                                                .stroke(
+                                                                    shortcutBorderColor(shortcut).opacity(
+                                                                        hasFixedContrastBorder(shortcut) ? 1 : (isSelected ? 1 : 0.3)
+                                                                    ),
+                                                                    lineWidth: isSelected ? 2 : 1
+                                                                )
                                                         )
                                                     
                                                     if let iconName = shortcut.icon {
-                                                        BrandIconView(name: iconName, color: shortcut.color)
+                                                        BrandIconView(name: iconName, color: shortcutIconColor(shortcut))
                                                             .frame(width: 24, height: 24)
                                                     } else {
                                                         Text(shortcut.name.prefix(1).uppercased())
@@ -112,6 +182,29 @@ struct AddSubscriptionScreen: View {
                                         }
                                         .buttonStyle(.plain)
                                     }
+                                    
+                                    Button(action: { showAllShortcutsSheet = true }) {
+                                        VStack(spacing: 8) {
+                                            ZStack {
+                                                RoundedRectangle(cornerRadius: 12)
+                                                    .fill(Color.clear)
+                                                    .frame(width: 56, height: 56)
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: 12)
+                                                            .stroke(Color.appOutline(for: colorScheme).opacity(0.3), lineWidth: 1)
+                                                    )
+                                                
+                                                Image(systemName: "ellipsis")
+                                                    .font(.system(size: 18, weight: .bold))
+                                                    .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.7))
+                                                    .frame(width: 56, height: 56, alignment: .center)
+                                            }
+                                            
+                                            Text(" ")
+                                                .font(.system(size: 11))
+                                        }
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 6)
@@ -130,14 +223,18 @@ struct AddSubscriptionScreen: View {
                                 errorMessage: viewModel.amountError,
                                 keyboardType: .decimalPad,
                                 leadingIcon: "banknote",
+                                infoMessage: "amount_hint".localized(),
                                 focusBinding: $focusedField,
                                 focusValue: "amount"
                             )
                             .frame(maxWidth: .infinity)
                             
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("currency".localized())
-                                    .font(.system(size: 14, weight: .bold))
+                                FormFieldLabelWithInfo(
+                                    title: "currency".localized(),
+                                    infoMessage: "currency_hint".localized(),
+                                    titleFont: .system(size: 14, weight: .bold)
+                                )
                                 
                                 Menu {
                                     ForEach(CurrencyPreferences.currencies, id: \.id) { cur in
@@ -174,12 +271,27 @@ struct AddSubscriptionScreen: View {
                             .frame(width: 140)
                         }
                         
-                        // Period (MONTHLY / YEARLY)
+                        SDOutlinedTextField(
+                            title: "card_info".localized(),
+                            placeholder: "card_info_placeholder".localized(),
+                            text: $viewModel.cardInfo,
+                            leadingIcon: "creditcard",
+                            infoMessage: "card_info_hint".localized(),
+                            focusBinding: $focusedField,
+                            focusValue: "cardInfo"
+                        )
+                        
+                        // Period (DAILY / WEEKLY / MONTHLY / YEARLY)
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("period".localized())
-                                .font(.system(size: 14, weight: .bold))
+                            FormFieldLabelWithInfo(
+                                title: "period".localized(),
+                                infoMessage: "period_hint".localized(),
+                                titleFont: .system(size: 14, weight: .bold)
+                            )
                             
                             HStack(spacing: 0) {
+                                periodButton(title: dailyCycleLabel, cycle: .daily)
+                                periodButton(title: "billing_weekly_label".localized(), cycle: .weekly)
                                 periodButton(title: "billing_monthly_label".localized(), cycle: .monthly)
                                 periodButton(title: "billing_yearly_label".localized(), cycle: .yearly)
                             }
@@ -191,36 +303,50 @@ struct AddSubscriptionScreen: View {
                             )
                         }
                         
-                        // Payment Recurrence Day
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(viewModel.selectedBillingCycle == .monthly ? 
-                                 "payment_recurrence_day".localized() : 
-                                 "payment_recurrence_day_month".localized())
-                                .font(.system(size: 14, weight: .bold))
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 12) {
-                                    ForEach(1...31, id: \.self) { day in
-                                        Button(action: { viewModel.billingDay = day }) {
-                                            Text("\(day)")
-                                                .font(.system(size: 14, weight: .bold))
-                                                .padding(.horizontal, 16)
-                                                .frame(height: 44)
-                                                .background(viewModel.billingDay == day ? Color.primaryBlue : Color.appSurface(for: colorScheme))
-                                                .foregroundColor(viewModel.billingDay == day ? .white : Color.appOnBackground(for: colorScheme))
-                                                .cornerRadius(22)
-                                                .overlay(RoundedRectangle(cornerRadius: 22).stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: viewModel.billingDay == day ? 0 : 1))
+                        // Payment recurrence selections are hidden for daily cycles.
+                        if viewModel.selectedBillingCycle != .daily {
+                            VStack(alignment: .leading, spacing: 10) {
+                                FormFieldLabelWithInfo(
+                                    title: viewModel.isFreeTrial ? "trial_end_date".localized() :
+                                        (viewModel.selectedBillingCycle == .yearly
+                                         ? "payment_recurrence_day_month".localized()
+                                         : "payment_recurrence_day".localized()),
+                                    infoMessage: viewModel.isFreeTrial
+                                        ? "trial_end_date_hint".localized()
+                                        : "payment_recurrence_day_hint".localized(),
+                                    titleFont: .system(size: 14, weight: .bold)
+                                )
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: 12) {
+                                        ForEach(1...maxBillingDayForSelectedCycle, id: \.self) { day in
+                                            Button(action: { viewModel.billingDay = day }) {
+                                                Text("\(day)")
+                                                    .font(.system(size: 14, weight: .bold))
+                                                    .padding(.horizontal, 16)
+                                                    .frame(height: 44)
+                                                    .background(viewModel.billingDay == day ? Color.primaryBlue : Color.appSurface(for: colorScheme))
+                                                    .foregroundColor(viewModel.billingDay == day ? .white : Color.appOnBackground(for: colorScheme))
+                                                    .cornerRadius(22)
+                                                    .overlay(RoundedRectangle(cornerRadius: 22).stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: viewModel.billingDay == day ? 0 : 1))
+                                            }
+                                            .buttonStyle(.plain)
                                         }
-                                        .buttonStyle(.plain)
                                     }
+                                    .padding(.vertical, 4)
                                 }
-                                .padding(.vertical, 4)
                             }
                         }
 
                         // Payment Recurrence Month (Only for Yearly)
                         if viewModel.selectedBillingCycle == .yearly {
                             VStack(alignment: .leading, spacing: 10) {
+                                FormFieldLabelWithInfo(
+                                    title: "payment_recurrence_month".localized(),
+                                    infoMessage: "payment_recurrence_month_hint".localized(),
+                                    titleFont: .system(size: 14, weight: .bold)
+                                )
+
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 12) {
                                         ForEach(1...12, id: \.self) { month in
@@ -248,18 +374,61 @@ struct AddSubscriptionScreen: View {
                         
                         // Reminder
                         VStack(alignment: .leading, spacing: 12) {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text("reminder".localized())
-                                        .font(.system(size: 16, weight: .medium))
-                                    Text("notify_1_day_before".localized())
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                }
+                            SettingToggleRow(
+                                title: "reminder".localized(),
+                                infoMessage: "reminder_hint".localized(),
+                                isOn: $viewModel.reminderEnabled
+                            )
+                        }
+                        
+                        // Free Trial
+                        VStack(alignment: .leading, spacing: 12) {
+                            SettingToggleRow(
+                                title: "free_trial".localized(),
+                                infoMessage: "free_trial_hint".localized(),
+                                isOn: $viewModel.isFreeTrial,
+                                isDisabled: viewModel.isRestrictedShortcutName
+                            )
+                        }
+
+                        // Subscription End Date (Optional)
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(alignment: .center, spacing: 8) {
+                                Text("subscription_end_date".localized())
+                                    .font(.system(size: 16, weight: .medium))
                                 Spacer()
-                                Toggle("", isOn: $viewModel.reminderEnabled)
-                                    .tint(.primaryBlue)
-                                    .labelsHidden()
+                                InfoIconButton(
+                                    title: "subscription_end_date".localized(),
+                                    message: "subscription_end_date_hint".localized()
+                                )
+                                Toggle(
+                                    "",
+                                    isOn: Binding(
+                                        get: { viewModel.endDate != nil },
+                                        set: { enabled in
+                                            if enabled {
+                                                viewModel.endDate = viewModel.endDate ?? Calendar.current.startOfDay(for: Date())
+                                            } else {
+                                                viewModel.endDate = nil
+                                            }
+                                        }
+                                    )
+                                )
+                                .tint(.primaryBlue)
+                                .labelsHidden()
+                            }
+
+                            if let date = viewModel.endDate {
+                                DatePicker(
+                                    "",
+                                    selection: Binding(
+                                        get: { date },
+                                        set: { viewModel.endDate = $0 }
+                                    ),
+                                    in: Calendar.current.startOfDay(for: Date())...,
+                                    displayedComponents: [.date]
+                                )
+                                .datePickerStyle(.compact)
                             }
                         }
                         
@@ -271,6 +440,7 @@ struct AddSubscriptionScreen: View {
                             errorMessage: nil,
                             keyboardType: .emailAddress,
                             leadingIcon: "envelope",
+                            infoMessage: "joint_users_hint".localized(),
                             onTrailingIconTap: { viewModel.addJointEmail() },
                             focusBinding: $focusedField,
                             focusValue: "emailInput"
@@ -372,10 +542,27 @@ struct AddSubscriptionScreen: View {
         .withErrorDialog(errorMessage: $viewModel.error) {
             viewModel.clearGeneralError()
         }
+        .sheet(isPresented: $showAllShortcutsSheet) {
+            AllShortcutsSheet(
+                query: $allShortcutsQuery,
+                colorScheme: colorScheme,
+                onSelect: { shortcut in
+                    viewModel.applyShortcut(shortcut)
+                    showAllShortcutsSheet = false
+                }
+            )
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
+            .onAppear { allShortcutsQuery = "" }
+        }
     }
     
     private func periodButton(title: String, cycle: BillingCycle) -> some View {
-        Button(action: { viewModel.selectedBillingCycle = cycle }) {
+        let periodDisabledForRestrictedName = viewModel.isRestrictedShortcutName && (cycle == .daily || cycle == .weekly)
+        return Button(action: {
+            guard !periodDisabledForRestrictedName else { return }
+            viewModel.selectedBillingCycle = cycle
+        }) {
             Text(title)
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(viewModel.selectedBillingCycle == cycle ? .white : Color.appOnSurfaceVariant(for: colorScheme))
@@ -386,6 +573,16 @@ struct AddSubscriptionScreen: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .disabled(periodDisabledForRestrictedName)
+        .opacity(periodDisabledForRestrictedName ? 0.4 : 1)
+    }
+
+    private var maxBillingDayForSelectedCycle: Int {
+        viewModel.selectedBillingCycle == .weekly ? 7 : 31
+    }
+    
+    private var dailyCycleLabel: String {
+        "billing_daily_label".localized()
     }
     
     struct StatusIcon: View {
@@ -464,5 +661,120 @@ struct FlowLayout: Layout {
         }
         
         return (positions, CGSize(width: maxWidth, height: y + rowHeight))
+    }
+}
+
+private struct AllShortcutsSheet: View {
+    @Binding var query: String
+    let colorScheme: ColorScheme
+    let onSelect: (AddSubscriptionViewModel.QuickShortcut) -> Void
+    
+    private var sortedShortcuts: [AddSubscriptionViewModel.QuickShortcut] {
+        AddSubscriptionViewModel.shortcuts.sorted {
+            $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+        }
+    }
+    
+    private var filtered: [AddSubscriptionViewModel.QuickShortcut] {
+        let q = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        guard !q.isEmpty else { return sortedShortcuts }
+        return sortedShortcuts.filter { $0.name.lowercased().contains(q) }
+    }
+    
+    private let columns: [GridItem] = [
+        GridItem(.adaptive(minimum: 88, maximum: 120), spacing: 16, alignment: .top)
+    ]
+    
+    private func shortcutIconColor(_ shortcut: AddSubscriptionViewModel.QuickShortcut) -> Color {
+        guard let icon = shortcut.icon?.lowercased() else { return shortcut.color }
+        if icon == "github" || icon == "notion" || icon == "hbomax" || icon == "jetbrains" {
+            return colorScheme == .dark ? .white : shortcut.color
+        }
+        return shortcut.color
+    }
+    
+    private func hasFixedContrastBorder(_ shortcut: AddSubscriptionViewModel.QuickShortcut) -> Bool {
+        guard let icon = shortcut.icon?.lowercased() else { return false }
+        return icon == "github" || icon == "hbomax"
+    }
+    
+    private func shortcutBorderColor(_ shortcut: AddSubscriptionViewModel.QuickShortcut) -> Color {
+        if hasFixedContrastBorder(shortcut) {
+            return colorScheme == .dark ? .white : .black
+        }
+        return shortcut.color
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 12) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
+                
+                TextField("search".localized(), text: $query)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .font(.system(size: 16))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+            }
+            .padding(.horizontal, 16)
+            .frame(height: 44)
+            .background(Color.appSurface(for: colorScheme).opacity(0.001))
+            .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+            )
+            .padding(.horizontal, 20)
+            .padding(.top, 32)
+            .padding(.bottom, 12)
+            
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: columns, spacing: 14) {
+                    ForEach(filtered) { shortcut in
+                        Button(action: { onSelect(shortcut) }) {
+                            VStack(spacing: 8) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color.clear)
+                                        .frame(width: 56, height: 56)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .stroke(
+                                                    shortcutBorderColor(shortcut).opacity(
+                                                        hasFixedContrastBorder(shortcut) ? 1 : 0.3
+                                                    ),
+                                                    lineWidth: 1
+                                                )
+                                        )
+                                    
+                                    if let iconName = shortcut.icon {
+                                        BrandIconView(name: iconName, color: shortcutIconColor(shortcut))
+                                            .frame(width: 24, height: 24)
+                                    } else {
+                                        Text(shortcut.name.prefix(1).uppercased())
+                                            .font(.system(size: 24, weight: .bold))
+                                            .foregroundColor(shortcut.color)
+                                    }
+                                }
+                                
+                                Text(shortcut.name)
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                    .lineLimit(1)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 4)
+                .padding(.bottom, 24)
+            }
+        }
+        .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
     }
 }

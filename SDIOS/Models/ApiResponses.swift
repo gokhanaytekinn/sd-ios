@@ -38,6 +38,8 @@ struct SubscriptionResponse: Codable, Identifiable {
     let suspiciousReason: String?
     let isApproved: Bool?
     let reminderEnabled: Bool?
+    let isFreeTrial: Bool?
+    let cardInfo: String?
     let approvedAt: String?
     let approvedBy: String?
     let userId: String?
@@ -65,8 +67,10 @@ struct SubscriptionResponse: Codable, Identifiable {
             isSuspicious: isSuspicious ?? false,
             tier: tier,
             reminderEnabled: reminderEnabled ?? false,
+            cardInfo: cardInfo,
             jointEmails: jointEmails,
             isOwner: owner ?? true,
+            isFreeTrial: isFreeTrial,
             participants: participants
         )
     }

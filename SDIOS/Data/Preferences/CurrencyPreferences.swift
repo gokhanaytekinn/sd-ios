@@ -4,9 +4,17 @@ import Combine
 class CurrencyPreferences: ObservableObject {
     static let shared = CurrencyPreferences()
     
+    private let appGroupID = "group.com.subtracker.SDiOS"
+    
+    private var sharedDefaults: UserDefaults? {
+        return UserDefaults(suiteName: appGroupID)
+    }
+    
     @Published var selectedCurrency: Int {
         didSet {
             UserDefaults.standard.set(selectedCurrency, forKey: "selectedCurrency")
+            sharedDefaults?.set(selectedCurrency, forKey: "selectedCurrency")
+            sharedDefaults?.synchronize()
         }
     }
     
@@ -28,7 +36,8 @@ class CurrencyPreferences: ObservableObject {
     ]
     
     private init() {
-        self.selectedCurrency = UserDefaults.standard.integer(forKey: "selectedCurrency")
+        let defaults = UserDefaults(suiteName: "group.com.subtracker.SDiOS")
+        self.selectedCurrency = defaults?.integer(forKey: "selectedCurrency") ?? UserDefaults.standard.integer(forKey: "selectedCurrency")
         if self.selectedCurrency == 0 { self.selectedCurrency = 1 }
     }
 }

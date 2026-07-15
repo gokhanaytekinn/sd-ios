@@ -82,7 +82,7 @@
           "localizations" : [
             {
               "description" : "Monthly access to all premium features.",
-              "displayName" : "Monthly Plan",
+              "displayName" : "Premium Monthly Plan",
               "locale" : "en_US"
             }
           ],
@@ -107,7 +107,7 @@
           "localizations" : [
             {
               "description" : "Yearly access to all premium features.",
-              "displayName" : "Yearly Plan",
+              "displayName" : "Premium Yearly Plan",
               "locale" : "en_US"
             }
           ],

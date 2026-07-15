@@ -28,284 +28,7 @@ struct SubscriptionDetailsScreen: View {
                 Spacer()
             }
             .padding(16)
-            
-            if isLoading {
-                VStack(spacing: 20) {
-                    Circle().fill(Color.gray.opacity(0.3)).frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 200, height: 32)
-                    RoundedRectangle(cornerRadius: 8).fill(Color.gray.opacity(0.3)).frame(width: 150, height: 40)
-                    
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.gray.opacity(0.3))
-                        .frame(height: 120)
-                        
-                    HStack(spacing: 16) {
-                        RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.3)).frame(height: 80)
-                        RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.3)).frame(height: 80)
-                    }
-                    Spacer()
-                }
-                .padding(24)
-                .skeleton()
-            } else if let sub = subscription {
-                ScrollView {
-                    VStack(spacing: 20) {
-                        // Icon
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(Color.appSurface(for: colorScheme))
-                                .frame(width: 120, height: 120)
-                                .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-                            
-                            Text(sub.name.prefix(1).uppercased())
-                                .font(.system(size: 60, weight: .bold))
-                                .foregroundColor(.primaryBlue)
-                        }
-                        .padding(.top, 20)
-                        
-                        // Name & Price
-                        VStack(spacing: 8) {
-                            Text(sub.name)
-                                .font(.system(size: 24, weight: .bold))
-                                .foregroundColor(Color.appOnBackground(for: colorScheme))
-                            
-                            HStack(alignment: .firstTextBaseline, spacing: 4) {
-                                Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
-                                    .font(.system(size: 32, weight: .black))
-                                    .foregroundColor(.primaryBlue)
-                                
-                                Text("/ \(billingCycleText(sub.billingCycle))")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                            }
-                        }
-                        
-                        // Reminder Label
-                        if sub.reminderEnabled {
-                            HStack(spacing: 8) {
-                                Image(systemName: "bell.fill")
-                                Text("reminder".localized())
-                            }
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(Color(hex: "5B37B7"))
-                            .cornerRadius(20)
-                        }
-                        
-                        // Summary Card
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack(spacing: 12) {
-                                ZStack {
-                                    Circle()
-                                        .fill(Color.orange.opacity(0.2))
-                                        .frame(width: 40, height: 40)
-                                    Image(systemName: "sun.max.fill") // Placeholder for category icon
-                                        .foregroundColor(.orange)
-                                }
-                                
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(sub.name)
-                                        .font(.system(size: 16, weight: .bold))
-                                    Text("\((sub.category ?? "category_other").localized()) • \(billingCycleText(sub.billingCycle))")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                }
-                                
-                                Spacer()
-                                
-                                VStack(alignment: .trailing, spacing: 2) {
-                                    Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
-                                        .font(.system(size: 16, weight: .bold))
-                                    if let nextDate = sub.getNextRenewalDate() {
-                                        if sub.billingCycle == .monthly,
-                                           let billingDay = sub.billingDay {
-                                            Text(DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage))
-                                                .font(.system(size: 12))
-                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                        } else {
-                                            Text(nextDate, format: .dateTime.day().month().year())
-                                                .font(.system(size: 12))
-                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            if let nextDate = sub.getNextRenewalDate() {
-                                let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? 0
-                                let totalDays = sub.billingCycle == .monthly ? 30.0 : 365.0
-                                let progress = max(0.0, min(1.0, 1.0 - (Double(days) / totalDays)))
-                                
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text(String(format: "days_left_for_renewal".localized(), days))
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                                    
-                                    GeometryReader { geo in
-                                        ZStack(alignment: .leading) {
-                                            RoundedRectangle(cornerRadius: 4)
-                                                .fill(Color.appOutline(for: colorScheme).opacity(0.2))
-                                            
-                                            RoundedRectangle(cornerRadius: 4)
-                                                .fill(Color.primaryBlue)
-                                                .frame(width: geo.size.width * progress)
-                                        }
-                                    }
-                                    .frame(height: 6)
-                                }
-                            }
-                        }
-                        .padding(16)
-                        .background(Color.appSurface(for: colorScheme).opacity(0.5))
-                        .cornerRadius(16)
-                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
-                        
-                        // Info Grid
-                        HStack(spacing: 16) {
-                            gridBlock(title: "subscription_price".localized(), value: CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
-                            gridBlock(title: "renewal_cycle".localized(), value: nextRenewalDayMonth(sub))
-                        }
-                        
-                        // Actions Group
-                        HStack(spacing: 12) {
-                            actionButton(icon: sub.reminderEnabled ? "bell.slash" : "bell", 
-                                       title: sub.reminderEnabled ? "turn_off".localized() : "set_reminder".localized(), 
-                                       color: Color.appOnSurfaceVariant(for: colorScheme), 
-                                       action: toggleReminder)
-                            
-                            actionButton(icon: "pencil", title: "edit_plan".localized(), color: Color.appOnBackground(for: colorScheme)) {
-                                onEdit(sub)
-                            }
-                        }
-                        
-                        // Primary Action (Cancel or Reactivate)
-                        if sub.status != 3 {
-                            Button(action: { showCancelDialog = true }) {
-                                HStack {
-                                    Image(systemName: "xmark.circle")
-                                    Text("cancel_subscription_btn".localized())
-                                }
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.errorColor)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 45)
-                                .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                                .cornerRadius(12)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                                )
-                            }
-                        } else {
-                            Button(action: reactivateSubscription) {
-                                HStack(spacing: 8) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                    Text("reactivate_subscription".localized())
-                                }
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(Color(hex: "4CAF50"))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 45)
-                                .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                                .cornerRadius(12)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                                )
-                            }
-                        }
-                        
-                        // Delete Button
-                        Button(action: { showDeleteDialog = true }) {
-                            HStack(spacing: 8) {
-                                Image(systemName: "trash")
-                                Text("delete_subscription".localized())
-                            }
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.errorColor)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 45)
-                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
-                            .cornerRadius(12)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
-                            )
-                        }
-                        .padding(.top, 8)
-                        
-                        // Participants Section
-                        if let participants = sub.participants, !participants.isEmpty {
-                            VStack(alignment: .leading, spacing: 16) {
-                                HStack(spacing: 8) {
-                                    Image(systemName: "person.2.fill")
-                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                    Text("participants".localized())
-                                        .font(.system(size: 18, weight: .bold))
-                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                                }
-                                .padding(.top, 8)
-                                
-                                VStack(spacing: 8) {
-                                    ForEach(participants) { participant in
-                                        HStack(spacing: 12) {
-                                            Circle()
-                                                .fill(Color.appSurface(for: colorScheme))
-                                                .frame(width: 40, height: 40)
-                                                .overlay(
-                                                    Image(systemName: "person.fill")
-                                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                                )
-                                            
-                                            VStack(alignment: .leading, spacing: 2) {
-                                                if let name = participant.name {
-                                                    Text(name)
-                                                        .font(.system(size: 14, weight: .medium))
-                                                        .foregroundColor(Color.appOnBackground(for: colorScheme))
-                                                }
-                                                Text(participant.email)
-                                                    .font(.system(size: 12))
-                                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                                            }
-                                            
-                                            Spacer()
-                                            
-                                            StatusIcon(status: participant.status)
-                                            
-                                            if sub.isOwner {
-                                                Button(action: {
-                                                    participantToRemove = participant
-                                                    showParticipantRemoveDialog = true
-                                                }) {
-                                                    Image(systemName: "trash")
-                                                        .font(.system(size: 14))
-                                                        .foregroundColor(.errorColor)
-                                                        .padding(8)
-                                                }
-                                            }
-                                        }
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 12)
-                                        .background(Color.clear)
-                                        .cornerRadius(12)
-                                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(1.0), lineWidth: 1))
-                                    }
-                                }
-                            }
-                        }
-                        
-                        Spacer().frame(height: 20)
-                    }
-                    .padding(.horizontal, 24)
-                }
-            } else {
-                Spacer()
-                Text("subscription_id_not_found".localized())
-                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
-                Spacer()
-            }
+            contentSection
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .onAppear { loadSubscription() }
@@ -337,6 +60,281 @@ struct SubscriptionDetailsScreen: View {
         }
     }
     
+    @ViewBuilder
+    private var contentSection: some View {
+        if isLoading {
+            SubscriptionDetailsSkeleton()
+        } else if let sub = subscription {
+            subscriptionScrollView(sub)
+        } else {
+            Spacer()
+            Text("subscription_id_not_found".localized())
+                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+            Spacer()
+        }
+    }
+    
+    private func subscriptionScrollView(_ sub: Subscription) -> some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                // Icon
+                brandIconDetailed(name: sub.name)
+                    .padding(.top, 20)
+                
+                // Name & Price
+                VStack(spacing: 8) {
+                    Text(sub.name)
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(Color.appOnBackground(for: colorScheme))
+                    
+                    HStack(alignment: .firstTextBaseline, spacing: 4) {
+                        Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
+                            .font(.system(size: 32, weight: .black))
+                            .foregroundColor(.primaryBlue)
+                        
+                        Text("/ \(billingCycleText(for: sub))")
+                            .font(.system(size: 16))
+                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                    }
+                }
+                
+                if sub.isFreeTrial == true {
+                    HStack(spacing: 8) {
+                        Image(systemName: "gift.fill")
+                        Text("free_trial".localized())
+                    }
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(Color(hex: "4CAF50"))
+                    .cornerRadius(20)
+                }
+                
+                if sub.reminderEnabled {
+                    HStack(spacing: 8) {
+                        Image(systemName: "bell.fill")
+                        Text("reminder_on".localized())
+                    }
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(Color.appOnBackground(for: colorScheme))
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(Color.clear)
+                    .cornerRadius(20)
+                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.appOutline(for: colorScheme), lineWidth: 1))
+                }
+                
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack(spacing: 12) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(sub.name)
+                                .font(.system(size: 16, weight: .bold))
+                            Text("\((sub.category ?? "category_other").localized()) • \(billingCycleText(for: sub))")
+                                .font(.system(size: 12))
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                        }
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .trailing, spacing: 2) {
+                            Text(CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
+                                .font(.system(size: 16, weight: .bold))
+                            if let nextDate = sub.getNextRenewalDate() {
+                                if sub.billingCycle == .monthly, let billingDay = sub.billingDay {
+                                    Text(DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage))
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                } else if sub.billingCycle == .weekly, let billingDay = sub.billingDay {
+                                    Text(weeklyDayText(day: billingDay))
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                } else if sub.billingCycle == .daily {
+                                    Text(dailyText())
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                } else {
+                                    Text(nextDate, format: .dateTime.day().month().year())
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                }
+                            }
+                        }
+                    }
+                    
+                    if let nextDate = sub.getNextRenewalDate() {
+                        let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: Date()), to: Calendar.current.startOfDay(for: nextDate)).day ?? 0
+                        let totalDays = renewalTotalDays(for: sub.billingCycle)
+                        let progress = max(0.0, min(1.0, 1.0 - (Double(days) / totalDays)))
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            let daysLabel = days == 0
+                            ? "today".localized()
+                            : String(format: "days_left_for_renewal".localized(), days)
+                            
+                            Text(daysLabel)
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                            
+                            GeometryReader { geo in
+                                ZStack(alignment: .leading) {
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.appOutline(for: colorScheme).opacity(0.2))
+                                    
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.primaryBlue)
+                                        .frame(width: geo.size.width * progress)
+                                }
+                            }
+                            .frame(height: 6)
+                        }
+                    }
+                }
+                .padding(16)
+                .background(Color.clear)
+                .cornerRadius(16)
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.appOutline(for: colorScheme), lineWidth: 1))
+                
+                HStack(spacing: 16) {
+                    gridBlock(title: "subscription_price".localized(), value: CurrencyFormatter.formatAmount(sub.cost, currencyCode: sub.currency))
+                    gridBlock(title: "renewal_cycle".localized(), value: nextRenewalDayMonth(sub))
+                }
+                
+                if let cardInfo = sub.cardInfo, !cardInfo.isEmpty {
+                    gridBlock(title: "card_info".localized(), value: cardInfo)
+                }
+                
+                HStack(spacing: 12) {
+                    actionButton(
+                        icon: sub.reminderEnabled ? "bell.slash" : "bell",
+                        title: sub.reminderEnabled ? "turn_off".localized() : "set_reminder".localized(),
+                        color: Color.appOnSurfaceVariant(for: colorScheme),
+                        action: toggleReminder
+                    )
+                    
+                    actionButton(icon: "pencil", title: "edit_plan".localized(), color: Color.appOnBackground(for: colorScheme)) {
+                        onEdit(sub)
+                    }
+                }
+                
+                if sub.status != 3 {
+                    Button(action: { showCancelDialog = true }) {
+                        HStack {
+                            Image(systemName: "xmark.circle")
+                            Text("cancel_subscription_btn".localized())
+                        }
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.errorColor)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 45)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                        )
+                    }
+                } else {
+                    Button(action: reactivateSubscription) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "checkmark.circle.fill")
+                            Text("reactivate_subscription".localized())
+                        }
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(Color(hex: "4CAF50"))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 45)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                        )
+                    }
+                }
+                
+                Button(action: { showDeleteDialog = true }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "trash")
+                        Text("delete_subscription".localized())
+                    }
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.errorColor)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 45)
+                    .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.appOutline(for: colorScheme).opacity(1), lineWidth: 1)
+                    )
+                }
+                
+                if let participants = sub.participants, !participants.isEmpty {
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "person.2.fill")
+                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                            Text("participants".localized())
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        }
+                        .padding(.top, 8)
+                        
+                        VStack(spacing: 8) {
+                            ForEach(participants) { participant in
+                                HStack(spacing: 12) {
+                                    Circle()
+                                        .fill(Color.appSurface(for: colorScheme))
+                                        .frame(width: 40, height: 40)
+                                        .overlay(
+                                            Image(systemName: "person.fill")
+                                                .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                        )
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        if let name = participant.name {
+                                            Text(name)
+                                                .font(.system(size: 14, weight: .medium))
+                                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                        }
+                                        Text(participant.email)
+                                            .font(.system(size: 12))
+                                            .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme))
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    StatusIcon(status: participant.status)
+                                    
+                                    if sub.isOwner {
+                                        Button(action: {
+                                            participantToRemove = participant
+                                            showParticipantRemoveDialog = true
+                                        }) {
+                                            Image(systemName: "trash")
+                                                .font(.system(size: 14))
+                                                .foregroundColor(.errorColor)
+                                                .padding(8)
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 12)
+                                .background(Color.clear)
+                                .cornerRadius(12)
+                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(1.0), lineWidth: 1))
+                            }
+                        }
+                    }
+                }
+                
+                Spacer().frame(height: 20)
+            }
+            .padding(.horizontal, 24)
+        }
+    }
+    
     private func loadSubscription() {
         Task {
             isLoading = true
@@ -365,8 +363,10 @@ struct SubscriptionDetailsScreen: View {
                 isSuspicious: sub.isSuspicious,
                 tier: sub.tier,
                 reminderEnabled: !sub.reminderEnabled,
+                cardInfo: sub.cardInfo,
                 jointEmails: sub.jointEmails,
                 isOwner: sub.isOwner,
+                isFreeTrial: sub.isFreeTrial,
                 participants: sub.participants
             )
             
@@ -380,7 +380,10 @@ struct SubscriptionDetailsScreen: View {
                 billingCycle: updatedSub.billingCycle.rawValue,
                 billingDay: updatedSub.billingDay,
                 billingMonth: updatedSub.billingMonth,
+                endDate: nil,
                 reminderEnabled: updatedSub.reminderEnabled,
+                isFreeTrial: updatedSub.isFreeTrial,
+                cardInfo: updatedSub.cardInfo,
                 jointEmails: updatedSub.jointEmails
             )
             
@@ -470,9 +473,9 @@ struct SubscriptionDetailsScreen: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.appSurface(for: colorScheme).opacity(0.5))
+        .background(Color.clear)
         .cornerRadius(12)
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1))
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.appOutline(for: colorScheme), lineWidth: 1))
     }
     
     private func actionButton(icon: String, title: String, color: Color, action: @escaping () -> Void) -> some View {
@@ -495,6 +498,12 @@ struct SubscriptionDetailsScreen: View {
     }
     
     private func nextRenewalDayMonth(_ sub: Subscription) -> String {
+        if sub.billingCycle == .daily {
+            return dailyText()
+        }
+        if sub.billingCycle == .weekly, let billingDay = sub.billingDay {
+            return weeklyDayText(day: billingDay)
+        }
         if sub.billingCycle == .monthly,
            let billingDay = sub.billingDay {
             return DateUtils.formatMonthlyRenewal(day: billingDay, language: LanguagePreferences.shared.selectedLanguage)
@@ -507,12 +516,88 @@ struct SubscriptionDetailsScreen: View {
         return formatter.string(from: nextDate)
     }
     
-    private func billingCycleText(_ cycle: BillingCycle) -> String {
-        switch cycle {
-        case .monthly: return "billing_monthly_label".localized()
-        case .yearly: return "billing_yearly_label".localized()
-        case .weekly: return "billing_weekly_label".localized()
-        case .quarterly: return "period_monthly".localized()
+    private func billingCycleText(for sub: Subscription) -> String {
+        switch sub.billingCycle {
+        case .daily:
+            return dailyText()
+        case .weekly:
+            if let day = sub.billingDay {
+                return weeklyDayText(day: day)
+            }
+            return "billing_weekly_label".localized()
+        case .monthly:
+            return "billing_monthly_label".localized()
+        case .yearly:
+            return "billing_yearly_label".localized()
+        case .quarterly:
+            return "period_monthly".localized()
         }
+    }
+    
+    private func dailyText() -> String {
+        "billing_daily_label".localized()
+    }
+    
+    private func weeklyDayText(day: Int) -> String {
+        String(format: "billing_weekly_label_day".localized(), day)
+    }
+    
+    private func renewalTotalDays(for cycle: BillingCycle) -> Double {
+        switch cycle {
+        case .daily: return 1.0
+        case .weekly: return 7.0
+        case .monthly, .quarterly: return 30.0
+        case .yearly: return 365.0
+        }
+    }
+    
+    @ViewBuilder
+    private func brandIconDetailed(name: String) -> some View {
+        if let info = getBrandIconInfo(name) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(info.color.opacity(0.5), lineWidth: 1)
+                    .background(Color.clear)
+                    .frame(width: 120, height: 120)
+                BrandIconView(name: info.icon, color: info.color)
+                    .frame(width: 60, height: 60)
+            }
+        } else {
+            let brandColor = getBrandColor(name)
+            ZStack {
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(brandColor.opacity(0.5), lineWidth: 1)
+                    .background(Color.clear)
+                    .frame(width: 120, height: 120)
+                Text(name.prefix(1).uppercased())
+                    .font(.system(size: 60, weight: .bold))
+                    .foregroundColor(brandColor)
+            }
+        }
+    }
+    
+    private func getBrandIconInfo(_ name: String) -> (icon: String, color: Color)? {
+        let lowered = name.lowercased()
+        let orderedBrandMap: [(key: String, info: (String, Color))] = [
+            ("hbo max", ("hbomax", Color(hex: "5A2E81"))),
+            ("netflix", ("netflix", Color(hex: "E50914"))),
+            ("spotify", ("spotify", Color(hex: "1DB954"))),
+            ("youtube", ("youtube", Color(hex: "FF0000"))),
+            ("google", ("google", Color(hex: "4285F4"))),
+            ("amazon", ("amazon", Color(hex: "00A8E1"))),
+            ("cursor", ("cursor", Color.primary)),
+            ("claude", ("claude", Color(hex: "E56038"))),
+        ]
+        return orderedBrandMap.first(where: { lowered.contains($0.key) })?.info
+    }
+    
+    private func getBrandColor(_ name: String) -> Color {
+        let lowered = name.lowercased()
+        if lowered.contains("netflix") { return .netflixRed }
+        if lowered.contains("spotify") { return .spotifyGreen }
+        if lowered.contains("adobe")   { return .adobeRed }
+        if lowered.contains("youtube") { return Color(hex: "FF0000") }
+        if lowered.contains("amazon")  { return Color(hex: "00A8E1") }
+        return Color.dynamicColor(from: name)
     }
 }

@@ -18,6 +18,7 @@ enum AppRoute: Hashable {
     case premiumUpgrade
     case transactionHistory
     case notifications
+    case analytics
 }
 
 // MARK: - Main Tab
@@ -57,26 +58,15 @@ struct ContentView: View {
     @State private var selectedTab: MainTab = .dashboard
     @State private var showingLimitAlert = false
     @State private var isBannerLoaded = true
+    @State private var showFirstAuthPaywall = false
     
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         Group {
             if authViewModel.isLoading && !authViewModel.isAuthenticated {
-                // Splash
-                ZStack {
-                    Color.appBackground(for: colorScheme).ignoresSafeArea()
-                    VStack(spacing: 20) {
-                        Image(systemName: "creditcard.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(.primaryBlue)
-                            .shimmer()
-                        
-                        Text("loading".localized())
-                            .font(.sdBodyMedium)
-                            .foregroundColor(.primaryBlue)
-                    }
-                }
+                // Splash / Loading
+                SplashSkeleton()
             } else if !authViewModel.isAuthenticated {
                 // Auth Flow
                 NavigationStack(path: $navigationPath) {
@@ -95,7 +85,7 @@ struct ContentView: View {
                     } else {
                         LoginScreen(
                             onLoginSuccess: {
-                                // Auth state change will automatically switch to main
+                                maybeShowFirstAuthPaywall()
                             },
                             onNavigateToRegister: {
                                 navigationPath.append(.register)
@@ -122,6 +112,9 @@ struct ContentView: View {
                 navigationPath = []
             }
         }
+        .fullScreenCover(isPresented: $showFirstAuthPaywall) {
+            PremiumUpgradeScreen(onBack: { showFirstAuthPaywall = false })
+        }
     }
     
     // MARK: - Auth Destination
@@ -130,13 +123,13 @@ struct ContentView: View {
         switch route {
         case .login:
             LoginScreen(
-                onLoginSuccess: {},
+                onLoginSuccess: { maybeShowFirstAuthPaywall() },
                 onNavigateToRegister: { navigationPath.append(.register) },
                 onNavigateToForgotPassword: { navigationPath.append(.forgotPassword) }
             )
         case .register:
             RegisterScreen(
-                onRegisterSuccess: {},
+                onRegisterSuccess: { maybeShowFirstAuthPaywall() },
                 onNavigateToLogin: { navigationPath.removeLast() }
             )
         case .forgotPassword:
@@ -159,6 +152,13 @@ struct ContentView: View {
             EmptyView()
         }
     }
+
+    private func maybeShowFirstAuthPaywall() {
+        guard authViewModel.tier < 2 else { return }
+        guard PremiumPreferences.shared.hasShownFirstAuthPaywall == false else { return }
+        PremiumPreferences.shared.hasShownFirstAuthPaywall = true
+        showFirstAuthPaywall = true
+    }
     
     // MARK: - Main Tab View
     private var mainTabView: some View {
@@ -172,7 +172,8 @@ struct ContentView: View {
                                 onNavigateToSubscriptions: { selectedTab = .subscriptions },
                                 onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) },
                                 onNavigateToSearch: { navigationPath.append(.search) },
-                                onNavigateToNotifications: { navigationPath.append(.notifications) }
+                                onNavigateToNotifications: { navigationPath.append(.notifications) },
+                                onNavigateToAnalytics: { navigationPath.append(.analytics) }
                             )
                         case .subscriptions:
                             SubscriptionsListScreen(
@@ -212,6 +213,7 @@ struct ContentView: View {
                 // Bottom area container
                 VStack(spacing: 0) {
                     bottomNavBar
+                        .id(selectedTab) // Force re-render on tab change to update labels correctly
                     
                     // Banner Ad for non-premium users
                     if authViewModel.tier == 1 {
@@ -245,14 +247,27 @@ struct ContentView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("DidRequestNavigation"))) { notification in
             if let destination = notification.object as? String {
-                if destination == "add_subscription" {
-                    if authViewModel.isSubscriptionLimitReached {
-                        showingLimitAlert = true
-                    } else {
-                        // Reset navigation path and navigate to add subscription
-                        navigationPath = [.addSubscription]
-                    }
-                }
+                handleNavigation(to: destination)
+            }
+        }
+        .onAppear {
+            if let pending = DeepLinkManager.shared.consume() {
+                handleNavigation(to: pending)
+            }
+        }
+        .onReceive(DeepLinkManager.shared.$pendingRoute) { route in
+            if let route = route {
+                handleNavigation(to: DeepLinkManager.shared.consume() ?? route)
+            }
+        }
+    }
+    
+    private func handleNavigation(to destination: String) {
+        if destination == "add_subscription" {
+            if authViewModel.isSubscriptionLimitReached {
+                showingLimitAlert = true
+            } else {
+                navigationPath = [.addSubscription]
             }
         }
     }
@@ -271,7 +286,7 @@ struct ContentView: View {
                 }
             )
         case .addSubscription:
-            AddSubscriptionScreen(
+            AddSubscriptionStepperScreen(
                 onSaved: {
                     navigationPath.removeLast()
                     
@@ -303,6 +318,14 @@ struct ContentView: View {
                 onBack: { navigationPath.removeLast() },
                 onNavigate: { destination in
                     NotificationCenter.default.post(name: NSNotification.Name("DidRequestNavigation"), object: destination)
+                }
+            )
+        case .analytics:
+            AnalyticsScreen(
+                onBack: { navigationPath.removeLast() },
+                onNavigateToPremium: {
+                    navigationPath.removeLast()
+                    navigationPath.append(.premiumUpgrade)
                 }
             )
         default:
@@ -370,23 +393,29 @@ struct ContentView: View {
     
     @ViewBuilder
     private func tabButton(_ tab: MainTab) -> some View {
+        let isSelected = selectedTab == tab
+        
         Button(action: {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 selectedTab = tab
                 navigationPath = []
             }
         }) {
-            VStack(spacing: 2) {
-                Image(systemName: selectedTab == tab ? tab.icon : tab.icon.replacingOccurrences(of: ".fill", with: ""))
-                    .font(.system(size: 18))
-                    .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
+            VStack(spacing: isSelected ? 2 : 0) {
+                Image(systemName: isSelected ? tab.icon : tab.icon.replacingOccurrences(of: ".fill", with: ""))
+                    .font(.system(size: isSelected ? 20 : 22)) // Slightly bigger icon when NOT selected for balance
+                    .foregroundColor(isSelected ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
                 
-                Text(tab.title)
-                    .font(selectedTab == tab ? .sdLabelSmall : .sdLabel)
-                    .foregroundColor(selectedTab == tab ? .primaryBlue : Color.appOnSurfaceVariant(for: colorScheme))
+                if isSelected {
+                    Text(tab.title)
+                        .font(.sdLabelSmall)
+                        .foregroundColor(.primaryBlue)
+                        .transition(.opacity.combined(with: .scale))
+                        .lineLimit(1)
+                }
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 6)
+            .padding(.vertical, isSelected ? 8 : 12)
         }
         .buttonStyle(.plain)
     }
@@ -457,7 +486,7 @@ struct EditSubscriptionWrapper: View {
             }
             .onAppear { loadSubscription() }
         } else if let sub = subscription {
-            AddSubscriptionScreen(
+            AddSubscriptionStepperScreen(
                 editSubscription: sub,
                 onSaved: onSaved,
                 onBack: onBack

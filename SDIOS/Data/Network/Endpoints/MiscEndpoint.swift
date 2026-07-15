@@ -15,6 +15,7 @@ enum MiscEndpoint: APIEndpoint {
     case markNotificationRead(id: String)
     case markAllNotificationsRead
     case deleteNotification(id: String)
+    case submitSupportTicket(SupportTicketRequest)
     
     var path: String {
         switch self {
@@ -31,6 +32,7 @@ enum MiscEndpoint: APIEndpoint {
         case .markNotificationRead(let id): return "/api/notifications/\(id)/read"
         case .markAllNotificationsRead: return "/api/notifications/read-all"
         case .deleteNotification(let id): return "/api/notifications/\(id)"
+        case .submitSupportTicket: return "/api/support/tickets"
         }
     }
     
@@ -44,6 +46,8 @@ enum MiscEndpoint: APIEndpoint {
             return .delete
         case .markNotificationRead, .markAllNotificationsRead:
             return .patch
+        case .submitSupportTicket:
+            return .post
         }
     }
     
@@ -52,6 +56,7 @@ enum MiscEndpoint: APIEndpoint {
         switch self {
         case .getConvertedAmount(let req): return try? encoder.encode(req)
         case .verifyPurchase(let req): return try? encoder.encode(req)
+        case .submitSupportTicket(let req): return try? encoder.encode(req)
         default: return nil
         }
     }

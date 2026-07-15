@@ -5,6 +5,12 @@ struct HelpCenterScreen: View {
     let onBack: () -> Void
     
     @State private var searchText = ""
+    @State private var supportSubject = ""
+    @State private var supportMessage = ""
+    @State private var isSubmittingSupportTicket = false
+    @State private var showSupportSuccess = false
+    @State private var showSupportError = false
+    @State private var supportErrorMessage: String?
     @Environment(\.colorScheme) var colorScheme
     
     struct FAQItem: Identifiable {
@@ -102,11 +108,11 @@ struct HelpCenterScreen: View {
                             }
                             .accentColor(Color.appOnSurfaceVariant(for: colorScheme))
                             .padding(20)
-                            .background(Color.appSurface(for: colorScheme))
+                            .background(Color.appSurface(for: colorScheme).opacity(0.001))
                             .cornerRadius(16)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.appOutline(for: colorScheme).opacity(0.2), lineWidth: 1)
+                                    .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
                             )
                         }
                         
@@ -124,12 +130,108 @@ struct HelpCenterScreen: View {
                         }
                     }
                     
+                    // Support Ticket Form
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("support_ticket_section_title".localized())
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        
+                        HStack(spacing: 12) {
+                            Image(systemName: "tag")
+                                .font(.system(size: 18))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme).opacity(0.4))
+                            
+                            TextField("support_subject".localized(), text: $supportSubject)
+                                .font(.system(size: 16))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                        }
+                        .padding(.horizontal, 16)
+                        .frame(height: 45)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                        
+                        ZStack(alignment: .topLeading) {
+                            if supportMessage.isEmpty {
+                                Text("support_message".localized())
+                                    .foregroundColor(Color.appOnSurfaceVariant(for: colorScheme).opacity(0.6))
+                                    .padding(.horizontal, 14)
+                                    .padding(.top, 10)
+                            }
+                            
+                            TextEditor(text: $supportMessage)
+                                .font(.system(size: 16))
+                                .foregroundColor(Color.appOnBackground(for: colorScheme))
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 8)
+                                .scrollContentBackground(.hidden)
+                        }
+                        .frame(height: 130)
+                        .background(Color.appSurface(for: colorScheme).opacity(0.001))
+                        .cornerRadius(12)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.appOutline(for: colorScheme).opacity(0.35), lineWidth: 1)
+                        )
+                        
+                        Button(action: submitSupportTicket) {
+                            Text(isSubmittingSupportTicket ? "loading".localized() : "support_send".localized())
+                                .font(.sdBodyBold)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 45)
+                        .foregroundColor(.white)
+                        .background(Color.primaryBlue)
+                        .cornerRadius(12)
+                        .disabled(isSubmittingSupportTicket ||
+                                  supportSubject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+                                  supportMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    }
+                    
                     Spacer().frame(height: 20)
                 }
                 .padding(.horizontal, 24)
             }
         }
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
+        .alert("success".localized(), isPresented: $showSupportSuccess) {
+            Button("ok".localized(), role: .cancel) { }
+        } message: {
+            Text("support_sent_success".localized())
+        }
+        .alert("error".localized(), isPresented: $showSupportError) {
+            Button("ok".localized(), role: .cancel) { }
+        } message: {
+            Text(supportErrorMessage ?? "unknown_error".localized())
+        }
+    }
+    
+    private func submitSupportTicket() {
+        guard !isSubmittingSupportTicket else { return }
+        
+        let subject = supportSubject.trimmingCharacters(in: .whitespacesAndNewlines)
+        let message = supportMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !subject.isEmpty, !message.isEmpty else { return }
+        
+        isSubmittingSupportTicket = true
+        
+        Task {
+            do {
+                try await ApiService.shared.submitSupportTicket(SupportTicketRequest(subject: subject, message: message))
+                isSubmittingSupportTicket = false
+                
+                supportSubject = ""
+                supportMessage = ""
+                showSupportSuccess = true
+            } catch {
+                isSubmittingSupportTicket = false
+                supportErrorMessage = "support_ticket_error".localized()
+                showSupportError = true
+            }
+        }
     }
 }
 
@@ -243,7 +345,7 @@ struct UpcomingSubscriptionsScreen: View {
                     ScrollView {
                         VStack(spacing: 8) {
                             ForEach(0..<6, id: \.self) { _ in
-                                SkeletonCard()
+                                SubscriptionRowSkeleton()
                             }
                         }
                         .padding(.horizontal, 24)

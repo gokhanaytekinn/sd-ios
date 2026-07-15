@@ -61,6 +61,10 @@ class ApiService: ApiServiceProtocol {
         return try await client.execute(AuthEndpoint.loginWithGoogle(request))
     }
     
+    func loginWithApple(_ request: AppleAuthRequest) async throws -> ApiAuthResponse {
+        return try await client.execute(AuthEndpoint.loginWithApple(request))
+    }
+    
     func getCurrentUser() async throws -> UserResponse {
         return try await client.execute(AuthEndpoint.getCurrentUser)
     }
@@ -172,6 +176,17 @@ class ApiService: ApiServiceProtocol {
     func deleteNotification(id: String) async throws {
         try await client.executeVoid(MiscEndpoint.deleteNotification(id: id))
     }
+    // MARK: - Analytics
+    #if !WIDGET
+    func getAnalyticsSummary(category: String?) async throws -> AnalyticsSummaryResponse {
+        var path = "/api/user-analytics/summary"
+        if let category = category {
+            path += "?category=\(category)"
+        }
+        let endpoint = GenericEndpoint(path: path, method: .get)
+        return try await client.execute(endpoint)
+    }
+    #endif
     
     func getConvertedAmount(_ request: ConversionRequest) async throws -> Double {
         return try await client.execute(MiscEndpoint.getConvertedAmount(request))
@@ -195,6 +210,11 @@ class ApiService: ApiServiceProtocol {
     
     func verifyPurchase(_ request: PurchaseRequest) async throws -> UserResponse {
         return try await client.execute(MiscEndpoint.verifyPurchase(request))
+    }
+
+    // MARK: - Support Tickets
+    func submitSupportTicket(_ request: SupportTicketRequest) async throws {
+        try await client.executeVoid(MiscEndpoint.submitSupportTicket(request))
     }
 }
 
