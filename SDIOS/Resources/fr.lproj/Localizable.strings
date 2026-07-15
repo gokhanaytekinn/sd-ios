@@ -43,6 +43,8 @@
 "membership_type" = "Type d'adhésion";
 "free_plan" = "Plan gratuit";
 "notifications" = "Notifications";
+"no_notifications" = "Aucune notification pour le moment";
+"mark_all_read" = "Tout marquer comme lu";
 "currency" = "Devise";
 "dark_mode" = "Mode sombre";
 "language" = "Langue";

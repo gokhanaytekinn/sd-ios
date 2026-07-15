@@ -43,6 +43,8 @@
 "membership_type" = "Üyelik Tipi";
 "free_plan" = "Ücretsiz Plan";
 "notifications" = "Bildirimler";
+"no_notifications" = "Henüz bildirim yok";
+"mark_all_read" = "Tümünü okundu işaretle";
 "currency" = "Para Birimi";
 "dark_mode" = "Karanlık Mod";
 "language" = "Dil";

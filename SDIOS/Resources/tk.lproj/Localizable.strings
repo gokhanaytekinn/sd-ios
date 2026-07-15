@@ -43,6 +43,8 @@
 "membership_type" = "Agzalyk Görnüşi";
 "free_plan" = "Mugt Plan";
 "notifications" = "Bildirişler";
+"no_notifications" = "Entäk bildiriş ýok";
+"mark_all_read" = "Ählisini okalan diýip belle";
 "currency" = "Walýuta";
 "dark_mode" = "Garaňky Režim";
 "language" = "Dil";

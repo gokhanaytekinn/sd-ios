@@ -43,6 +43,8 @@
 "membership_type" = "Membership Type";
 "free_plan" = "Free Plan";
 "notifications" = "Notifications";
+"no_notifications" = "No notifications yet";
+"mark_all_read" = "Mark all as read";
 "currency" = "Currency";
 "dark_mode" = "Dark Mode";
 "language" = "Language";

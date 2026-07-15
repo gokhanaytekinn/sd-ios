@@ -115,6 +115,42 @@ struct DateUtils {
         return String(format: format, formattedDay)
     }
     
+    /// Backend'in gönderdiği zaman damgası (offset'siz `LocalDateTime`, örn. "2024-01-15T10:30:00")
+    /// dahil çeşitli ISO-8601 varyantlarını ayrıştırmayı dener.
+    private static func parseFlexibleISODate(_ dateString: String) -> Date? {
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let date = isoFormatter.date(from: dateString) {
+            return date
+        }
+
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        if let date = isoFormatter.date(from: dateString) {
+            return date
+        }
+
+        for pattern in ["yyyy-MM-dd'T'HH:mm:ss.SSSSSS", "yyyy-MM-dd'T'HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss"] {
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.dateFormat = pattern
+            if let date = formatter.date(from: dateString) {
+                return date
+            }
+        }
+
+        return nil
+    }
+
+    /// Bildirim listesinde kullanılan "3 dakika önce" tarzı bağıl zaman metni.
+    static func formatRelative(isoString: String) -> String {
+        guard let date = parseFlexibleISODate(isoString) else { return isoString }
+
+        let formatter = RelativeDateTimeFormatter()
+        formatter.locale = Locale(identifier: LanguagePreferences.shared.selectedLanguage)
+        formatter.unitsStyle = .short
+        return formatter.localizedString(for: date, relativeTo: Date())
+    }
+
     static func formatYearlyRenewal(day: Int, month: Int, language: String) -> String {
         let monthName = "month_\(month)".localized()
         let format = "yearly_renewal_format".localized()

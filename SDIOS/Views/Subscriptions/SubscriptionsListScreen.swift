@@ -3,9 +3,11 @@ import SwiftUI
 struct SubscriptionsListScreen: View {
     @StateObject private var viewModel = SubscriptionsViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var notificationsViewModel: NotificationsViewModel
     
     let onNavigateToAddSubscription: () -> Void
     let onNavigateToSubscriptionDetail: (String) -> Void
+    let onNavigateToNotifications: () -> Void
     
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @State private var selectedTab = 0
@@ -30,6 +32,10 @@ struct SubscriptionsListScreen: View {
                             .font(.sdHeadline)
                             .foregroundColor(Color.appOnBackground(for: colorScheme))
                         Spacer()
+                        NotificationBellButton(
+                            unreadCount: notificationsViewModel.unreadCount,
+                            onTap: onNavigateToNotifications
+                        )
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 16)

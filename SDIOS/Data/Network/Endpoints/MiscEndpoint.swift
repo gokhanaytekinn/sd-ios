@@ -10,6 +10,11 @@ enum MiscEndpoint: APIEndpoint {
     case rejectInvitation(id: String)
     case removeParticipant(subscriptionId: String, email: String)
     case verifyPurchase(PurchaseRequest)
+    case getNotifications(isRead: Bool?)
+    case getUnreadNotificationCount
+    case markNotificationRead(id: String)
+    case markAllNotificationsRead
+    case deleteNotification(id: String)
     
     var path: String {
         switch self {
@@ -21,17 +26,24 @@ enum MiscEndpoint: APIEndpoint {
         case .rejectInvitation(let id): return "/api/invitations/\(id)/reject"
         case .removeParticipant(let subId, let email): return "/api/subscriptions/\(subId)/participants/\(email)"
         case .verifyPurchase: return "/api/purchases/verify"
+        case .getNotifications: return "/api/notifications"
+        case .getUnreadNotificationCount: return "/api/notifications/unread-count"
+        case .markNotificationRead(let id): return "/api/notifications/\(id)/read"
+        case .markAllNotificationsRead: return "/api/notifications/read-all"
+        case .deleteNotification(let id): return "/api/notifications/\(id)"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getTransactions, .getReminders, .getPendingInvitations:
+        case .getTransactions, .getReminders, .getPendingInvitations, .getNotifications, .getUnreadNotificationCount:
             return .get
         case .getConvertedAmount, .acceptInvitation, .rejectInvitation, .verifyPurchase:
             return .post
-        case .removeParticipant:
+        case .removeParticipant, .deleteNotification:
             return .delete
+        case .markNotificationRead, .markAllNotificationsRead:
+            return .patch
         }
     }
     
@@ -51,6 +63,9 @@ enum MiscEndpoint: APIEndpoint {
                 URLQueryItem(name: "page", value: "\(page)"),
                 URLQueryItem(name: "size", value: "\(size)")
             ]
+        case .getNotifications(let isRead):
+            guard let isRead else { return nil }
+            return [URLQueryItem(name: "isRead", value: isRead ? "true" : "false")]
         default: return nil
         }
     }

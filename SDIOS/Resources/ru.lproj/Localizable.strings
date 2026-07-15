@@ -43,6 +43,8 @@
 "membership_type" = "Тип Членства";
 "free_plan" = "Бесплатный План";
 "notifications" = "Уведомления";
+"no_notifications" = "Пока нет уведомлений";
+"mark_all_read" = "Отметить всё как прочитанное";
 "currency" = "Валюта";
 "dark_mode" = "Темный Режим";
 "language" = "Язык";

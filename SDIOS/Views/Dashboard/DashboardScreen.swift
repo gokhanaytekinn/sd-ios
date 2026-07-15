@@ -3,10 +3,12 @@ import SwiftUI
 struct DashboardScreen: View {
     @StateObject private var viewModel = DashboardViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var notificationsViewModel: NotificationsViewModel
     
     let onNavigateToSubscriptions: () -> Void
     let onNavigateToSubscriptionDetail: (String) -> Void
     let onNavigateToSearch: () -> Void
+    let onNavigateToNotifications: () -> Void
     
     @AppStorage("selectedCurrency") private var currency: Int = 1
     @Environment(\.colorScheme) var colorScheme
@@ -35,6 +37,13 @@ struct DashboardScreen: View {
                                     .font(.sdHeadline)
                                     .foregroundColor(Color.appOnBackground(for: colorScheme))
                             }
+                            
+                            Spacer()
+                            
+                            NotificationBellButton(
+                                unreadCount: notificationsViewModel.unreadCount,
+                                onTap: onNavigateToNotifications
+                            )
                         }
                         .padding(.horizontal, 24)
                         .padding(.top, 16)

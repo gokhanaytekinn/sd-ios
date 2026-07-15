@@ -17,6 +17,7 @@ enum AppRoute: Hashable {
     case privacyPolicy
     case premiumUpgrade
     case transactionHistory
+    case notifications
 }
 
 // MARK: - Main Tab
@@ -49,6 +50,7 @@ enum MainTab: Int, CaseIterable {
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var notificationsViewModel: NotificationsViewModel
     @ObservedObject var languagePref = LanguagePreferences.shared
     
     @State private var navigationPath: [AppRoute] = []
@@ -169,7 +171,8 @@ struct ContentView: View {
                             DashboardScreen(
                                 onNavigateToSubscriptions: { selectedTab = .subscriptions },
                                 onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) },
-                                onNavigateToSearch: { navigationPath.append(.search) }
+                                onNavigateToSearch: { navigationPath.append(.search) },
+                                onNavigateToNotifications: { navigationPath.append(.notifications) }
                             )
                         case .subscriptions:
                             SubscriptionsListScreen(
@@ -180,17 +183,20 @@ struct ContentView: View {
                                         navigationPath.append(.addSubscription)
                                     }
                                 },
-                                onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) }
+                                onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) },
+                                onNavigateToNotifications: { navigationPath.append(.notifications) }
                             )
                         case .upcoming:
                             UpcomingSubscriptionsScreen(
-                                onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) }
+                                onNavigateToSubscriptionDetail: { id in navigationPath.append(.subscriptionDetail(id: id)) },
+                                onNavigateToNotifications: { navigationPath.append(.notifications) }
                             )
                         case .settings:
                             AppSettingsScreen(
                                 onNavigateToHelpCenter: { navigationPath.append(.helpCenter) },
                                 onNavigateToPrivacyPolicy: { navigationPath.append(.privacyPolicy) },
                                 onNavigateToPremium: { navigationPath.append(.premiumUpgrade) },
+                                onNavigateToNotifications: { navigationPath.append(.notifications) },
                                 onLogout: {}
                             )
                         }
@@ -221,6 +227,9 @@ struct ContentView: View {
         .background(Color.appBackground(for: colorScheme).ignoresSafeArea())
         .environment(\.locale, .init(identifier: languagePref.selectedLanguage))
         .id(languagePref.selectedLanguage) // Force view refresh on language change
+        .onAppear {
+            notificationsViewModel.refreshUnreadCount()
+        }
         .alert("limit_reached_title".localized(), isPresented: $showingLimitAlert) {
             Button("ok".localized(), role: .cancel) { }
         } message: {
@@ -230,6 +239,9 @@ struct ContentView: View {
             if newValue.isEmpty {
                 NotificationCenter.default.post(name: NSNotification.Name("RefreshData"), object: nil)
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NotificationInboxDidUpdate"))) { _ in
+            notificationsViewModel.refreshUnreadCount()
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("DidRequestNavigation"))) { notification in
             if let destination = notification.object as? String {
@@ -286,6 +298,13 @@ struct ContentView: View {
             PremiumUpgradeScreen(onBack: { navigationPath.removeLast() })
         case .transactionHistory:
             TransactionHistoryScreen(onBack: { navigationPath.removeLast() })
+        case .notifications:
+            NotificationCenterScreen(
+                onBack: { navigationPath.removeLast() },
+                onNavigate: { destination in
+                    NotificationCenter.default.post(name: NSNotification.Name("DidRequestNavigation"), object: destination)
+                }
+            )
         default:
             EmptyView()
         }

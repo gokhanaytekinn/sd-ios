@@ -65,11 +65,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Push zaten backend'de bildirim kutusuna kaydedildi; zil rozetini anında güncelle.
+        NotificationCenter.default.post(name: NSNotification.Name("NotificationInboxDidUpdate"), object: nil)
         completionHandler([.banner, .sound, .list])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        
+        NotificationCenter.default.post(name: NSNotification.Name("NotificationInboxDidUpdate"), object: nil)
         
         if let navigateTo = userInfo["navigate_to"] as? String {
             NotificationCenter.default.post(name: NSNotification.Name("DidRequestNavigation"), object: navigateTo)
